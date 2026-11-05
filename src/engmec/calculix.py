@@ -141,7 +141,7 @@ def extrair_dat(texto: str, meta: dict) -> dict:
         if l.startswith("displacements ") and "for set tipcenter" in l:
             bloco = "u"
             continue
-        if l.startswith("reaction forces ") and "for set root" in l:
+        if l.startswith(("reaction forces ", "forces ")) and "for set root" in l:
             bloco = "rf"
             continue
         if " for set " in l and (" and time " in l):

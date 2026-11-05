@@ -81,3 +81,8 @@ Próximo estudo: problema que produz gradientes de tensão com singularidades co
 - [Código original do benchmark](https://github.com/pedromaintenance/engenharia-mecanica-livre/blob/main/src/engmec/calculix.py)
 
 **Status:** código e workflow precisam de confirmação de execução no GitHub antes de registrar valores do solver como observados.
+
+
+### Observação sobre RF no CalculiX
+
+O manual explica que a variável `RF` representa a soma de forças externas nodais, podendo agregar reação e cargas diretamente aplicadas ao nó. Neste benchmark, **os nós ROOT não recebem CLOAD nem DLOAD**, logo seus valores `RF` são equivalentes às reações de apoio. O arquivo `.dat` pode trazer o cabeçalho `forces (fx,fy,fz)` em vez de `reaction forces`; o parser aceita ambas as convenções.
