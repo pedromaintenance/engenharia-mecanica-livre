@@ -1,55 +1,67 @@
 # Engenharia Mecânica Livre
 
-**Conhecimento verificável, ferramentas abertas e formação técnica em português.**
+> Uma infraestrutura pública de conhecimento mecânico: aprender, pesquisar, modelar, verificar e aplicar — com fontes rastreáveis.
 
-Este repositório constrói uma base pública de Engenharia Mecânica: referências, conceitos originais, trilhas de aprendizagem, calculadoras verificáveis, metodologias de diagnóstico e pontes para projetos científicos livres.
+[**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-> **Estado:** fundação v0.1 (05/11/2026). É um catálogo inicial curado — **não** uma cópia da internet inteira ou uma biblioteca já exaustiva. Novas entradas exigem revisão técnica e de direitos.
+## Estado: ciclo v0.2 (05/11/2026)
 
-## O que já existe
+- **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
+- **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas. São **67 registros em diferentes níveis**, não 67 obras independentes auditadas.
+- **Formação:** grade aberta por áreas da Engenharia Mecânica, seis trilhas por objetivo e critérios de avaliação.
+- **Ferramental funcional:** quatro modelos mecânicos didáticos em Python, testes de referência, CLI de busca e validação.
+- **Governança reusável:** [AGENTS.md](AGENTS.md), 8 agentes especializados, 9 skills e roadmaps temáticos.
+- **Próximos passos:** auditoria de licença por obra, produção de fichas técnicas originais, mais calculadoras e integração opcional a FreeCAD/CoolProp/CAE.
 
-- **[Acervo catalogado](src/engmec/data/fontes.json)** — fontes oficiais, acadêmicas e softwares, com idioma, temas, titularidade, política de redistribuição e data de verificação.
-- **[Documentação](docs/index.md)** — mapa do conhecimento, método de curadoria, governança e trilhas.
-- **[Calculadoras Python](src/engmec/calculadoras.py)** — hidráulica, torque/potência, disponibilidade inerente e flexão simples, com hipóteses declaradas.
-- **[CLI](src/engmec/__main__.py)** — pesquisa offline em fontes, validação de catálogo e cálculo estruturado.
-- **[Testes](tests/)** — testes de valores de referência, consistência e limitações.
-- **[Site MkDocs](mkdocs.yml)** — publicação pesquisável opcional via GitHub Pages.
+**Importante:** descoberta de um portal **não é auditoria de todo seu acervo**; software catalogado **não significa integração concluída**. As referências originais ficam nas instituições e as permissões são verificadas por item.
 
-## Instalação e primeiros comandos
+## Visitar os acervos
 
-Requer **Python 3.10+**. Na raiz do projeto:
+| Acervo | Conteúdo | Local |
+| --- | --- | --- |
+| Fontes gerais | 20 fontes-base, educação, ciência, normas e software | [JSON](src/engmec/data/fontes.json) |
+| Cursos | 10 disciplinas universitárias identificadas por URL | [Catálogo](docs/catalogos/cursos.md) |
+| Portais | 20 instituições, bibliotecas, órgãos e APIs | [Catálogo](docs/catalogos/portais.md) |
+| Ferramentas | 17 softwares, bibliotecas e simuladores | [Catálogo](docs/catalogos/ferramentas.md) |
+
+## Grade e ferramentas
+
+[Grade por ciclos](docs/formacao/grade.md) · [Trilhas](docs/formacao/trilhas.md) · [Guia de calculadoras](docs/guia-calculadoras.md) · [Metodologia](docs/metodologia.md)
 
 ```bash
+git clone https://github.com/pedromaintenance/engenharia-mecanica-livre.git
+cd engenharia-mecanica-livre
 python -m pip install -e .
-engmec fontes --consulta termodinamica
 engmec validar
+engmec recursos --tipo cursos --consulta dinamica
+engmec recursos --tipo portais --consulta NASA
+engmec recursos --tipo ferramentas --area FEM
+engmec fontes --consulta termodinamica
 engmec calcular potencia --torque-nm 250 --rpm 1800
-engmec calcular cilindro --pressao-bar 180 --diametro-mm 100 --haste-mm 60 --curso retracao
-engmec calcular disponibilidade --mtbf-h 100 --mttr-h 5
 python -m unittest discover -s tests -v
 ```
 
-Para o site local:
+Para executar a documentação local:
 
 ```bash
 python -m pip install -r requirements-docs.txt
 mkdocs serve
 ```
 
-## Organização por áreas
+## Padrões de engenharia
 
-Fundamentos físico-matemáticos; estática, dinâmica e resistência dos materiais; materiais e tribologia; termodinâmica, transferência de calor e fluidos; elementos e projeto de máquinas; fabricação e metrologia; sistemas hidráulicos e diesel; manutenção, confiabilidade e segurança; CAE, CAD, FEM e CFD; métodos computacionais e ciência de dados.
+- Grandezas e resultados em SI, hipóteses, domínio de validade e testes independentes.
+- Separação entre observação, efeito, hipótese, mecanismo, causa imediata e causa raiz.
+- Referências oficiais identificadas com versão, autor, URL e data; direitos verificados por obra.
+- Conteúdo educativo não substitui projeto, inspeção habilitada, normas atualizadas, procedimentos de segurança nem OEM.
+- Dados fictícios para exemplos de equipamentos, sem publicar documentos internos ou informações privadas.
 
-O catálogo é extensível, com prioridade inicial a fontes primárias e abertas. Qualquer especificação de fabricante deve trazer aplicação exata (modelo, número de série, revisão e contexto), não ser generalizada.
+## Agentes e continuidade
 
-## Princípios irrenunciáveis
+Os agentes são perfis versionados em [`.github/agents/`](.github/agents) e as skills são instruções especializadas em [`.github/skills/`](.github/skills). **Não são tarefas agendadas autonomamente**; devem ser invocados por ambientes compatíveis e sempre seguem [AGENTS.md](AGENTS.md).
 
-1. **Fonte e evidência acima da aparência de autoridade.** Diferenciar medição, modelo, hipótese e diagnóstico confirmado.
-2. **SI e rastreabilidade.** Toda calculadora informa unidades, limites e pressupostos, com teste.
-3. **Licença por item.** Link público não equivale a direito de redistribuição. Conteúdo de ISO, ASME e OEM continua sob seus titulares.
-4. **Separação de segurança.** Material educativo não substitui projeto assinado, profissional habilitado, procedimentos oficiais, NR ou manual do fabricante.
-5. **Independência institucional.** Nada de documentos internos, dados confidenciais, credenciais, telemetria identificável ou materiais proprietários compartilhados sem autorização.
+Para continuar: abra [roadmap mestre](docs/roadmaps/master.md), selecione um [issue](https://github.com/pedromaintenance/engenharia-mecanica-livre/issues), carregue o perfil e a skill adequada, produza mudanças, execute CI e registre em [ciclos](docs/ciclos/ciclo-02.md).
 
-## Evolução
+## Licenças
 
-Veja [arquitetura](docs/arquitetura.md), [roadmap](docs/roadmap.md) e [contribuições](CONTRIBUTING.md). A licença MIT já presente no repositório rege **nosso código e documentação original**; não relicencia nenhuma obra externa catalogada.
+O código e a documentação original deste repositório estão sob a licença MIT existente em [LICENSE](LICENSE). Obras externas conservam seus próprios direitos; uma URL aberta **não autoriza reprodução, tradução ou inclusão em corpus de IA**. O projeto usa links e metadados como padrão conservador.

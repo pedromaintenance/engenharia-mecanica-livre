@@ -1,14 +1,5 @@
-# Trilhas de formação
+# Trilhas — histórico da fundação
 
-Cada trilha deve evoluir de **fundamento → modelo → cálculo → experimento → diagnóstico/aplicação**.
+O esboço inicial da v0.1 foi substituído por uma [grade ampla](formacao/grade.md) e por [trilhas profissionais](formacao/trilhas.md) desenvolvidas no ciclo v0.2. Este arquivo preserva o caminho anterior de navegação.
 
-| Trilha | Sequência sugerida | Saída prática |
-| --- | --- | --- |
-| Base científica | álgebra → trigonometria → cálculo → SI → incerteza | cálculo dimensional rastreável |
-| Mecânica dos sólidos | estática → esforço interno → tensão/deformação → fadiga | análise inicial de eixo/viga |
-| Termofluidos | balanços → termodinâmica → fluidos → transmissão de calor | perdas e potência de sistemas |
-| Projeto mecânico | desenho → materiais → elementos → CAD → FEM | projeto com hipóteses e validação |
-| Manutenção | funções → modos de falha → inspeções → confiabilidade → PCM | diagnóstico e plano executável |
-| Dados | estatística → Python → séries → RAM → métodos numéricos | estudo reproduzível com testes |
-
-A sequência é uma proposta editorial, não substitui a matriz curricular da instituição. Conteúdos OEM, NR e critérios de segurança exigem revisão do item aplicável antes de qualquer ação física.
+Os cursos de universidades externas são apenas **referências**. Os objetivos, exercícios e avaliações do portal são autorais e não conferem certificação universitária.

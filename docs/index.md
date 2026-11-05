@@ -1,31 +1,33 @@
 # Engenharia Mecânica Livre
 
-Uma infraestrutura pública e progressiva para **aprender, investigar, calcular e decidir** em Engenharia Mecânica.
+Uma base pública para **estudar, pesquisar, calcular, experimentar e resolver problemas mecânicos** sem abandonar o rigor científico.
 
-## Três formas de usar
+O projeto está na fase **v0.2**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
 
-**Estudar:** siga as trilhas, passando de fundamentos a aplicação. Cada conceito deverá ter definição, modelo, hipótese, dedução, exemplo, unidades e fontes.
+## Comece por aqui
 
-**Investigar:** parta de uma função ou sintoma, identifique modos e mecanismos de falha, organize hipóteses e medições, e só então escolha ações.
+| Objetivo | Onde entrar |
+| --- | --- |
+| Estudar a formação completa | [Grade aberta](formacao/grade.md) |
+| Aprender para manutenção, projeto, confiabilidade ou dados | [Seis trilhas](formacao/trilhas.md) |
+| Encontrar disciplina universitária | [10 cursos identificados](catalogos/cursos.md) |
+| Pesquisar em universidades, bibliotecas e órgãos | [20 portais](catalogos/portais.md) |
+| Encontrar CAD/CAE, FEM/CFD e bibliotecas de cálculo | [17 ferramentas](catalogos/ferramentas.md) |
+| Aplicar fórmulas e interpretar limitações | [Guia de calculadoras](guia-calculadoras.md) |
+| Estruturar investigação de falha | [Diagnóstico de manutenção](manutencao/diagnostico.md) |
+| Continuar o projeto em novos ciclos | [Roadmap mestre](roadmaps/master.md) e [agentes](governanca/agentes.md) |
 
-**Calcular:** use bibliotecas com domínio de validade declarado, resultados no SI e testes de referência; qualquer valor crítico exige conferência independente.
+## O que ensinamos
 
-## Áreas
+Partimos das leis físicas, construímos modelos matemáticos, analisamos fenômenos e traduzimos os resultados em decisões verificáveis. A estrutura progride por matemática e física, sólidos e dinâmica, materiais e fabricação, termofluidos, projeto de máquinas, simulação e manutenção.
 
-1. Matemática, física e metrologia
-2. Estática, dinâmica e resistência dos materiais
-3. Materiais, metalurgia, fadiga e tribologia
-4. Termodinâmica e transferência de calor
-5. Mecânica dos fluidos, hidráulica e pneumática
-6. Elementos de máquinas, CAD e projeto mecânico
-7. Processos de fabricação, manufatura e qualidade
-8. Vibrações, rotores, instrumentação e monitoramento
-9. Motores térmicos, máquinas de fluxo e energia
-10. Manutenção, confiabilidade, análise de falhas e segurança
-11. Métodos numéricos, FEM, CFD, automação e dados
+## Origem e confiabilidade
 
-## Entregas v0.1
+- As páginas de cursos e softwares apontam para as instituições, não simulam parcerias ou certificados.
+- Cada conteúdo autoral exige referências, unidades, hipóteses, exemplos e verificação.
+- O site não fornece autorização de operação, liberação, soldagem, reparo ou mudança de configuração de máquinas.
+- O catálogo é expandido progressivamente: **67 registros de tipos distintos até esta fase**, com grande parte ainda aguardando auditoria item a item.
 
-O catálogo é uma **lista inicial de entradas verificadas por página de origem**, não uma avaliação completa de cada livro ou licença; algumas fontes exigem assinatura para conteúdo integral. A CLI e quatro calculadoras iniciais já estão no repositório. O site usa a pesquisa embutida do MkDocs.
+## Como colaborar
 
-Veja [arquitetura](arquitetura.md), [metodologia](metodologia.md), [fontes](fontes.md), [roadmap](roadmap.md) e [trilhas](trilhas.md).
+Siga [metodologia científica](metodologia.md), [curadoria de direitos](governanca/curadoria.md), [roadmap](roadmaps/master.md) e [CONTRIBUTING.md](https://github.com/pedromaintenance/engenharia-mecanica-livre/blob/main/CONTRIBUTING.md).

@@ -1,5 +1,5 @@
 site_name: Engenharia Mecânica Livre
-site_description: Acervo técnico público, ferramentas e formação em Engenharia Mecânica
+site_description: Educação aberta, conhecimento verificável e ferramentas de Engenharia Mecânica
 site_url: https://pedromaintenance.github.io/engenharia-mecanica-livre/
 repo_url: https://github.com/pedromaintenance/engenharia-mecanica-livre
 repo_name: pedromaintenance/engenharia-mecanica-livre
@@ -9,6 +9,7 @@ theme:
   features:
     - navigation.sections
     - navigation.indexes
+    - navigation.top
     - content.code.copy
     - search.suggest
     - search.highlight
@@ -18,9 +19,7 @@ theme:
     accent: amber
 plugins:
   - search:
-      lang:
-        - pt
-        - en
+      lang: [pt, en]
 markdown_extensions:
   - admonition
   - tables
@@ -31,16 +30,33 @@ markdown_extensions:
       generic: true
 nav:
   - Início: index.md
-  - Projeto:
-      - Arquitetura: arquitetura.md
-      - Método e verificação: metodologia.md
-      - Roadmap: roadmap.md
   - Acervo:
       - Fontes prioritárias: fontes.md
-      - Trilhas de formação: trilhas.md
+      - Cursos individuais: catalogos/cursos.md
+      - Portais e bibliotecas: catalogos/portais.md
+      - Ferramentas e simuladores: catalogos/ferramentas.md
+  - Formação:
+      - Grade aberta: formacao/grade.md
+      - Trilhas profissionais: formacao/trilhas.md
+      - Trilhas legadas: trilhas.md
   - Fundamentos:
       - Pressão, área e força: conceitos/pressao-forca.md
       - Torque e potência: conceitos/potencia-mecanica.md
   - Aplicações:
-      - Ferramentas de cálculo: guia-calculadoras.md
+      - Calculadoras: guia-calculadoras.md
       - Diagnóstico de manutenção: manutencao/diagnostico.md
+  - Projeto:
+      - Arquitetura: arquitetura.md
+      - Método científico: metodologia.md
+      - Curadoria e direitos: governanca/curadoria.md
+      - Agentes e skills: governanca/agentes.md
+  - Roadmaps:
+      - Roadmap mestre: roadmaps/master.md
+      - Conhecimento: roadmaps/conteudo.md
+      - Formação: roadmaps/formacao.md
+      - Ferramentas: roadmaps/ferramentas.md
+      - Plataforma: roadmaps/plataforma.md
+      - Qualidade: roadmaps/qualidade.md
+      - Roadmap inicial: roadmap.md
+  - Ciclos:
+      - Ciclo 02: ciclos/ciclo-02.md

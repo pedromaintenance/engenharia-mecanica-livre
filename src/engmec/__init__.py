@@ -1,5 +1,5 @@
-"""Ferramentas educacionais de Engenharia Mecânica Livre.
+"""Engenharia Mecânica Livre — ferramentas didáticas verificáveis.
 
-Modelos simplificados; nunca substituem validação técnica, projeto, normas ou OEM.
+Modelos simplificados não substituem norma vigente, habilitação, OEM ou validação de segurança.
 """
-__version__ = "0.1.0"
+__version__ = "0.2.0"

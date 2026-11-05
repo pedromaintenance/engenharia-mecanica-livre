@@ -4,7 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 from . import __version__
-from . import calculadoras, catalogo
+from . import calculadoras, catalogo, recursos
 
 
 def _saida(valor: object) -> None:
@@ -20,6 +20,12 @@ def main() -> None:
     fontes.add_argument("--consulta", default="", help="Termos de busca (acentos opcionais)")
     fontes.add_argument("--dominio", default="", help="Filtro de área")
     fontes.add_argument("--tipo", default="", help="Filtro de tipo")
+
+    novo = comando.add_parser("recursos", help="Pesquisar cursos, portais e ferramentas adicionais")
+    novo.add_argument("--tipo", choices=["todos", "cursos", "portais", "ferramentas"], default="todos")
+    novo.add_argument("--consulta", default="")
+    novo.add_argument("--area", default="")
+    novo.add_argument("--nivel", default="")
 
     comando.add_parser("validar", help="Verificar consistência do catálogo")
     calcular = comando.add_parser("calcular", help="Executar modelo didático")
@@ -50,11 +56,16 @@ def main() -> None:
     try:
         if args.comando == "validar":
             erros = catalogo.validar()
-            _saida({"valido": not erros, "erros": erros, "quantidade_fontes": len(catalogo.carregar()["fontes"])})
+            erros.extend(recursos.validar())
+            _saida({"valido": not erros, "erros": erros,
+                    "quantidade_fontes": len(catalogo.carregar()["fontes"]),
+                    "recursos": recursos.contagem()})
             if erros:
                 parser.exit(status=1)
         elif args.comando == "fontes":
             _saida(catalogo.buscar(args.consulta, args.dominio, args.tipo))
+        elif args.comando == "recursos":
+            _saida(recursos.buscar(args.tipo, args.consulta, args.area, args.nivel))
         elif args.modelo == "cilindro":
             _saida(calculadoras.cilindro_hidraulico(args.pressao_bar, args.diametro_mm, args.haste_mm, args.curso))
         elif args.modelo == "potencia":

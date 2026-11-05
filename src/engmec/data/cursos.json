@@ -1,0 +1,156 @@
+{
+  "schema_version": "0.2.0",
+  "updated_at": "2026-11-05",
+  "type": "curso",
+  "records": [
+    {
+      "id": "mit-calculo-1",
+      "title": "Cálculo em uma variável (18.01SC)",
+      "provider": "MIT OCW",
+      "url": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/",
+      "domain": "matematica",
+      "level": "fundamental",
+      "prerequisites": [],
+      "language": "en",
+      "license_policy": "Link e metadados; licença por aula/obra; CC BY-NC-SA em grande parte do MIT OCW com exceções de terceiros.",
+      "status": "pagina-de-curso-verificada",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "mit-calculo-2",
+      "title": "Cálculo multivariável (18.02SC)",
+      "provider": "MIT OCW",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+      "domain": "matematica",
+      "level": "intermediario",
+      "prerequisites": [
+        "mit-calculo-1"
+      ],
+      "language": "en",
+      "license_policy": "Link e metadados; licença por aula/obra; CC BY-NC-SA em grande parte do MIT OCW com exceções de terceiros.",
+      "status": "pagina-de-curso-verificada",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "mit-edo",
+      "title": "Equações diferenciais (18.03SC)",
+      "provider": "MIT OCW",
+      "url": "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/",
+      "domain": "matematica",
+      "level": "intermediario",
+      "prerequisites": [
+        "mit-calculo-1"
+      ],
+      "language": "en",
+      "license_policy": "Link e metadados; licença por aula/obra; CC BY-NC-SA em grande parte do MIT OCW com exceções de terceiros.",
+      "status": "pagina-de-curso-verificada",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "mit-solidos",
+      "title": "Mechanics & Materials I (2.001)",
+      "provider": "MIT OCW",
+      "url": "https://ocw.mit.edu/courses/2-001-mechanics-materials-i-fall-2006/",
+      "domain": "mecanica-solidos",
+      "level": "intermediario",
+      "prerequisites": [
+        "mit-calculo-1"
+      ],
+      "language": "en",
+      "license_policy": "Link e metadados; licença por aula/obra; CC BY-NC-SA em grande parte do MIT OCW com exceções de terceiros.",
+      "status": "pagina-de-curso-verificada",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "mit-dinamica",
+      "title": "Engineering Dynamics (2.003SC)",
+      "provider": "MIT OCW",
+      "url": "https://ocw.mit.edu/courses/2-003sc-engineering-dynamics-fall-2011/",
+      "domain": "dinamica",
+      "level": "intermediario",
+      "prerequisites": [
+        "mit-calculo-1"
+      ],
+      "language": "en",
+      "license_policy": "Link e metadados; licença por aula/obra; CC BY-NC-SA em grande parte do MIT OCW com exceções de terceiros.",
+      "status": "pagina-de-curso-verificada",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "mit-controle",
+      "title": "Dynamics and Control II (2.004)",
+      "provider": "MIT OCW",
+      "url": "https://ocw.mit.edu/courses/2-004-dynamics-and-control-ii-spring-2008/",
+      "domain": "controle",
+      "level": "avancado",
+      "prerequisites": [
+        "mit-edo",
+        "mit-dinamica"
+      ],
+      "language": "en",
+      "license_policy": "Link e metadados; licença por aula/obra; CC BY-NC-SA em grande parte do MIT OCW com exceções de terceiros.",
+      "status": "pagina-de-curso-verificada",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "mit-numerico",
+      "title": "Numerical Computation for Mechanical Engineers (2.086)",
+      "provider": "MIT OCW",
+      "url": "https://ocw.mit.edu/courses/2-086-numerical-computation-for-mechanical-engineers-fall-2014/",
+      "domain": "metodos-numericos",
+      "level": "intermediario",
+      "prerequisites": [
+        "mit-calculo-1"
+      ],
+      "language": "en",
+      "license_policy": "Link e metadados; licença por aula/obra; CC BY-NC-SA em grande parte do MIT OCW com exceções de terceiros.",
+      "status": "pagina-de-curso-verificada",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "nptel-elementos",
+      "title": "Design of Machine Elements I",
+      "provider": "NPTEL / IIT Kharagpur",
+      "url": "https://nptel.ac.in/courses/112105124",
+      "domain": "elementos-maquinas",
+      "level": "intermediario",
+      "prerequisites": [
+        "mit-solidos"
+      ],
+      "language": "en",
+      "license_policy": "Link e metadados; licença por aula/obra; CC BY-NC-SA em grande parte do MIT OCW com exceções de terceiros.",
+      "status": "pagina-de-curso-verificada",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "nptel-hidraulica",
+      "title": "Principle of Hydraulic Machines and System Design",
+      "provider": "NPTEL / IIT Guwahati",
+      "url": "https://nptel.ac.in/courses/112103249",
+      "domain": "hidraulica",
+      "level": "intermediario",
+      "prerequisites": [
+        "mit-calculo-1"
+      ],
+      "language": "en",
+      "license_policy": "Link e metadados; licença por aula/obra; CC BY-NC-SA em grande parte do MIT OCW com exceções de terceiros.",
+      "status": "pagina-de-curso-verificada",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "nptel-fratura",
+      "title": "Engineering Fracture Mechanics",
+      "provider": "NPTEL / IIT Madras",
+      "url": "https://nptel.ac.in/courses/112106065",
+      "domain": "materiais",
+      "level": "avancado",
+      "prerequisites": [
+        "mit-solidos"
+      ],
+      "language": "en",
+      "license_policy": "Link e metadados; licença por aula/obra; CC BY-NC-SA em grande parte do MIT OCW com exceções de terceiros.",
+      "status": "pagina-de-curso-verificada",
+      "checked_at": "2026-11-05"
+    }
+  ]
+}

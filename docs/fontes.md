@@ -1,31 +1,18 @@
-# Fontes prioritárias
+# Fontes e acervos prioritários
 
-O catálogo completo e pesquisável pela CLI está em [fontes.json](https://github.com/pedromaintenance/engenharia-mecanica-livre/blob/main/src/engmec/data/fontes.json).
+## Catálogos estruturados
 
-## Ensino e livros
+- [20 fontes-base](https://github.com/pedromaintenance/engenharia-mecanica-livre/blob/main/src/engmec/data/fontes.json) — indexação geral com política conservadora de direitos.
+- [Cursos universitários](catalogos/cursos.md) — 10 páginas de cursos identificadas em MIT OCW e NPTEL.
+- [Portais acadêmicos e técnicos](catalogos/portais.md) — 20 instituições, repositórios, APIs e órgãos.
+- [Ferramentas de engenharia](catalogos/ferramentas.md) — 17 projetos de software classificados por aplicação.
 
-- [MIT OpenCourseWare](https://ocw.mit.edu/) — disciplinas e material didático universitário; atribuição e restrições não comerciais aplicáveis.
-- [NPTEL](https://www.nptel.ac.in/courses) — ampla oferta de cursos das instituições indianas; verificar licença da aula.
-- [OpenStax — Física](https://openstax.org/subjects/physics) — livros; licença deve ser confirmada em cada edição.
-- [Engineering Statics](https://engineeringstatics.org/) — livro interativo de estática (CC BY-NC-SA).
-- [Mechanics Map](https://www.mechanicsmap.org/) — estática e dinâmica; conferir obra e versão.
-- [LibreTexts Engineering](https://eng.libretexts.org/) — livros abertos; regras variam entre capítulos/obras.
+## Critério de autoridade
 
-## Pesquisa e dados
+Para matemática e fundamentos: literatura acadêmica e demonstrações. Para requisitos industriais: norma oficial **vigente** e literatura de fabricante aplicável ao modelo/série. Para pesquisa: artigos e dados com proveniência. Para aplicações de software: documentação da distribuição e versão específica.
 
-- [NASA NTRS](https://ntrs.nasa.gov/) — relatórios técnicos e artigos, com direitos distintos por documento.
-- [NIST Chemistry WebBook](https://webbook.nist.gov/chemistry/) — propriedades físico-químicas com referência de versão.
-- [Repositório da UFSC](https://repositorio.ufsc.br/handle/123456789/274873) — pesquisas em Engenharia Mecânica.
-- [Inmetro — Metrologia](https://www.gov.br/inmetro/pt-br/assuntos/metrologia-cientifica/documentos-tecnicos-em-metrologia/index) — SI, VIM e GUM.
+**Fonte confirmada não implica licença de obra confirmada.** Ver [curadoria](governanca/curadoria.md). O rastreamento de licenças é por item e não é substituído pelo rótulo do portal.
 
-## Regulamentos e direitos
+## Prioridade no Brasil
 
-- [Ministério do Trabalho — NRs vigentes](https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes) — versão oficial atualizada, em especial NR-12, NR-13 e NR-22.
-- [ISO](https://www.iso.org/standards.html) e [ASME](https://www.asme.org/codes-standards) — normas protegidas; somente referência, sem cópias ou uso indevido de textos.
-- Manuais OEM: registrar apenas identificação e links autorizados, nunca anexar documentação protegida sem permissão.
-
-## Ferramentas
-
-[FreeCAD](https://www.freecad.org/), [OpenFOAM](https://openfoam.org/), [CalculiX](https://www.calculix.de/), [CoolProp](https://coolprop.org/), [NumPy](https://numpy.org/), [SciPy](https://scipy.org/) e [Pint](https://pint.readthedocs.io/) são candidatos a integração modular, sem vendorização.
-
-**Regra:** fonte indexada não é fonte integralmente auditada; cada obra e versão passam por revisão independente antes de qualquer importação de texto/dados.
+[USP e-Aulas](https://eaulas.usp.br/portal/home/home.action), [eduCAPES](https://educapes.capes.gov.br/), [BDTD](https://www.bdtd.ibict.br/), [Oasisbr](https://oasisbr.ibict.br/), [SciELO](https://www.scielo.org/), [Inmetro](https://www.gov.br/inmetro/pt-br/assuntos/metrologia-cientifica/documentos-tecnicos-em-metrologia/index). Portais brasileiros melhoram acesso linguístico, mas a licença é sempre verificada obra a obra.

@@ -1,0 +1,227 @@
+{
+  "schema_version": "0.2.0",
+  "updated_at": "2026-11-05",
+  "type": "portal",
+  "records": [
+    {
+      "id": "mit-ocw",
+      "title": "MIT OpenCourseWare",
+      "provider": "MIT",
+      "url": "https://ocw.mit.edu/",
+      "category": "educacao",
+      "description": "Cursos e exercícios universitários",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "nptel",
+      "title": "NPTEL Courses",
+      "provider": "IITs / IISc",
+      "url": "https://www.nptel.ac.in/courses",
+      "category": "educacao",
+      "description": "Disciplinas de engenharia e vídeo-aulas",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "eaulas-usp",
+      "title": "e-Aulas USP",
+      "provider": "USP",
+      "url": "https://eaulas.usp.br/portal/home/home.action",
+      "category": "educacao",
+      "description": "Aulas em português, incluindo Engenharia Mecânica",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "univesp",
+      "title": "UNIVESP",
+      "provider": "UNIVESP",
+      "url": "https://univesp.br/cursos",
+      "category": "educacao",
+      "description": "Cursos universitários, AVA e materiais associados",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "educapes",
+      "title": "eduCAPES",
+      "provider": "CAPES",
+      "url": "https://educapes.capes.gov.br/",
+      "category": "educacao",
+      "description": "Objetos educacionais e recursos abertos",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "bdtd",
+      "title": "BDTD",
+      "provider": "Ibict",
+      "url": "https://www.bdtd.ibict.br/",
+      "category": "pesquisa",
+      "description": "Teses/dissertações e metadados nacionais",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "oasisbr",
+      "title": "Oasisbr",
+      "provider": "Ibict",
+      "url": "https://oasisbr.ibict.br/",
+      "category": "pesquisa",
+      "description": "Agregador nacional de ciência aberta",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "scielo",
+      "title": "SciELO",
+      "provider": "SciELO",
+      "url": "https://www.scielo.org/",
+      "category": "pesquisa",
+      "description": "Periódicos acadêmicos",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "nasa-ntrs",
+      "title": "NASA NTRS",
+      "provider": "NASA",
+      "url": "https://ntrs.nasa.gov/",
+      "category": "pesquisa",
+      "description": "Relatórios técnicos e pesquisa aplicada",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "nasa-api",
+      "title": "NASA NTRS API",
+      "provider": "NASA",
+      "url": "https://ntrs.nasa.gov/api/openapi/",
+      "category": "api",
+      "description": "Metadados, citações e busca",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "nist",
+      "title": "NIST Chemistry WebBook",
+      "provider": "NIST",
+      "url": "https://webbook.nist.gov/chemistry/",
+      "category": "dados",
+      "description": "Dados termofísicos e propriedades",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "inmetro",
+      "title": "Inmetro Documentos Técnicos",
+      "provider": "Inmetro",
+      "url": "https://www.gov.br/inmetro/pt-br/assuntos/metrologia-cientifica/documentos-tecnicos-em-metrologia/index",
+      "category": "metrologia",
+      "description": "SI e referências metrológicas",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "ufsc",
+      "title": "Repositório UFSC",
+      "provider": "UFSC",
+      "url": "https://repositorio.ufsc.br/",
+      "category": "pesquisa",
+      "description": "Produção científica institucional",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "otl",
+      "title": "Open Textbook Library",
+      "provider": "Open Education Network",
+      "url": "https://open.umn.edu/opentextbooks/",
+      "category": "livros",
+      "description": "Livros acadêmicos abertos",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "libretexts",
+      "title": "LibreTexts Engineering",
+      "provider": "LibreTexts",
+      "url": "https://eng.libretexts.org/",
+      "category": "livros",
+      "description": "Módulos e livros técnicos",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "openstax",
+      "title": "OpenStax Physics",
+      "provider": "OpenStax",
+      "url": "https://openstax.org/subjects/physics",
+      "category": "livros",
+      "description": "Livros de física",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "doab",
+      "title": "Directory of Open Access Books",
+      "provider": "OAPEN Foundation",
+      "url": "https://www.doabooks.org/",
+      "category": "livros",
+      "description": "Catálogo de livros acadêmicos",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "crossref",
+      "title": "Crossref API",
+      "provider": "Crossref",
+      "url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/access-and-authentication",
+      "category": "api",
+      "description": "DOI e metadados bibliográficos",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "openalex",
+      "title": "OpenAlex API",
+      "provider": "OpenAlex",
+      "url": "https://help.openalex.org/api/",
+      "category": "api",
+      "description": "Grafo de autores, obras e instituições",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    },
+    {
+      "id": "nrs",
+      "title": "NRs vigentes",
+      "provider": "MTE",
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes",
+      "category": "normas",
+      "description": "Regulamentação oficial atualizada",
+      "rights": "Consultar licença de cada item; somente metadados e links locais.",
+      "status": "portal-institucional-identificado",
+      "checked_at": "2026-11-05"
+    }
+  ]
+}
