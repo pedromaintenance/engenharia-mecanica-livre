@@ -8,9 +8,9 @@
 - Pesquisa institucional confirmou cursos específicos MIT OCW e NPTEL, portais nacionais e APIs públicas.
 - GitHub documenta `AGENTS.md`, `.github/agents/` e `.github/skills/*/SKILL.md` como mecanismos de instrução e especialização em ambientes compatíveis.
 
-## Entregas propostas e verificáveis
+## Entregas versionadas e verificadas
 
-Catalogar cursos, portais e ferramentas separadamente, publicar grade, definir governança e roadmaps, e preparar contratos de agentes e skills. O estado de cada entrega deverá ser conferido no commit e no CI correspondente.
+Commit [9f2a68c](https://github.com/pedromaintenance/engenharia-mecanica-livre/commit/9f2a68c716ddff736df1b28f724e587d42b20a2b): 10 cursos, 20 portais, 17 ferramentas, grade, agentes e skills. O workflow de [qualidade técnica](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42046898842) e o de [publicação Pages](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42046898965) foram concluídos com sucesso.
 
 ## Limites da pesquisa
 

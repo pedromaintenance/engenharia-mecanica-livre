@@ -4,7 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 from . import __version__
-from . import calculadoras, catalogo, recursos
+from . import calculadoras, catalogo, recursos, descoberta
 
 
 def _saida(valor: object) -> None:
@@ -26,6 +26,13 @@ def main() -> None:
     novo.add_argument("--consulta", default="")
     novo.add_argument("--area", default="")
     novo.add_argument("--nivel", default="")
+
+    scout = comando.add_parser("descobrir", help="Consultar metadados públicos sem importar PDFs")
+    scout.add_argument("--fonte", choices=["crossref", "openalex"], required=True)
+    scout.add_argument("--consulta", required=True)
+    scout.add_argument("--limite", type=int, default=5)
+    scout.add_argument("--email", default=None, help="Identificação para API polite pool; não é salva")
+    scout.add_argument("--saida", default=None, help="Arquivo JSON opcional de candidatos; não altera catálogos")
 
     comando.add_parser("validar", help="Verificar consistência do catálogo")
     calcular = comando.add_parser("calcular", help="Executar modelo didático")
@@ -66,6 +73,16 @@ def main() -> None:
             _saida(catalogo.buscar(args.consulta, args.dominio, args.tipo))
         elif args.comando == "recursos":
             _saida(recursos.buscar(args.tipo, args.consulta, args.area, args.nivel))
+        elif args.comando == "descobrir":
+            resultado = descoberta.descobrir(args.fonte, args.consulta, args.limite, args.email)
+            if args.saida:
+                from pathlib import Path
+                destino = Path(args.saida)
+                destino.parent.mkdir(parents=True, exist_ok=True)
+                destino.write_text(json.dumps(resultado, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                _saida({"arquivo": str(destino), "quantidade": len(resultado["records"])})
+            else:
+                _saida(resultado)
         elif args.modelo == "cilindro":
             _saida(calculadoras.cilindro_hidraulico(args.pressao_bar, args.diametro_mm, args.haste_mm, args.curso))
         elif args.modelo == "potencia":

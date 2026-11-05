@@ -11,6 +11,7 @@
 - **Formação:** grade aberta por áreas da Engenharia Mecânica, seis trilhas por objetivo e critérios de avaliação.
 - **Ferramental funcional:** quatro modelos mecânicos didáticos em Python, testes de referência, CLI de busca e validação.
 - **Governança reusável:** [AGENTS.md](AGENTS.md), 8 agentes especializados, 9 skills e roadmaps temáticos.
+- **Pesquisa por APIs:** cliente de metadados Crossref/OpenAlex com limite, deduplicação local e revisão obrigatória; candidatos não entram automaticamente no acervo.
 - **Próximos passos:** auditoria de licença por obra, produção de fichas técnicas originais, mais calculadoras e integração opcional a FreeCAD/CoolProp/CAE.
 
 **Importante:** descoberta de um portal **não é auditoria de todo seu acervo**; software catalogado **não significa integração concluída**. As referências originais ficam nas instituições e as permissões são verificadas por item.
@@ -36,6 +37,7 @@ engmec validar
 engmec recursos --tipo cursos --consulta dinamica
 engmec recursos --tipo portais --consulta NASA
 engmec recursos --tipo ferramentas --area FEM
+engmec descobrir --fonte crossref --consulta "bearing fatigue" --limite 5
 engmec fontes --consulta termodinamica
 engmec calcular potencia --torque-nm 250 --rpm 1800
 python -m unittest discover -s tests -v

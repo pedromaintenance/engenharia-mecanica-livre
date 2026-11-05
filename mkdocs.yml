@@ -50,6 +50,7 @@ nav:
       - Método científico: metodologia.md
       - Curadoria e direitos: governanca/curadoria.md
       - Agentes e skills: governanca/agentes.md
+      - Descoberta por APIs: governanca/descoberta.md
   - Roadmaps:
       - Roadmap mestre: roadmaps/master.md
       - Conhecimento: roadmaps/conteudo.md
@@ -60,3 +61,4 @@ nav:
       - Roadmap inicial: roadmap.md
   - Ciclos:
       - Ciclo 02: ciclos/ciclo-02.md
+      - Ciclo 03: ciclos/ciclo-03.md

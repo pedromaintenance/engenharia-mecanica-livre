@@ -14,10 +14,11 @@ Construir um acervo aberto de **Engenharia Mecânica** em português, rigoroso, 
 4. **Direitos autorais:** acesso aberto não implica permissão para copiar. L0 metadados/link por padrão; L1/L2 somente com direito demonstrado por item.
 5. **Segurança:** conteúdo educativo não substitui manual OEM, procedimento local, habilitação, norma atualizada e controles de risco; não recomendar bypass de segurança.
 6. **Privacidade:** nunca publicar SAP, dados internos de empregador, equipamentos identificáveis ou informações pessoais sem permissão. Usar dados sintéticos em exemplos.
-7. **Arquitetura:** manter `catalogos/*.json`, `docs/`, `src/engmec/`, `tests/` e `.github/` coerentes. Evitar dependência pesada obrigatória.
-8. **Qualidade:** executar `engmec validar`, `python -m unittest discover -s tests -v` e `mkdocs build --strict`. CI verde antes de afirmar entrega.
-9. **Sem autonomia fictícia:** perfis de agentes/skills são instruções reutilizáveis; não implicam processos agendados ou acesso automático à internet.
-10. **Handover:** ao terminar, registrar artefatos, origem das informações, evidências, limitações, falhas e próxima tarefa.
+7. **Descoberta:** usar APIs oficiais com limites; candidatos não são conteúdo aprovado, não importar PDFs ou abstracts protegidos automaticamente.
+8. **Arquitetura:** manter `catalogos/*.json`, `docs/`, `src/engmec/`, `tests/` e `.github/` coerentes. Evitar dependência pesada obrigatória.
+9. **Qualidade:** executar `engmec validar`, `python -m unittest discover -s tests -v` e `mkdocs build --strict`. CI verde antes de afirmar entrega.
+10. **Sem autonomia fictícia:** perfis de agentes/skills são instruções reutilizáveis; não implicam processos agendados ou acesso automático à internet.
+11. **Handover:** ao terminar, registrar artefatos, origem das informações, evidências, limitações, falhas e próxima tarefa.
 
 ## Fluxo padrão
 

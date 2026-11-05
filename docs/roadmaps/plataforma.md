@@ -16,7 +16,7 @@ Fontes oficiais -> Descoberta APIs/OAI-PMH -> Fila de candidatos
 
 **P1 — Contratos:** schemas JSON individuais, vocabulário controlado, auditoria de campos, geração automática de páginas a partir de catálogos, verificação contra duplicatas de IDs.
 
-**P2 — Descoberta:** adaptadores Crossref, OpenAlex, NASA NTRS e OAI-PMH (metadados apenas), cache, backoff, idempotência, quotas, logs e opção dry-run. Chaves somente em variáveis/secret store; nunca no Git.
+**P2 — Descoberta:** cliente inicial Crossref e OpenAlex (busca manual em lote pequeno, metadados apenas e sem importação automática) implementado no ciclo 03. Pendentes: NASA NTRS/OAI-PMH, cache, deduplicação interlotes, monitoramento de quotas, logs estruturados e revisão em interface. Chaves somente em variáveis/secret store; nunca no Git.
 
 **P3 — Busca:** lexical + facetamento; vetor opcional apenas de textos com direitos claros, com fonte e passagem. Nunca armazenar documentos de acesso restrito em índice de terceiros sem permissão.
 

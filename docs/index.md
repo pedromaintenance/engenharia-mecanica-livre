@@ -13,6 +13,7 @@ O projeto está na fase **v0.2**. O portal está publicado, a primeira coleção
 | Encontrar disciplina universitária | [10 cursos identificados](catalogos/cursos.md) |
 | Pesquisar em universidades, bibliotecas e órgãos | [20 portais](catalogos/portais.md) |
 | Encontrar CAD/CAE, FEM/CFD e bibliotecas de cálculo | [17 ferramentas](catalogos/ferramentas.md) |
+| Descobrir novas referências em bases científicas | [Cliente de metadados Crossref/OpenAlex](governanca/descoberta.md) |
 | Aplicar fórmulas e interpretar limitações | [Guia de calculadoras](guia-calculadoras.md) |
 | Estruturar investigação de falha | [Diagnóstico de manutenção](manutencao/diagnostico.md) |
 | Continuar o projeto em novos ciclos | [Roadmap mestre](roadmaps/master.md) e [agentes](governanca/agentes.md) |
