@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fonte catalogada — Engenharia Mecânica Livre",
+  "type": "object",
+  "required": [
+    "id",
+    "titulo",
+    "organizacao",
+    "url",
+    "dominios",
+    "tipo",
+    "idioma",
+    "acesso",
+    "licenca",
+    "redistribuicao",
+    "nota_licenca",
+    "verificado_em",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "titulo": {
+      "type": "string",
+      "minLength": 3
+    },
+    "organizacao": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^https://"
+    },
+    "dominios": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "tipo": {
+      "enum": [
+        "curso",
+        "livro",
+        "pesquisa",
+        "base-dados",
+        "repositorio",
+        "software",
+        "regulacao",
+        "padrao"
+      ]
+    },
+    "idioma": {
+      "type": "string"
+    },
+    "acesso": {
+      "enum": [
+        "aberto",
+        "misto",
+        "restrito"
+      ]
+    },
+    "licenca": {
+      "type": "string"
+    },
+    "redistribuicao": {
+      "enum": [
+        "somente-link",
+        "avaliar-item",
+        "permitido-com-atribuicao"
+      ]
+    },
+    "nota_licenca": {
+      "type": "string"
+    },
+    "verificado_em": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "enum": [
+        "catalogado",
+        "auditado",
+        "suspenso"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

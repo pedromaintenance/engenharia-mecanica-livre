@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "engenharia-mecanica-livre"
+version = "0.1.0"
+description = "Base aberta de conhecimento e ferramentas de Engenharia Mecânica"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Pedro Maintenance"}]
+keywords = ["engenharia", "mecanica", "manutencao", "confiabilidade", "educacao"]
+
+[project.scripts]
+engmec = "engmec.__main__:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+engmec = ["data/*.json"]

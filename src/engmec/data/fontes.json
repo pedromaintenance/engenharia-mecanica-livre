@@ -1,0 +1,392 @@
+{
+  "versao": "0.1.0",
+  "atualizado_em": "2026-11-05",
+  "aviso": "Verificação da página de origem; não certifica a licença de cada item. Conteúdo externo não espelhado.",
+  "fontes": [
+    {
+      "id": "mit-ocw",
+      "titulo": "MIT OpenCourseWare",
+      "organizacao": "Massachusetts Institute of Technology",
+      "url": "https://ocw.mit.edu/",
+      "dominios": [
+        "fundamentos",
+        "mecanica-solidos",
+        "fluidos",
+        "termodinamica",
+        "projeto-mecanico"
+      ],
+      "tipo": "curso",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "CC BY-NC-SA (regra geral; verificar item)",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Uso, atribuição e eventuais restrições por material; não espelhar conteúdos.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "nptel",
+      "titulo": "NPTEL Courses",
+      "organizacao": "IITs / IISc",
+      "url": "https://www.nptel.ac.in/courses",
+      "dominios": [
+        "fundamentos",
+        "materiais",
+        "fluidos",
+        "termodinamica",
+        "fabricacao",
+        "manutencao-confiabilidade"
+      ],
+      "tipo": "curso",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "verificar por curso",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Acesso gratuito a cursos não autoriza automaticamente redistribuição.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "openstax",
+      "titulo": "OpenStax — livros de física",
+      "organizacao": "OpenStax / Rice University",
+      "url": "https://openstax.org/subjects/physics",
+      "dominios": [
+        "fundamentos",
+        "mecanica-solidos",
+        "termodinamica"
+      ],
+      "tipo": "livro",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "verificar por livro e edição",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Não assumir licença uniforme: conferir aviso da obra específica antes de adaptar.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "engineering-statics",
+      "titulo": "Engineering Statics: Open and Interactive",
+      "organizacao": "Dan Baker e colaboradores",
+      "url": "https://engineeringstatics.org/",
+      "dominios": [
+        "mecanica-solidos",
+        "fundamentos"
+      ],
+      "tipo": "livro",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "CC BY-NC-SA 4.0",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Livro e PDF aberto; redistribuição exige observância da licença; catálogo mantém apenas link.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "mechanics-map",
+      "titulo": "Mechanics Map",
+      "organizacao": "Jacob Moore e colaboradores",
+      "url": "https://www.mechanicsmap.org/",
+      "dominios": [
+        "dinamica",
+        "mecanica-solidos"
+      ],
+      "tipo": "livro",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "Creative Commons ShareAlike (verificar versão)",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Fonte migrada de domínio em 2026; verificar licença no destino para cópias.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "libretexts",
+      "titulo": "LibreTexts Engineering",
+      "organizacao": "LibreTexts",
+      "url": "https://eng.libretexts.org/",
+      "dominios": [
+        "mecanica-solidos",
+        "materiais",
+        "fluidos",
+        "termodinamica"
+      ],
+      "tipo": "repositorio",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "por item",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Atribuição/licença e imagens podem variar entre obras.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "nasa-ntrs",
+      "titulo": "NASA STI Repository (NTRS)",
+      "organizacao": "NASA",
+      "url": "https://ntrs.nasa.gov/",
+      "dominios": [
+        "aeronautica",
+        "materiais",
+        "fluidos",
+        "termodinamica",
+        "pesquisa"
+      ],
+      "tipo": "pesquisa",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "por documento",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Acesso público não implica reutilização irrestrita: coleção inclui terceiros.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "nist-webbook",
+      "titulo": "NIST Chemistry WebBook — SRD 69",
+      "organizacao": "NIST",
+      "url": "https://webbook.nist.gov/chemistry/",
+      "dominios": [
+        "termodinamica",
+        "transferencia-calor",
+        "fluidos",
+        "metrologia"
+      ],
+      "tipo": "base-dados",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "termos específicos",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Citar dados e versões; examinar condições de redistribuição e extração antes de copiar.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "inmetro-metrologia",
+      "titulo": "Documentos técnicos de metrologia (SI, VIM, GUM)",
+      "organizacao": "Inmetro",
+      "url": "https://www.gov.br/inmetro/pt-br/assuntos/metrologia-cientifica/documentos-tecnicos-em-metrologia/index",
+      "dominios": [
+        "metrologia",
+        "fundamentos"
+      ],
+      "tipo": "regulacao",
+      "idioma": "pt-BR",
+      "acesso": "aberto",
+      "licenca": "direitos e condições do órgão",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Usar edição atual e vincular ao texto oficial; não espelhar automaticamente PDFs.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "mte-nrs",
+      "titulo": "Normas Regulamentadoras vigentes",
+      "organizacao": "Ministério do Trabalho e Emprego",
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes",
+      "dominios": [
+        "seguranca",
+        "manutencao-confiabilidade"
+      ],
+      "tipo": "regulacao",
+      "idioma": "pt-BR",
+      "acesso": "aberto",
+      "licenca": "texto oficial; conferir condição de reuso",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Vigência e alterações precisam ser checadas na data de aplicação.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "ufsc-repositorio",
+      "titulo": "Repositório Institucional — Engenharia Mecânica",
+      "organizacao": "UFSC",
+      "url": "https://repositorio.ufsc.br/handle/123456789/274873",
+      "dominios": [
+        "pesquisa",
+        "materiais",
+        "fabricacao",
+        "projeto-mecanico"
+      ],
+      "tipo": "repositorio",
+      "idioma": "pt-BR",
+      "acesso": "aberto",
+      "licenca": "por documento",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Dissertações e artigos podem ter licenças e restrições diferentes.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "freecad",
+      "titulo": "FreeCAD",
+      "organizacao": "FreeCAD Project",
+      "url": "https://www.freecad.org/",
+      "dominios": [
+        "projeto-mecanico",
+        "cad",
+        "computacao"
+      ],
+      "tipo": "software",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "LGPL-2.1 (repositório de código)",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Software livre; licenças de documentação e complementos devem ser conferidas.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "openfoam",
+      "titulo": "OpenFOAM Foundation",
+      "organizacao": "OpenFOAM Foundation",
+      "url": "https://openfoam.org/",
+      "dominios": [
+        "cfd",
+        "fluidos",
+        "transferencia-calor",
+        "computacao"
+      ],
+      "tipo": "software",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "GPLv3",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Integração por referências e exemplos próprios; obrigações da GPL ao redistribuir código.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "calculix",
+      "titulo": "CalculiX",
+      "organizacao": "Guido Dhondt / Klaus Wittig",
+      "url": "https://www.calculix.de/",
+      "dominios": [
+        "fem",
+        "mecanica-solidos",
+        "computacao"
+      ],
+      "tipo": "software",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "GPLv2 ou posterior",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Análise estrutural FEM; modelos e exemplos de terceiros exigem revisão de direitos.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "coolprop",
+      "titulo": "CoolProp",
+      "organizacao": "CoolProp Project",
+      "url": "https://coolprop.org/",
+      "dominios": [
+        "termodinamica",
+        "fluidos",
+        "computacao"
+      ],
+      "tipo": "software",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "MIT (código principal; verificar componentes)",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Integração opcional via dependência; citar versão de biblioteca e fluido.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "numpy",
+      "titulo": "NumPy",
+      "organizacao": "NumPy Developers",
+      "url": "https://numpy.org/",
+      "dominios": [
+        "computacao",
+        "fundamentos"
+      ],
+      "tipo": "software",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "BSD-3-Clause",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Dependência opcional em projetos numéricos futuros.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "scipy",
+      "titulo": "SciPy",
+      "organizacao": "SciPy Developers",
+      "url": "https://scipy.org/",
+      "dominios": [
+        "computacao",
+        "fem",
+        "fluidos"
+      ],
+      "tipo": "software",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "BSD-3-Clause",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Rotinas científicas; validar métodos e tolerâncias de cada cálculo.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "pint",
+      "titulo": "Pint — dimensional analysis",
+      "organizacao": "Pint Developers",
+      "url": "https://pint.readthedocs.io/",
+      "dominios": [
+        "metrologia",
+        "computacao"
+      ],
+      "tipo": "software",
+      "idioma": "en",
+      "acesso": "aberto",
+      "licenca": "BSD-3-Clause (verificar versão)",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Proposta para unidades nos módulos avançados; cálculos iniciais em SI sem dependências.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "iso",
+      "titulo": "ISO Standards",
+      "organizacao": "International Organization for Standardization",
+      "url": "https://www.iso.org/standards.html",
+      "dominios": [
+        "normas",
+        "manutencao-confiabilidade",
+        "projeto-mecanico"
+      ],
+      "tipo": "padrao",
+      "idioma": "en",
+      "acesso": "restrito",
+      "licenca": "copyright restrito",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "Não copiar normas, tabelas, fórmulas específicas protegidas nem processar seu texto por IA sem autorização.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    },
+    {
+      "id": "asme",
+      "titulo": "ASME Codes & Standards",
+      "organizacao": "ASME",
+      "url": "https://www.asme.org/codes-standards",
+      "dominios": [
+        "normas",
+        "projeto-mecanico",
+        "seguranca"
+      ],
+      "tipo": "padrao",
+      "idioma": "en",
+      "acesso": "restrito",
+      "licenca": "copyright restrito",
+      "redistribuicao": "somente-link",
+      "nota_licenca": "A reprodução de normas e trechos depende de autorização expressa.",
+      "verificado_em": "2026-11-05",
+      "status": "catalogado"
+    }
+  ]
+}
