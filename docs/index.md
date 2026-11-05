@@ -2,7 +2,7 @@
 
 Uma base pública para **estudar, pesquisar, calcular, experimentar e resolver problemas mecânicos** sem abandonar o rigor científico.
 
-O projeto está na fase **v0.4**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
+O projeto está na fase **v0.5**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
 
 ## Comece por aqui
 
@@ -15,6 +15,8 @@ O projeto está na fase **v0.4**. O portal está publicado, a primeira coleção
 | Encontrar CAD/CAE, FEM/CFD e bibliotecas de cálculo | [17 ferramentas](catalogos/ferramentas.md) |
 | Descobrir novas referências em bases científicas | [Cliente de metadados Crossref/OpenAlex](governanca/descoberta.md) |
 | Aplicar fórmulas e interpretar limitações | [Guia de calculadoras](guia-calculadoras.md) |
+| Comparar FEM com equações analíticas | [Barra axial e convergência de malha](laboratorios/benchmark-barra-fem.md) |
+| Consultar restrições por obra | [Auditoria documental de direitos](governanca/auditoria-obras.md) |
 | Estruturar investigação de falha | [Diagnóstico de manutenção](manutencao/diagnostico.md) |
 | Continuar o projeto em novos ciclos | [Roadmap mestre](roadmaps/master.md) e [agentes](governanca/agentes.md) |
 

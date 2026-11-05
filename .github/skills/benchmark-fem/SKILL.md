@@ -1,0 +1,19 @@
+---
+name: benchmark-fem
+description: Desenvolver e revisar benchmarks de elementos finitos com equilíbrio, solução analítica, estudo de malha, tolerâncias e fronteiras de validade, sem confundir verificação numérica com segurança de projeto.
+license: MIT
+---
+
+# Benchmark FEM
+
+1. Definir problema de valor de contorno, propriedades, carregamento, geometria e sinal.
+2. Identificar uma solução analítica independente ou caso publicado verificável.
+3. Discretizar e montar o sistema, explicando funções de forma e cargas nodais consistentes.
+4. Conferir condições de contorno; evitar sistema singular e sobre-restrição.
+5. Comparar deslocamento, esforços/reação, energia e erros físicos por elemento.
+6. Fazer refinamento de malha usando grandeza de erro *não identicamente nula*.
+7. Incluir cargas em sentidos opostos, dados inválidos, malhas distintas e limites.
+8. Registrar tolerâncias, hipótese linearidade, domínio de validade e o que não foi validado.
+9. Se integrar solver externo, fixar versão e distribuição, informar ambiente e repetir estudo independentemente.
+
+**Aceite:** resultados reprodutíveis e relatório de erro; nenhuma declaração de projeto certificado.

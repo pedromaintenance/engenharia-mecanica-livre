@@ -62,3 +62,7 @@ Construir uma base pública, pesquisável e tecnicamente verificável de Engenha
 Uma entrega concluída possui commit, arquivo(s) versionados, link de prova, testes verdes, lista de falhas e próximos issues. O registro de cada ciclo não deve afirmar execução de itens apenas planejados.
 
 Detalhes: [conteúdo](conteudo.md), [formação](formacao.md), [ferramentas](ferramentas.md), [plataforma](plataforma.md), [qualidade](qualidade.md).
+
+## Ciclo 05 — progresso
+
+Cinco registros de auditoria documental de direitos com fonte primária (não cinco obras integralmente licenciadas para espelhamento), quatro fichas autorais e benchmark FEM 1D de barra axial com estudo do erro de tensão. Gates restantes: revisão humana de licenças de arquivos isolados, comparação com solver FEM externo e validação experimental. O ciclo de publicação deve ter testes e Pages verdes antes do aceite.

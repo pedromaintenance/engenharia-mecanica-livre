@@ -19,3 +19,7 @@
 ## Definição de pronto
 
 Toda ficha: título, domínio, problema, hipóteses, símbolos e unidades, equação, exemplo, teste independente, limitações, referência autor-edição, revisão e status. Não publicar texto OEM integral nem parâmetro de máquina sem identificação e autorização.
+
+## Ciclo 05
+
+Quatro fichas originais entregues: esforço normal, Hooke axial, rigidez FEM de barra e convergência. A meta de 50 fichas permanece aberta (46 pendentes), e as fichas ainda requerem revisão externa antes de aplicações críticas.

@@ -42,6 +42,10 @@ nav:
   - Fundamentos:
       - Pressão, área e força: conceitos/pressao-forca.md
       - Torque e potência: conceitos/potencia-mecanica.md
+      - Esforço normal: conceitos/esforco-normal.md
+      - Lei de Hooke axial: conceitos/lei-hooke-axial.md
+      - Elemento finito de barra: conceitos/rigidez-elemento-finito.md
+      - Convergência FEM: conceitos/convergencia-fem.md
   - Aplicações:
       - Calculadoras: guia-calculadoras.md
       - Diagnóstico de manutenção: manutencao/diagnostico.md
@@ -50,12 +54,15 @@ nav:
       - Condução de calor: laboratorios/conducao.md
       - Frequência natural: laboratorios/vibracoes.md
       - Número de Reynolds: laboratorios/reynolds.md
+      - Barra axial FEM: laboratorios/benchmark-barra-fem.md
   - Projeto:
       - Arquitetura: arquitetura.md
       - Método científico: metodologia.md
       - Curadoria e direitos: governanca/curadoria.md
       - Agentes e skills: governanca/agentes.md
       - Descoberta por APIs: governanca/descoberta.md
+      - Auditoria de obras: governanca/auditoria-obras.md
+      - IA e direitos: governanca/politica-ia.md
   - Roadmaps:
       - Roadmap mestre: roadmaps/master.md
       - Conhecimento: roadmaps/conteudo.md
@@ -68,3 +75,4 @@ nav:
       - Ciclo 02: ciclos/ciclo-02.md
       - Ciclo 03: ciclos/ciclo-03.md
       - Ciclo 04: ciclos/ciclo-04.md
+      - Ciclo 05: ciclos/ciclo-05.md

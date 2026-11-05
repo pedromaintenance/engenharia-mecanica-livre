@@ -38,3 +38,7 @@ APIs têm quotas e termos. Crossref recomenda User-Agent identificado e cache. O
 ## Auditoria e retirada
 
 Uma denúncia de licença gera suspensão do conteúdo e revisão, sem apagar o histórico decisório. Links quebrados são marcados, não substituídos por URL adivinhada. Cadência proposta: metadados voláteis trimestral, normativos por revisão oficial, software por release; publicação técnica por alteração substancial.
+
+## Auditoria documental por obra — ciclo 05
+
+Foram registradas cinco obras/cursos com URL oficial de termos e condições em [auditoria documental](auditoria-obras.md). Políticas gerais (MIT OCW) não comprovam o direito de copiar cada asset do curso. O livro OpenStax `University Physics Volume 1` contém aviso explícito sobre IA, registrado em [política de IA](politica-ia.md). Apenas metadados e links permanecem no repositório.

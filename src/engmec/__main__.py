@@ -4,7 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 from . import __version__
-from . import calculadoras, catalogo, recursos, descoberta
+from . import calculadoras, catalogo, recursos, descoberta, direitos, fem_barra
 
 
 def _saida(valor: object) -> None:
@@ -33,6 +33,18 @@ def main() -> None:
     scout.add_argument("--limite", type=int, default=5)
     scout.add_argument("--email", default=None, help="Identificação para API polite pool; não é salva")
     scout.add_argument("--saida", default=None, help="Arquivo JSON opcional de candidatos; não altera catálogos")
+
+    audit = comando.add_parser("direitos", help="Listar auditorias documentais por obra")
+    audit.add_argument("--id", default="", help="ID da obra auditada (opcional)")
+
+    fem = comando.add_parser("fem-barra", help="FEM 1D de barra axial e estudo de refinamento")
+    fem.add_argument("--comprimento-m", type=float, required=True)
+    fem.add_argument("--area-mm2", type=float, required=True)
+    fem.add_argument("--e-gpa", type=float, required=True)
+    fem.add_argument("--forca-n", type=float, default=0)
+    fem.add_argument("--carga-linear-n-m", type=float, default=0)
+    fem.add_argument("--elementos", type=int, default=4)
+    fem.add_argument("--estudo-malha", action="store_true", help="Comparar 1, 2, 4, 8, 16 e 32 elementos")
 
     comando.add_parser("validar", help="Verificar consistência do catálogo")
     calcular = comando.add_parser("calcular", help="Executar modelo didático")
@@ -85,11 +97,21 @@ def main() -> None:
         if args.comando == "validar":
             erros = catalogo.validar()
             erros.extend(recursos.validar())
+            erros.extend(direitos.validar())
             _saida({"valido": not erros, "erros": erros,
                     "quantidade_fontes": len(catalogo.carregar()["fontes"]),
                     "recursos": recursos.contagem()})
             if erros:
                 parser.exit(status=1)
+        elif args.comando == "direitos":
+            dados = direitos.carregar()["records"]
+            _saida([r for r in dados if not args.id or r["id"] == args.id])
+        elif args.comando == "fem-barra":
+            argumentos = (args.comprimento_m, args.area_mm2, args.e_gpa, args.forca_n, args.carga_linear_n_m)
+            if args.estudo_malha:
+                _saida(fem_barra.estudo_refinamento(*argumentos))
+            else:
+                _saida(fem_barra.barra_axial(*argumentos, elementos=args.elementos))
         elif args.comando == "fontes":
             _saida(catalogo.buscar(args.consulta, args.dominio, args.tipo))
         elif args.comando == "recursos":

@@ -27,3 +27,7 @@ CLI estável, notebooks didáticos e visualizações web acessíveis. APIs sempr
 **Gate:** cada módulo precisa de definição matemática, fonte, teste independente, unidades, exceções, limitações e indicação de não uso para liberação de segurança.
 
 **Progresso ciclo 04:** modelos didáticos de potência hidráulica, condução plana, frequência natural SDOF e número de Reynolds foram adicionados. Não são simuladores multifísicos nem dimensionamento industrial certificado.
+
+## Ciclo 05 — primeiro benchmark FEM
+
+Foi implementado solver tridiagonal 1D para barra elástica, carga de ponta e força distribuída; inclui comparação com solução fechada, reações, energia e erro RMS de tensão com refinamento `O(h)`. O caso possui deslocamento nodal exato, portanto essa variável isolada não comprova convergência. Pendente integração com CalculiX (ou equivalente), benchmarks 2D/3D, avaliação de condições de contorno reais e estudo de convergência independente.

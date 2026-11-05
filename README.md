@@ -4,15 +4,17 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.4 (05/11/2026)
+## Estado: ciclo v0.5 (05/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
-- **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas. São **67 registros em diferentes níveis**, não 67 obras independentes auditadas.
+- **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
 - **Formação:** grade aberta por áreas da Engenharia Mecânica, seis trilhas por objetivo e critérios de avaliação.
-- **Ferramental funcional:** quatro modelos mecânicos didáticos em Python, testes de referência, CLI de busca e validação.
-- **Governança reusável:** [AGENTS.md](AGENTS.md), 8 agentes especializados, 9 skills e roadmaps temáticos.
+- **Ferramental funcional:** oito calculadoras em Python, um solver FEM 1D de barra e um estudo de refinamento, com testes e CLI.
+- **Governança reusável:** [AGENTS.md](AGENTS.md), 8 agentes especializados, 11 skills e roadmaps temáticos.
 - **Pesquisa por APIs:** cliente de metadados Crossref/OpenAlex com limite, deduplicação local e revisão obrigatória; candidatos não entram automaticamente no acervo.
-- **Próximos passos:** auditoria de licença por obra, produção de fichas técnicas originais, mais calculadoras e integração opcional a FreeCAD/CoolProp/CAE.
+- **Auditoria de direitos:** cinco registros documentais de obras/cursos, separando política de portal, obra e exceções de terceiros.
+- **Conteúdo autoral:** quatro fichas técnicas (tensão, Hooke, elemento finito 1D, convergência).
+- **Próximos passos:** revisar assets específicos, ampliar fichas, comparar o FEM autoral com solver externo e integrar ferramentas opcionais.
 
 **Importante:** descoberta de um portal **não é auditoria de todo seu acervo**; software catalogado **não significa integração concluída**. As referências originais ficam nas instituições e as permissões são verificadas por item.
 
@@ -24,6 +26,10 @@
 | Cursos | 10 disciplinas universitárias identificadas por URL | [Catálogo](docs/catalogos/cursos.md) |
 | Portais | 20 instituições, bibliotecas, órgãos e APIs | [Catálogo](docs/catalogos/portais.md) |
 | Ferramentas | 17 softwares, bibliotecas e simuladores | [Catálogo](docs/catalogos/ferramentas.md) |
+
+## Benchmark numérico de barra axial
+
+Um solver independente de elementos finitos 1D compara deslocamentos, reação e energia à solução analítica, com convergência do **erro RMS de tensão** para malhas de 1 a 32 elementos. Não foi integrado nem validado com CalculiX ou FreeCAD, e não serve para dimensionamento de segurança. [Laboratório completo](docs/laboratorios/benchmark-barra-fem.md).
 
 ## Grade e ferramentas
 
@@ -40,6 +46,8 @@ engmec recursos --tipo ferramentas --area FEM
 engmec descobrir --fonte crossref --consulta "bearing fatigue" --limite 5
 engmec fontes --consulta termodinamica
 engmec calcular potencia --torque-nm 250 --rpm 1800
+engmec direitos --id openstax-univphysics1
+engmec fem-barra --comprimento-m 2 --area-mm2 1000 --e-gpa 200 --forca-n 10000 --carga-linear-n-m 1000 --estudo-malha
 python -m unittest discover -s tests -v
 ```
 

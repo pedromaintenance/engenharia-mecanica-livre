@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Registro de direitos - unidade de obra",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "records"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "last_reviewed_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "approach": {
+      "type": "string"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "provider",
+          "url",
+          "license",
+          "license_evidence_url",
+          "audit_level",
+          "scope",
+          "permitted_repository_use",
+          "conditions",
+          "known_limitations",
+          "reviewed_at",
+          "review_status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "title": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "license": {
+            "type": "string"
+          },
+          "license_evidence_url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "audit_level": {
+            "enum": [
+              "politica-geral-verificada",
+              "obra-licenca-verificada"
+            ]
+          },
+          "scope": {
+            "type": "string"
+          },
+          "permitted_repository_use": {
+            "type": "string"
+          },
+          "conditions": {
+            "type": "string"
+          },
+          "known_limitations": {
+            "type": "string"
+          },
+          "reviewed_at": {
+            "type": "string",
+            "format": "date"
+          },
+          "review_status": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

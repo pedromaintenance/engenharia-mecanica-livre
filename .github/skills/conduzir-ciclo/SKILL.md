@@ -24,3 +24,7 @@ Commit, fontes, arquivos, testes, issues, riscos e handover.
 
 ## Aceite
 Próxima sessão pode continuar sem memória do executor anterior.
+
+## Aprendizado do ciclo 05
+
+Em FEM usar métricas de erro não triviais; deslocamento nodal exato não prova convergência das tensões. Em direitos, política institucional não elimina exceções por obra e por asset; restrições expressas ao uso em IA devem ser registradas.
