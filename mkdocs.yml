@@ -55,6 +55,7 @@ nav:
       - Frequência natural: laboratorios/vibracoes.md
       - Número de Reynolds: laboratorios/reynolds.md
       - Barra axial FEM: laboratorios/benchmark-barra-fem.md
+      - CalculiX tridimensional: laboratorios/calculix-3d.md
   - Projeto:
       - Arquitetura: arquitetura.md
       - Método científico: metodologia.md
@@ -76,3 +77,4 @@ nav:
       - Ciclo 03: ciclos/ciclo-03.md
       - Ciclo 04: ciclos/ciclo-04.md
       - Ciclo 05: ciclos/ciclo-05.md
+      - Ciclo 06: ciclos/ciclo-06.md

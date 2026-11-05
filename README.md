@@ -4,12 +4,12 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.5 (05/11/2026)
+## Estado: ciclo v0.6 (05/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
 - **Formação:** grade aberta por áreas da Engenharia Mecânica, seis trilhas por objetivo e critérios de avaliação.
-- **Ferramental funcional:** oito calculadoras em Python, um solver FEM 1D de barra e um estudo de refinamento, com testes e CLI.
+- **Ferramental funcional:** oito calculadoras em Python, FEM 1D e um adaptador para benchmark CalculiX 3D C3D8, com geração de malha, execução externa opcional e verificação de resultados.
 - **Governança reusável:** [AGENTS.md](AGENTS.md), 8 agentes especializados, 11 skills e roadmaps temáticos.
 - **Pesquisa por APIs:** cliente de metadados Crossref/OpenAlex com limite, deduplicação local e revisão obrigatória; candidatos não entram automaticamente no acervo.
 - **Auditoria de direitos:** cinco registros documentais de obras/cursos, separando política de portal, obra e exceções de terceiros.
@@ -31,6 +31,10 @@
 
 Um solver independente de elementos finitos 1D compara deslocamentos, reação e energia à solução analítica, com convergência do **erro RMS de tensão** para malhas de 1 a 32 elementos. Não foi integrado nem validado com CalculiX ou FreeCAD, e não serve para dimensionamento de segurança. [Laboratório completo](docs/laboratorios/benchmark-barra-fem.md).
 
+## Comparação com CalculiX 3D
+
+O ciclo 06 acrescentou geração de malhas C3D8 com força axial distribuída e um workflow Ubuntu 24.04 que instala o CalculiX real. Os resultados do solver são analisados a partir de arquivos `.dat`; **nenhuma convergência ou validação externa deve ser alegada antes da execução e conferência do workflow**. [Laboratório 06](docs/laboratorios/calculix-3d.md).
+
 ## Grade e ferramentas
 
 [Grade por ciclos](docs/formacao/grade.md) · [Trilhas](docs/formacao/trilhas.md) · [Guia de calculadoras](docs/guia-calculadoras.md) · [Metodologia](docs/metodologia.md)
@@ -48,6 +52,8 @@ engmec fontes --consulta termodinamica
 engmec calcular potencia --torque-nm 250 --rpm 1800
 engmec direitos --id openstax-univphysics1
 engmec fem-barra --comprimento-m 2 --area-mm2 1000 --e-gpa 200 --forca-n 10000 --carga-linear-n-m 1000 --estudo-malha
+python -m engmec.calculix --somente-gerar --nx 4 --saida build/calculix/nx-4
+# Para executar o solver, instale CalculiX e remova --somente-gerar
 python -m unittest discover -s tests -v
 ```
 

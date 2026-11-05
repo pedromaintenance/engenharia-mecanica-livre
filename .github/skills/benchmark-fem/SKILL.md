@@ -17,3 +17,7 @@ license: MIT
 9. Se integrar solver externo, fixar versão e distribuição, informar ambiente e repetir estudo independentemente.
 
 **Aceite:** resultados reprodutíveis e relatório de erro; nenhuma declaração de projeto certificado.
+
+## Benchmark externo com CalculiX
+
+Se o caso for C3D8, verificar orientação positiva do elemento, cargas nodais equivalentes à tração, remoção mínima dos modos rígidos e extração de `U` e `RF` do `.dat`. Não confundir teste de parser com execução do CalculiX. Guardar artefatos de solver, versão do binário e resultados; aceitar somente com logs reais e tolerâncias.

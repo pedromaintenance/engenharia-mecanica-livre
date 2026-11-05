@@ -68,3 +68,7 @@ Detalhes: [conteúdo](conteudo.md), [formação](formacao.md), [ferramentas](fer
 Cinco registros de auditoria documental de direitos com fonte primária (não cinco obras integralmente licenciadas para espelhamento), quatro fichas autorais e benchmark FEM 1D de barra axial com estudo do erro de tensão. Gates restantes: revisão humana de licenças de arquivos isolados, comparação com solver FEM externo e validação experimental. O ciclo de publicação deve ter testes e Pages verdes antes do aceite.
 
 **Aceite do ciclo 05:** [CI](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42052167589) com 37 testes aprovados; [GitHub Pages](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42052167587) publicado. Próxima integração numérica externalizada em [issue #10](https://github.com/pedromaintenance/engenharia-mecanica-livre/issues/10).
+
+## Ciclo 06 — escopo e critérios
+
+Integração com CalculiX por malha 3D autoral C3D8 e comparação com barra 1D para tração uniforme. Separar estritamente os testes do gerador/parser da **execução física no solver**. Meta de aceite: CI + workflow dedicado CalculiX com arquivos `.inp/.dat/.frd` arquivados, erro axial/equilíbrio menor que 2% em quatro malhas, Pages verde. Avançar só depois a problemas de gradiente e convergência não trivial.

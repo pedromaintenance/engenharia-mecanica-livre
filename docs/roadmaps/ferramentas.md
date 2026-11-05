@@ -31,3 +31,7 @@ CLI estável, notebooks didáticos e visualizações web acessíveis. APIs sempr
 ## Ciclo 05 — primeiro benchmark FEM
 
 Foi implementado solver tridiagonal 1D para barra elástica, carga de ponta e força distribuída; inclui comparação com solução fechada, reações, energia e erro RMS de tensão com refinamento `O(h)`. O caso possui deslocamento nodal exato, portanto essa variável isolada não comprova convergência. Pendente integração com CalculiX (ou equivalente), benchmarks 2D/3D, avaliação de condições de contorno reais e estudo de convergência independente.
+
+## Ciclo 06 — Conexão com CalculiX externo
+
+Adaptador C3D8 gerado: malha estruturada 3D, restrições mínimas para manter contração de Poisson, força de face distribuída, parser `.dat` e comparação com solução analítica/solver 1D. Workflow separado instala a versão do pacote `calculix-ccx` disponível no Ubuntu 24.04 e testa quatro malhas. A integração externa deve ser marcada **validada** apenas após workflow e logs do solver reais aprovados. Pendência principal depois disso: benchmark 3D com gradiente não trivial e estudo de malha, não só patch test homogêneo.
