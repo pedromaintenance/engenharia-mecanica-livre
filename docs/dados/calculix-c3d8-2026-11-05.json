@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Benchmark CalculiX C3D8 — barra axial uniforme",
+  "observed_at": "2026-11-05",
+  "environment": "GitHub Actions ubuntu-24.04",
+  "solver": "CalculiX CCX",
+  "solver_package": "calculix-ccx",
+  "package_version": "2.21-1",
+  "executable": "/usr/bin/ccx",
+  "head_commit": "9138697fd64d7b501674c9685a5b6059172ff96a",
+  "workflow_run_url": "https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42055701419",
+  "workflow_run_id": 42055701419,
+  "artifact_name": "calculix-c3d8-ubuntu2404",
+  "artifact_id": 13429701171,
+  "artifact_digest": "sha256:f500611f6c8016e8cd8e187086c6dffdef9f2870bf48dcaadc4783c1f4e64004",
+  "artifact_retention_until": "2026-12-05",
+  "cases": [
+    {
+      "nx": 1,
+      "ny": 2,
+      "nz": 2,
+      "elementos": 4,
+      "nos": 18,
+      "displacement_m": 0.0001,
+      "root_reaction_n": -10000,
+      "displacement_reference_m": 0.0001,
+      "displacement_relative_error_reported": 0,
+      "force_balance_relative_error_reported": 0,
+      "output_note": "Numerical values as printed in *NODE PRINT .dat and parsed by engmec.calculix; 0 denotes displayed precision, not exact zero error."
+    },
+    {
+      "nx": 2,
+      "ny": 2,
+      "nz": 2,
+      "elementos": 8,
+      "nos": 27,
+      "displacement_m": 0.0001,
+      "root_reaction_n": -10000,
+      "displacement_reference_m": 0.0001,
+      "displacement_relative_error_reported": 0,
+      "force_balance_relative_error_reported": 0,
+      "output_note": "Numerical values as printed in *NODE PRINT .dat and parsed by engmec.calculix; 0 denotes displayed precision, not exact zero error."
+    },
+    {
+      "nx": 4,
+      "ny": 2,
+      "nz": 2,
+      "elementos": 16,
+      "nos": 45,
+      "displacement_m": 0.0001,
+      "root_reaction_n": -10000,
+      "displacement_reference_m": 0.0001,
+      "displacement_relative_error_reported": 0,
+      "force_balance_relative_error_reported": 0,
+      "output_note": "Numerical values as printed in *NODE PRINT .dat and parsed by engmec.calculix; 0 denotes displayed precision, not exact zero error."
+    },
+    {
+      "nx": 8,
+      "ny": 2,
+      "nz": 2,
+      "elementos": 32,
+      "nos": 81,
+      "displacement_m": 0.0001,
+      "root_reaction_n": -10000,
+      "displacement_reference_m": 0.0001,
+      "displacement_relative_error_reported": 0,
+      "force_balance_relative_error_reported": 0,
+      "output_note": "Numerical values as printed in *NODE PRINT .dat and parsed by engmec.calculix; 0 denotes displayed precision, not exact zero error."
+    }
+  ],
+  "limits": [
+    "Tracao axial uniforme; patch test de deformacao homogenea",
+    "Sem gradiente nao trivial de tensoes ou validacao experimental",
+    "Erros relativos reportados como 0 devido a precisao do formato .dat",
+    "Arquivos zip e solver.log disponiveis como artefato temporario do workflow"
+  ]
+}

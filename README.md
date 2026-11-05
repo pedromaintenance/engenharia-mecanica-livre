@@ -33,7 +33,7 @@ Um solver independente de elementos finitos 1D compara deslocamentos, reação e
 
 ## Comparação com CalculiX 3D
 
-O ciclo 06 acrescentou geração de malhas C3D8 com força axial distribuída e um workflow Ubuntu 24.04 que instala o CalculiX real. Os resultados do solver são analisados a partir de arquivos `.dat`; **nenhuma convergência ou validação externa deve ser alegada antes da execução e conferência do workflow**. [Laboratório 06](docs/laboratorios/calculix-3d.md).
+O ciclo 06 acrescentou geração de malhas C3D8 com força axial distribuída e um workflow Ubuntu 24.04 que instala o CalculiX real. Os resultados do solver são analisados a partir de arquivos `.dat`; **o benchmark externo de tração uniforme foi executado com sucesso em quatro malhas (CalculiX 2.21-1)**, mas não cobre convergência não trivial nem validação experimental. [Evidência](docs/dados/calculix-c3d8-2026-11-05.json). [Laboratório 06](docs/laboratorios/calculix-3d.md).
 
 ## Grade e ferramentas
 

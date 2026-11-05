@@ -86,3 +86,23 @@ Próximo estudo: problema que produz gradientes de tensão com singularidades co
 ### Observação sobre RF no CalculiX
 
 O manual explica que a variável `RF` representa a soma de forças externas nodais, podendo agregar reação e cargas diretamente aplicadas ao nó. Neste benchmark, **os nós ROOT não recebem CLOAD nem DLOAD**, logo seus valores `RF` são equivalentes às reações de apoio. O arquivo `.dat` pode trazer o cabeçalho `forces (fx,fy,fz)` em vez de `reaction forces`; o parser aceita ambas as convenções.
+
+
+## Resultado real — execução concluída em 05/11/2026
+
+O workflow [CalculiX #42055701419](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42055701419) executou o pacote **calculix-ccx 2.21-1** no Ubuntu 24.04, em quatro malhas, e passou integralmente. Foi verificado o uso real de `/usr/bin/ccx`, a leitura do arquivo `.dat`, o cálculo de reações e a saída do comparador. O artifact `calculix-c3d8-ubuntu2404` (ID `13429701171`) contém os quatro arquivos `.inp`, resultados `.dat`/`.frd`, logs e comparações JSON. A retenção declarada é de 30 dias a partir da execução; preservar no repositório apenas o relatório pequeno de métricas.
+
+| Elementos axiais (nx) | C3D8 totais | Nós | Ux da ponta | Reação axial | Erro relativo informado |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 4 | 18 | 0,1000 mm | −10.000 N | 0,0%* |
+| 2 | 8 | 27 | 0,1000 mm | −10.000 N | 0,0%* |
+| 4 | 16 | 45 | 0,1000 mm | −10.000 N | 0,0%* |
+| 8 | 32 | 81 | 0,1000 mm | −10.000 N | 0,0%* |
+
+*O valor de erro 0,0% representa o que foi informado na precisão **limitada da saída textual** `*NODE PRINT`; não é prova matemática de arredondamento zero, de convergência para problemas não homogêneos ou de correção de hipóteses de projeto.*
+
+O resultado é compatível com a solução fechada `FL/(EA)` e com o solver 1D autoral. Nenhuma carga foi aplicada diretamente na raiz, de modo que `RF` nela coincide com a reação (a variável RF em geral inclui forças externas nodais).
+
+[Dados observados do benchmark em JSON](../dados/calculix-c3d8-2026-11-05.json) · [Execução e artefatos](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42055701419) · [CI geral](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42055701336).
+
+**Estado após o ciclo 06:** benchmark cruzado de **tração uniforme** validado por execução real. O benchmark de **convergência não trivial 3D** permanece pendente.
