@@ -40,3 +40,12 @@ Não houve validação experimental, FEM 3D, execução de CalculiX/OpenFOAM, re
 ## Aceite
 
 Commit, `engmec validar`, suíte de testes, compilação MkDocs e workflow Pages devem ser conferidos após implantação. O resultado técnico depende da verificação real do CI e não somente de arquivos escritos.
+
+## Evidências de execução e publicação
+
+- **Implementação:** [commit v0.5](https://github.com/pedromaintenance/engenharia-mecanica-livre/commit/2d9aaf967be0ecbe11814409fc441f60e254aa75).
+- **Validação automática:** [workflow Qualidade técnica](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42052167589) concluído com sucesso; **37 testes** aprovados, `engmec validar` e `mkdocs build --strict` sem falha.
+- **Publicação:** [workflow Pages](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42052167587) concluído com sucesso.
+- **Próximo benchmark:** [issue #10](https://github.com/pedromaintenance/engenharia-mecanica-livre/issues/10) para validação cruzada com CalculiX ou equivalente.
+
+**Aceite do ciclo 05:** implementação e publicação aprovadas em CI; revisão humana dos materiais e simulação externa continuam fora do escopo concluído.
