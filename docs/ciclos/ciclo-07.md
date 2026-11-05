@@ -34,3 +34,16 @@ Validação experimental, tensões de um equipamento real, comparação já exec
 ## Handover
 
 **Confirmar status:** novo commit → CI padrão → workflow CalculiX → logs/artefatos → relatório JSON de resultados reais → portal MkDocs. Falhas devem ser registradas e corrigidas com teste de regressão. Manter issue #11 aberta caso falte evidência ou convergência não trivial.
+
+
+## Execução e aceite reais
+
+O [workflow CalculiX #42064616852](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42064616852) foi concluído com **sucesso**, CalculiX 2.21-1 em Ubuntu 24.04. Foram executadas malhas de 8, 64, 512 e 4096 elementos C3D8, com erros em Uy de **29,7457%; 10,82515%; 3,36765%; 0,9942%** e taxas aparentes **1,4583; 1,6846; 1,7601**.
+
+As quatro saídas foram lidas do arquivo `.dat`, comparadas contra `u_y=0,2 mm` e `u_x=-0,1 mm`, e agregadas no relatório gerado. A implementação desconta `CLOAD` dos nós de apoio antes de calcular o resíduo de reação, conforme o manual do CalculiX. Os resíduos relativos ficaram inferiores a 1%.
+
+**Evidência arquivada:** artifact `flexao-pura-calculix-3d` (ID 13433760622, SHA-256 `186dfedbf70dab4a6bc61d8594abf34e92b687dbdd32465e51213d198ed77a00`), retenção anunciada até 05/12/2026. O sumário de medições permanece em [dados estruturados](../dados/flexao-pura-3d-2026-11-05.json).
+
+**Controles de qualidade:** [CI com 53 testes aprovados](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42064616968) e [GitHub Pages publicado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42064616933).
+
+**Estado:** critério de convergência não trivial do ciclo 07 atendido; continuam pendentes comparação de tipos de elementos, extração detalhada de tensões, ensaio físico e aplicações de projeto.

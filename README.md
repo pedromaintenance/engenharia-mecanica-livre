@@ -37,7 +37,7 @@ O ciclo 06 acrescentou geração de malhas C3D8 com força axial distribuída e 
 
 ## Laboratório de flexão pura 3D
 
-O ciclo 07 introduz um caso de elasticidade 3D em que a **tensão axial varia linearmente na seção** e o campo de deslocamento possui termos quadráticos. O adaptador CalculiX C3D8 gera trações nodais consistentes nas duas faces, apoios mínimos, extrai resultados `U/RF` e avalia erros em malhas 2³, 4³, 8³ e 16³. **Resultados reais e convergência só são considerados aceitos após o workflow externo passar.** [Laboratório 07](docs/laboratorios/flexao-pura-3d.md).
+O ciclo 07 introduz um caso de elasticidade 3D em que a **tensão axial varia linearmente na seção** e o campo de deslocamento possui termos quadráticos. O adaptador CalculiX C3D8 gera trações nodais consistentes nas duas faces, apoios mínimos, extrai resultados `U/RF` e avalia erros em malhas 2³, 4³, 8³ e 16³. **O workflow externo passou:** CalculiX 2.21-1 executou as quatro malhas; erro de Uy diminuiu de 29,75% para 0,99%. [Evidência permanente](docs/dados/flexao-pura-3d-2026-11-05.json). [Laboratório 07](docs/laboratorios/flexao-pura-3d.md).
 
 ## Grade e ferramentas
 
@@ -86,3 +86,5 @@ Para continuar: abra [roadmap mestre](docs/roadmaps/master.md), selecione um [is
 ## Licenças
 
 O código e a documentação original deste repositório estão sob a licença MIT existente em [LICENSE](LICENSE). Obras externas conservam seus próprios direitos; uma URL aberta **não autoriza reprodução, tradução ou inclusão em corpus de IA**. O projeto usa links e metadados como padrão conservador.
+
+**Verificação de publicação do ciclo 07:** [CI com 53 testes](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42064616968), [benchmark externo CalculiX](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42064616852), [GitHub Pages](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42064616933). Nenhum resultado indica certificação de projeto.

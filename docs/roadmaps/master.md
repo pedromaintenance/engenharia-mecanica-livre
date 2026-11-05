@@ -78,3 +78,5 @@ Integração com CalculiX por malha 3D autoral C3D8 e comparação com barra 1D 
 ## Ciclo 07 — erro não trivial de flexão pura
 
 Problema novo: solução exata da elasticidade 3D sob flexão pura, tensões lineares `σxx(y)`, deslocamentos quadráticos, 6 graus de liberdade rigidamente eliminados, forças nodais de face integradas por Gauss, verificação independente de momentos e comparação com CalculiX C3D8 em quatro malhas. O critério só é atendido se houver erro inicial mensurável, redução de erro na malha fina e equilíbrio. Validar workflow antes de declarar concluído; acompanhar limitações de shear locking e futuras comparações C3D20R.
+
+**Ciclo 07 verificado externamente:** [CalculiX C3D8](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42064616852) executado com gradiente de tensão em flexão pura. Erro de Uy caiu de 29,75% em 8 elementos a 0,99% em 4096 elementos; taxas aparentes chegaram a ~1,76. [Evidência JSON](../dados/flexao-pura-3d-2026-11-05.json). Próximos gates: C3D20R, erros de tensões, benchmarks com outras condições de carregamento e validação experimental.

@@ -2,7 +2,7 @@
 
 **Objetivo:** superar o *patch test* axial homogêneo da [v0.6](calculix-3d.md), introduzindo um campo de **tensão axial não uniforme na altura**, com solução **exata da elasticidade 3D**, e confrontando os deslocamentos obtidos pelo CalculiX.
 
-**Estado da v0.7:** a implementação e o workflow foram estruturados; resultados numéricos somente serão reportados aqui depois de conferidos nos logs da execução.
+**Estado da v0.7:** **benchmark executado e verificado externamente** no CalculiX CCX 2.21-1; resultados, artefatos e critérios documentados abaixo.
 
 ## 1. Problema físico e parâmetros
 
@@ -94,3 +94,31 @@ Os testes independentes cobrem referência analítica, soma das forças, equilí
 Mesmo que a execução seja aprovada, **verificação computacional não equivale a validação experimental**. Permanecem fora deste problema: concentrações locais, apoio de máquina real, flambagem, juntas, defeitos, soldagem, fadiga, plastificação e geometria não linear.
 
 **Fontes para aprofundar:** [Solução de flexão pura em elasticidade, material MIT 16.20](https://web.mit.edu/16.20/homepage/4_ElasticityBVP/ElasticityBVP_files/module_4_no_solutions.pdf); [Wiley — *Beams in Bending*, solução de elasticidade](https://catalogimages.wiley.com/images/db/pdf/Z0471381527.01.pdf); [Manual CalculiX, C3D8](https://www.feacluster.com/CalculiX/ccx_2.18/doc/ccx/node28.html); [`*NODE PRINT` e RF](https://www.feacluster.com/CalculiX/ccx_2.18/doc/ccx/node307.html). A dedução, os dados do exemplo e o código são originais do projeto.
+
+
+## 7. Resultados observados — CalculiX 2.21-1
+
+O [workflow de execução real](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42064616852) instalou `calculix-ccx 2.21-1`, executou **as quatro malhas**, interpretou o arquivo `.dat`, verificou a tendência de erros e arquivou os resultados. [CI geral](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42064616968): **53 testes aprovados**. [Pages](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42064616933) publicado com sucesso.
+
+Referências exatas: `u_y(L,0,0)=0,20000 mm` e `u_x(L,b/2,0)=−0,10000 mm`.
+
+| Divisões por eixo | Elementos C3D8 | Uy ponta (mm) | Erro Uy | Ux borda (mm) | Erro Ux |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 2 | 8 | 0.14051 | 29.746% | -0.07025 | 29.745% |
+| 4 | 64 | 0.17835 | 10.825% | -0.08918 | 10.824% |
+| 8 | 512 | 0.19326 | 3.368% | -0.09663 | 3.367% |
+| 16 | 4.096 | 0.19801 | 0.994% | -0.09901 | 0.994% |
+
+A redução do erro transversal foi **29,746% → 0,994%**. As taxas aparentes `p` em refinamentos 2→4→8→16 foram **1,458; 1,685; 1,760**; essa tendência é consistente com aproximação de maior precisão conforme o tamanho de elemento diminui, mas não constitui prova de ordem assintótica exata sem refinamentos adicionais e verificação das demais grandezas.
+
+O resíduo relativo máximo da força nos nós de ancoragem (após descontar `CLOAD` nesses mesmos nós) permaneceu **abaixo de 0,001%**. As cargas e os momentos prescritos foram independentemente verificados pelo gerador, com soma de forças e momentos praticamente nula.
+
+**Interpretação:** as malhas grosseiras se mostraram rígidas demais em flexão — condição esperada para C3D8 com integração completa. O erro reduziu de forma consistente à medida que a malha foi refinada. A saída permite afirmar **convergência empírica mensurável neste caso analítico**, e não validação universal de C3D8 ou de projetos.
+
+Os arquivos `.inp`, `.dat`, `.frd`, `solver.log`, `comparacao.json` e `resumo_convergencia.json` foram arquivados como [artefato do workflow](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42064616852/artifacts/13433760622), com retenção prevista até **05/12/2026**. Os [resultados essenciais em JSON](../dados/flexao-pura-3d-2026-11-05.json) permanecem versionados no repositório.
+
+## 8. Interpretação crítica
+
+A redução de erro demonstra avanço sobre o benchmark axial da v0.6. **Não** transforma flexão pura em uma condição típica de carregamento de equipamento pesado, não resolve concentração local nem evita verificação de fadiga, flambagem e confiabilidade.
+
+Próxima etapa: comparar com **C3D20R** e extrair erro das tensões nos pontos de integração com referência analítica, verificando se a melhoria de precisão compensa o custo computacional e as diferentes propriedades dos elementos.

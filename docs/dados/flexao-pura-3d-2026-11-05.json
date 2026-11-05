@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "experiment": "flexao_pura_3d_C3D8",
+  "observed_at": "2026-11-05",
+  "solver": {
+    "name": "CalculiX CCX",
+    "executable": "/usr/bin/ccx",
+    "package": "calculix-ccx",
+    "version": "2.21-1",
+    "environment": "GitHub Actions ubuntu-24.04"
+  },
+  "provenance": {
+    "workflow_url": "https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42064616852",
+    "run_id": 42064616852,
+    "commit_sha": "188731940d0d0514f5357502b9eb3dcaa151f64c",
+    "artifact_id": 13433760622,
+    "artifact_name": "flexao-pura-calculix-3d",
+    "artifact_sha256": "186dfedbf70dab4a6bc61d8594abf34e92b687dbdd32465e51213d198ed77a00",
+    "artifact_expires_at": "2026-12-05T16:27:46Z"
+  },
+  "geometry_and_material": {
+    "length_m": 0.2,
+    "square_width_m": 0.1,
+    "young_modulus_pa": 200000000000,
+    "poisson_ratio": 0.3,
+    "curvature_inv_m": 0.01,
+    "element_type": "C3D8",
+    "stress_max_pa": 100000000,
+    "moment_each_end_magnitude_nm": 16666.666666666668
+  },
+  "reference": {
+    "uy_tip_center_m": 0.0002,
+    "ux_tip_upper_edge_m": -0.0001,
+    "description": "Exact isotropic 3D elasticity displacement field under opposed pure bending moments"
+  },
+  "results": [
+    {
+      "n": 2,
+      "elementos": 8,
+      "uy_m": 0.0001405086,
+      "ux_m": -0.00007025468,
+      "erro_uy_rel": 0.297457,
+      "erro_ux_rel": 0.2974532,
+      "residuo_forca_rel": 0.000004345577200117986
+    },
+    {
+      "n": 4,
+      "elementos": 64,
+      "uy_m": 0.0001783497,
+      "ux_m": -0.00008917584,
+      "erro_uy_rel": 0.1082515,
+      "erro_ux_rel": 0.1082416,
+      "residuo_forca_rel": 0.000008205453799972018
+    },
+    {
+      "n": 8,
+      "elementos": 512,
+      "uy_m": 0.0001932647,
+      "ux_m": -0.00009663256,
+      "erro_uy_rel": 0.0336765,
+      "erro_ux_rel": 0.0336744,
+      "residuo_forca_rel": 6.801213999897298e-7
+    },
+    {
+      "n": 16,
+      "elementos": 4096,
+      "uy_m": 0.0001980116,
+      "ux_m": -0.0000990058,
+      "erro_uy_rel": 0.009942,
+      "erro_ux_rel": 0.009942,
+      "residuo_forca_rel": 1.2505362319643605e-9
+    }
+  ],
+  "apparent_error_order": {
+    "uy": [
+      1.4582941133914291,
+      1.6845729040144346,
+      1.7601341984485679
+    ],
+    "ux": [
+      1.4584076287387377,
+      1.684530924601436,
+      1.7600442320312857
+    ]
+  },
+  "acceptance": {
+    "initial_error_nontrivial": true,
+    "reduction_more_than_25percent": true,
+    "force_residual_under_1percent": true,
+    "workflow_result": "success",
+    "external_validation": false
+  },
+  "caveats": [
+    "Reported errors rounded by *NODE PRINT text precision.",
+    "C3D8 exhibits excessive stiffness in bending on coarse meshes; this is expected and part of the experiment.",
+    "Solution is linear elastic and idealized; no experiment validates machine or design.",
+    "GitHub workflow artifacts expire after retention period; metric summary is preserved in this repository."
+  ]
+}

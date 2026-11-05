@@ -25,3 +25,7 @@ Se o caso for C3D8, verificar orientação positiva do elemento, cargas nodais e
 ## Flexão pura e grandezas de erro não triviais (ciclo 07)
 
 Use tensões não uniformes e uma solução de elasticidade independente, compare deslocamentos em ao menos dois nós distintos, calcule taxa de erro em malhas de resoluções crescentes e confira momentos de face e força resultante. A variável `RF` em CalculiX **inclui CLOAD** no mesmo nó: subtraia o carregamento conhecido antes de interpretar reação. C3D8 tem tendência documentada a rigidez excessiva em flexão; registre locking e erro observado, nunca diminua tolerância arbitrariamente para produzir sucesso. Preserve artefatos, dados e revisão de limites antes de fechar o ciclo.
+
+## Evidência real do ciclo 07
+
+O teste de flexão pura em CalculiX C3D8 2.21-1 apresentou erro relativo inicial 29,7457% e final 0,9942% em Uy, taxas aparentes até 1,76, com prova de execução no workflow #42064616852. Ao continuar, usar o JSON `docs/dados/flexao-pura-3d-2026-11-05.json` como baseline sem confundir benchmark C3D8 com referência de projeto; adicionar C3D20R e pós-processamento de tensões antes de ampliar o domínio.

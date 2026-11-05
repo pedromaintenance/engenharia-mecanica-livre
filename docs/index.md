@@ -36,3 +36,7 @@ Partimos das leis físicas, construímos modelos matemáticos, analisamos fenôm
 ## Como colaborar
 
 Siga [metodologia científica](metodologia.md), [curadoria de direitos](governanca/curadoria.md), [roadmap](roadmaps/master.md) e [CONTRIBUTING.md](https://github.com/pedromaintenance/engenharia-mecanica-livre/blob/main/CONTRIBUTING.md).
+
+## Experimento quantitativo validado no ciclo 07
+
+O [benchmark 3D de flexão pura](laboratorios/flexao-pura-3d.md) comparou dados reais do CalculiX com uma solução da elasticidade: quatro malhas e redução do erro do deslocamento de 29,75% para 0,99%. O resultado confirma convergência numérica desse modelo idealizado, não valida um equipamento real. [Dados auditáveis](dados/flexao-pura-3d-2026-11-05.json).

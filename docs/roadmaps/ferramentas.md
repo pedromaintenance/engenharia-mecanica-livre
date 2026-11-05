@@ -41,3 +41,5 @@ Adaptador C3D8 gerado: malha estruturada 3D, restrições mínimas para manter c
 ## Ciclo 07 — flexão não homogênea
 
 Novo benchmark de elasticidade tridimensional: tensão axial proporcional à coordenada transversal, carga de face variável e referência de deslocamentos quadráticos. A comparação com CalculiX é estruturada para medir erro **não trivial** e taxa aparente de convergência, evitando que um patch test exato seja interpretado como validação geral. O manual do CalculiX alerta para rigidez excessiva do C3D8 em flexão; se a convergência for ruim, relatar o problema em vez de forçar a tolerância ou esconder malhas. Próximo passo: elementos quadráticos e comparação de tensões com dados analíticos de pontos de integração.
+
+**Resultados do ciclo 07:** fluxo de flexão 3D C3D8 validado em CalculiX 2.21-1. Na solução analítica adotada, o erro de Uy da ponta caiu de 29,7457% (8 elementos) para 0,9942% (4096 elementos), com melhora consistente e erro numérico não trivial. Reações corrigidas por cargas concentradas nos nós de apoio. [Resultado e metodologia](../laboratorios/flexao-pura-3d.md). Próximo benchmark: C3D20R e tensões por elemento.
