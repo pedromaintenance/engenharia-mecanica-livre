@@ -8,7 +8,7 @@ Construir uma base pública, pesquisável e tecnicamente verificável de Engenha
 
 | Onda | Horizonte indicativo* | Resultado | Critério de passagem |
 | --- | --- | --- | --- |
-| F0 — Fundação | concluído 2026-11-05 | site, código base, CI, 4 calculadoras e 20 fontes | site publicado, CI verde |
+| F0 — Fundação | concluído 2026-11-05 | site, código base, CI, 4 calculadoras iniciais e 20 fontes | site publicado, CI verde |
 | F1 — Curadoria editorial | ciclos 2–5 | 100 itens verificados por obra, grade e 50 fichas autorais | links, direitos, fonte e revisão |
 | F2 — Formação | ciclos 3–8 | 6 trilhas completas, avaliações e laboratório didático | pré-requisitos, exercícios e rubricas |
 | F3 — Laboratório | ciclos 4–10 | 15 modelos numéricos, CAD/FEM/CFD e benchmarks | convergência, teste analítico e documentação |

@@ -17,3 +17,5 @@ Os testes com respostas locais fictícias demonstram normalização e verificaç
 ## Pendências
 
 Cache, rotinas incrementais, licenças por obra, deduplicação interlotes, verificação de disponibilidade do original e integração com fila de revisão.
+
+**Concluído:** [commit f565f264](https://github.com/pedromaintenance/engenharia-mecanica-livre/commit/f565f264e714996264e0f68e518e938e2c5a75d4) com [21 testes aprovados](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42047785634) e [Pages publicado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42047785564). Testes são locais simulados; nenhuma consulta remota live certificada.

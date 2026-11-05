@@ -91,3 +91,70 @@ def viga_carga_central(
         "flecha_max_mm": flecha * 1000,
         "aviso": "Sem peso próprio, cisalhamento, flambagem lateral, escoamento, fadiga ou concentração de tensões.",
     }
+
+
+def potencia_hidraulica(pressao_bar: float, vazao_lpm: float, eficiencia: float = 1.0) -> dict:
+    """Potência hidráulica e potência ideal de acionamento da bomba.
+
+    Modelo: P_h = Δp Q, P_eixo = P_h / η; η é eficiência global especificada
+    para a operação e não deve ser confundida com rendimento volumétrico isolado.
+    """
+    delta_p = _positivo("pressao_bar", pressao_bar) * 100_000
+    vazao = _positivo("vazao_lpm", vazao_lpm) / 60_000
+    eta = _positivo("eficiencia", eficiencia)
+    if eta > 1:
+        raise ValueError("eficiencia deve estar entre 0 (exclusivo) e 1")
+    pot = delta_p * vazao
+    return {
+        "modelo": "potencia_hidraulica_delta_p_vazao",
+        "vazao_m3_s": vazao, "pressao_diferencial_pa": delta_p,
+        "potencia_hidraulica_w": pot, "potencia_hidraulica_kw": pot / 1000,
+        "potencia_entrada_eixo_kw": pot / eta / 1000,
+        "aviso": "Modelo permanente: Δp real nos terminais da bomba, Q na saída e rendimento global aplicável; perdas térmicas e transientes exigem análise adicional."
+    }
+
+
+def conducao_plana(k_w_mk: float, area_m2: float, delta_t_k: float, espessura_m: float) -> dict:
+    """Lei de Fourier 1D em placa homogênea, regime estacionário."""
+    import math
+    k = _positivo("k_w_mk", k_w_mk)
+    area = _positivo("area_m2", area_m2)
+    esp = _positivo("espessura_m", espessura_m)
+    dT = float(delta_t_k)
+    if not math.isfinite(dT):
+        raise ValueError("delta_t_k deve ser finito")
+    taxa = k * area * dT / esp
+    return {
+        "modelo": "conducao_plana_1d_estacionaria",
+        "taxa_calor_w_assinada": taxa, "taxa_calor_modulo_w": abs(taxa),
+        "aviso": "Ignora resistência de contato, geração interna, convecção, radiação e condução multidimensional; sinal depende do sentido definido para ΔT."
+    }
+
+
+def frequencia_natural(massa_kg: float, rigidez_n_m: float) -> dict:
+    """Frequência natural não amortecida de sistema massa-mola com um grau de liberdade."""
+    import math
+    m = _positivo("massa_kg", massa_kg)
+    k = _positivo("rigidez_n_m", rigidez_n_m)
+    omega = math.sqrt(k / m)
+    return {
+        "modelo": "oscilador_linear_sistema_1gdl_nao_amortecido",
+        "frequencia_natural_rad_s": omega,
+        "frequencia_natural_hz": omega / (2 * math.pi),
+        "periodo_s": 2 * math.pi / omega,
+        "aviso": "Modelo linear e sem amortecimento, válido para pequenas oscilações; não substitui análise modal de máquinas reais."
+    }
+
+
+def numero_reynolds(densidade_kg_m3: float, velocidade_m_s: float,
+                    diametro_m: float, viscosidade_pa_s: float) -> dict:
+    """Re = ρ v D / μ, usando velocidade média e dimensão característica informada."""
+    rho = _positivo("densidade_kg_m3", densidade_kg_m3)
+    v = _positivo("velocidade_m_s", velocidade_m_s, zero=True)
+    d = _positivo("diametro_m", diametro_m)
+    mu = _positivo("viscosidade_pa_s", viscosidade_pa_s)
+    return {
+        "modelo": "reynolds_numero_adimensional",
+        "reynolds": rho * v * d / mu,
+        "aviso": "A interpretação do regime depende da geometria, rugosidade e perturbações. Não classificar escoamento só pelo número em aplicações externas."
+    }

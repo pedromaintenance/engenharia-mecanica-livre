@@ -25,3 +25,5 @@ Benchmarks com solução analítica e referências públicas; erros absolutos/re
 CLI estável, notebooks didáticos e visualizações web acessíveis. APIs sempre versionadas e independentes de execução externa desnecessária.
 
 **Gate:** cada módulo precisa de definição matemática, fonte, teste independente, unidades, exceções, limitações e indicação de não uso para liberação de segurança.
+
+**Progresso ciclo 04:** modelos didáticos de potência hidráulica, condução plana, frequência natural SDOF e número de Reynolds foram adicionados. Não são simuladores multifísicos nem dimensionamento industrial certificado.

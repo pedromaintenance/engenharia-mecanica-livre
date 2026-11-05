@@ -2,7 +2,7 @@
 
 Uma base pública para **estudar, pesquisar, calcular, experimentar e resolver problemas mecânicos** sem abandonar o rigor científico.
 
-O projeto está na fase **v0.2**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
+O projeto está na fase **v0.4**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
 
 ## Comece por aqui
 

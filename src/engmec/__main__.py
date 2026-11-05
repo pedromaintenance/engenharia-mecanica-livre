@@ -59,6 +59,27 @@ def main() -> None:
     v.add_argument("--largura-mm", type=float, required=True)
     v.add_argument("--altura-mm", type=float, required=True)
 
+    h = modelos.add_parser("bomba", help="Potência hidráulica e potência de acionamento")
+    h.add_argument("--pressao-bar", type=float, required=True)
+    h.add_argument("--vazao-lpm", type=float, required=True)
+    h.add_argument("--eficiencia", type=float, default=1)
+
+    term = modelos.add_parser("conducao", help="Condução plana unidimensional")
+    term.add_argument("--k-w-mk", type=float, required=True)
+    term.add_argument("--area-m2", type=float, required=True)
+    term.add_argument("--delta-t-k", type=float, required=True)
+    term.add_argument("--espessura-m", type=float, required=True)
+
+    vib = modelos.add_parser("vibracao", help="Frequência natural massa-mola 1 GDL")
+    vib.add_argument("--massa-kg", type=float, required=True)
+    vib.add_argument("--rigidez-n-m", type=float, required=True)
+
+    re = modelos.add_parser("reynolds", help="Número de Reynolds adimensional")
+    re.add_argument("--densidade-kg-m3", type=float, required=True)
+    re.add_argument("--velocidade-m-s", type=float, required=True)
+    re.add_argument("--diametro-m", type=float, required=True)
+    re.add_argument("--viscosidade-pa-s", type=float, required=True)
+
     args = parser.parse_args()
     try:
         if args.comando == "validar":
@@ -91,6 +112,14 @@ def main() -> None:
             _saida(calculadoras.disponibilidade_inerente(args.mtbf_h, args.mttr_h))
         elif args.modelo == "viga":
             _saida(calculadoras.viga_carga_central(args.carga_n, args.vao_m, args.e_gpa, args.largura_mm, args.altura_mm))
+        elif args.modelo == "bomba":
+            _saida(calculadoras.potencia_hidraulica(args.pressao_bar, args.vazao_lpm, args.eficiencia))
+        elif args.modelo == "conducao":
+            _saida(calculadoras.conducao_plana(args.k_w_mk, args.area_m2, args.delta_t_k, args.espessura_m))
+        elif args.modelo == "vibracao":
+            _saida(calculadoras.frequencia_natural(args.massa_kg, args.rigidez_n_m))
+        elif args.modelo == "reynolds":
+            _saida(calculadoras.numero_reynolds(args.densidade_kg_m3, args.velocidade_m_s, args.diametro_m, args.viscosidade_pa_s))
     except (ValueError, TypeError) as exc:
         parser.exit(status=2, message=f"Erro: {exc}\n")
 

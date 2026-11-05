@@ -35,3 +35,15 @@ engmec calcular viga --carga-n 1000 --vao-m 2 --e-gpa 200 --largura-mm 50 --altu
 ```
 
 Todas as ferramentas rejeitam parâmetros geométricos não físicos. Unidades e testes estão no código.
+
+## Modelos adicionais — ciclo 04
+
+**Bomba:** potência hidráulica `P_h=ΔpQ`; potência de eixo estimada `P_eixo=P_h/η`. Δp em Pa, Q em m³/s, η global no ponto. Entradas da CLI aceitam bar e L/min.
+
+**Condução plana:** `q=kAΔT/L`; condução unidimensional em regime permanente, k constante, sem convecção ou radiação.
+
+**Vibração massa-mola:** `ω_n=√(k/m)` e `f_n=ω_n/(2π)`; um único grau de liberdade, linear, sem amortecimento.
+
+**Reynolds:** `Re=ρvD/μ`, adimensional; a avaliação do regime depende de geometria e condições.
+
+[Laboratório de hidráulica](laboratorios/potencia-hidraulica.md) · [Calor](laboratorios/conducao.md) · [Vibração](laboratorios/vibracoes.md) · [Reynolds](laboratorios/reynolds.md)

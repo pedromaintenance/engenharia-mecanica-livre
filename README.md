@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.2 (05/11/2026)
+## Estado: ciclo v0.4 (05/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas. São **67 registros em diferentes níveis**, não 67 obras independentes auditadas.

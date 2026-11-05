@@ -45,6 +45,11 @@ nav:
   - Aplicações:
       - Calculadoras: guia-calculadoras.md
       - Diagnóstico de manutenção: manutencao/diagnostico.md
+  - Laboratórios didáticos:
+      - Potência hidráulica: laboratorios/potencia-hidraulica.md
+      - Condução de calor: laboratorios/conducao.md
+      - Frequência natural: laboratorios/vibracoes.md
+      - Número de Reynolds: laboratorios/reynolds.md
   - Projeto:
       - Arquitetura: arquitetura.md
       - Método científico: metodologia.md
@@ -62,3 +67,4 @@ nav:
   - Ciclos:
       - Ciclo 02: ciclos/ciclo-02.md
       - Ciclo 03: ciclos/ciclo-03.md
+      - Ciclo 04: ciclos/ciclo-04.md
