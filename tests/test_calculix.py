@@ -44,12 +44,12 @@ class TestCalculixBenchmark(unittest.TestCase):
     def test_parser_legado_rf_forces(self):
         _, meta = montar_deck(nx=1)
         tip = meta["tip_node"]
-        reacoes = "\\n".join(f" {n} {-10000/9:.6e} 0.000000E+00 0.000000E+00"
+        reacoes = "\n".join(f" {n} {-10000/9:.6e} 0.000000E+00 0.000000E+00"
                               for n in meta["root_nodes"])
-        txt = (f" displacements (vx,vy,vz) for set TIPCENTER and time 0.1E+01\\n"
-               f" {tip} 1.000000E-04 0.000000E+00 0.000000E+00\\n\\n"
-               " forces (fx,fy,fz) for set ROOT and time 0.1E+01\\n"
-               + reacoes + "\\n")
+        txt = (f" displacements (vx,vy,vz) for set TIPCENTER and time 0.1E+01\n"
+               f" {tip} 1.000000E-04 0.000000E+00 0.000000E+00\n\n"
+               " forces (fx,fy,fz) for set ROOT and time 0.1E+01\n"
+               + reacoes + "\n")
         self.assertLess(extrair_dat(txt, meta)["erro_equilibrio_relativo"], 1e-6)
 
     def test_parser_rejeita_silencio(self):
