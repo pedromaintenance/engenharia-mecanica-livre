@@ -74,3 +74,7 @@ Cinco registros de auditoria documental de direitos com fonte primária (não ci
 Integração com CalculiX por malha 3D autoral C3D8 e comparação com barra 1D para tração uniforme. Separar estritamente os testes do gerador/parser da **execução física no solver**. Meta de aceite: CI + workflow dedicado CalculiX com arquivos `.inp/.dat/.frd` arquivados, erro axial/equilíbrio menor que 2% em quatro malhas, Pages verde. Avançar só depois a problemas de gradiente e convergência não trivial.
 
 **Ciclo 06 validado externamente:** GitHub Actions [#42055701419](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42055701419) executou CalculiX 2.21-1, quatro malhas C3D8, deslocamento 0,1 mm e reação −10 kN, com equilíbrio conforme tolerância. A evidência está em [JSON](../dados/calculix-c3d8-2026-11-05.json); isso não encerra o objetivo maior de convergência 3D não trivial.
+
+## Ciclo 07 — erro não trivial de flexão pura
+
+Problema novo: solução exata da elasticidade 3D sob flexão pura, tensões lineares `σxx(y)`, deslocamentos quadráticos, 6 graus de liberdade rigidamente eliminados, forças nodais de face integradas por Gauss, verificação independente de momentos e comparação com CalculiX C3D8 em quatro malhas. O critério só é atendido se houver erro inicial mensurável, redução de erro na malha fina e equilíbrio. Validar workflow antes de declarar concluído; acompanhar limitações de shear locking e futuras comparações C3D20R.

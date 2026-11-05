@@ -1,0 +1,50 @@
+name: Benchmark de convergência CalculiX - flexão 3D
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/engmec/flexao_calculix.py"
+      - "tests/test_flexao_calculix.py"
+      - ".github/workflows/flexao-calculix.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  flexao-3d:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar CalculiX CCX (Ubuntu Noble)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y calculix-ccx
+          dpkg-query -W calculix-ccx
+      - name: Instalar módulo autoral
+        run: python -m pip install -e .
+      - name: Testar hipótese física, quadratura e parsing
+        run: python -m unittest discover -s tests -p 'test_flexao_calculix.py' -v
+      - name: Executar 4 malhas 3D de flexão
+        env:
+          OMP_NUM_THREADS: "1"
+        run: |
+          set -euo pipefail
+          for n in 2 4 8 16; do
+            python -m engmec.flexao_calculix --nx "$n" --ny "$n" --nz "$n" --saida "build/flexao-calculix/n-$n"
+          done
+      - name: Verificar tendência de erro e balanços
+        run: python scripts/avaliar_convergencia.py --pasta build/flexao-calculix --malhas 2 4 8 16
+      - name: Arquivar malhas, logs e métricas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flexao-pura-calculix-3d
+          path: build/flexao-calculix/
+          if-no-files-found: warn
+          retention-days: 30

@@ -21,3 +21,7 @@ license: MIT
 ## Benchmark externo com CalculiX
 
 Se o caso for C3D8, verificar orientação positiva do elemento, cargas nodais equivalentes à tração, remoção mínima dos modos rígidos e extração de `U` e `RF` do `.dat`. Não confundir teste de parser com execução do CalculiX. Guardar artefatos de solver, versão do binário e resultados; aceitar somente com logs reais e tolerâncias.
+
+## Flexão pura e grandezas de erro não triviais (ciclo 07)
+
+Use tensões não uniformes e uma solução de elasticidade independente, compare deslocamentos em ao menos dois nós distintos, calcule taxa de erro em malhas de resoluções crescentes e confira momentos de face e força resultante. A variável `RF` em CalculiX **inclui CLOAD** no mesmo nó: subtraia o carregamento conhecido antes de interpretar reação. C3D8 tem tendência documentada a rigidez excessiva em flexão; registre locking e erro observado, nunca diminua tolerância arbitrariamente para produzir sucesso. Preserve artefatos, dados e revisão de limites antes de fechar o ciclo.
