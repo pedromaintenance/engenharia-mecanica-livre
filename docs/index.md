@@ -41,3 +41,7 @@ Siga [metodologia científica](metodologia.md), [curadoria de direitos](governan
 ## Experimento quantitativo validado no ciclo 07
 
 O [benchmark 3D de flexão pura](laboratorios/flexao-pura-3d.md) comparou dados reais do CalculiX com uma solução da elasticidade: quatro malhas e redução do erro do deslocamento de 29,75% para 0,99%. O resultado confirma convergência numérica desse modelo idealizado, não valida um equipamento real. [Dados auditáveis](dados/flexao-pura-3d-2026-11-05.json).
+
+## Elementos finitos de alta ordem — ciclo 08
+
+O [comparativo C3D8 versus C3D20R](laboratorios/comparar-elementos-fem.md) foi executado em seis malhas no CalculiX, comparando os deslocamentos e tensões de Gauss do solver com uma referência da elasticidade. A solução quadrática apresentou precisão muito superior nesse caso de flexão pura, com maior número de graus de liberdade. [Dados estruturados permanentes](dados/comparacao-c3d8-c3d20r-2026-11-07.json).

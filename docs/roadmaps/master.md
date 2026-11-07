@@ -84,3 +84,5 @@ Problema novo: solução exata da elasticidade 3D sob flexão pura, tensões lin
 ## Ciclo 08 — verificação FEM com elemento quadrático
 
 Comparar C3D8 e C3D20R no benchmark autoral de flexão pura, com malha geométrica equivalente e tensões provenientes de `COORD,S` nos pontos de Gauss do `.dat` do CalculiX. O gate contempla teste de interpolação Q8, integração de tração, balanço de forças/momento, erro RMS Sxx e custo em DOFs/tempo, com workflow de seis execuções reais. Conclusões devem acompanhar dados observados, limites físicos e licença dos softwares.
+
+**Ciclo 08 aceito por solver:** [comparação CalculiX 2.21-1](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42411991123) executada em 6 malhas; [64 testes verdes](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42411991133). C3D20R reproduziu a solução quadrática com Uy na precisão textual e RMS de Sxx entre 10 Pa e 0,707 Pa, contra C3D8 de 15,9 MPa a 1,84 MPa. [Dados observados](../dados/comparacao-c3d8-c3d20r-2026-11-07.json). Próximo gate: geometria não prismática/contato ou concentração de tensões, sem abandonar a curadoria de fontes e cursos.

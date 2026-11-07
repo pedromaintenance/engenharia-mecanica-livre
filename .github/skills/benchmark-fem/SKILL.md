@@ -33,3 +33,7 @@ O teste de flexão pura em CalculiX C3D8 2.21-1 apresentou erro relativo inicial
 ## Comparação C3D8 × C3D20R (ciclo 08)
 
 Preserve exatamente a mesma solução analítica e condições de contorno; compartilhe midside nodes em arestas comuns, valide conectividade de 20 nós e Q8 com partição da unidade. Integre cargas nodais de faces quadraticamente com Gauss 3×3, sem impor valores iguais por nó. Use *EL PRINT,ELSET=EALL COORD,S e calcule erro da tensão nos pontos de integração (não em nós extrapolados). Compare **erro por DOF e por custo**, reconhecendo variabilidade do hardware e a possibilidade de erros inferiores ao arredondamento da saída textual. A execução externa precisa de logs e artefatos para ser declarada concluída.
+
+## Baseline real do ciclo 08
+
+[Workflow externo aprovado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42411991123) e [JSON com seis medições](https://github.com/pedromaintenance/engenharia-mecanica-livre/blob/main/docs/dados/comparacao-c3d8-c3d20r-2026-11-07.json). Dados por família C3D8/C3D20R: erro de Uy/erro RMS Sxx por ponto de integração, custo em DOFs e tempo de solver. Aprendizados de input: conectividade C3D20R em duas linhas (<=16 entradas por linha); filtrar somente carga Q8 residual de arredondamento, preservando forças/momentos; *EL FILE sem ELSET e *EL PRINT COORD,S. **Não copiar o resultado de desempenho para problemas não lineares**, tensões locais ou materiais diferentes.

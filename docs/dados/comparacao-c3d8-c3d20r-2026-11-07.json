@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0.0",
+  "experiment": "C3D8_versus_C3D20R_pure_bending",
+  "observed_at": "2026-11-07",
+  "solver": {
+    "name": "CalculiX CCX",
+    "version": "2.21-1",
+    "package": "calculix-ccx",
+    "operating_system": "ubuntu-24.04",
+    "runtimes": "wall-clock subprocess in shared GitHub Actions runner"
+  },
+  "provenance": {
+    "repository": "pedromaintenance/engenharia-mecanica-livre",
+    "workflow_url": "https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42411991123",
+    "run_id": 42411991123,
+    "head_sha": "74f478c775ef140c3b2300ff9a8867f5a796bb9e",
+    "artifact_id": 13589339664,
+    "artifact_name": "comparativo-c3d8-c3d20r",
+    "artifact_digest": "sha256:0d703e0f798fe044049960e45f533153a1710acdb5e7f815ba0936505ea52425",
+    "artifact_expires_at": "2026-12-07T20:38:25Z"
+  },
+  "reference": {
+    "length_m": 0.2,
+    "side_m": 0.1,
+    "elastic_modulus_pa": 200000000000,
+    "poisson": 0.3,
+    "curvature_inv_m": 0.01,
+    "uy_tip_center_m": 0.0002,
+    "ux_tip_upper_edge_m": -0.0001,
+    "stress_sxx_formula": "-E*kappa*y",
+    "stress_max_abs_pa": 100000000
+  },
+  "results": [
+    {
+      "family": "C3D8",
+      "n": 2,
+      "elements": 8,
+      "nodes": 27,
+      "dof_estimate": 81,
+      "solver_wall_s": 0.17889721599999575,
+      "uy_error_relative": 0.297457,
+      "ux_error_relative": 0.29745320000000003,
+      "sxx_rms_pa": 15884559.733907681,
+      "sxx_rms_relative": 0.1588455973390768,
+      "other_stress_rms_pa": 8057267.904729735,
+      "integration_points": 64,
+      "force_residual_relative": 0.000004345577200117986
+    },
+    {
+      "family": "C3D20R",
+      "n": 2,
+      "elements": 8,
+      "nodes": 81,
+      "dof_estimate": 243,
+      "solver_wall_s": 0.00851075599999973,
+      "uy_error_relative": 0,
+      "ux_error_relative": 0,
+      "sxx_rms_pa": 10,
+      "sxx_rms_relative": 1e-7,
+      "other_stress_rms_pa": 0.0000018857487218584474,
+      "integration_points": 64,
+      "force_residual_relative": 6.666562425380105e-9
+    },
+    {
+      "family": "C3D8",
+      "n": 4,
+      "elements": 64,
+      "nodes": 125,
+      "dof_estimate": 375,
+      "solver_wall_s": 0.011699231999998005,
+      "uy_error_relative": 0.10825150000000001,
+      "ux_error_relative": 0.10824160000000001,
+      "sxx_rms_pa": 5455380.511163764,
+      "sxx_rms_relative": 0.05455380511163764,
+      "other_stress_rms_pa": 5160933.5823867945,
+      "integration_points": 512,
+      "force_residual_relative": 0.000008205453799972018
+    },
+    {
+      "family": "C3D20R",
+      "n": 4,
+      "elements": 64,
+      "nodes": 425,
+      "dof_estimate": 1275,
+      "solver_wall_s": 0.04091775599999892,
+      "uy_error_relative": 0,
+      "ux_error_relative": 0,
+      "sxx_rms_pa": 2,
+      "sxx_rms_relative": 2e-8,
+      "other_stress_rms_pa": 0.000005967052141438513,
+      "integration_points": 512,
+      "force_residual_relative": 2.667013121026684e-9
+    },
+    {
+      "family": "C3D8",
+      "n": 8,
+      "elements": 512,
+      "nodes": 729,
+      "dof_estimate": 2187,
+      "solver_wall_s": 0.06935684100000117,
+      "uy_error_relative": 0.03367650000000001,
+      "ux_error_relative": 0.0336744,
+      "sxx_rms_pa": 1843068.1894312745,
+      "sxx_rms_relative": 0.018430681894312746,
+      "other_stress_rms_pa": 2793094.2325192387,
+      "integration_points": 4096,
+      "force_residual_relative": 6.801213999897298e-7
+    },
+    {
+      "family": "C3D20R",
+      "n": 8,
+      "elements": 512,
+      "nodes": 2673,
+      "dof_estimate": 8019,
+      "solver_wall_s": 0.4826660670000038,
+      "uy_error_relative": 0,
+      "ux_error_relative": 0,
+      "sxx_rms_pa": 0.7071067811865476,
+      "sxx_rms_relative": 7.071067811865476e-9,
+      "other_stress_rms_pa": 0.000020279117004790646,
+      "integration_points": 4096,
+      "force_residual_relative": 6.658354850515023e-10
+    }
+  ],
+  "observed_conclusion": {
+    "external_workflow_passed": true,
+    "both_families_executed": true,
+    "same_geometry_and_element_counts": true,
+    "quadratic_more_accurate_in_displacement_and_stress_on_coarse_mesh": true,
+    "max_force_residual_relative": 0.000008205453799972018,
+    "stress_reference_compared_at_calculix_printed_integration_point_coordinates": true
+  },
+  "limits": [
+    "Zero reported displacement error for C3D20R reflects printed output precision, not mathematical zero.",
+    "Stress RMS is arithmetic over 8 integration points per element, appropriate for equal-volume structured meshes used here; not a general energy norm.",
+    "Wall-time figures are noisy and uncalibrated across runner loads, not a controlled performance benchmark.",
+    "Homogeneous isotropic linear elasticity only; no experimental validation, stress concentration, contact, plasticity or fatigue.",
+    "Temporary workflow artifact subject to 30-day retention."
+  ]
+}

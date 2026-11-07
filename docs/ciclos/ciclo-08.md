@@ -28,3 +28,18 @@ Conferir commit, CI geral, workflow de benchmark e publicação. Registrar núme
 ## Limites
 
 A análise é um teste de verificação numérica em flexão elástica idealizada. Não valida resistência de equipamento pesado, materiais reais, fadiga ou carga de contato.
+
+
+## Evidência final — ciclo 08 encerrado
+
+**Execução externa:** [GitHub Actions #42411991123](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42411991123), CalculiX 2.21-1, seis execuções C3D8/C3D20R n=2/4/8. [Artefato e arquivos de solver](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42411991123/artifacts/13589339664). [Dataset permanente](../dados/comparacao-c3d8-c3d20r-2026-11-07.json).
+
+**Resultado essencial:** C3D8 apresentou erros Uy de 29,7457%, 10,82515%, 3,36765% e RMS Sxx de 15,885/5,455/1,843 MPa. C3D20R apresentou Uy coincidente com referência na precisão da saída e RMS Sxx de 10/2/0,707 Pa; custos de DOF em n=8: 2.187 (C3D8) versus 8.019 (C3D20R).
+
+**Validação automática:** [64 testes aprovados](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42411991133), além de build estrito da documentação.
+
+**Postmortem:** duas falhas de interface com CalculiX corrigidas com testes de regressão. Primeiro, `*ELEMENT` de 20 nós precisava de continuação em linha adicional (máximo 16 entradas por linha). Depois, valores de carga nodal de ruído numérico quase nulo geravam erro ao ler `*CLOAD`; agora são descartados por limiar relativo e o equilíbrio permanece monitorado. Terceiro ajuste: opção inválida `ELSET` retirada de `*EL FILE`.
+
+**Conclusão:** para esta geometria e carregamento, o elemento quadrático reproduz o campo polinomial com erro próximo ao limite de precisão do relatório, enquanto o linear requer refinamento. Isso não é validação experimental, nem evidência universal de superioridade em quaisquer modos de falha.
+
+**Próximo ciclo recomendado:** caso com gradiente de tensões concentrado, contorno curvo e comparação com solução de elasticidade de domínio conhecido, integrando também resultados de custos e incerteza.
