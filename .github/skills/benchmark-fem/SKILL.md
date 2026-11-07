@@ -41,3 +41,7 @@ Preserve exatamente a mesma solução analítica e condições de contorno; comp
 ## Concentração de tensões — ciclo 09
 
 Quando estudar furo ou entalhe, declarar o **denominador da tensão nominal** de Kt e não confundir tensão em ponto de Gauss interno com pico na superfície. Registrar geometria finita e condições de contorno externas: impor o deslocamento **exato** de Kirsch em arco truncado é útil para verificar discretização, mas **não mede o efeito de largura finita** sob tensão aplicada em uma chapa real. Exigir jacobianos positivos, erro RMS tensorial global e próximo do furo, refinamento local e fonte para a solução. Ao usar CPS8R, respeitar expansão interna do CalculiX, saída de pontos de integração e hipótese de tensão plana.
+
+## Baseline Kirsch CPS8R — ciclo 09
+
+Resultado real em [GitHub Actions](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42415560152); [dados permanentes](https://github.com/pedromaintenance/engenharia-mecanica-livre/blob/main/docs/dados/kirsch-cps8r-2026-11-07.json). Para malha radial graduada, **não tratar média por ponto de Gauss como norma RMS física**: incluir ponderação por área de setor e um anel de geometria fixa para estudar convergência. Guardar a primeira camada como diagnóstico (piorou em n=16). No CalculiX 2.21, quebrar NSET após 16 identificadores, evitar prescrever BC com mantissas muito extensas e **escrever zero exato nos eixos de simetria**, pois resíduos e-18 geraram jacobianos não positivos na expansão CPS8R. Não elevar proxy interior a `Kt` de superfície.

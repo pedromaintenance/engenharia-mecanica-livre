@@ -46,3 +46,7 @@ O [benchmark 3D de flexão pura](laboratorios/flexao-pura-3d.md) comparou dados 
 ## Elementos finitos de alta ordem — ciclo 08
 
 O [comparativo C3D8 versus C3D20R](laboratorios/comparar-elementos-fem.md) foi executado em seis malhas no CalculiX, comparando os deslocamentos e tensões de Gauss do solver com uma referência da elasticidade. A solução quadrática apresentou precisão muito superior nesse caso de flexão pura, com maior número de graus de liberdade. [Dados estruturados permanentes](dados/comparacao-c3d8-c3d20r-2026-11-07.json).
+
+## Kirsch: tensões perto do furo — ciclo 09
+
+O [laboratório de Kirsch](laboratorios/kirsch-furo.md) mediu a distribuição de tensões ao redor de um furo em malha curva CPS8R com contorno externo prescrito analiticamente. O [benchmark externo](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42415560152) passou; o erro RMS tensorial ponderado por área diminuiu de 0,521% para 0,072%. O `Kt=3` é referência do problema ideal infinito e **não** parâmetro validado de olhais reais. [Dados numéricos e limitações](dados/kirsch-cps8r-2026-11-07.json).

@@ -35,3 +35,29 @@ A execução finita **não é uma chapa retangular real**. Para um problema de b
 - [CalculiX — *EL PRINT](https://www.feacluster.com/CalculiX/ccx_2.18/doc/ccx/node266.html).
 
 Nada neste estudo comprova resistência remanescente, segurança estrutural ou desempenho em fadiga de componente real. Somente pesquisa e demonstração metodológica, sem reproduzir material protegido de terceiros.
+
+
+## Resultados e aceite reais — fechamento técnico do ciclo 09
+
+Execução [CalculiX #42415560152](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42415560152), `calculix-ccx 2.21-1` em Ubuntu 24.04. Foram executados **4 casos**: malhas CPS8R 4×8, 8×16 e 16×32 com R/a=8 e mais uma malha 16×32 com R/a=4. O [CI geral com 76 testes](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42415560148) também passou.
+
+| Elementos | Erro global ponderado | RMS faixa física a–1,5a | Proxy interno |
+| ---: | ---: | ---: | ---: |
+| 32 | 0,5208% | 2,4393% | 2,4944 |
+| 128 | 0,1170% | 0,7655% | 2,8652 |
+| 512 | 0,0723% | 0,4481% | 2,9848 |
+
+**Advertência obrigatória:** o erro da primeira camada radial, de extensão variável, caiu de 2,4393% para 1,0745% e depois aumentou para 1,5934%. Isso não invalida automaticamente o comportamento das métricas globais e do anel físico fixo, mas impede caracterizar todas as medidas locais como monotonicamente convergentes. Taxa aparente do erro global ponderado: ~2,154 no primeiro refinamento e ~0,695 no segundo. A região das medidas deve ser informada sempre.
+
+Caso R/a=4, nr=16: erro global ponderado 0,1496%, faixa física 0,4912% e proxy 3,0093 — **não** é resultado de uma chapa finita sob tração uniforme em borda.
+
+### Pós-morte das falhas
+
+- CCX rejeitou linhas `*NSET` com mais de 16 entradas. Corrigido e testado.
+- CCX rejeitou formato de `*BOUNDARY` com números excessivamente longos. Agora nove algarismos significativos, com teste.
+- Elementos junto ao eixo x=0 receberam mensagens `nonpositive jacobian` após expandir os CPS8R em elementos sólidos; a origem foi uma coordenada praticamente zero (~1e-18) em vez de zero exato. Após normalização dos eixos, a malha foi aceita pelo solver. Sem eliminar os testes do jacobiano 2D.
+- A média do erro por ponto de Gauss super-representava elementos pequenos da malha graduada; agora o workflow também avalia ponderação por área e um anel físico fixo, mantendo alerta da primeira camada.
+
+**Evidências:** [dataset versionado](../dados/kirsch-cps8r-2026-11-07.json); [laboratório](../laboratorios/kirsch-furo.md); [artefato completo do workflow](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42415560152/artifacts/13590939560), ID 13590939560, SHA-256 `7a9c1c45f216ef219a90bd7d2f158912c485db815eb8e9a0e50e5fc94f6a3e07`, retenção até 07/12/2026.
+
+**Status:** ciclo 09 entregue para *verificação de Kirsch em domínio anular com contorno analítico*. Issue #13 deve permanecer **aberta** quanto à chapa retangular finita fisicamente tracionada, efeito das bordas, estimativa superficial de Kt e integração Gmsh opcional.

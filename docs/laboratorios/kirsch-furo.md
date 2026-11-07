@@ -2,7 +2,7 @@
 
 O objetivo é **verificar numericamente** o campo de tensões em torno de um furo, não projetar a resistência de uma chapa real. O domínio é um **quarto de coroa circular**, modelado em **tensão plana** por elementos isoparamétricos quadráticos **CPS8R** do CalculiX.
 
-> **Status do laboratório:** implementação e rotina de execução preparadas; não declarar erros ou comportamento observado antes da verificação do workflow externo.
+> **Status do laboratório:** **quatro casos executados no CalculiX 2.21-1**, com logs, tensões nos pontos de Gauss e estudo de erro de malha. Os resultados e ressalvas estão registrados abaixo.
 
 ## 1. O problema de Kirsch
 
@@ -87,7 +87,7 @@ As tensões analíticas polares são transformadas para coordenadas cartesianas 
 e^2=(S_{xx}-S_{xx}^{*})^2+(S_{yy}-S_{yy}^{*})^2+2(S_{xy}-S_{xy}^{*})^2.
 \]
 
-São divulgados **erro RMS global** e **erro RMS na primeira camada radial próxima do furo**, normalizados por \`T\`. A norma RMS usa pesos iguais na malha estruturada deste estudo; não é uma norma integral de energia, nem serve automaticamente para elementos e volumes diferentes.
+São divulgados **erro RMS global** e **erro RMS na primeira camada radial próxima do furo**, normalizados por \`T\`. Uma simples média sem pesos favorece as regiões com mais elementos. Como a malha é **graduada radialmente**, o relatório preserva essa média apenas como diagnóstico e também apresenta erro **ponderado por área aproximada**: para cada elemento, calcula-se a área geométrica do setor polar e reparte-se igualmente entre seus oito pontos de Gauss. Esse procedimento é comparável neste experimento, mas **não constitui norma de energia nem quadratura exata por jacobiano individual**. Para verificar o erro local sem mudar a região física, mede-se também o RMS na faixa fixa **a ≤ r ≤ 1,5a**.
 
 A tensão circunferencial é reconstruída nos pontos internos de Gauss e reportada como \`kt_proxy_pontos_integracao\`. **Esse proxy NÃO é \(K_t\) no bordo \`r=a\`.** O valor da solução analítica no bordo permanece 3; para estimar um valor na superfície, seriam necessários extrapolação, interpolação controlada e teste de convergência próprios.
 
@@ -114,3 +114,42 @@ Um furo pode elevar a tensão local mesmo quando a seção tem tensão nominal m
 O benchmark não considera **carga de apoio do pino (*bearing*)**, atrito, folga, excentricidade, anisotropia, encruamento, escoamento plástico, tensões residuais, falha por fadiga e possíveis trincas. Para uso industrial, são necessários geometria, carregamento, histórico, material, tolerâncias, critério de aceitação e, quando aplicável, ensaios.
 
 **Próximo gate técnico:** tensão de Kirsch no contorno por extrapolação com incerteza, placa retangular realmente finita sob tração uniforme, comparação com Gmsh e cálculo de \`Kt\` com base nominal declarada.
+
+
+## 8. Execução externa confirmada — 07/11/2026
+
+O [workflow CalculiX #42415560152](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42415560152) executou as quatro entradas com `calculix-ccx 2.21-1` no Ubuntu 24.04. O pós-processamento leu as seis componentes do tensor e as coordenadas de **todos os pontos de Gauss**, comparou `Sxx/Syy/Sxy` com Kirsch e passou nos critérios de refinamento por área. [CI geral #42415560148](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42415560148): 76 testes aprovados.
+
+### Erro na malha R/a = 8
+
+| Malha radial × angular | Elementos | Erro global RMS ponderado | Erro RMS na faixa fixa a–1,5a | Proxy interior de concentração |
+| ---: | ---: | ---: | ---: | ---: |
+| 4 × 8 | 32 | 0,5208% | 2,4393% | 2,4944 |
+| 8 × 16 | 128 | 0,1170% | 0,7655% | 2,8652 |
+| 16 × 32 | 512 | 0,0723% | 0,4481% | 2,9848 |
+
+A referência `Kt=3` e a tensão máxima `3T=30 MPa` são **analíticas**. Não foi calculado um `Kt` superficial por extrapolação; o indicador apresentado é o **máximo circunferencial observado dentro dos elementos** na primeira banda radial.
+
+Os erros globais e da **faixa fixa** diminuíram. Entretanto, o erro RMS **não ponderado só na primeira camada**, que muda fisicamente de tamanho, foi **2,4393% → 1,0745% → 1,5934%**; portanto **não caiu monotonicamente**. Essa ressalva está preservada no dataset em vez de ser ocultada. A taxa aparente calculada sobre o RMS global ponderado foi ~2,154 e ~0,695. Não há evidência suficiente para declarar uma ordem assintótica única.
+
+### Mudança do raio externo
+
+Com `R/a=4`, a malha 16 × 32 resultou em erro RMS global ponderado de **0,1496%**, erro na faixa a–1,5a de **0,4912%** e proxy interno de **3,0093**. O valor acima de 3 mostra, inclusive, por que esse proxy interior não deve ser promovido a fator de concentração superficial.
+
+**Isso NÃO mede o efeito real da largura de uma chapa.** Os dois arcos externos receberam os respectivos deslocamentos analíticos de Kirsch, e a distribuição da malha mudou. Uma placa finita efetivamente tracionada nas bordas constitui outro problema de contorno e está pendente.
+
+### Execução, arquivos e rastreabilidade
+
+- [Workflow real e logs](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42415560152).
+- [Artefato das entradas e saídas](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42415560152/artifacts/13590939560), contendo `.inp`, `.dat`, `.frd`, `solver.log` e relatórios JSON. Retenção informada até **07/12/2026**.
+- [Dataset permanente e metodologia dos erros](../dados/kirsch-cps8r-2026-11-07.json).
+- [Código autoral](https://github.com/pedromaintenance/engenharia-mecanica-livre/blob/main/src/engmec/kirsch.py).
+
+### Diagnóstico do solver — aprendizados do ciclo
+
+1. O arquivo `*NSET` falhou ao usar mais de 16 números por linha; agora todos os conjuntos são quebrados e testados.
+2. As restrições com mantissas longas foram rejeitadas pelo leitor `*BOUNDARY` do CCX 2.21; os deslocamentos são impressos com nove algarismos significativos, preservando a referência em escala de micrômetros.
+3. As coordenadas analiticamente nulas nos eixos de simetria eram serializadas como ~1e-18 m. O CCX apontou jacobianos não positivos nos elementos junto ao eixo; **a correção para coordenadas exatamente zero eliminou essa falha**. O gerador também confere positividade do jacobiano 2D Q8, mas o teste interno do solver é indispensável.
+4. O erro RMS não ponderado em malha graduada revelou um comportamento ambíguo. Adicionamos erro ponderado por setor e a comparação na faixa fixa, **sem apagar** as métricas originais.
+
+**Estado científico:** verificação numérica do problema de Kirsch com contorno externo analítico, não validação experimental nem solução de chapa finita com carregamento físico.

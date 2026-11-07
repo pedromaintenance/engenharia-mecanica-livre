@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0.0",
+  "experiment": "Kirsch_infinite_plate_pure_x_tension_CPS8R_quarter_annulus",
+  "date": "2026-11-07",
+  "physical_problem": "Infinite plate with traction-free circular hole under remote uniaxial x tension; finite computational annulus with exact prescribed displacements at external arc",
+  "is_finite_plate_uniform_edge_traction": false,
+  "sources": {
+    "kirsch_equations": "https://www.opengeosys.org/6.5.7/docs/benchmarks/small-deformations/kirsch/",
+    "reference_displacements_plane_strain_basis": "https://docs.coreform.com/cifa/latest/verification-manual/problems/solid_mechanics/linear_elastic_stress/infinite-plate-with-hole/infinite-plate-with-hole.html",
+    "solver_element": "https://www.feacluster.com/CalculiX/ccx_2.18/doc/ccx/node49.html"
+  },
+  "solver": {
+    "name": "CalculiX CCX",
+    "package": "calculix-ccx",
+    "version": "2.21-1",
+    "os": "Ubuntu 24.04",
+    "workflow_url": "https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42415560152",
+    "commit_sha": "fca550be450eca477157b1e874c6246fcde04824",
+    "artifact_name": "kirsch-cps8r-benchmark",
+    "artifact_id": 13590939560,
+    "artifact_sha256": "7a9c1c45f216ef219a90bd7d2f158912c485db815eb8e9a0e50e5fc94f6a3e07",
+    "artifact_expires": "2026-12-07T21:22:48Z"
+  },
+  "parameters": {
+    "hole_radius_m": 0.01,
+    "external_radius_m": 0.08,
+    "remote_nominal_tension_pa": 10000000,
+    "elastic_modulus_pa": 200000000000,
+    "poisson": 0.3,
+    "thickness_m": 0.005,
+    "element": "CPS8R",
+    "radial_grading_exponent": 2,
+    "angular_sector_rad": 1.5707963267948966,
+    "analytic_kt_at_hole_surface": 3,
+    "reference_peak_circumferential_stress_pa": 30000000
+  },
+  "numerical_error_method": {
+    "strain_state": "plane stress",
+    "stress_components": "Sxx, Syy, Sxy at CCX integration points",
+    "reference": "Kirsch analytical tensor at corresponding printed XY coordinates",
+    "squared_error": "(ΔSxx)^2+(ΔSyy)^2+2(ΔSxy)^2",
+    "area_weight": "exact polar sector area divided equally across 8 integration points; approximate area-weighted RMS, not exact FE energy norm",
+    "fixed_annulus": "a <= r <=1.5a",
+    "first_radial_layer": "shrinks in physical width as nr grows; not directly comparable across meshes",
+    "kt_proxy": "maximum sigma_theta_theta at interior Gauss point of first radial layer divided by remote traction, NOT surface Kt"
+  },
+  "results": [
+    {
+      "nr": 4,
+      "nt": 8,
+      "elements": 32,
+      "nodes": 121,
+      "gauss": 256,
+      "elapsed_s": 0.011473166000001811,
+      "det_min_m2": 0.0000023461189201348945,
+      "rmse_global_unweighted_rel": 0.014028213286342957,
+      "rmse_global_areaweighted_rel": 0.005207807873438555,
+      "rmse_fixed_annulus_1_5a_areaweighted_rel": 0.024393178139702414,
+      "rmse_first_layer_unweighted_rel": 0.024393178139702387,
+      "kt_interior_gauss_proxy": 2.4943843407786597
+    },
+    {
+      "nr": 8,
+      "nt": 16,
+      "elements": 128,
+      "nodes": 433,
+      "gauss": 1024,
+      "elapsed_s": 0.03105107699998655,
+      "det_min_m2": 2.74651368292731e-7,
+      "rmse_global_unweighted_rel": 0.004603625575019828,
+      "rmse_global_areaweighted_rel": 0.001170279689821169,
+      "rmse_fixed_annulus_1_5a_areaweighted_rel": 0.00765545835879049,
+      "rmse_first_layer_unweighted_rel": 0.010745216006148323,
+      "kt_interior_gauss_proxy": 2.86522344413253
+    },
+    {
+      "nr": 16,
+      "nt": 32,
+      "elements": 512,
+      "nodes": 1633,
+      "gauss": 4096,
+      "elapsed_s": 0.12167079699999306,
+      "det_min_m2": 3.3749728812794016e-8,
+      "rmse_global_unweighted_rel": 0.0045187158133384595,
+      "rmse_global_areaweighted_rel": 0.0007227254655645844,
+      "rmse_fixed_annulus_1_5a_areaweighted_rel": 0.004480715347944735,
+      "rmse_first_layer_unweighted_rel": 0.01593430978048516,
+      "kt_interior_gauss_proxy": 2.9847547062397926
+    }
+  ],
+  "apparent_global_weighted_error_orders": [
+    2.15382285907629,
+    0.695333732142261
+  ],
+  "supplementary_external_arc": {
+    "radius_ratio_4a": true,
+    "nr": 16,
+    "nt": 32,
+    "rmse_global_unweighted_rel": 0.005940110213643966,
+    "rmse_global_areaweighted_rel": 0.0014958084259944996,
+    "rmse_fixed_annulus_1_5a_areaweighted_rel": 0.004911873341261933,
+    "rmse_first_layer_unweighted_rel": 0.018158126793918258,
+    "kt_interior_gauss_proxy": 3.0092742551541076,
+    "interpretation": "Different computational truncation with exact Kirsch displacement; NOT physical finite plate edge effect."
+  },
+  "criteria": {
+    "solver_executed": true,
+    "elements_have_positive_isoparametric_jacobians": true,
+    "stress_fields_present_for_all_integration_points": true,
+    "areaweighted_global_error_reduces_with_refinement": true,
+    "fixed_annulus_areaweighted_error_reduces_with_refinement": true,
+    "first_layer_error_monotonic": false,
+    "external_validation": false
+  },
+  "warnings": [
+    "The first-element-layer RMS rises from nr=8 to nr=16, despite decreasing error on the fixed physical annulus 1.5a.",
+    "Apparent global rate falls to 0.695 between 8 and 16 radial divisions, so asymptotic convergence order is not established.",
+    "Stress concentration proxy is evaluated inside elements; analytically Kt=3 is defined on the hole surface.",
+    "No rectangular finite plate under actual uniform edge loading was simulated.",
+    "Gauss-based RMS area weights approximate sector area, not individual point Jacobians; further benchmarking needed."
+  ]
+}
