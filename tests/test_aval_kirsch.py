@@ -24,7 +24,7 @@ class TestAvaliacaoKirsch(unittest.TestCase):
                 (path/'comparacao.json').write_text(json.dumps(doc))
             v=avaliar(p,[4,8,16])
             self.assertEqual(len(v['malhas']),3)
-            self.assertGreater(v['taxas_aparentes_erro_tensor'][0],0)
+            self.assertGreater(v['taxas_aparentes_erro_tensor_ponderado'][0],0)
 
     def test_sem_solver_falha(self):
         with tempfile.TemporaryDirectory() as p:
