@@ -1,0 +1,56 @@
+name: Kirsch — concentracao de tensoes no furo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/engmec/kirsch.py"
+      - "scripts/avaliar_kirsch.py"
+      - "tests/test_kirsch.py"
+      - "tests/test_aval_kirsch.py"
+      - ".github/workflows/kirsch.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  kirsch-cps8r:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar CalculiX e registrar versao
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y calculix-ccx
+          dpkg-query -W calculix-ccx
+          python -m pip install -e .
+      - name: Testes de geometria, Kirsch, jacobianos e parser
+        run: |
+          python -m unittest discover -s tests -p 'test_kirsch.py' -v
+          python -m unittest discover -s tests -p 'test_aval_kirsch.py' -v
+      - name: Executar 3 malhas anulares e comparacao de raio externo
+        env:
+          OMP_NUM_THREADS: "1"
+        run: |
+          set -euo pipefail
+          for n in 4 8 16; do
+            python -m engmec.kirsch --nr "$n" --nt "$((2*n))" \
+              --raio-externo-m 0.08 --saida "build/kirsch/n-$n"
+          done
+          python -m engmec.kirsch --nr 16 --nt 32 \
+            --raio-externo-m 0.04 --saida "build/kirsch/raio-4a"
+      - name: Avaliar erros, refinamento e limite de Kirsch
+        run: python scripts/avaliar_kirsch.py --pasta build/kirsch --malhas 4 8 16
+      - name: Guardar arquivos e relatorio observados
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kirsch-cps8r-benchmark
+          path: build/kirsch/
+          retention-days: 30
+          if-no-files-found: warn

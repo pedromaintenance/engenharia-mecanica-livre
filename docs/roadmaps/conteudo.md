@@ -23,3 +23,7 @@ Toda ficha: título, domínio, problema, hipóteses, símbolos e unidades, equa�
 ## Ciclo 05
 
 Quatro fichas originais entregues: esforço normal, Hooke axial, rigidez FEM de barra e convergência. A meta de 50 fichas permanece aberta (46 pendentes), e as fichas ainda requerem revisão externa antes de aplicações críticas.
+
+## Ciclo 09 — conhecimento sobre entalhes
+
+Nova ficha autoral `docs/conceitos/concentracao-tensao.md` explica diferença entre tensão remota e pico local, com três exercícios e alertas de aplicação a olhais e furos de parafusos. Laboratório Kirsch registra modelo matemático, hipóteses, procedimento reprodutível e diferenças entre FEM ideal e componente físico. Referência está em `docs/laboratorios/kirsch-furo.md`.

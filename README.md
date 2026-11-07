@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.8 (05/11/2026)
+## Estado: ciclo v0.9 (05/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
@@ -42,6 +42,10 @@ O ciclo 07 introduz um caso de elasticidade 3D em que a **tensão axial varia li
 ## Comparação C3D8 × C3D20R (ciclo 08)
 
 O novo laboratório gera malhas C3D20R com nós de meio de aresta compartilhados, aplica trações de flexão por integração consistente Q8 e extrai **tensões e coordenadas de Gauss no .dat do CalculiX**. O comparador reúne erros RMS das tensões e deslocamentos, DOFs estimados, resíduos de equilíbrio e tempos de execução. A conclusão exige **execução externa verificada**; não se presume superioridade do elemento apenas pela teoria. [Laboratório 08](docs/laboratorios/comparar-elementos-fem.md).
+
+## Benchmark de furo circular — ciclo 09
+
+Foi desenvolvido um gerador de quarto de anel curvo com elementos **CPS8R**, solução analítica de Kirsch em **tensão plana**, controle positivo de jacobianos e leitura de tensões dos pontos de integração. O resultado será considerado **validado somente após a execução externa**: o dado `Kt=3` pertence à solução analítica, e uma tensão calculada no primeiro ponto de Gauss **não é** o pico real na superfície do furo. [Laboratório 09](docs/laboratorios/kirsch-furo.md).
 
 ## Grade e ferramentas
 

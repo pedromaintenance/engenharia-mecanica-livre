@@ -37,3 +37,7 @@ Preserve exatamente a mesma solução analítica e condições de contorno; comp
 ## Baseline real do ciclo 08
 
 [Workflow externo aprovado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42411991123) e [JSON com seis medições](https://github.com/pedromaintenance/engenharia-mecanica-livre/blob/main/docs/dados/comparacao-c3d8-c3d20r-2026-11-07.json). Dados por família C3D8/C3D20R: erro de Uy/erro RMS Sxx por ponto de integração, custo em DOFs e tempo de solver. Aprendizados de input: conectividade C3D20R em duas linhas (<=16 entradas por linha); filtrar somente carga Q8 residual de arredondamento, preservando forças/momentos; *EL FILE sem ELSET e *EL PRINT COORD,S. **Não copiar o resultado de desempenho para problemas não lineares**, tensões locais ou materiais diferentes.
+
+## Concentração de tensões — ciclo 09
+
+Quando estudar furo ou entalhe, declarar o **denominador da tensão nominal** de Kt e não confundir tensão em ponto de Gauss interno com pico na superfície. Registrar geometria finita e condições de contorno externas: impor o deslocamento **exato** de Kirsch em arco truncado é útil para verificar discretização, mas **não mede o efeito de largura finita** sob tensão aplicada em uma chapa real. Exigir jacobianos positivos, erro RMS tensorial global e próximo do furo, refinamento local e fonte para a solução. Ao usar CPS8R, respeitar expansão interna do CalculiX, saída de pontos de integração e hipótese de tensão plana.

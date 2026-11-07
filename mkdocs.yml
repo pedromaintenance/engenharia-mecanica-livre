@@ -46,6 +46,7 @@ nav:
       - Lei de Hooke axial: conceitos/lei-hooke-axial.md
       - Elemento finito de barra: conceitos/rigidez-elemento-finito.md
       - Convergência FEM: conceitos/convergencia-fem.md
+      - Concentração de tensão: conceitos/concentracao-tensao.md
   - Aplicações:
       - Calculadoras: guia-calculadoras.md
       - Diagnóstico de manutenção: manutencao/diagnostico.md
@@ -58,6 +59,7 @@ nav:
       - CalculiX tridimensional: laboratorios/calculix-3d.md
       - Flexão pura 3D e convergência: laboratorios/flexao-pura-3d.md
       - C3D8 versus C3D20R: laboratorios/comparar-elementos-fem.md
+      - Furo circular — Kirsch: laboratorios/kirsch-furo.md
   - Projeto:
       - Arquitetura: arquitetura.md
       - Método científico: metodologia.md
@@ -82,3 +84,4 @@ nav:
       - Ciclo 06: ciclos/ciclo-06.md
       - Ciclo 07: ciclos/ciclo-07.md
       - Ciclo 08: ciclos/ciclo-08.md
+      - Ciclo 09: ciclos/ciclo-09.md

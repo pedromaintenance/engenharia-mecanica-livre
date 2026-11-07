@@ -36,3 +36,7 @@ Arquivos em `.github/agents/*.agent.md`; skills em `.github/skills/*/SKILL.md`. 
 ## Gate do ciclo 08
 
 Modelos FEM com famílias de elementos distintas devem manter mesmo modelo físico e referência. Ao comparar tensões, preferir IP do `.dat` ao valor extrapolado do `.frd`; informar métrica de erro e localização de medição. Uma melhoria em deslocamento não é autorização de projeto: avaliar gradientes, contato e mudanças de hipóteses separadamente. Uma skill atualizada em `.github/skills/benchmark-fem/SKILL.md` descreve o procedimento C3D8/C3D20R.
+
+## Gate científico do ciclo 09
+
+No benchmark de Kirsch, **Kt analítico** e **tensão numérica no interior** são conceitos distintos. Não declarar fator de concentração numérico na borda sem pós-processamento e verificação específica. Para truncamento externo com deslocamentos exatos, não afirmar ter simulado uma placa de largura finita sob tensão remota uniforme. Conservar arquivos brutos de solver, fontes técnicas, geometria e qualidade de malha para replicação. Consulte `docs/laboratorios/kirsch-furo.md` e `.github/skills/benchmark-fem/SKILL.md`.

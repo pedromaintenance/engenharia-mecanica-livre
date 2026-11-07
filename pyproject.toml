@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "engenharia-mecanica-livre"
-version = "0.8.0"
+version = "0.9.0"
 description = "Base aberta de conhecimento e ferramentas de Engenharia Mecânica"
 readme = "README.md"
 requires-python = ">=3.10"
