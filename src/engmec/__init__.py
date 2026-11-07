@@ -2,4 +2,4 @@
 
 Modelos simplificados não substituem norma vigente, habilitação, OEM ou validação de segurança.
 """
-__version__ = "0.9.0"
+__version__ = "0.10.0"

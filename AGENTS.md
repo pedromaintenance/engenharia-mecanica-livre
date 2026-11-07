@@ -40,3 +40,7 @@ Modelos FEM com famílias de elementos distintas devem manter mesmo modelo físi
 ## Gate científico do ciclo 09
 
 No benchmark de Kirsch, **Kt analítico** e **tensão numérica no interior** são conceitos distintos. Não declarar fator de concentração numérico na borda sem pós-processamento e verificação específica. Para truncamento externo com deslocamentos exatos, não afirmar ter simulado uma placa de largura finita sob tensão remota uniforme. Conservar arquivos brutos de solver, fontes técnicas, geometria e qualidade de malha para replicação. Consulte `docs/laboratorios/kirsch-furo.md` e `.github/skills/benchmark-fem/SKILL.md`.
+
+## Contorno físico finito — ciclo 10
+
+Para uma chapa realmente tracionada, não impor deslocamentos exatos de Kirsch na borda externa nem declarar `Kt=3` solução do domínio finito. Requer-se evidência de *CLOAD* física nos nós da borda, contornos livres no topo e no furo, conversão correta bruto/líquido e estimativa de pico baseada em pós-processamento explicitamente qualificado. Usar `docs/laboratorios/chapa-finita-furo.md` e `src/engmec/chapa_finita.py` como referência do caso.

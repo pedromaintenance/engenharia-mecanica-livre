@@ -1,0 +1,59 @@
+name: Chapa finita com furo — tracao real CPS8R
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/engmec/chapa_finita.py"
+      - "scripts/avaliar_chapa_finita.py"
+      - "tests/test_chapa_finita.py"
+      - "tests/test_aval_chapa_finita.py"
+      - ".github/workflows/chapa-finita.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  chapa-finita:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar CalculiX do Ubuntu Noble
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y calculix-ccx
+          dpkg-query -W calculix-ccx
+          python -m pip install -e .
+      - name: Testar geometria, carga real, extrapolador e limites
+        run: |
+          python -m unittest discover -s tests -p 'test_chapa_finita.py' -v
+          python -m unittest discover -s tests -p 'test_aval_chapa_finita.py' -v
+      - name: Executar 5 casos no solver externo
+        env:
+          OMP_NUM_THREADS: "1"
+        run: |
+          set -euo pipefail
+          for n in 8 16 24; do
+            python -m engmec.chapa_finita --nr "$n" --nt "$((2*n))" \
+              --semilargura-m 0.04 --saida "build/chapa-finita/h-4-n-$n"
+          done
+          for H in 8 16; do
+            width=$(python -c 'import sys; print(float(sys.argv[1])*.01)' "$H")
+            python -m engmec.chapa_finita --nr 24 --nt 48 \
+              --semilargura-m "$width" --saida "build/chapa-finita/h-$H-n-24"
+          done
+      - name: Consolidar Kt bruto, Kt liquido e sensibilidade
+        run: python scripts/avaliar_chapa_finita.py --pasta build/chapa-finita
+      - name: Arquivar dados brutos, logs, decks e resultados
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chapa-finita-tracao-real-cps8r
+          path: build/chapa-finita/
+          retention-days: 30
+          if-no-files-found: warn

@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.9 (05/11/2026)
+## Estado: ciclo v0.10 (05/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
@@ -46,6 +46,10 @@ O novo laboratório gera malhas C3D20R com nós de meio de aresta compartilhados
 ## Benchmark de furo circular — ciclo 09
 
 Foi desenvolvido um gerador de quarto de anel curvo com elementos **CPS8R**, solução analítica de Kirsch em **tensão plana**, controle positivo de jacobianos e leitura de tensões dos pontos de integração. O resultado será considerado **validado somente após a execução externa**: o dado `Kt=3` pertence à solução analítica, e uma tensão calculada no primeiro ponto de Gauss **não é** o pico real na superfície do furo. [Laboratório 09](docs/laboratorios/kirsch-furo.md).
+
+## Chapa finita tracionada — ciclo 10
+
+Novo benchmark de **chapa quadrada com furo central**, elemento CPS8R, tração uniforme efetivamente aplicada na borda e contornos superior/furo livres. O modelo diferencia a tensão nominal **bruta e líquida**, reporta tensões em pontos de integração e introduz **estimativa superficial por extrapolação local**, com aferição do algoritmo usando Kirsch sintético. **Não existe resultado externo certificado antes da execução do workflow**. [Laboratório 10](docs/laboratorios/chapa-finita-furo.md).
 
 ## Grade e ferramentas
 

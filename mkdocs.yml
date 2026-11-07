@@ -60,6 +60,7 @@ nav:
       - Flexão pura 3D e convergência: laboratorios/flexao-pura-3d.md
       - C3D8 versus C3D20R: laboratorios/comparar-elementos-fem.md
       - Furo circular — Kirsch: laboratorios/kirsch-furo.md
+      - Chapa finita com furo: laboratorios/chapa-finita-furo.md
   - Projeto:
       - Arquitetura: arquitetura.md
       - Método científico: metodologia.md
@@ -85,3 +86,4 @@ nav:
       - Ciclo 07: ciclos/ciclo-07.md
       - Ciclo 08: ciclos/ciclo-08.md
       - Ciclo 09: ciclos/ciclo-09.md
+      - Ciclo 10: ciclos/ciclo-10.md
