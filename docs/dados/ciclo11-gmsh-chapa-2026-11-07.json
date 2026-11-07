@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-07",
+  "version": "0.11.0",
+  "experiment": "Ciclo 11, chapa quadrada finita com furo, malha Gmsh independente e refinamento das larguras grandes",
+  "scope": "Verificação de malha, não validação de solver por código independente",
+  "provenance": {
+    "run": "https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42422518394",
+    "tested_commit": "0ac650ee97013e2279ade0a6a180130318ee1535",
+    "artifact_id": 13594415077,
+    "artifact_sha256": "4f3b99cd9de775682d05259d25acf44f76d824324d143e87789f7fc40d14a4f0",
+    "artifact_expires_at": "2026-12-07T22:51:25Z",
+    "solver": "calculix-ccx 2.21-1",
+    "gmsh": "gmsh 4.12.1+ds1-1.1build2",
+    "os": "Ubuntu 24.04",
+    "ci": "https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42422586573",
+    "tests_passed": 92
+  },
+  "materials": {
+    "E_pa": 200000000000,
+    "poisson": 0.3,
+    "thickness_m": 0.005
+  },
+  "load": {
+    "remote_gross_tension_pa": 10000000,
+    "faces": "x=±H (full square), top/bottom and central hole free, quarter symmetry",
+    "element": "CPS8R"
+  },
+  "data": {
+    "native_widths": [
+      {
+        "H_over_a": 8,
+        "width_mm": 160,
+        "n": [
+          16,
+          24,
+          32
+        ],
+        "elements": [
+          512,
+          1152,
+          2048
+        ],
+        "kt_gross": [
+          3.1566000842337942,
+          3.1639988136204478,
+          3.164490877676312
+        ],
+        "kt_net": [
+          2.76202507370457,
+          2.7684989619178917,
+          2.768929517966773
+        ],
+        "relative_difference_24_32": 0.0001554954888115931
+      },
+      {
+        "H_over_a": 16,
+        "width_mm": 320,
+        "n": [
+          16,
+          24,
+          32
+        ],
+        "elements": [
+          512,
+          1152,
+          2048
+        ],
+        "kt_gross": [
+          3.0138882435452095,
+          3.0537526444026573,
+          3.059526209704092
+        ],
+        "kt_net": [
+          2.825520228323634,
+          2.862893104127491,
+          2.8683058215975863
+        ],
+        "relative_difference_24_32": 0.0018870782290153945
+      }
+    ],
+    "gmsh_vs_native": [
+      {
+        "H_over_a": 4,
+        "width_mm": 80,
+        "n": 16,
+        "elements": 512,
+        "kt_gross_gmsh": 3.596798659617798,
+        "kt_gross_native": 3.6176892756675993,
+        "relative_difference": -0.0057745744473718975,
+        "min_jacobian_m2": 8.802134257743687e-8,
+        "synthetic_kirsch_fit_bias": -0.013060678745521859,
+        "surface_fit_points": 72
+      },
+      {
+        "H_over_a": 4,
+        "width_mm": 80,
+        "n": 24,
+        "elements": 1152,
+        "kt_gross_gmsh": 3.614709137762594,
+        "kt_gross_native": 3.6174504658305957,
+        "relative_difference": -0.000757806663531495,
+        "min_jacobian_m2": 2.1157690576335852e-8,
+        "synthetic_kirsch_fit_bias": -0.0009961191280027926,
+        "surface_fit_points": 72
+      },
+      {
+        "H_over_a": 8,
+        "width_mm": 160,
+        "n": 24,
+        "elements": 1152,
+        "kt_gross_gmsh": 3.1538816146806377,
+        "kt_gross_native": 3.1639988136204478,
+        "relative_difference": -0.0031975988411428553,
+        "min_jacobian_m2": 4.938751491947458e-8,
+        "synthetic_kirsch_fit_bias": -0.007966677258805177,
+        "surface_fit_points": 72
+      }
+    ]
+  },
+  "acceptance": {
+    "external_solver_runs": 9,
+    "workflow_success": true,
+    "positive_jacobian_for_gmsh": true,
+    "traction_conservation": true,
+    "mesh_generators_independent": true,
+    "solver_independence": false,
+    "experimental_validation": false,
+    "physical_infinite_plate_reference_not_exact_for_finite_square": true
+  },
+  "limitations": [
+    "Same CalculiX solver and CPS8R elements; no independent FEM-code verification.",
+    "Kt_gross is derived from local polynomial extrapolation of Gauss-point stresses to hole surface.",
+    "Mesh gradation distributions and element shapes differ; comparing equal element counts is not equal local resolution.",
+    "For H/a=16, 24-to-32 mesh difference in Kt is 0.1887%, larger than for H/a=8 at 0.0155%.",
+    "No external benchmark for exact same finite-square geometry and boundary conditions yet.",
+    "Does not model pin bearing, welds, fatigue, plasticity or three-dimensional thickness."
+  ]
+}

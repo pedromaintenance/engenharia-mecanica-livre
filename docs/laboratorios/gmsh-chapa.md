@@ -2,7 +2,7 @@
 
 **Objetivo:** confrontar dois **geradores de malha diferentes** aplicados ao mesmo problema físico — chapa quadrada de tensão plana com furo central e tração uniforme nas bordas — usando o **mesmo solver CalculiX**. Paralelamente, ampliar o estudo de refinamento para as chapas mais largas H/a=8 e 16, que tinham uma única malha no ciclo 10.
 
-> Estado inicial: implementação preparada, à espera de saída observada do CalculiX/Gmsh. A comparação não é uma validação por dois códigos FEM independentes, pois o solver, os elementos CPS8R e o estimador de pico continuam iguais.
+> **Estado verificado:** nove casos externos resolvidos com sucesso, incluindo três malhas independentes no Gmsh 4.12.1 e seis refinamentos autorais, todos no CalculiX 2.21-1. Não constitui validação por dois códigos FEM independentes.
 
 ## 1. Hipóteses físicas compartilhadas
 
@@ -79,3 +79,52 @@ A independência deste ciclo é **do gerador de malha**, não das equações con
 As malhas têm distribuição distinta de nós junto ao furo: o mesmo número de elementos não garante mesmo erro ou mesmo custo. A comparação deve apresentar não só a diferença entre Kt como também a qualidade mínima dos elementos, os nós e os resíduos de ajuste.
 
 Mesmo com bons resultados, a aplicação a olhais ou chapas reais depende de carga, material, contato, plasticidade, fadiga e geometria concreta. **Nenhum resultado deste laboratório autoriza reparo, solda, modificação ou liberação de máquina.**
+
+
+## 7. Resultados observados (07/11/2026)
+
+[Workflow externo #42422518394](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42422518394) **aprovado**, Ubuntu 24.04, Gmsh `4.12.1+ds1-1.1build2` e CalculiX `2.21-1`. Foram executados **nove casos**: seis de refinamento por largura no gerador autoral e três com malha Q8 CAD independente por Gmsh. [CI geral final](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42422586573): **92 testes aprovados**.
+
+### 7.1 Comparação independente de malha
+
+Os fatores `Kt` são **estimativas superficiais por extrapolação** de tensões nos pontos de integração, calculadas pelo mesmo solver FEM. Os geradores usaram distribuição radial distinta:
+
+| Largura W | Elementos | Kt bruto autoral | Kt bruto Gmsh | Diferença relativa Gmsh/autoral |
+| ---: | ---: | ---: | ---: | ---: |
+| 80 mm | 512 | 3,617689 | 3,596799 | −0,5775% |
+| 80 mm | 1.152 | 3,617450 | 3,614709 | −0,0758% |
+| 160 mm | 1.152 | 3,163999 | 3,153882 | −0,3198% |
+
+Os três geradores Gmsh produziram **jacobianos Q8 positivos** nos pontos de Gauss. A maior diferença nos três pares acima foi inferior a 0,58%. É uma **concordância entre modelos numéricos com o mesmo solver**, não uma confirmação independente da solução exata, porque ambos usam CPS8R/CalculiX e método de ajuste semelhante.
+
+A verificação do mesmo extrapolador aplicado às tensões **analíticas de Kirsch** nas coordenadas dos Gauss Gmsh resultou em desvios em Kt de −0,01306, −0,000996 e −0,007967, respectivamente. Esses desvios medem **somente o viés da aproximação analítica pelo ajuste**, não a incerteza global do FEM da chapa finita.
+
+### 7.2 Refinamento complementar das larguras grandes
+
+| H/a (W) | Elementos | Kt bruto estimado | Kt líquido estimado |
+| ---: | ---: | ---: | ---: |
+| 8 (160 mm) | 512 | 3,156600 | 2,762025 |
+| 8 (160 mm) | 1.152 | 3,163999 | 2,768499 |
+| 8 (160 mm) | 2.048 | 3,164491 | 2,768930 |
+| 16 (320 mm) | 512 | 3,013888 | 2,825520 |
+| 16 (320 mm) | 1.152 | 3,053753 | 2,862893 |
+| 16 (320 mm) | 2.048 | 3,059526 | 2,868306 |
+
+Entre as duas malhas mais finas, a diferença relativa da estimativa de Kt bruto foi **0,0155% para H/a=8** e **0,1887% para H/a=16**. O segundo caso ainda apresenta sensibilidade maior ao refinamento. Esses dados indicam estabilização numérica parcial, **mas não estabelecem ordem assintótica nem incerteza de validação física**.
+
+### 7.3 Problema de implementação identificado e corrigido
+
+O primeiro workflow de Gmsh falhou na leitura de `$MeshFormat` porque o parser gerado continha uma barra invertida antes do marcador MSH2. Foi corrigida a comparação exata das seções e adicionado um teste que verifica a distinção entre reconhecer a seção `MeshFormat` e falhar somente na seguinte seção ausente. A revisão passou na segunda execução externa.
+
+### 7.4 Arquivos de evidência
+
+- [Workflow de geração de malha Gmsh + resolução CalculiX](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42422518394).
+- [Artefato completo `ciclo11-gmsh-convergencia`](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42422518394/artifacts/13594415077), ID 13594415077, hash SHA-256 `4f3b99cd9de775682d05259d25acf44f76d824324d143e87789f7fc40d14a4f0`, retenção prevista até **07/12/2026**.
+- [Dataset permanente em JSON](../dados/ciclo11-gmsh-chapa-2026-11-07.json).
+- [CI com 92 testes](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42422586573).
+
+## 8. Limitações e próximo gate
+
+Embora os geradores de malha sejam diferentes, o solver é o mesmo e ambos usam **CPS8R**, o mesmo material ideal e a mesma forma de extrapolação. Assim, não se verificou o resultado com um segundo **solver de elasticidade**, nem por ensaio físico ou por uma solução analítica para exatamente a **chapa quadrada finita com bordas livres e tração uniforme**.
+
+A continuidade deve focar a **incerteza da extrapolação da tensão superficial**, comparação com cálculo independente de tensões (por exemplo, outro pós-processamento ou segundo solver) e casos com comprimento/largura controlados separadamente. Até isso, os números não são parâmetros de dimensionamento industrial nem autorização de intervenção em olhais e suportes.

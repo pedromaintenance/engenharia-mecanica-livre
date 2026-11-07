@@ -56,3 +56,7 @@ O [laboratório de Kirsch](laboratorios/kirsch-furo.md) mediu a distribuição d
 ## Chapa quadrada finita tracionada — ciclo 10
 
 O [Laboratório 10](laboratorios/chapa-finita-furo.md) aplica tração nas bordas externas de uma chapa quadrada finita com furo, usando elementos CPS8R. O [CalculiX executou cinco casos](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42421310615); a estimativa `Kt` superficial vem de uma extrapolação declarada, não é tensão diretamente lida no bordo. A [base de resultados](dados/chapa-finita-furo-2026-11-07.json) distingue a referência bruta da líquida e não apresenta Kirsch infinito como solução exata da placa finita.
+
+## Malha Gmsh independente — ciclo 11
+
+A [comparação de geradores](laboratorios/gmsh-chapa.md) foi executada no [workflow externo aprovado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42422518394). O Gmsh construiu malha quadrática própria, importada e solucionada no CalculiX para a mesma chapa finita do laboratório 10. A maior divergência entre os três pares testados ficou abaixo de 0,58% em Kt bruto estimado, com as ressalvas de extrapolação. [Dataset auditável](dados/ciclo11-gmsh-chapa-2026-11-07.json).

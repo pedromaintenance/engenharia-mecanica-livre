@@ -27,3 +27,21 @@ A v0.10 passou na execução real de cinco chapas finitas, mas só H/a=4 possuí
 ## Limite
 
 Comparação entre geradores Gmsh e código autoral não constitui verificação de código independente do **solver**. A assimetria entre distribuições de elementos não deve ser ocultada. A issue #13 só será fechada se as demais pendências de referência física, contorno e incerteza estiverem sustentadas; caso contrário, registrar avanço parcial com handover técnico.
+
+
+## Evidências de execução e resultados reais
+
+O [workflow de solver #42422518394](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42422518394) foi concluído com sucesso, usando Gmsh 4.12.1 e CalculiX CCX 2.21-1 no Ubuntu 24.04. **Nove execuções**: seis autorais (H/a 8 e 16 × n 16/24/32), três Gmsh (H/a 4 × n 16/24, H/a 8 × n 24). [CI final #42422586573](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42422586573): **92 testes** aprovados, `mkdocs build --strict` aprovado.
+
+**Comparação externa:** Gmsh contra malha autoral, mesmo número de elementos e mesmo solver:
+- H/a=4, n=16: Kt bruto 3,596799 vs 3,617689, diferença relativa −0,5775%.
+- H/a=4, n=24: Kt bruto 3,614709 vs 3,617450, diferença relativa −0,0758%.
+- H/a=8, n=24: Kt bruto 3,153882 vs 3,163999, diferença relativa −0,3198%.
+
+**Refinamento de largura:** H/a=8 n=16/24/32: 3,156600 → 3,163999 → 3,164491. H/a=16: 3,013888 → 3,053753 → 3,059526. Alteração relativa final n24→n32: **0,0155%** e **0,1887%** respectivamente, ainda sem prova de convergência assintótica.
+
+**Postmortem:** primeira execução falhou porque os marcadores `$MeshFormat` no parser tinham barra invertida literal introduzida na geração do código. Substituídos por marcadores reais de seção MSH2, com teste de regressão, e workflow posterior aprovado.
+
+**Auditoria:** [JSON permanente](../dados/ciclo11-gmsh-chapa-2026-11-07.json), [artefato do workflow](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42422518394/artifacts/13594415077), com `.geo`, `.msh`, `.inp`, `.dat`, `.frd`, logs Gmsh/CCX e comparações. SHA256 do arquivo ZIP do artefato: `4f3b99cd9de775682d05259d25acf44f76d824324d143e87789f7fc40d14a4f0`.
+
+**Conclusão:** evolução de verificação geométrica e de refinamento **com o mesmo solver**, não validação por dois programas FEM independentes. Sem aprovação para projeto de máquinas reais. A issue #13 permanece aberta para evidência externa de integridade e incerteza superficial.
