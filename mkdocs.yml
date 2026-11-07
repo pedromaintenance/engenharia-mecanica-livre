@@ -57,6 +57,7 @@ nav:
       - Barra axial FEM: laboratorios/benchmark-barra-fem.md
       - CalculiX tridimensional: laboratorios/calculix-3d.md
       - Flexão pura 3D e convergência: laboratorios/flexao-pura-3d.md
+      - C3D8 versus C3D20R: laboratorios/comparar-elementos-fem.md
   - Projeto:
       - Arquitetura: arquitetura.md
       - Método científico: metodologia.md
@@ -80,3 +81,4 @@ nav:
       - Ciclo 05: ciclos/ciclo-05.md
       - Ciclo 06: ciclos/ciclo-06.md
       - Ciclo 07: ciclos/ciclo-07.md
+      - Ciclo 08: ciclos/ciclo-08.md

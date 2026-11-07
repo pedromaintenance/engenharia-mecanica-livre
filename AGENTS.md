@@ -32,3 +32,7 @@ Idioma português do Brasil para texto original, nomenclatura de grandezas com n
 ## Como chamar especialistas
 
 Arquivos em `.github/agents/*.agent.md`; skills em `.github/skills/*/SKILL.md`. Use a skill apropriada para a tarefa, mas valide a saída com `verificar-modelo` e curadoria quando aplicável. As ferramentas específicas só podem ser usadas se estiverem disponíveis no ambiente executor.
+
+## Gate do ciclo 08
+
+Modelos FEM com famílias de elementos distintas devem manter mesmo modelo físico e referência. Ao comparar tensões, preferir IP do `.dat` ao valor extrapolado do `.frd`; informar métrica de erro e localização de medição. Uma melhoria em deslocamento não é autorização de projeto: avaliar gradientes, contato e mudanças de hipóteses separadamente. Uma skill atualizada em `.github/skills/benchmark-fem/SKILL.md` descreve o procedimento C3D8/C3D20R.

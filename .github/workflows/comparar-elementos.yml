@@ -1,0 +1,62 @@
+name: Comparativo FEM C3D8 versus C3D20R
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/engmec/comparar_elementos.py"
+      - "tests/test_comparar_elementos.py"
+      - "tests/test_resumo_elementos.py"
+      - "scripts/comparar_elementos.py"
+      - ".github/workflows/comparar-elementos.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  comparar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar CalculiX de Ubuntu 24.04
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y calculix-ccx
+          dpkg-query -W calculix-ccx
+          python -m pip install -e .
+      - name: Testar geradores, Q8 e parser
+        run: |
+          python -m unittest discover -s tests -p 'test_comparar_elementos.py' -v
+          python -m unittest discover -s tests -p 'test_resumo_elementos.py' -v
+      - name: Executar 6 simulações de flexão
+        env:
+          OMP_NUM_THREADS: "1"
+          CCX_NPROC_STIFFNESS: "1"
+        run: |
+          set -euo pipefail
+          for element in C3D8 C3D20R; do
+            for n in 2 4 8; do
+              python -m engmec.comparar_elementos --elemento "$element" --nx "$n" --ny "$n" --nz "$n" --saida "build/comparacao/$element/n-$n"
+            done
+          done
+          # Caminhos padronizados por familia em letras minusculas
+          for element in C3D8 C3D20R; do
+            mkdir -p "build/comparacao/${element,,}"
+            mv "build/comparacao/$element"/n-* "build/comparacao/${element,,}/"
+            rmdir "build/comparacao/$element"
+          done
+      - name: Avaliar tensões e precisão por família
+        run: python scripts/comparar_elementos.py --pasta build/comparacao --malhas 2 4 8
+      - name: Arquivar entradas, .dat, .frd, parser e relatório
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: comparativo-c3d8-c3d20r
+          path: build/comparacao/
+          retention-days: 30
+          if-no-files-found: warn

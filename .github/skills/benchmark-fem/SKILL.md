@@ -29,3 +29,7 @@ Use tensões não uniformes e uma solução de elasticidade independente, compar
 ## Evidência real do ciclo 07
 
 O teste de flexão pura em CalculiX C3D8 2.21-1 apresentou erro relativo inicial 29,7457% e final 0,9942% em Uy, taxas aparentes até 1,76, com prova de execução no workflow #42064616852. Ao continuar, usar o JSON `docs/dados/flexao-pura-3d-2026-11-05.json` como baseline sem confundir benchmark C3D8 com referência de projeto; adicionar C3D20R e pós-processamento de tensões antes de ampliar o domínio.
+
+## Comparação C3D8 × C3D20R (ciclo 08)
+
+Preserve exatamente a mesma solução analítica e condições de contorno; compartilhe midside nodes em arestas comuns, valide conectividade de 20 nós e Q8 com partição da unidade. Integre cargas nodais de faces quadraticamente com Gauss 3×3, sem impor valores iguais por nó. Use *EL PRINT,ELSET=EALL COORD,S e calcule erro da tensão nos pontos de integração (não em nós extrapolados). Compare **erro por DOF e por custo**, reconhecendo variabilidade do hardware e a possibilidade de erros inferiores ao arredondamento da saída textual. A execução externa precisa de logs e artefatos para ser declarada concluída.

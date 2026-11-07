@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.7 (05/11/2026)
+## Estado: ciclo v0.8 (05/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
@@ -39,6 +39,10 @@ O ciclo 06 acrescentou geração de malhas C3D8 com força axial distribuída e 
 
 O ciclo 07 introduz um caso de elasticidade 3D em que a **tensão axial varia linearmente na seção** e o campo de deslocamento possui termos quadráticos. O adaptador CalculiX C3D8 gera trações nodais consistentes nas duas faces, apoios mínimos, extrai resultados `U/RF` e avalia erros em malhas 2³, 4³, 8³ e 16³. **O workflow externo passou:** CalculiX 2.21-1 executou as quatro malhas; erro de Uy diminuiu de 29,75% para 0,99%. [Evidência permanente](docs/dados/flexao-pura-3d-2026-11-05.json). [Laboratório 07](docs/laboratorios/flexao-pura-3d.md).
 
+## Comparação C3D8 × C3D20R (ciclo 08)
+
+O novo laboratório gera malhas C3D20R com nós de meio de aresta compartilhados, aplica trações de flexão por integração consistente Q8 e extrai **tensões e coordenadas de Gauss no .dat do CalculiX**. O comparador reúne erros RMS das tensões e deslocamentos, DOFs estimados, resíduos de equilíbrio e tempos de execução. A conclusão exige **execução externa verificada**; não se presume superioridade do elemento apenas pela teoria. [Laboratório 08](docs/laboratorios/comparar-elementos-fem.md).
+
 ## Grade e ferramentas
 
 [Grade por ciclos](docs/formacao/grade.md) · [Trilhas](docs/formacao/trilhas.md) · [Guia de calculadoras](docs/guia-calculadoras.md) · [Metodologia](docs/metodologia.md)
@@ -58,6 +62,7 @@ engmec direitos --id openstax-univphysics1
 engmec fem-barra --comprimento-m 2 --area-mm2 1000 --e-gpa 200 --forca-n 10000 --carga-linear-n-m 1000 --estudo-malha
 python -m engmec.calculix --somente-gerar --nx 4 --saida build/calculix/nx-4
 python -m engmec.flexao_calculix --nx 4 --ny 4 --nz 4 --somente-gerar --saida build/flexao-calculix/n-4
+python -m engmec.comparar_elementos --elemento C3D20R --nx 4 --ny 4 --nz 4 --somente-gerar --saida build/comparacao/c3d20r/n-4
 # Para executar o solver, instale CalculiX e remova --somente-gerar
 python -m unittest discover -s tests -v
 ```

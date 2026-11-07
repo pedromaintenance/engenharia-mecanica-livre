@@ -2,7 +2,7 @@
 
 Uma base pública para **estudar, pesquisar, calcular, experimentar e resolver problemas mecânicos** sem abandonar o rigor científico.
 
-O projeto está na fase **v0.7**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
+O projeto está na fase **v0.8**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
 
 ## Comece por aqui
 
@@ -18,6 +18,7 @@ O projeto está na fase **v0.7**. O portal está publicado, a primeira coleção
 | Comparar FEM com equações analíticas | [Barra axial e convergência de malha](laboratorios/benchmark-barra-fem.md) |
 | Comparar com software FEM externo | [Benchmark CalculiX C3D8](laboratorios/calculix-3d.md) |
 | Estudar flexão pura, erro de malha e travamento C3D8 | [Laboratório 07](laboratorios/flexao-pura-3d.md) |
+| Comparar elementos lineares e quadráticos | [Laboratório 08 — C3D8 × C3D20R](laboratorios/comparar-elementos-fem.md) |
 | Consultar restrições por obra | [Auditoria documental de direitos](governanca/auditoria-obras.md) |
 | Estruturar investigação de falha | [Diagnóstico de manutenção](manutencao/diagnostico.md) |
 | Continuar o projeto em novos ciclos | [Roadmap mestre](roadmaps/master.md) e [agentes](governanca/agentes.md) |
