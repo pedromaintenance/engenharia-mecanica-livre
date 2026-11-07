@@ -97,7 +97,10 @@ def criar_malha(*, nr: int=8, nt: int=16, raio_m: float=0.01,
     labels={}
     def add(kind, i, j, rr, th):
         ident=len(nodes)+1
-        nodes[ident]=(rr*math.cos(th),rr*math.sin(th),0.0)
+        xx,yy=rr*math.cos(th),rr*math.sin(th)
+        # No eixo de simetria o valor matemático é zero; evitar resíduos 1e-18.
+        nodes[ident]=(0.0 if abs(xx)<1e-14 else xx,
+                      0.0 if abs(yy)<1e-14 else yy,0.0)
         labels[(kind,i,j)]=ident
         return ident
     for i in range(nr+1):
