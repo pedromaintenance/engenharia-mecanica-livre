@@ -53,3 +53,7 @@ Separar **Kirsch infinito com deslocamento imposto** da **chapa finita com tens�
 ## Evidências reais do ciclo 10
 
 [Workflow externo #42421310615](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42421310615) e [dataset](https://github.com/pedromaintenance/engenharia-mecanica-livre/blob/main/docs/dados/chapa-finita-furo-2026-11-07.json). Malha n=8/16/24 da placa H/a=4, Kt_gross extrap 3,5798/3,6177/3,6175; outras larguras só n=24 (sem convergência individual). Para cada avanço: registrar geometria, comprimento/largura, tração equivalente, **definição bruta/líquida** e método de extrapolação; não confundir estabilização interna com validação independente de literatura de mesma geometria. Próximo objetivo: malha via Gmsh e comparação de campos de tensão e de concentração com formulação independente.
+
+## Gate de malha independente — ciclo 11
+
+Na comparação Gmsh×autoral, a independência é só de **geração da geometria/malha**; manter física, material, espessura, carga real e element CPS8R no CalculiX. Para `.msh` Gmsh versão 2.2 ASCII, quad8 tem tipo 16 e linha quadrática tipo 8 (nó médio na última posição). Importar com validação de topologia, jacobiano e fronteiras; reindexar elementos no deck `.inp`. O pós-processamento Gauss precisa selecionar amostras geometricamente (IDs Gmsh não preservam ordem polar). Comparar Kt_bruto, Kt_net e viés do extrapolador, sem declarar validação por software FEM independente. Criar logs/artefatos reais e proteger regressões com CI.

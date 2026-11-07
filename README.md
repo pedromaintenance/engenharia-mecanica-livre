@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.10 (05/11/2026)
+## Estado: ciclo v0.11 (05/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
@@ -50,6 +50,10 @@ Foi desenvolvido um gerador de quarto de anel curvo com elementos **CPS8R**, sol
 ## Chapa finita tracionada — ciclo 10
 
 Novo benchmark de **chapa quadrada com furo central**, elemento CPS8R, tração uniforme efetivamente aplicada na borda e contornos superior/furo livres. O modelo diferencia a tensão nominal **bruta e líquida**, reporta tensões em pontos de integração e introduz **estimativa superficial por extrapolação local**, com aferição do algoritmo usando Kirsch sintético. **Não existe resultado externo certificado antes da execução do workflow**. [Laboratório 10](docs/laboratorios/chapa-finita-furo.md).
+
+## Independência geométrica e verificação de largura — ciclo 11
+
+A v0.11 introduz **malha quadrática Gmsh gerada de forma independente**, importação MSH2, reconstrução física da carga de borda e análise de tensões no CalculiX. Os resultados Gmsh são confrontados com o gerador polar autoral, mantendo mesmo problema físico e solver. Também estão programados novos refinamentos para chapas H/a=8 e 16, cada uma com n=16,24,32. **Não equivale a validação independente do solver ou da integridade estrutural real.** [Laboratório 11](docs/laboratorios/gmsh-chapa.md).
 
 ## Grade e ferramentas
 

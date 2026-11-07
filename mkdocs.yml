@@ -62,6 +62,7 @@ nav:
       - C3D8 versus C3D20R: laboratorios/comparar-elementos-fem.md
       - Furo circular — Kirsch: laboratorios/kirsch-furo.md
       - Chapa finita com furo: laboratorios/chapa-finita-furo.md
+      - Malhas independentes — Gmsh: laboratorios/gmsh-chapa.md
   - Projeto:
       - Arquitetura: arquitetura.md
       - Método científico: metodologia.md
@@ -88,3 +89,4 @@ nav:
       - Ciclo 08: ciclos/ciclo-08.md
       - Ciclo 09: ciclos/ciclo-09.md
       - Ciclo 10: ciclos/ciclo-10.md
+      - Ciclo 11: ciclos/ciclo-11.md

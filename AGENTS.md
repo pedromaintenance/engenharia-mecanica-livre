@@ -44,3 +44,7 @@ No benchmark de Kirsch, **Kt analítico** e **tensão numérica no interior** s�
 ## Contorno físico finito — ciclo 10
 
 Para uma chapa realmente tracionada, não impor deslocamentos exatos de Kirsch na borda externa nem declarar `Kt=3` solução do domínio finito. Requer-se evidência de *CLOAD* física nos nós da borda, contornos livres no topo e no furo, conversão correta bruto/líquido e estimativa de pico baseada em pós-processamento explicitamente qualificado. Usar `docs/laboratorios/chapa-finita-furo.md` e `src/engmec/chapa_finita.py` como referência do caso.
+
+## Ciclo 11 — verificação de malha independente
+
+Benchmark de chapa quadrada finita com malha externa Gmsh deve manter rigorosamente as cargas físicas, os eixos de simetria e as definições dos fatores de concentração. Acordo de duas malhas usando o mesmo solver **não representa validação completa do FEM**; indicar diferenças de distribuição e jacobiano em cada caso. Não alegar convergência em H/a=8/16 antes de executar três malhas por largura. Consulte `src/engmec/gmsh_chapa.py` e `docs/laboratorios/gmsh-chapa.md`.
