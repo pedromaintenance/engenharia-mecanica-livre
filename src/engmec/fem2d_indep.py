@@ -51,9 +51,9 @@ def q8_shape(r:float,s:float)->tuple[float,...]:
 
 
 def _matriz_constitutiva(E:float,nu:float):
-    import numpy as np
     if not math.isfinite(E) or E<=0 or not math.isfinite(nu) or not -.49<nu<.49:
         raise ValueError("E/nu fora do dominio")
+    import numpy as np
     return E/(1-nu*nu)*np.array([
         [1.,nu,0.],
         [nu,1.,0.],
