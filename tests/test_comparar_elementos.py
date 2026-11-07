@@ -26,6 +26,15 @@ class TestCompararElementos(unittest.TestCase):
         self.assertAlmostEqual(meta["soma_momentos_face_nm"]["2"],meta["momento_referencia_nm"],delta=1e-6)
         self.assertAlmostEqual(meta["soma_momentos_face_nm"]["0"],-meta["momento_referencia_nm"],delta=1e-6)
 
+    def test_carga_quadratica_sem_residuos_quase_nulos(self):
+        deck, meta=montar_deck("C3D20R",2,2,2)
+        linhas=deck.split("*CLOAD\n",1)[1].split("*NODE PRINT",1)[0].strip().splitlines()
+        valores=[float(line.split(",")[2]) for line in linhas]
+        self.assertTrue(valores)
+        self.assertGreater(min(abs(f) for f in valores),1e-5)
+        self.assertNotIn("*EL FILE,ELSET=EALL",deck)
+        self.assertIn("*EL FILE\nS",deck)
+
     def test_conn_20_e_mids_compartilhados(self):
         deck,meta=montar_deck("C3D20R",4,2,2)
         part=deck.split("*ELEMENT,TYPE=C3D20R,ELSET=EALL\n")[1].split("*NSET,")[0]

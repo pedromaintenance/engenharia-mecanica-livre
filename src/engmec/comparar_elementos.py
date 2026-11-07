@@ -75,6 +75,8 @@ def montar_deck(
     meta["familia"] = familia
     if familia == "C3D8":
         return base.replace(
+            "*EL FILE,ELSET=EALL\nS\n", "*EL FILE\nS\n"
+        ).replace(
             "*END STEP\n",
             "*EL PRINT,ELSET=EALL,GLOBAL=YES\nCOORD,S\n*END STEP\n"
         ), meta
@@ -160,26 +162,31 @@ def montar_deck(
     for i,sign in ((0,-1),(nx,1)):
         if not math.isclose(momento[i],sign*meta["momento_referencia_nm"],rel_tol=1e-10,abs_tol=1e-5):
             raise ValueError("Momento C3D20R não bate com referência")
+    # Descartar resíduos de quadratura ~1e-12 N em nós de carga
+    # analiticamente nula. CalculiX 2.21 rejeita esses CLOAD minúsculos.
+    limite=max(abs(f) for f in loads.values())*1e-10
+    aplicadas={n:f for n,f in loads.items() if abs(f)>limite}
     cargas="\n".join(
-        f"{node}, 1, {force:.16g}" for node,force in sorted(loads.items())
-        if abs(force)>1e-14
+        f"{node}, 1, {force:.16g}" for node,force in sorted(aplicadas.items())
     )
     rebuilt=(before+"*CLOAD\n"+cargas+"\n"+
              "*NODE PRINT,NSET=TIPCENTER\n"+ending)
     rebuilt=rebuilt.replace(
+        "*EL FILE,ELSET=EALL\nS\n", "*EL FILE\nS\n"
+    ).replace(
         "*END STEP\n",
         "*EL PRINT,ELSET=EALL,GLOBAL=YES\nCOORD,S\n*END STEP\n"
     )
     meta["elemento"]="C3D20R"
     meta["nos"]=len(coordinates)
     meta["anchor_applied_force_x_n"]={
-        str(ident):loads.get(ident,0.0) for ident in meta["anchor_nodes"]
+        str(ident):aplicadas.get(ident,0.0) for ident in meta["anchor_nodes"]
     }
     meta["soma_forcas_face_n"]=face_forces
     meta["soma_momentos_face_nm"]={str(i):m for i,m in momento.items()}
     meta["soma_forcas_total_n"]=sum(face_forces.values())
     meta["soma_momentos_total_nm"]=sum(momento.values())
-    meta["total_cload_n"]=sum(loads.values())
+    meta["total_cload_n"]=sum(aplicadas.values())
     return rebuilt, meta
 
 
