@@ -217,7 +217,7 @@ def montar_deck(*,nr:int=8,nt:int=16,raio_m:float=.01,raio_externo_m:float=.08,
         constraints[n,1]=0 if abs(ux)<1e-16 else ux
         constraints[n,2]=0 if abs(uy)<1e-16 else uy
     for (node,dof),val in sorted(constraints.items()):
-        lines.append(f"{node}, {dof}, {dof}, {val:.16g}")
+        lines.append(f"{node}, {dof}, {dof}, {val:.9g}")
     lines += ["*EL PRINT,ELSET=EALL,GLOBAL=YES","COORD,S",
               "*NODE PRINT,NSET=OUTER","RF", "*END STEP"]
     meta={

@@ -58,6 +58,12 @@ class TestKirsch(unittest.TestCase):
                 part=deck.split(f'*NSET,NSET={section}\n',1)[1].split('*',1)[0].strip()
                 self.assertTrue(all(1<=len(line.split(','))<=16 for line in part.splitlines()))
 
+    def test_boundary_tamanho_numerico_compativel_ccx(self):
+        deck,_=montar_deck(nr=16,nt=32)
+        lines=deck.split('*BOUNDARY\n',1)[1].split('*EL PRINT')[0].strip().splitlines()
+        self.assertTrue(all(len(line.strip())<35 for line in lines))
+        self.assertTrue(all(len(line.split(',')[-1].strip())<=16 for line in lines))
+
     def test_parser_sintetico_exato(self):
         _,meta=montar_deck(nr=3,nt=6)
         cs=[];ss=[]
