@@ -17,7 +17,8 @@ class TestAvaliacaoKirsch(unittest.TestCase):
                 doc={'entrada':{'nr':n,'nt':2*n,'razao_raios':8,
                       'elementos':2*n*n,'nos':10*n,'qualidade_malha':{'min_det_jacobiano_m2':1e-9}},
                      'tempo_solver_s':.05,
-                     'resultado':{'erro_rms_tensor_rel':e,'erro_rms_proximo_furo_rel':h,
+                     'resultado':{'erro_rms_tensor_rel':e,'erro_rms_tensor_ponderado_area_rel':e,
+                      'erro_rms_anel_fixo_1_5a_rel':h,'erro_rms_proximo_furo_rel':h,
                       'kt_proxy_pontos_integracao':k,'kt_borda_analitico':3,
                       'pontos_integracao':16*n*n}}
                 (path/'comparacao.json').write_text(json.dumps(doc))

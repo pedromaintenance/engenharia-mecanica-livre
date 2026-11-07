@@ -80,6 +80,8 @@ class TestKirsch(unittest.TestCase):
         r=extrair_dat(dat,meta)
         self.assertEqual(r['pontos_integracao'],meta['elementos']*8)
         self.assertLess(r['erro_rms_tensor_rel'],1e-10)
+        self.assertLess(r['erro_rms_tensor_ponderado_area_rel'],1e-10)
+        self.assertLess(r['erro_rms_anel_fixo_1_5a_rel'],1e-10)
         self.assertGreater(r['pontos_perto_furo'],0)
         self.assertLess(r['kt_proxy_pontos_integracao'],3)
 

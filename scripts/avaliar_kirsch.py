@@ -21,6 +21,8 @@ def avaliar(root: str|Path, malhas: list[int]=(4,8,16)) -> dict:
              'min_det_jacobiano_m2':meta['qualidade_malha']['min_det_jacobiano_m2'],
              'tempo_solver_s':d['tempo_solver_s'],
              'erro_tensor_global_rel':p['erro_rms_tensor_rel'],
+             'erro_tensor_global_ponderado_rel':p['erro_rms_tensor_ponderado_area_rel'],
+             'erro_anel_fixo_1_5a_ponderado_rel':p['erro_rms_anel_fixo_1_5a_rel'],
              'erro_tensor_perto_furo_rel':p['erro_rms_proximo_furo_rel'],
              'kt_proxy_ip':p['kt_proxy_pontos_integracao'],
              'kt_analitico':p['kt_borda_analitico'],
@@ -28,10 +30,10 @@ def avaliar(root: str|Path, malhas: list[int]=(4,8,16)) -> dict:
         if not all(math.isfinite(x) for x in row.values()):
             raise ValueError('Saída não finita')
         results.append(row)
-    e0=results[0]['erro_tensor_global_rel']
-    ef=results[-1]['erro_tensor_global_rel']
-    h0=results[0]['erro_tensor_perto_furo_rel']
-    hf=results[-1]['erro_tensor_perto_furo_rel']
+    e0=results[0]['erro_tensor_global_ponderado_rel']
+    ef=results[-1]['erro_tensor_global_ponderado_rel']
+    h0=results[0]['erro_anel_fixo_1_5a_ponderado_rel']
+    hf=results[-1]['erro_anel_fixo_1_5a_ponderado_rel']
     if e0<=1e-8 or ef>=.85*e0:
         raise ValueError('Sem diminuição relevante do erro global de malha')
     if h0<=1e-8 or hf>=.85*h0:
@@ -40,8 +42,8 @@ def avaliar(root: str|Path, malhas: list[int]=(4,8,16)) -> dict:
         raise ValueError('Proxy próximo ao bordo inconsistente com solução Kirsch')
     rate=[]
     for a,b in zip(results,results[1:]):
-        if a['erro_tensor_global_rel']>0 and b['erro_tensor_global_rel']>0:
-            rate.append(math.log(a['erro_tensor_global_rel']/b['erro_tensor_global_rel'])/
+        if a['erro_tensor_global_ponderado_rel']>0 and b['erro_tensor_global_ponderado_rel']>0:
+            rate.append(math.log(a['erro_tensor_global_ponderado_rel']/b['erro_tensor_global_ponderado_rel'])/
                         math.log(b['nr']/a['nr']))
         else:
             rate.append(None)
@@ -54,12 +56,16 @@ def avaliar(root: str|Path, malhas: list[int]=(4,8,16)) -> dict:
             raise ValueError('Conjunto complementar incompatível')
         comparison={'razao_raios':4,'nr':m['nr'],'nt':m['nt'],
                     'erro_tensor_global_rel':p['erro_rms_tensor_rel'],
+                    'erro_tensor_global_ponderado_rel':p['erro_rms_tensor_ponderado_area_rel'],
+                    'erro_anel_fixo_1_5a_ponderado_rel':p['erro_rms_anel_fixo_1_5a_rel'],
                     'erro_tensor_perto_furo_rel':p['erro_rms_proximo_furo_rel'],
                     'kt_proxy_ip':p['kt_proxy_pontos_integracao'],
                     'comparacao_nao_e_efeito_de_bordas_fisicas':True}
     return {'modelo':'Kirsch_CPS8R_tensao_plana',
             'referencia':'Kirsch, dominio infinito; deslocamentos exatos na fronteira externa circular',
-            'malhas':results,'taxas_aparentes_erro_tensor':rate,'dominio_externo_4a':comparison,
+            'malhas':results,'taxas_aparentes_erro_tensor_ponderado':rate,'dominio_externo_4a':comparison,
+            'alertas':(['O erro RMS da primeira camada aumenta na malha fina; sua faixa fisica muda com a malha']
+                       if results[-1]['erro_tensor_perto_furo_rel']>results[-2]['erro_tensor_perto_furo_rel'] else []),
             'criterios':{'jacobianos_positivos':True,'erro_global_e_proximo_furo_reduzido':True,
                          'sem_fabricar_kt_na_borda':True,'prova_solver_externo_requerida':True},
             'caveat':'Não representa chapa finita com tração uniforme nas bordas; Kt=3 analítico, proxy interior não equivale a Kt no bordo'}

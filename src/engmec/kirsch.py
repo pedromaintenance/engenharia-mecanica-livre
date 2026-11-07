@@ -284,6 +284,14 @@ def extrair_dat(texto:str,meta:dict) ->dict:
     sumerr_near=0.0
     nnear=0
     near=[]
+    # Ponderação física em malha radial graduada; usar área de setor.
+    nr,nt=meta['nr'],meta['nt']
+    a,R=meta['raio_m'],meta['raio_externo_m']
+    grad=meta['graduacao']
+    radii=[a+(R-a)*(i/nr)**grad for i in range(nr+1)]
+    werr=wsum=0.0
+    ring_werr=ring_wsum=0.0
+    ring_uen=ring_count=0.0
     for key,coord in parts['coord'].items():
         x,y,z=coord
         ref=tensoes_kirsch(x,y,meta['raio_m'],norm)
@@ -292,7 +300,21 @@ def extrair_dat(texto:str,meta:dict) ->dict:
         err=((sxx-ref['sigma_xx_pa'])**2+(syy-ref['sigma_yy_pa'])**2
              +2*(sxy-ref['sigma_xy_pa'])**2)
         sumerr+=err
+        radial_index=(key[0]-1)//nt
+        if radial_index>=nr:
+            raise ValueError('ID de elemento excede a malha gerada')
+        # Área de setor polar por elemento, dividida entre 8 IP; ponderação
+        # aproximada, não norma de energia integrada por Jacobiano individual.
+        weight=((radii[radial_index+1]**2-radii[radial_index]**2)
+                *math.pi/(4*nt*8))
+        werr+=weight*err
+        wsum+=weight
         r=ref['r_m']
+        if r<=1.5*a:
+            ring_werr+=weight*err
+            ring_wsum+=weight
+            ring_uen+=err
+            ring_count+=1
         if r < meta['raio_m']+1.15*meta['primeira_camada_m']:
             sumerr_near+=err
             nnear+=1
@@ -307,6 +329,11 @@ def extrair_dat(texto:str,meta:dict) ->dict:
         'pontos_perto_furo':nnear,
         'erro_rms_tensor_pa':math.sqrt(sumerr/expected),
         'erro_rms_tensor_rel':math.sqrt(sumerr/expected)/norm,
+        'erro_rms_tensor_ponderado_area_rel':math.sqrt(werr/wsum)/norm,
+        'erro_rms_anel_fixo_1_5a_rel':math.sqrt(ring_werr/ring_wsum)/norm,
+        'erro_rms_anel_fixo_1_5a_sem_peso_rel':math.sqrt(ring_uen/ring_count)/norm,
+        'pontos_anel_fixo_1_5a':int(ring_count),
+        'metodo_ponderacao':'area do setor polar dividida por 8 IP; quadratura aproximada',
         'erro_rms_proximo_furo_rel':math.sqrt(sumerr_near/nnear)/norm,
         'max_sigma_tangencial_ip_pa':maxnear*norm,
         'kt_proxy_pontos_integracao':maxnear,
