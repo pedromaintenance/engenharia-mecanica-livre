@@ -1,0 +1,69 @@
+name: Ciclo 11 — refino e malha Gmsh independente
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/engmec/gmsh_chapa.py"
+      - "src/engmec/chapa_finita.py"
+      - "tests/test_gmsh_chapa.py"
+      - "tests/test_aval_ciclo11.py"
+      - "scripts/avaliar_ciclo11.py"
+      - ".github/workflows/ciclo11-gmsh.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar Gmsh, CalculiX e modulo
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y gmsh calculix-ccx
+          dpkg-query -W gmsh calculix-ccx
+          python -m pip install -e .
+      - name: Executar testes de geometria, formato e limites
+        run: |
+          python -m unittest discover -s tests -p 'test_gmsh_chapa.py' -v
+          python -m unittest discover -s tests -p 'test_aval_ciclo11.py' -v
+      - name: Refinar larguras H/a=8 e 16 com malha autoral
+        env:
+          OMP_NUM_THREADS: "1"
+        run: |
+          set -euo pipefail
+          for H in 8 16; do
+            width=$(python -c 'import sys; print(float(sys.argv[1])*.01)' "$H")
+            for n in 16 24 32; do
+              python -m engmec.chapa_finita --nr "$n" --nt "$((2*n))" \
+                --semilargura-m "$width" --saida "build/ciclo11/chapa/ha-$H-n-$n"
+            done
+          done
+      - name: Executar malha independente no Gmsh e solver CalculiX
+        env:
+          OMP_NUM_THREADS: "1"
+        run: |
+          set -euo pipefail
+          for n in 16 24; do
+            python -m engmec.gmsh_chapa --nr "$n" --nt "$((2*n))" \
+              --semilargura-m .04 --saida "build/ciclo11/gmsh/ha-4-n-$n"
+          done
+          python -m engmec.gmsh_chapa --nr 24 --nt 48 \
+            --semilargura-m .08 --saida "build/ciclo11/gmsh/ha-8-n-24"
+      - name: Verificar comparacoes e baselines observados
+        run: python scripts/avaliar_ciclo11.py --pasta build/ciclo11
+      - name: Arquivar .geo .msh .inp .dat .frd logs e relatorio
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ciclo11-gmsh-convergencia
+          path: build/ciclo11/
+          retention-days: 30
+          if-no-files-found: warn
