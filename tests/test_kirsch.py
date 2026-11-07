@@ -51,6 +51,13 @@ class TestKirsch(unittest.TestCase):
         self.assertEqual(meta['kt_exato_borda'],3)
         self.assertAlmostEqual(meta['razao_raios'],8)
 
+    def test_nset_nao_excede_16_campos(self):
+        for nr,nt in ((4,8),(8,16),(16,32)):
+            deck,_=montar_deck(nr=nr,nt=nt)
+            for section in ('OUTER','HOLE'):
+                part=deck.split(f'*NSET,NSET={section}\n',1)[1].split('*',1)[0].strip()
+                self.assertTrue(all(1<=len(line.split(','))<=16 for line in part.splitlines()))
+
     def test_parser_sintetico_exato(self):
         _,meta=montar_deck(nr=3,nt=6)
         cs=[];ss=[]

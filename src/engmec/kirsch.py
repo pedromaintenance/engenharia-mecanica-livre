@@ -199,8 +199,10 @@ def montar_deck(*,nr:int=8,nt:int=16,raio_m:float=.01,raio_externo_m:float=.08,
     lines.append("*ELEMENT,TYPE=CPS8R,ELSET=EALL")
     lines += [f"{elem}, "+", ".join(map(str,conn))
               for elem,conn in elements.items()]
-    lines += ["*NSET,NSET=OUTER",", ".join(map(str,mesh["outer"])),
-              "*NSET,NSET=HOLE",", ".join(map(str,mesh["hole"])),
+    def nset_lines(values):
+        return [", ".join(map(str,values[i:i+16])) for i in range(0,len(values),16)]
+    lines += ["*NSET,NSET=OUTER",*nset_lines(mesh["outer"]),
+              "*NSET,NSET=HOLE",*nset_lines(mesh["hole"]),
               "*MATERIAL,NAME=ELASTIC_ISOTROPIC", "*ELASTIC", f"{E:.16g}, {nu:.16g}",
               "*SOLID SECTION,ELSET=EALL,MATERIAL=ELASTIC_ISOTROPIC",
               f"{thickness:.16g}","*STEP","*STATIC","*BOUNDARY"]
