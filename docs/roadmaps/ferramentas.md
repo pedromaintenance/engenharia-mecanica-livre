@@ -59,3 +59,5 @@ Gerador Q8 polar independente de Gmsh, jacobiano positivo em quatro pontos por e
 ## Ciclo 10 — aplicação física de tração e estimativa superficial
 
 Malha quadrática mapeada de coroa radial a quadrado externo; canto alinhado com uma linha angular. Borda x=H recebe força equivalente de tração constante T: pesos Q8 de 1/6,4/6,1/6 por segmento. Em `*EL PRINT COORD,S`, o parser recupera tensões em Gauss e ajusta σθθ/T por mínimos quadrados em três camadas radiais e três células angulares para estimar o valor em (a,90°). Avalia viés do estimador no campo analítico Kirsch; o contorno físico de chapa finita é distinto. Estudo de cinco casos automatizado com workflow CalculiX separado.
+
+**Ciclo 10 — implementação verificada:** modelo CPS8R de chapa quadrada finita sob tração real `*CLOAD` na borda, contornos livres e simetrias, com análise de influência `d/W`. [Dados observados](../dados/chapa-finita-furo-2026-11-07.json). A tensão máxima é **extrapolada** com polinômio local, não obtida diretamente no bordo; o ajuste foi testado separadamente com Kirsch analítico. Integração Gmsh e validação independente da malha permanecem como próximas atividades.

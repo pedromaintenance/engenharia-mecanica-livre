@@ -47,6 +47,7 @@ nav:
       - Elemento finito de barra: conceitos/rigidez-elemento-finito.md
       - Convergência FEM: conceitos/convergencia-fem.md
       - Concentração de tensão: conceitos/concentracao-tensao.md
+      - Kt bruto e Kt líquido: conceitos/kt-bruto-liquido.md
   - Aplicações:
       - Calculadoras: guia-calculadoras.md
       - Diagnóstico de manutenção: manutencao/diagnostico.md

@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0.0",
+  "cycle": 10,
+  "title": "Chapa quadrada FINITA com furo e tração de borda",
+  "date": "2026-11-07",
+  "execution": {
+    "repo": "pedromaintenance/engenharia-mecanica-livre",
+    "workflow_run_url": "https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42421310615",
+    "run_id": 42421310615,
+    "github_commit": "cd46ef4d0b3aa058ed967db9336e6f1f10242c73",
+    "solver": "CalculiX CCX 2.21-1",
+    "platform": "Ubuntu 24.04",
+    "artifact_id": 13593462656,
+    "artifact_sha256": "6408e265cb691957b74419dded86127b61f1f213c377f2b32239c0938bb4adb1",
+    "artifact_expires_at": "2026-12-07T22:35:36Z",
+    "ci_run": "https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42421310617",
+    "ci_tests_passed": 86
+  },
+  "physical_model": {
+    "geometry": "Full square plate [-H,H]x[-H,H] with centered circular hole radius a; quarter symmetry domain modeled",
+    "element": "CPS8R",
+    "stress_state": "plane stress",
+    "remote_traction_pa": 10000000,
+    "thickness_m": 0.005,
+    "hole_radius_m": 0.01,
+    "young_modulus_pa": 200000000000,
+    "poisson": 0.3,
+    "load": "uniform T traction on both x=+H and x=-H external edges",
+    "top_bottom_edges": "traction free",
+    "hole_wall": "traction free",
+    "symmetry": "Ux=0 on x=0, Uy=0 on y=0",
+    "mesh": "structured quadratic mapped circular hole to square boundary, radial grading exponent 2"
+  },
+  "Kt_definitions": {
+    "gross": "estimated extrapolated surface hoop stress / T",
+    "net": "gross*(1-d/W), d/W=a/H",
+    "reference_kirsch_infinite_plate": "3 based on remote traction T, not an exact finite-square-plate solution",
+    "stress_peak_method": "local least squares six-coefficient polynomial extrapolation from 3x3 nearby element cells and CalculiX Gauss-point stresses"
+  },
+  "cases": [
+    {
+      "Ha": 4,
+      "nr": 8,
+      "nt": 16,
+      "elements": 128,
+      "nodes": 433,
+      "d_W": 0.25,
+      "kt_gross": 3.579820690474733,
+      "kt_net": 2.68486551785605,
+      "kt_proxy_ip": 3.5362497737307956,
+      "analytical_kirsch_fit_bias": -0.03320118191321475,
+      "fit_residual": 0.018405514432727203,
+      "quarter_force_n": 1999.9999999999995,
+      "solver_elapsed_s": 0.08953710599999454
+    },
+    {
+      "Ha": 4,
+      "nr": 16,
+      "nt": 32,
+      "elements": 512,
+      "nodes": 1633,
+      "d_W": 0.25,
+      "kt_gross": 3.6176892756675993,
+      "kt_net": 2.7132669567506995,
+      "kt_proxy_ip": 3.595921957994633,
+      "analytical_kirsch_fit_bias": -0.0009590407058706063,
+      "fit_residual": 0.0006990059841528333,
+      "quarter_force_n": 1999.9999999999995,
+      "solver_elapsed_s": 0.2000514140000007
+    },
+    {
+      "Ha": 4,
+      "nr": 24,
+      "nt": 48,
+      "elements": 1152,
+      "nodes": 3601,
+      "d_W": 0.25,
+      "kt_gross": 3.6174504658305957,
+      "kt_net": 2.713087849372947,
+      "kt_proxy_ip": 3.6072113329475433,
+      "analytical_kirsch_fit_bias": -0.00009589575255475324,
+      "fit_residual": 0.00007523172070958247,
+      "quarter_force_n": 1999.9999999999995,
+      "solver_elapsed_s": 0.48787967200000537
+    },
+    {
+      "Ha": 8,
+      "nr": 24,
+      "nt": 48,
+      "elements": 1152,
+      "nodes": 3601,
+      "d_W": 0.125,
+      "kt_gross": 3.1639988136204478,
+      "kt_net": 2.7684989619178917,
+      "kt_proxy_ip": 3.1451179874754707,
+      "analytical_kirsch_fit_bias": -0.0009227002586476019,
+      "fit_residual": 0.0006232069016184674,
+      "quarter_force_n": 3999.999999999999,
+      "solver_elapsed_s": 0.47275405000000603
+    },
+    {
+      "Ha": 16,
+      "nr": 24,
+      "nt": 48,
+      "elements": 1152,
+      "nodes": 3601,
+      "d_W": 0.0625,
+      "kt_gross": 3.0537526444026573,
+      "kt_net": 2.862893104127491,
+      "kt_proxy_ip": 3.0209994178978423,
+      "analytical_kirsch_fit_bias": -0.006509701818156355,
+      "fit_residual": 0.00394001176545467,
+      "quarter_force_n": 7999.999999999998,
+      "solver_elapsed_s": 0.47203247299999873
+    }
+  ],
+  "observations": {
+    "refinement_Ha4_kt_gross": [
+      "3.57982069",
+      "3.61768928",
+      "3.61745047"
+    ],
+    "refinement_16_to_24_gross_abs": 0.00023880983700363956,
+    "width_Ha_4_to_16_kt_gross": [
+      3.6174504658305957,
+      3.1639988136204478,
+      3.0537526444026573
+    ],
+    "H_over_a_widths_8_and_16_not_mesh_converged": true
+  },
+  "limitations": [
+    "Surface peak is EXTRAPOLATED, not read directly at the hole wall.",
+    "Kirsch infinite-plate Kt=3 is not an exact analytic solution for this finite square plate.",
+    "H/a=8 and 16 use only one 1152-element mesh each; no mesh convergence claim for those widths.",
+    "Plate length and width change together: square aspect ratio maintained, not long-strip finite-width benchmark.",
+    "Gauss point stresses and a local fit are subject to discretization and modeling error; synthetic Kirsch fit checks algorithm only.",
+    "Plane-stress 2D model, not 3D thickness effects, pin-bearing, welding, fatigue, plasticity or validation experiments.",
+    "Wall-clock runtimes are isolated GitHub Actions observations, not controlled CPU benchmarks."
+  ]
+}

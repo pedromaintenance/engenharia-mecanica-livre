@@ -2,7 +2,7 @@
 
 **Problema distinto do Kirsch analítico:** neste experimento o material é uma **chapa quadrada FINITA** com um furo central, recebendo **tração uniforme real nas bordas verticais** e sem carregamento nas bordas horizontais. O [Laboratório 09](kirsch-furo.md) impunha os *deslocamentos analíticos de Kirsch* no arco externo; logo, não era um teste de bordas finitas. Agora o problema de contorno é fisicamente diferente.
 
-**Estado do trabalho:** software, testes e automação preparados. Qualquer tabela numérica de tensões será preenchida somente após a execução real do CalculiX; os valores analíticos de Kirsch não podem ser apresentados como resultado exato desta chapa.
+**Estado do trabalho:** **cinco análises executadas no CalculiX 2.21-1**, com resultados de tensão dos pontos de integração, extrapolação local de contorno, CI aprovado e arquivos auditáveis. A tabela a seguir contém resultados observados, não estimativas inventadas.
 
 ## 1. Geometria, tensões e unidades
 
@@ -104,3 +104,59 @@ O workflow não aceita valores não finitos, tensão de concentração mecanicam
 Esse problema permanece **bidimensional em tensão plana**. Não contempla contato de pino, plastificação, travamento do elemento, ovalização, trinca, fadiga, tensões residuais, efeito de espessura 3D ou ensaio físico. O valor \`Kt\` calculado **não libera operações de solda, montagem ou carregamento de componentes reais**.
 
 Para avançar à aplicação prática, serão necessários: convergência controlada de extrapolação superficial, geometria real, carregamento medido, propriedades verificadas, verificação independente de literatura ou ensaio e revisão profissional.
+
+
+## 8. Resultados observados — 07/11/2026
+
+O [workflow GitHub Actions #42421310615](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42421310615) executou **cinco casos reais** com CalculiX CCX 2.21-1 no Ubuntu 24.04. As entradas `.inp`, resultados `.dat`/`.frd`, logs, metadados e relatórios `comparacao.json` estão arquivados. [CI geral](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42421310617): **86 testes aprovados**.
+
+### Convergência exploratória — chapa W=80 mm, d=20 mm
+
+| Malha | Elementos CPS8R | Kt bruto extrapolado | Kt líquido extrapolado | Resíduo de ajuste local |
+| ---: | ---: | ---: | ---: | ---: |
+| 8 × 16 | 128 | 3,579821 | 2,684866 | 0,018406 |
+| 16 × 32 | 512 | 3,617689 | 2,713267 | 0,000699 |
+| 24 × 48 | 1.152 | 3,617450 | 2,713088 | 0,000075 |
+
+A diferença absoluta entre **as duas últimas estimativas de Kt bruto** foi de apenas **0,000239**, cerca de **0,0066% do valor estimado na malha fina**. É um sinal de estabilização deste **estimador específico**, nas malhas e condições empregadas, mas não comprova convergência assintótica da tensão superficial nem elimina erro de geometria, material ou formulação.
+
+Para `T=10 MPa`, a malha fina indica tensão máxima **extrapolada** de cerca de **36,17 MPa**. A simulação não calcula uma tensão observada diretamente num nó da superfície; trata-se da extrapolação das tensões em pontos internos de Gauss.
+
+### Estudo de largura mantendo chapa quadrada e malha 24×48
+
+| Largura da chapa W | Relação d/W | Kt bruto extrapolado | Kt líquido extrapolado |
+| ---: | ---: | ---: | ---: |
+| 80 mm | 0,2500 | 3,617450 | 2,713088 |
+| 160 mm | 0,1250 | 3,163999 | 2,768499 |
+| 320 mm | 0,0625 | 3,053753 | 2,862893 |
+
+Os valores **brutos** se aproximam de 3 conforme a placa quadrada fica maior em relação ao furo. Isso é coerente com a aproximação do domínio infinito de Kirsch, **mas não constitui validação quantitativa da solução de chapa finita**. Nos modelos de 160 e 320 mm houve uma única malha por largura; a sensibilidade à discretização desses resultados permanece desconhecida.
+
+**Outro limite de comparação:** o comprimento da chapa foi aumentado junto com sua largura, preservando o aspecto quadrado. Portanto, não se deve comparar estes resultados diretamente com curvas de literatura construídas para **tiras longas com largura variável e carregamento distante**. Modelos com mesmo d/W e relações comprimento/largura distintas podem responder de maneira diferente.
+
+### Validação do algoritmo de extrapolação
+
+Para testar apenas o **método de ajuste**, as coordenadas extraídas dos pontos de Gauss de cada caso foram usadas para amostrar o campo analítico de Kirsch. O mesmo polinômio local retornou desvios de `Kt=3` aproximadamente:
+
+| W | Malha | Viés de ajuste sobre Kirsch analítico |
+| ---: | ---: | ---: |
+| 80 mm | 8×16 | −0,033201 |
+| 80 mm | 16×32 | −0,000959 |
+| 80 mm | 24×48 | −0,000096 |
+| 160 mm | 24×48 | −0,000923 |
+| 320 mm | 24×48 | −0,006510 |
+
+Esses desvios **não são a incerteza total** da tensão de chapa finita. Apenas medem quanto esse extrapolador difere de uma solução analítica conhecida quando alimentado com seus próprios pontos de amostragem. Não devem ser usados para corrigir automaticamente o valor de Kt finito.
+
+### Arquivos e evidências
+
+- [Workflow de solver aprovado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42421310615), com cálculos reais e testes do extrapolador.
+- [Artefato bruto](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42421310615/artifacts/13593462656) `chapa-finita-tracao-real-cps8r`, ID 13593462656, SHA-256 `6408e265cb691957b74419dded86127b61f1f213c377f2b32239c0938bb4adb1`. Retenção prevista até **07/12/2026**.
+- [Dados observados e limites em JSON](../dados/chapa-finita-furo-2026-11-07.json).
+- [Código de geração e pós-processamento](https://github.com/pedromaintenance/engenharia-mecanica-livre/blob/main/src/engmec/chapa_finita.py).
+
+## 9. Avaliação crítica e próximo gate
+
+A carga real foi integrada como `T×t×H` em cada face do quarto de chapa, e os casos passaram na execução externa. A tendência com a largura é mecanicamente plausível, mas **a validação externa independente ainda está pendente**. Os próximos passos são: controlar a convergência em W=160/320 mm; comparar contra uma referência de **chapa quadrada finita de mesmo aspecto e condições de contorno**; gerar uma malha independente (por exemplo, via Gmsh) e confrontar tensões na superfície com outro pós-processamento.
+
+O estudo não autoriza estabelecer limites de desgaste, soldagem ou integridade de olhais. É um experimento de tensão plana linear-elástica, sem contato de pino, plastificação ou fadiga.

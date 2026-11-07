@@ -51,3 +51,7 @@ O [comparativo C3D8 versus C3D20R](laboratorios/comparar-elementos-fem.md) foi e
 ## Kirsch: tensões perto do furo — ciclo 09
 
 O [laboratório de Kirsch](laboratorios/kirsch-furo.md) mediu a distribuição de tensões ao redor de um furo em malha curva CPS8R com contorno externo prescrito analiticamente. O [benchmark externo](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42415560152) passou; o erro RMS tensorial ponderado por área diminuiu de 0,521% para 0,072%. O `Kt=3` é referência do problema ideal infinito e **não** parâmetro validado de olhais reais. [Dados numéricos e limitações](dados/kirsch-cps8r-2026-11-07.json).
+
+## Chapa quadrada finita tracionada — ciclo 10
+
+O [Laboratório 10](laboratorios/chapa-finita-furo.md) aplica tração nas bordas externas de uma chapa quadrada finita com furo, usando elementos CPS8R. O [CalculiX executou cinco casos](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42421310615); a estimativa `Kt` superficial vem de uma extrapolação declarada, não é tensão diretamente lida no bordo. A [base de resultados](dados/chapa-finita-furo-2026-11-07.json) distingue a referência bruta da líquida e não apresenta Kirsch infinito como solução exata da placa finita.
