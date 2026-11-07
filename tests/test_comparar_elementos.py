@@ -29,14 +29,30 @@ class TestCompararElementos(unittest.TestCase):
     def test_conn_20_e_mids_compartilhados(self):
         deck,meta=montar_deck("C3D20R",4,2,2)
         part=deck.split("*ELEMENT,TYPE=C3D20R,ELSET=EALL\n")[1].split("*NSET,")[0]
-        conn=[[int(n) for n in line.split(",")] for line in part.strip().splitlines()]
+        lines=part.strip().splitlines()
+        self.assertEqual(len(lines),32)
+        conn=[
+            [int(n) for n in lines[i].split(",")] + [int(n) for n in lines[i+1].split(",")]
+            for i in range(0,len(lines),2)
+        ]
         self.assertEqual(len(conn),16)
+        self.assertTrue(all(len(lines[i].split(","))==16 and len(lines[i+1].split(","))==5
+                            for i in range(0,len(lines),2)))
         self.assertTrue(all(len(c)==21 for c in conn))
         edges={(min(a,b),max(a,b)) for x in conn
                for a,b in zip(x[1:9], x[2:10])}
         self.assertGreater(len(edges),0)
         self.assertTrue(all(len(set(c[1:]))==20 for c in conn))
         self.assertTrue(all(len({mid for mid in c[9:]})==12 for c in conn))
+
+    def test_linhas_de_conectividade_nao_excedem_16_entradas(self):
+        deck,_=montar_deck("C3D20R",8,8,8)
+        part=deck.split("*ELEMENT,TYPE=C3D20R,ELSET=EALL\n")[1].split("*NSET,")[0]
+        lines=part.strip().splitlines()
+        self.assertEqual(len(lines),2*8**3)
+        self.assertTrue(all(len(line.split(","))<=16 for line in lines))
+        self.assertTrue(all(len(lines[i].split(","))==16 and len(lines[i+1].split(","))==5
+                            for i in range(0,len(lines),2)))
 
     def test_deck_linear_com_saida_tensao(self):
         deck,meta=montar_deck("C3D8",2,2,2)

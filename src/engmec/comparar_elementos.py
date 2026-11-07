@@ -104,8 +104,12 @@ def montar_deck(
         f"{ident}, {xyz[0]:.16g}, {xyz[1]:.16g}, {xyz[2]:.16g}"
         for ident,xyz in sorted(coordinates.items())
     )
+    # Parser CalculiX splitline aceita no máximo 16 entradas por linha.
+    # Para C3D20R: 1 ID + 15 nós na 1ª linha, 5 nós na continuação.
     ebl = "\n".join(
-        f"{ids[0]}, " + ", ".join(str(i) for i in ids[1:]) for ids in conn
+        f"{ids[0]}, " + ", ".join(str(i) for i in ids[1:16]) + "\n"
+        + ", ".join(str(i) for i in ids[16:])
+        for ids in conn
     )
     rebuilt = (prefix+"*NODE\n"+nbl+"\n"+
                "*ELEMENT,TYPE=C3D20R,ELSET=EALL\n"+ebl+"\n"+
@@ -263,7 +267,10 @@ def executar(pasta: str | Path, familia: str="C3D20R", nx: int=2, ny: int=2,nz:i
     (destino/"solver.log").write_text(proc.stdout+"\n"+proc.stderr,encoding="utf-8")
     dat=destino/(job+".dat")
     if proc.returncode!=0 or not dat.exists():
-        raise RuntimeError(f"Solver não concluiu: rc={proc.returncode}; dat={dat.exists()}")
+        detalhe=(proc.stdout+"\n"+proc.stderr).strip()[-2400:]
+        raise RuntimeError(
+            f"Solver não concluiu: rc={proc.returncode}; dat={dat.exists()}; detalhe:\n{detalhe}"
+        )
     raw=dat.read_text(encoding="utf-8",errors="replace")
     disp=flexao_calculix.extrair_dat(raw,meta)
     stress=extrair_tensoes_dat(raw,meta)
