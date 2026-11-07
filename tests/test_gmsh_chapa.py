@@ -34,7 +34,7 @@ class TestGmshChapa(unittest.TestCase):
                 gerar_geo(**args)
 
     def test_msh_incompleto_nao_e_aceito(self):
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegex(ValueError,"Seção MSH2 ausente: Nodes"):
             importar_msh2("$MeshFormat\n2.2 0 8\n$EndMeshFormat\n",
                           a=.01,H=.04,nr=8,nt=16)
 

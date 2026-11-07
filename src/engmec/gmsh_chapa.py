@@ -71,7 +71,7 @@ Recombine Surface {{1,2}};
 def importar_msh2(texto:str,*,a:float,H:float,nr:int,nt:int)->dict:
     lines=texto.splitlines()
     def section(name:str):
-        start=f'\${name}';stop=f'\$End{name}'
+        start=f'${name}';stop=f'$End{name}'
         try:
             i=lines.index(start)
             j=lines.index(stop,i+1)
