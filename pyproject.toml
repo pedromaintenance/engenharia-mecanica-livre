@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "engenharia-mecanica-livre"
-version = "0.11.0"
+version = "0.12.0"
 description = "Base aberta de conhecimento e ferramentas de Engenharia Mecânica"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -23,3 +23,6 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 engmec = ["data/*.json"]
+
+[project.optional-dependencies]
+fem2d = ["numpy>=1.26,<3", "scipy>=1.12,<2"]

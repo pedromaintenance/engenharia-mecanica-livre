@@ -32,6 +32,8 @@ jobs:
           python -m pip install "numpy>=1.26,<3" "scipy>=1.12,<2"
           dpkg-query -W gmsh calculix-ccx
           python -c 'import numpy, scipy; print("numpy",numpy.__version__,"scipy",scipy.__version__)'
+          mkdir -p build/ciclo12
+          python -m pip freeze > build/ciclo12/pip-freeze.txt
       - name: Testes unitarios de Q8, derivadas e patch test
         run: |
           python -m unittest discover -s tests -p 'test_fem2d_indep.py' -v

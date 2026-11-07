@@ -2,7 +2,7 @@
 
 Uma base pública para **estudar, pesquisar, calcular, experimentar e resolver problemas mecânicos** sem abandonar o rigor científico.
 
-O projeto está na fase **v0.11**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
+O projeto está na fase **v0.12**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
 
 ## Comece por aqui
 
@@ -22,6 +22,7 @@ O projeto está na fase **v0.11**. O portal está publicado, a primeira coleçã
 | Estudar concentração de tensões em furo circular | [Laboratório 09 — Kirsch](laboratorios/kirsch-furo.md) |
 | Estudar chapa finita efetivamente tracionada | [Laboratório 10 — chapa com furo](laboratorios/chapa-finita-furo.md) |
 | Comparar malhas independentes e refinar largura | [Laboratório 11 — Gmsh × autoral](laboratorios/gmsh-chapa.md) |
+| Conferir outra implementação do solver FEM e tensão de borda | [Laboratório 12 — Dois solvers Q8](laboratorios/dois-solvers-q8.md) |
 | Consultar restrições por obra | [Auditoria documental de direitos](governanca/auditoria-obras.md) |
 | Estruturar investigação de falha | [Diagnóstico de manutenção](manutencao/diagnostico.md) |
 | Continuar o projeto em novos ciclos | [Roadmap mestre](roadmaps/master.md) e [agentes](governanca/agentes.md) |

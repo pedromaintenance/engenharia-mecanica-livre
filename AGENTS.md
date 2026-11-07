@@ -48,3 +48,7 @@ Para uma chapa realmente tracionada, não impor deslocamentos exatos de Kirsch n
 ## Ciclo 11 — verificação de malha independente
 
 Benchmark de chapa quadrada finita com malha externa Gmsh deve manter rigorosamente as cargas físicas, os eixos de simetria e as definições dos fatores de concentração. Acordo de duas malhas usando o mesmo solver **não representa validação completa do FEM**; indicar diferenças de distribuição e jacobiano em cada caso. Não alegar convergência em H/a=8/16 antes de executar três malhas por largura. Consulte `src/engmec/gmsh_chapa.py` e `docs/laboratorios/gmsh-chapa.md`.
+
+## Ciclo 12 — dois solucionadores, níveis distintos de independência
+
+A comparação Python Q8/SciPy × CPS8R/CalculiX exige identidade do `.msh` comprovada por SHA256, mesma tração e D de tensão plana e documentação de diferenças de quadratura e recuperação de tensão. Não declarar o protótipo SciPy como software industrial homologado nem tratar a concordância de Kt como validação física. Conferir `docs/laboratorios/dois-solvers-q8.md` e `src/engmec/fem2d_indep.py` antes de alterar os benchmarks.

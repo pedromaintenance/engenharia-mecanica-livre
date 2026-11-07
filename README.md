@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.11 (05/11/2026)
+## Estado: ciclo v0.12 (07/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
@@ -54,6 +54,10 @@ Novo benchmark de **chapa quadrada com furo central**, elemento CPS8R, tração 
 ## Independência geométrica e verificação de largura — ciclo 11
 
 A v0.11 introduz **malha quadrática Gmsh gerada de forma independente**, importação MSH2, reconstrução física da carga de borda e análise de tensões no CalculiX. Os resultados Gmsh são confrontados com o gerador polar autoral, mantendo mesmo problema físico e solver. Também estão programados novos refinamentos para chapas H/a=8 e 16, cada uma com n=16,24,32. **Não equivale a validação independente do solver ou da integridade estrutural real.** [Laboratório 11](docs/laboratorios/gmsh-chapa.md).
+
+## Dois solvers FEM independentes — ciclo 12
+
+O [Laboratório 12](docs/laboratorios/dois-solvers-q8.md) confronta o CalculiX CPS8R com um **novo solucionador FEM Q8 implementado em Python/NumPy/SciPy**. Ambos resolvem **exatamente a mesma malha Gmsh MSH2** (hashes idênticos) sob tração real. O CalculiX estima Kt por ajuste de tensões de Gauss; a implementação autoral calcula o gradiente do deslocamento **diretamente na parede do furo**. Quatro pares externos foram executados; as diferenças relativas observadas ficaram entre **0,22% e 2,29%**. O código Python ainda é um **protótipo de pesquisa, não um segundo software industrial validado**. [Dataset e limitações](docs/dados/ciclo12-solvers-independentes-2026-11-07.json).
 
 ## Grade e ferramentas
 

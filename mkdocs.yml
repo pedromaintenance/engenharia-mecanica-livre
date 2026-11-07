@@ -63,6 +63,7 @@ nav:
       - Furo circular — Kirsch: laboratorios/kirsch-furo.md
       - Chapa finita com furo: laboratorios/chapa-finita-furo.md
       - Malhas independentes — Gmsh: laboratorios/gmsh-chapa.md
+      - Dois solvers Q8: laboratorios/dois-solvers-q8.md
   - Projeto:
       - Arquitetura: arquitetura.md
       - Método científico: metodologia.md
@@ -90,3 +91,4 @@ nav:
       - Ciclo 09: ciclos/ciclo-09.md
       - Ciclo 10: ciclos/ciclo-10.md
       - Ciclo 11: ciclos/ciclo-11.md
+      - Ciclo 12: ciclos/ciclo-12.md
