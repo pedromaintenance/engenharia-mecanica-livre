@@ -268,6 +268,18 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
         raise RuntimeError(f"ElmerSolver falhou rc={p.returncode}: {(p.stdout+p.stderr)[-3000:]}")
     disp,vtu,conferencia_vtu=_meshio_displacements(out,mesh,a=a,H=H)
     stress=_crit_stress(mesh,disp,E=E,nu=nu,a=a,T=T,H=H)
+    # Ciclo 14: MESMO vetor de deslocamentos Elmer; variar so a recuperacao.
+    from .recuperar_tensao import recuperar, escrever_csv
+    recuperacao, gauss_rows = recuperar(mesh,disp,a=a,H=H,T=T,E=E,nu=nu)
+    if abs(recuperacao["metodos"]["A_gradiente_bordo"]["kt_gross"]-
+           stress["kt_gross_gradiente_direto"])>1e-9:
+        raise ValueError("Regressao no recuperador de gradiente da parede")
+    (out/"recuperacao.json").write_text(
+        json.dumps(recuperacao,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+    escrever_csv(out/"gauss_tensoes.csv",gauss_rows)
+    (out/"deslocamentos_elmer.json").write_text(json.dumps(
+        {str(n):[float(v[0]),float(v[1])] for n,v in disp.items()},
+        indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
     native=resolver_scipy(mesh,E=E,nu=nu,thickness=.005,traction=T,hole_radius=a,halfwidth=H)
     pairs={}
     for name,(x,y,k) in {
@@ -303,6 +315,11 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
         "point_displacements":pairs,
         "vtu":str(vtu.relative_to(out)),
         "conferencia_vtu":conferencia_vtu,
+        "arquivos_recuperacao":{
+            "resumo":"recuperacao.json",
+            "gauss":"gauss_tensoes.csv",
+            "deslocamentos":"deslocamentos_elmer.json"
+        },
         "duration_s":time.perf_counter()-t0,
         "note":"Stress recovery SAME B operator; displacement solved independently by Elmer and SciPy."
     }
