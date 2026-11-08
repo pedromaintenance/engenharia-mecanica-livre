@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.15 (08/11/2026)
+## Estado: ciclo v0.16 (08/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
@@ -25,6 +25,10 @@ O [workflow externo aprovado](https://github.com/pedromaintenance/engenharia-mec
 ## Ciclo 15 — influência de comprimento e largura em chapas perfuradas
 
 A [v0.15](docs/laboratorios/chapa-retangular-comprimento.md) generaliza o problema de chapa quadrada para **retângulos de comprimento L e largura W independentes**, com tração no eixo x, furo central e simetria. Foram executadas [18 simulações FEM externas](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42522437925), com `L/W=1,2,4`, `d/W=0,25 ou 0,125` e 3 malhas. O caso `L/W=1` reproduziu o ciclo 14; os retângulos longos aproximaram a curva de **Peterson em Kt da seção líquida**, sem extrapolar indevidamente a fórmula para chapas quadradas. Para d/W=0,25, L/W=4 e 1152 elementos Q8, Kt líquido foi **2,4345** (Peterson ~**2,4203**). A proximidade ainda não é prova de convergência ou validação física. [Dataset de auditoria](docs/dados/ciclo15-chapas-retangulares-2026-11-08.json).
+
+## Ciclo 16 — convergência fina e qualidade geométrica Q8
+
+A [v0.16](docs/laboratorios/convergencia-fina-retangulo.md) amplia os modelos de chapa perfurada para **2.048, 3.200 e 4.608 elementos Q8**, com [12 simulações externas Elmer/SciPy aprovadas](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42525939565). O Kt líquido do recuperador C variou apenas **0,0011–0,0052%** entre n40 e n48, mas o teste de ordem assintótica **não aprovou GCI para nenhuma das quatro séries C**. Em `L/W=4`, alguns elementos apresentaram razão de cordas de **22–23** e ângulos mínimos de **12–13°** — refinamento sem controle de forma não garante qualidade. [Dados integrais auditados](docs/dados/ciclo16-convergencia-fina-2026-11-08.json), importados automaticamente após validação de SHA256. Nenhuma conclusão habilita dimensionamento ou manutenção de estruturas reais.
 
 ## Visitar os acervos
 

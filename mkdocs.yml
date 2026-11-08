@@ -67,6 +67,7 @@ nav:
       - Solver externo Elmer FEM: laboratorios/elmer-fem-independente.md
       - Recuperação de tensões — três métodos: laboratorios/recuperacao-tensoes-furo.md
       - Chapa retangular — comprimento e largura: laboratorios/chapa-retangular-comprimento.md
+      - Convergência fina Q8 e GCI condicional: laboratorios/convergencia-fina-retangulo.md
   - Projeto:
       - Arquitetura: arquitetura.md
       - Método científico: metodologia.md
@@ -98,3 +99,4 @@ nav:
       - Ciclo 13: ciclos/ciclo-13.md
       - Ciclo 14: ciclos/ciclo-14.md
       - Ciclo 15: ciclos/ciclo-15.md
+      - Ciclo 16: ciclos/ciclo-16.md

@@ -64,3 +64,7 @@ Exigir o **mesmo vetor nodal Elmer** quando comparar A `D B u` diretamente na bo
 ## Ciclo 15 — comparação com referências de tiras longas
 
 Distinguir comprimento L na direção x da tração, largura W na direção y e furo d, `L/W=Hx/Hy`, `d/W=a/Hy`. O ajuste Peterson `3−3.14ρ+3.667ρ²−1.527ρ³` usa **seção líquida**, portanto converter fatores FEM de base bruta antes de comparar. O domínio quadrado L/W=1 deve reproduzir o ciclo 14; as outras geometrias devem manter a mesma carga física, material e simetria, mas a mudança de forma dos elementos exige refinamento adicional. Não validar Kt real de olhal de mineração sem ensaio e contato específicos. [Lab15](docs/laboratorios/chapa-retangular-comprimento.md).
+
+## Ciclo 16 — não confundir estabilização aparente com validação
+
+O [dataset integral](docs/dados/ciclo16-convergencia-fina-2026-11-08.json) contém 12 execuções Elmer reais e estudos n24/32/40/48. Diferenças de Kt C entre n40/48 são pequenas (0,0011–0,0052%), **mas GCI C não foi emitido por falta de ordem estável**. Uma série A teve GCI condicionado sob critérios explicitados, sem valor de aceitação industrial. A progressão geométrica fixa da malha Gmsh produziu elementos com razão de cordas ~23 e ângulo mínimo ~12° em L/W=4; próxima tarefa deve tratar **qualidade geométrica** e manter mesmo carregamento e material antes de afirmar convergência. Não transformar GCI em tensão admissível ou certificado de integridade.

@@ -2,7 +2,7 @@
 
 Uma base pública para **estudar, pesquisar, calcular, experimentar e resolver problemas mecânicos** sem abandonar o rigor científico.
 
-O projeto está na fase **v0.15**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
+O projeto está na fase **v0.16**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
 
 ## Comece por aqui
 
@@ -70,3 +70,7 @@ O [Laboratório 14](laboratorios/recuperacao-tensoes-furo.md) aplicou gradiente 
 ## Chapas retangulares perfuradas — ciclo 15
 
 O [Laboratório 15](laboratorios/chapa-retangular-comprimento.md) separa **comprimento na direção da tração e largura transversal** com Gmsh Q8 e Elmer FEM. Em [18 execuções reais](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42522437925), verifica `d/W=0,25/0,125`, `L/W=1,2,4` e três refinamentos. A chapa quadrada reproduziu o baseline do ciclo 14; a tira longa se aproximou da curva Peterson com denominador líquido correto. [Dados](dados/ciclo15-chapas-retangulares-2026-11-08.json). A comparação continua educacional e exige mais refinamento antes de qualquer aplicação estrutural.
+
+## Convergência fina e qualidade das malhas — ciclo 16
+
+O [Laboratório 16](laboratorios/convergencia-fina-retangulo.md) registra 12 simulações externas em malhas de 2.048, 3.200 e 4.608 elementos Q8 e compara três recuperadores no mesmo campo Elmer. O método C se estabilizou entre as malhas finas, **sem satisfazer os critérios conservadores para GCI**. A avaliação geométrica identificou aumento da distorção em elementos de chapas L/W=4; veja o [dataset integral](dados/ciclo16-convergencia-fina-2026-11-08.json). Estudos de convergência não são validação experimental ou liberação de equipamento.
