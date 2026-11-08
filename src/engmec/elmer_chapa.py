@@ -184,19 +184,21 @@ def _meshio_displacements(root:Path, mesh:dict, *, a:float,H:float):
     xy=np.asarray(view.points)[:,:2]
     if len(vector)!=len(xy) or not np.all(np.isfinite(vector)):
         raise ValueError("Nodal displacement VTU não finito ou incompleto")
-    scale=max(H,a)
-    pos={}
-    for idx,pt in enumerate(xy):
-        key=(round(pt[0]/scale,9),round(pt[1]/scale,9))
-        if key in pos:
-            raise ValueError("VTU tem coordenadas repetidas")
-        pos[key]=vector[idx]
-    original={}
-    for idx,pt in mesh["nodes"].items():
-        key=(round(pt[0]/scale,9),round(pt[1]/scale,9))
-        if key not in pos:
-            raise ValueError(f"Nó de Gmsh ausente no VTU, id={idx}, {pt[:2]}")
-        original[idx]=pos[key]
+    # VTU pode usar coordenadas float32: coincidencia por igualdade de
+    # ponto flutuante arredondado e estrita demais. Testar distancia fisica.
+    from scipy.spatial import cKDTree
+    labels=sorted(mesh["nodes"])
+    source=np.asarray([mesh["nodes"][tag][:2] for tag in labels],dtype=float)
+    tree=cKDTree(xy)
+    distances,matched=tree.query(source,k=1)
+    tol=max(H,a)*2e-5
+    if not np.all(np.isfinite(distances)) or np.max(distances)>tol:
+        k=int(np.argmax(distances))
+        raise ValueError(f"Nó de Gmsh sem correspondencia VTU id={labels[k]}, "
+                         f"distancia={distances[k]}, tolerancia={tol}")
+    if len(set(int(j) for j in matched))!=len(labels):
+        raise ValueError("Correspondencia VTU nao bijetiva; nos repetidos ou ausentes")
+    original={tag:vector[int(j)] for tag,j in zip(labels,matched)}
     return original, candidates[-1]
 
 
