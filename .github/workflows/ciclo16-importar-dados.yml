@@ -1,0 +1,58 @@
+name: Ciclo 16 — importar dataset bruto aprovado ao repositorio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/ciclo16-importar-dados.yml"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  importar-resumo:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Recuperar resumo real do workflow aprovado
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/engmec-ciclo16
+          gh run download 42525939565 \
+            --repo pedromaintenance/engenharia-mecanica-livre \
+            --name ciclo16-convergencia-fina-completa \
+            --dir /tmp/engmec-ciclo16
+          test -s /tmp/engmec-ciclo16/resumo_ciclo16.json
+          printf '%s  %s\n' \
+            'cba11d2427c5464ee13757f071a53ac18955abade7390648201023c6bb6784cd' \
+            /tmp/engmec-ciclo16/resumo_ciclo16.json | sha256sum --check
+          mkdir -p docs/dados
+          cp /tmp/engmec-ciclo16/resumo_ciclo16.json \
+            docs/dados/ciclo16-convergencia-fina-2026-11-08.json
+          python - <<'PY'
+          import json
+          p="docs/dados/ciclo16-convergencia-fina-2026-11-08.json"
+          d=json.load(open(p))
+          assert d["ciclo"]==16 and d["novos_casos"]==12 and len(d["casos"])==12
+          assert len(d["series"])==4
+          print("Dataset permanente validado:",p)
+          PY
+      - name: Commit versionado do JSON imutavel validado
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/dados/ciclo16-convergencia-fina-2026-11-08.json
+          if git diff --cached --quiet; then
+            echo "Arquivo ja publicado, nenhum commit necessario"
+          else
+            git commit -m "data: publicar resumo real do ciclo 16 com SHA256 verificado"
+            git push origin HEAD:main
+          fi
