@@ -60,3 +60,7 @@ Na verificação de tensão superficial, reconhecer a diferença entre **solvers
 ## Ciclo 14 — três recuperadores de tensão
 
 Exigir o **mesmo vetor nodal Elmer** quando comparar A `D B u` diretamente na borda, B Gauss seis coeficientes e C patch ponderado de quatro coeficientes. O último é **experimental**, não certificado SPR/Zienkiewicz–Zhu. Publicar os vieses observados no campo analítico de Kirsch, especialmente os valores grandes na malha grosseira W160/128, e a tensão radial residual da parede livre. A amplitude entre Kt não fornece limite absoluto do erro real nem autorização de reparo industrial. Ver `docs/laboratorios/recuperacao-tensoes-furo.md`.
+
+## Ciclo 15 — comparação com referências de tiras longas
+
+Distinguir comprimento L na direção x da tração, largura W na direção y e furo d, `L/W=Hx/Hy`, `d/W=a/Hy`. O ajuste Peterson `3−3.14ρ+3.667ρ²−1.527ρ³` usa **seção líquida**, portanto converter fatores FEM de base bruta antes de comparar. O domínio quadrado L/W=1 deve reproduzir o ciclo 14; as outras geometrias devem manter a mesma carga física, material e simetria, mas a mudança de forma dos elementos exige refinamento adicional. Não validar Kt real de olhal de mineração sem ensaio e contato específicos. [Lab15](docs/laboratorios/chapa-retangular-comprimento.md).

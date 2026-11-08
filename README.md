@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.14 (08/11/2026)
+## Estado: ciclo v0.15 (08/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
@@ -21,6 +21,10 @@
 ## Ciclo 14 — três recuperadores de tensão na mesma solução FEM
 
 O [workflow externo aprovado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42502117900) aplicou três métodos de estimativa superficial de Kt bruto ao **mesmo vetor de deslocamentos Elmer** de seis malhas: (A) gradiente direto Q8 na parede do furo, (B) extrapolação de seis coeficientes de Gauss 3×3 e (C) ajuste ponderado local de quatro coeficientes. A amplitude entre recuperadores caiu de **0,2698→0,0034 em W=80 mm** e de **0,6567→0,0126 em W=160 mm**, com refinamento de 128 a 1.152 elementos. **Essa amplitude mede sensibilidade do método, não incerteza física certificada.** [Laboratório](docs/laboratorios/recuperacao-tensoes-furo.md) · [dataset real](docs/dados/ciclo14-recuperacao-tensoes-2026-11-08.json).
+
+## Ciclo 15 — influência de comprimento e largura em chapas perfuradas
+
+A [v0.15](docs/laboratorios/chapa-retangular-comprimento.md) generaliza o problema de chapa quadrada para **retângulos de comprimento L e largura W independentes**, com tração no eixo x, furo central e simetria. Foram executadas [18 simulações FEM externas](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42522437925), com `L/W=1,2,4`, `d/W=0,25 ou 0,125` e 3 malhas. O caso `L/W=1` reproduziu o ciclo 14; os retângulos longos aproximaram a curva de **Peterson em Kt da seção líquida**, sem extrapolar indevidamente a fórmula para chapas quadradas. Para d/W=0,25, L/W=4 e 1152 elementos Q8, Kt líquido foi **2,4345** (Peterson ~**2,4203**). A proximidade ainda não é prova de convergência ou validação física. [Dataset de auditoria](docs/dados/ciclo15-chapas-retangulares-2026-11-08.json).
 
 ## Visitar os acervos
 

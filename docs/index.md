@@ -2,7 +2,7 @@
 
 Uma base pública para **estudar, pesquisar, calcular, experimentar e resolver problemas mecânicos** sem abandonar o rigor científico.
 
-O projeto está na fase **v0.14**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
+O projeto está na fase **v0.15**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
 
 ## Comece por aqui
 
@@ -66,3 +66,7 @@ A [comparação de geradores](laboratorios/gmsh-chapa.md) foi executada no [work
 ## Recuperação de tensões no contorno — ciclo 14
 
 O [Laboratório 14](laboratorios/recuperacao-tensoes-furo.md) aplicou gradiente direto, extrapolação de Gauss e patch ponderado sobre **a mesma solução externa Elmer**. A [execução de seis malhas](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42502117900) mostra diminuição da amplitude dos Kt estimados com o refinamento, mas também um viés expressivo dos ajustes em malhas grosseiras identificado com dados analíticos de Kirsch. [Dataset e limitações](dados/ciclo14-recuperacao-tensoes-2026-11-08.json).
+
+## Chapas retangulares perfuradas — ciclo 15
+
+O [Laboratório 15](laboratorios/chapa-retangular-comprimento.md) separa **comprimento na direção da tração e largura transversal** com Gmsh Q8 e Elmer FEM. Em [18 execuções reais](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42522437925), verifica `d/W=0,25/0,125`, `L/W=1,2,4` e três refinamentos. A chapa quadrada reproduziu o baseline do ciclo 14; a tira longa se aproximou da curva Peterson com denominador líquido correto. [Dados](dados/ciclo15-chapas-retangulares-2026-11-08.json). A comparação continua educacional e exige mais refinamento antes de qualquer aplicação estrutural.

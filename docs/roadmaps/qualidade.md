@@ -29,3 +29,7 @@ Quando houver falha de segurança, dado de cliente, copyright ou valor de refer�
 ## Gate de pós-processamento FEM — ciclo 14
 
 Na recuperação do pico `Kt`, comparar os métodos com **mesmos deslocamentos, malha, material e tensão nominal**, distinguindo alteração de solver de alteração de pós-processamento. Em malha grosseira podem existir vieses relevantes do extrapolador mesmo quando o equilíbrio de forças é satisfeito. Exigir teste analítico separado em Kirsch e diagnóstico da tensão radial na parede; nunca divulgar faixa entre métodos como se fosse uma **incerteza física de medição** ou uma margem de aceitação. [Laboratório](../laboratorios/recuperacao-tensoes-furo.md).
+
+## Verificação de domínio — ciclo 15
+
+Na comparação com Peterson/Howland, usar **Kt de tensão nominal líquida**, `Kt_net=(1-d/W)Kt_bruto`, mantendo `d/W=a/Hy` e `L/W=Hx/Hy`. Um ajuste para tira longa não representa referência exata para uma chapa quadrada, e igual número de elementos em geometrias com diferentes L/W **não garante erro local igual**. Verificar seis regressões do caso quadrado, jacobiano Q8 e saldo de forças. Uma aproximação de 0,2% da curva com 1152 elementos não substitui estudo de convergência se a variação entre malhas ainda supera 2%.

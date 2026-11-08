@@ -79,3 +79,7 @@ Novo adaptador `src/engmec/elmer_chapa.py`: atribui grupos físicos ao CAD Gmsh,
 ## Ciclo 14 — três estimadores sobre a mesma solução Elmer
 
 `src/engmec/recuperar_tensao.py` implementa gradiente direto (A), ajuste local de tensões nos pontos Gauss (B) e patch ponderado por quadratura/jacobiano/proximidade (C); exporta os deslocamentos nodais `deslocamentos_elmer.json` e os pontos `gauss_tensoes.csv`. É crucial **não re-solver o FEM** entre A/B/C. A amplitude entre resultados não é intervalo estatístico de confiança ou erro absoluto físico. [Workflow externo aprovado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42502117900) · [dataset permanente](../dados/ciclo14-recuperacao-tensoes-2026-11-08.json).
+
+## Ciclo 15 — Geometria retangular L/W independente
+
+`src/engmec/chapa_retangular.py` estende o CAD Gmsh transfinite de duas superfícies, preservando geometria quadrada byte a byte em L/W=1. O importador MSH2, os contornos do Elmer e a referência de deslocamentos SciPy passam a distinguir Hx (semicomprimento na direção x) de Hy (semilargura transversal y), mantendo `F=T Hy t` no quadrante. Novo estimador `kt_peterson_liquido` documenta o polinômio de tira longa e converte corretamente ao fator bruto. [Execução de 18 casos](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42522437925), [dataset](../dados/ciclo15-chapas-retangulares-2026-11-08.json). Não transportar ajuste de tira longa para chapa quadrada sem verificar campo de tração.
