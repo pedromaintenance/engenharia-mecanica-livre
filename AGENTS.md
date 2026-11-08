@@ -52,3 +52,7 @@ Benchmark de chapa quadrada finita com malha externa Gmsh deve manter rigorosame
 ## Ciclo 12 — dois solucionadores, níveis distintos de independência
 
 A comparação Python Q8/SciPy × CPS8R/CalculiX exige identidade do `.msh` comprovada por SHA256, mesma tração e D de tensão plana e documentação de diferenças de quadratura e recuperação de tensão. Não declarar o protótipo SciPy como software industrial homologado nem tratar a concordância de Kt como validação física. Conferir `docs/laboratorios/dois-solvers-q8.md` e `src/engmec/fem2d_indep.py` antes de alterar os benchmarks.
+
+## Ciclo 13 — Elmer FEM externo
+
+Na verificação de tensão superficial, reconhecer a diferença entre **solvers independentes** (CalculiX, Elmer e FEM Q8 SciPy) e **pós-processamento compartilhado**. Comparar a mesma malha, propriedades constitutivas, estado plano e carregamento; documentar a conversão Gmsh→ElmerGrid, os IDs de fronteira e coordenadas de referência no VTU. O valor de Kt superficial por `DBu` continua sujeito a erro numérico e não constitui validação experimental. Referências: `docs/laboratorios/elmer-fem-independente.md` e `src/engmec/elmer_chapa.py`.

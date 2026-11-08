@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.12 (07/11/2026)
+## Estado: ciclo v0.13 (07/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
@@ -58,6 +58,10 @@ A v0.11 introduz **malha quadrática Gmsh gerada de forma independente**, import
 ## Dois solvers FEM independentes — ciclo 12
 
 O [Laboratório 12](docs/laboratorios/dois-solvers-q8.md) confronta o CalculiX CPS8R com um **novo solucionador FEM Q8 implementado em Python/NumPy/SciPy**. Ambos resolvem **exatamente a mesma malha Gmsh MSH2** (hashes idênticos) sob tração real. O CalculiX estima Kt por ajuste de tensões de Gauss; a implementação autoral calcula o gradiente do deslocamento **diretamente na parede do furo**. Quatro pares externos foram executados; as diferenças relativas observadas ficaram entre **0,22% e 2,29%**. O código Python ainda é um **protótipo de pesquisa, não um segundo software industrial validado**. [Dataset e limitações](docs/dados/ciclo12-solvers-independentes-2026-11-07.json).
+
+## Solucionador FEM externo Elmer — ciclo 13
+
+A versão 0.13 integra **ElmerGrid e ElmerSolver**, além de Gmsh, CalculiX e o FEM independente em Python/SciPy. O novo laboratório utiliza o **Elmer StressSolver em tensão plana** com a mesma geometria de chapa quadrada finita tracionada e compara deslocamentos e tensões com o SciPy usando **um recuperador de gradiente comum**. A finalidade é separar melhor diferenças do campo de deslocamentos e do pós-processamento. [Laboratório 13](docs/laboratorios/elmer-fem-independente.md). A comparação permanece educativa, não habilita engenharia de componentes reais.
 
 ## Grade e ferramentas
 
