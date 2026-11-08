@@ -200,8 +200,21 @@ def resolver(mesh:dict, *, E:float=200e9,nu:float=.3,
                     gauss_near.append(float(s_tt/traction))
     if not gauss_near:
         raise ValueError("Nenhum Gauss proximo ao bordo critico")
+    reference_points={}
+    for key,(cx,cy,dof_id) in {
+        "hole_top_uy":(0.,hole_radius,1),
+        "hole_right_ux":(hole_radius,0.,0),
+        "right_axis_ux":(halfwidth,0.,0),
+        "top_axis_uy":(0.,halfwidth,1),
+    }.items():
+        selected=[n for n,coord in nodes.items()
+                  if abs(coord[0]-cx)<1e-10 and abs(coord[1]-cy)<1e-10]
+        if len(selected)!=1:
+            raise ValueError("Ponto de referencia nao unico: "+key)
+        reference_points[key]=float(u[2*loc[selected[0]]+dof_id])
     runtime=time.perf_counter()-start
     return {
+        "deslocamentos_pontos_referencia_m":reference_points,
         "solver":"solucionador Q8 independente Python NumPy/SciPy",
         "formulacao":"tensao plana, matriz B e elasticidade linear, 3x3 Gauss",
         "nos":len(labels),"elementos":len(contributions),
