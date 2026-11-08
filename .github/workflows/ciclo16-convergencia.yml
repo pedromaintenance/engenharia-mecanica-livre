@@ -1,0 +1,119 @@
+name: Ciclo 16 — convergencia fina e qualidade das malhas Q8
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/engmec/convergencia_malha.py"
+      - "src/engmec/elmer_chapa.py"
+      - "src/engmec/chapa_retangular.py"
+      - "src/engmec/recuperar_tensao.py"
+      - "scripts/avaliar_ciclo16.py"
+      - "tests/test_convergencia_malha.py"
+      - "tests/test_aval_ciclo16.py"
+      - ".github/workflows/ciclo16-convergencia.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  solver:
+    strategy:
+      fail-fast: false
+      matrix:
+        ha: [4, 8]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Preparar Gmsh e dependencias Elmer Q8
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y gmsh
+          python -m pip install -e ".[elmer]"
+          python -m pip freeze > pip-freeze-elmer.txt
+          gmsh -version
+      - name: Preparar imagem externa Elmer FEM
+        run: |
+          docker pull ghcr.io/femforge-io/femforge-elmer:0.2.0
+          docker image inspect ghcr.io/femforge-io/femforge-elmer:0.2.0 --format '{{index .RepoDigests 0}}' > elmer-image-digest.txt
+          mkdir -p /tmp/engmec-elmer-bin
+          cat > /tmp/engmec-elmer-bin/ElmerGrid <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          exec docker run --rm --user "$(id -u):$(id -g)" \
+            -v "$PWD:/work" -w /work \
+            ghcr.io/femforge-io/femforge-elmer:0.2.0 ElmerGrid "$@"
+          EOF
+          cat > /tmp/engmec-elmer-bin/ElmerSolver <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          exec docker run --rm --user "$(id -u):$(id -g)" \
+            -v "$PWD:/work" -w /work \
+            ghcr.io/femforge-io/femforge-elmer:0.2.0 ElmerSolver "$@"
+          EOF
+          chmod +x /tmp/engmec-elmer-bin/*
+          echo "/tmp/engmec-elmer-bin" >> "$GITHUB_PATH"
+      - name: Testes de ordem observada e geometria
+        run: |
+          python -m unittest discover -s tests -p 'test_convergencia_malha.py' -v
+          python -m unittest discover -s tests -p 'test_aval_ciclo16.py' -v
+      - name: Resolver 6 malhas finas por relacao furo largura
+        env:
+          OMP_NUM_THREADS: "1"
+          OPENBLAS_NUM_THREADS: "1"
+          MKL_NUM_THREADS: "1"
+        run: |
+          set -euo pipefail
+          HA="${{ matrix.ha }}"
+          H=$(python -c 'import sys; print(0.01*int(sys.argv[1]))' "$HA")
+          mkdir -p "build/ciclo16/versions-ha-$HA"
+          cp pip-freeze-elmer.txt elmer-image-digest.txt "build/ciclo16/versions-ha-$HA/"
+          for aspect in 2 4; do
+            L=$(python -c 'import sys; print(float(sys.argv[1])*int(sys.argv[2]))' "$H" "$aspect")
+            for n in 32 40 48; do
+              echo "CASE H/a=$HA L/W=$aspect n=$n"
+              python -m engmec.elmer_chapa --nr "$n" --nt "$((2*n))" \
+                --semilargura-m "$H" --semicomprimento-x-m "$L" \
+                --saida "build/ciclo16/ha-$HA-lw-$aspect-n-$n"
+            done
+          done
+      - name: Guardar todos os campos e logs, mesmo na falha
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ciclo16-parcial-ha-${{ matrix.ha }}
+          path: build/ciclo16/
+          retention-days: 30
+          if-no-files-found: warn
+
+  consolidar:
+    needs: solver
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependencias para validação geométrica Q8
+        run: python -m pip install -e ".[fem2d]"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ciclo16-parcial-ha-*
+          path: build/ciclo16/
+          merge-multiple: true
+      - name: Avaliar 12 casos, registrar qualidade e condicionar GCI
+        run: python scripts/avaliar_ciclo16.py --pasta build/ciclo16/
+      - name: Arquivar resultado consolidado e todos dados brutos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ciclo16-convergencia-fina-completa
+          path: build/ciclo16/
+          retention-days: 30
+          if-no-files-found: warn
