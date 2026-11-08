@@ -142,6 +142,7 @@ Solver 2
   Procedure = "ResultOutputSolve" "ResultOutputSolver"
   Output File Name = "elmer"
   Vtu Format = Logical True
+  Displace Mesh = Logical False
 End
 
 Boundary Condition 1
@@ -184,22 +185,32 @@ def _meshio_displacements(root:Path, mesh:dict, *, a:float,H:float):
     xy=np.asarray(view.points)[:,:2]
     if len(vector)!=len(xy) or not np.all(np.isfinite(vector)):
         raise ValueError("Nodal displacement VTU não finito ou incompleto")
-    # VTU pode usar coordenadas float32: coincidencia por igualdade de
-    # ponto flutuante arredondado e estrita demais. Testar distancia fisica.
+    # Elmer ResultOutputSolver pode usar configuracao de visualizacao com
+    # coordenadas deslocadas. Nao aumentar tolerancia para ocultar o fato:
+    # tentar geometria original ou subtrair campo U ANTES do confronto.
     from scipy.spatial import cKDTree
     labels=sorted(mesh["nodes"])
     source=np.asarray([mesh["nodes"][tag][:2] for tag in labels],dtype=float)
-    tree=cKDTree(xy)
-    distances,matched=tree.query(source,k=1)
     tol=max(H,a)*2e-5
-    if not np.all(np.isfinite(distances)) or np.max(distances)>tol:
-        k=int(np.argmax(distances))
-        raise ValueError(f"Nó de Gmsh sem correspondencia VTU id={labels[k]}, "
-                         f"distancia={distances[k]}, tolerancia={tol}")
-    if len(set(int(j) for j in matched))!=len(labels):
-        raise ValueError("Correspondencia VTU nao bijetiva; nos repetidos ou ausentes")
+    choice=None
+    for mode,candidate in (
+        ("coordenadas_originais",xy),
+        ("coordenadas_deformadas_corrigidas",xy-vector),
+    ):
+        distances,matched=cKDTree(candidate).query(source,k=1)
+        if (np.all(np.isfinite(distances))
+            and float(np.max(distances))<=tol
+            and len(set(int(j) for j in matched))==len(labels)):
+            choice=(mode,distances,matched)
+            break
+    if choice is None:
+        d0,_=cKDTree(xy).query(source,k=1)
+        d1,_=cKDTree(xy-vector).query(source,k=1)
+        raise ValueError("VTU nao equivale a MSH2 em referencia ou configuracao deformada; "
+                         f"max_original={max(d0):.4e}, max_corrigida={max(d1):.4e}, tol={tol}")
+    mode,distances,matched=choice
     original={tag:vector[int(j)] for tag,j in zip(labels,matched)}
-    return original, candidates[-1]
+    return original,candidates[-1],{"modo":mode,"max_erro_m":float(max(distances)),"tolerancia_m":tol}
 
 
 def _crit_stress(mesh:dict, disp:dict, *, E:float,nu:float,a:float,T:float,H:float)->dict:
@@ -255,7 +266,7 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
     (out/"solver.log").write_text(p.stdout+"\n"+p.stderr,encoding="utf-8")
     if p.returncode:
         raise RuntimeError(f"ElmerSolver falhou rc={p.returncode}: {(p.stdout+p.stderr)[-3000:]}")
-    disp,vtu=_meshio_displacements(out,mesh,a=a,H=H)
+    disp,vtu,conferencia_vtu=_meshio_displacements(out,mesh,a=a,H=H)
     stress=_crit_stress(mesh,disp,E=E,nu=nu,a=a,T=T,H=H)
     native=resolver_scipy(mesh,E=E,nu=nu,thickness=.005,traction=T,hole_radius=a,halfwidth=H)
     pairs={}
@@ -291,6 +302,7 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
         },
         "point_displacements":pairs,
         "vtu":str(vtu.relative_to(out)),
+        "conferencia_vtu":conferencia_vtu,
         "duration_s":time.perf_counter()-t0,
         "note":"Stress recovery SAME B operator; displacement solved independently by Elmer and SciPy."
     }
