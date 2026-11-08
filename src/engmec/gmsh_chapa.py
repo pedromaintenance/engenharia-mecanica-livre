@@ -68,7 +68,10 @@ Recombine Surface {{1,2}};
 """
 
 
-def importar_msh2(texto:str,*,a:float,H:float,nr:int,nt:int)->dict:
+def importar_msh2(texto:str,*,a:float,H:float,nr:int,nt:int,Hx:float|None=None)->dict:
+    Hx=H if Hx is None else positive('semicomprimento_x',Hx)
+    if Hx<H:
+        raise ValueError('Estudo exige Hx>=Hy, tracao no eixo x')
     lines=texto.splitlines()
     def section(name:str):
         start=f'${name}';stop=f'$End{name}'
@@ -129,7 +132,7 @@ def importar_msh2(texto:str,*,a:float,H:float,nr:int,nt:int)->dict:
     right=[];top=[];hole=[]
     for n1,n2,nmid in edges:
         xyz=[nodes[n] for n in (n1,nmid,n2)]
-        if all(abs(p[0]-H)<2e-9 for p in xyz):
+        if all(abs(p[0]-Hx)<2e-9 for p in xyz):
             right.append((n1,nmid,n2))
         elif all(abs(p[1]-H)<2e-9 for p in xyz):
             top.append((n1,nmid,n2))

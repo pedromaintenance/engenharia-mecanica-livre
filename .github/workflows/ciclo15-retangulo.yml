@@ -1,0 +1,92 @@
+name: Ciclo 15 — efeito de comprimento e largura em chapa retangular
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/engmec/elmer_chapa.py"
+      - "src/engmec/fem2d_indep.py"
+      - "src/engmec/recuperar_tensao.py"
+      - "src/engmec/chapa_retangular.py"
+      - "src/engmec/gmsh_chapa.py"
+      - "tests/test_chapa_retangular.py"
+      - "scripts/avaliar_ciclo15.py"
+      - "tests/test_aval_ciclo15.py"
+      - ".github/workflows/ciclo15-retangulo.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  comparar-elmer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar Gmsh, NumPy, SciPy e meshio
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y gmsh
+          python -m pip install -e ".[fem2d]"
+          python -m pip install "meshio>=5.3,<6"
+          python -m pip freeze > pip-freeze-elmer.txt
+          gmsh -version
+      - name: Preparar Elmer FEM externo no Docker e registrar imagem
+        run: |
+          docker pull ghcr.io/femforge-io/femforge-elmer:0.2.0
+          docker image inspect ghcr.io/femforge-io/femforge-elmer:0.2.0 --format '{{index .RepoDigests 0}}' > elmer-image-digest.txt
+          mkdir -p /tmp/engmec-elmer-bin
+          cat > /tmp/engmec-elmer-bin/ElmerGrid <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          exec docker run --rm --user "$(id -u):$(id -g)" \
+            -v "$PWD:/work" -w /work \
+            ghcr.io/femforge-io/femforge-elmer:0.2.0 ElmerGrid "$@"
+          EOF
+          cat > /tmp/engmec-elmer-bin/ElmerSolver <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          exec docker run --rm --user "$(id -u):$(id -g)" \
+            -v "$PWD:/work" -w /work \
+            ghcr.io/femforge-io/femforge-elmer:0.2.0 ElmerSolver "$@"
+          EOF
+          chmod +x /tmp/engmec-elmer-bin/*
+          echo "/tmp/engmec-elmer-bin" >> "$GITHUB_PATH"
+      - name: Testes de propriedades fisicas e input Elmer
+        run: |
+          python -m unittest discover -s tests -p 'test_chapa_retangular.py' -v
+          python -m unittest discover -s tests -p 'test_aval_ciclo15.py' -v
+      - name: Resolver Elmer e aplicar tres recuperadores na mesma solucao
+        env:
+          OMP_NUM_THREADS: "1"
+          OPENBLAS_NUM_THREADS: "1"
+          MKL_NUM_THREADS: "1"
+        run: |
+          set -euo pipefail
+          mkdir -p build/ciclo15
+          cp pip-freeze-elmer.txt elmer-image-digest.txt build/ciclo15/
+          for H in 4 8; do
+            halfwidth=$(python -c 'import sys; print(.01*int(sys.argv[1]))' "$H")
+            for aspect in 1 2 4; do
+              halflength=$(python -c 'import sys; print(float(sys.argv[1])*int(sys.argv[2]))' "$halfwidth" "$aspect")
+              for n in 8 16 24; do
+                python -m engmec.elmer_chapa --nr "$n" --nt "$((2*n))" \
+                  --semilargura-m "$halfwidth" --semicomprimento-x-m "$halflength" \
+                  --saida "build/ciclo15/elmer/ha-$H-lw-$aspect-n-$n"
+              done
+            done
+          done
+      - name: Consolidar deslocamentos e Kt com limites explicitados
+        run: python scripts/avaliar_ciclo15.py --pasta build/ciclo15/elmer
+      - name: Arquivar SIF, Gmsh, Elmer mesh, VTU, logs, JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ciclo15-chapas-retangulares
+          path: build/ciclo15/
+          retention-days: 30
+          if-no-files-found: warn

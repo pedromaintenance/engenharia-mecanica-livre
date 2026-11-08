@@ -21,9 +21,17 @@ from .gmsh_chapa import gerar_geo, importar_msh2
 from .fem2d_indep import resolver as resolver_scipy, _b_matrix, _matriz_constitutiva
 
 
-def geo_elmer(*, nr:int=16, nt:int=32, H:float=.04, a:float=.01)->str:
+def geo_elmer(*, nr:int=16, nt:int=32, H:float=.04, a:float=.01,
+              L:float|None=None)->str:
     """Mesmo CAD, agora com IDs físicos explícitos para ElmerGrid."""
-    geo=gerar_geo(nr=nr,nt=nt,raio_m=a,semilargura_m=H)
+    L=H if L is None else L
+    if L<H or not math.isfinite(L):
+        raise ValueError('Semicomprimento L deve ser finito e >= semilargura H')
+    if math.isclose(L,H,rel_tol=0.,abs_tol=1e-15):
+        geo=gerar_geo(nr=nr,nt=nt,raio_m=a,semilargura_m=H)
+    else:
+        from .chapa_retangular import gerar_geo_retangular
+        geo=gerar_geo_retangular(nr=nr,nt=nt,a=a,Hy=H,Hx=L)
     return geo+"""
 // Identificadores físicos: ElmerGrid pode remapear, verifique mesh.boundary.
 Physical Surface("elastic_domain", 101) = {1,2};
@@ -35,8 +43,12 @@ Physical Curve("traction_free_hole", 205) = {4,7};
 """
 
 
-def _parse_elmer_mesh(folder:Path, *, H:float, a:float)->dict:
+def _parse_elmer_mesh(folder:Path, *, H:float, a:float,
+                      Hx:float|None=None)->dict:
     """Deriva tags de BC do arquivo convertido, sem presumir IDs do Gmsh."""
+    Hx=H if Hx is None else Hx
+    if Hx<H:
+        raise ValueError('Semicomprimento menor que semilargura')
     points={}
     for line in (folder/"mesh.nodes").read_text().splitlines():
         t=line.split()
@@ -65,8 +77,8 @@ def _parse_elmer_mesh(folder:Path, *, H:float, a:float)->dict:
             raise ValueError(f"Tipo de aresta Elmer inesperado: {kind}")
         n=[int(z) for z in t[5:]]
         xyz=[points[k] for k in n]
-        eps=max(H,a)*1e-6
-        if all(abs(p[0]-H)<eps for p in xyz):
+        eps=max(Hx,H,a)*1e-6
+        if all(abs(p[0]-Hx)<eps for p in xyz):
             key="right"
         elif all(abs(p[0])<eps for p in xyz):
             key="sym_x"
@@ -239,14 +251,17 @@ def _crit_stress(mesh:dict, disp:dict, *, E:float,nu:float,a:float,T:float,H:flo
 
 
 def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
-             T:float=10e6,E:float=200e9,nu:float=.3, gmsh_cmd:str="gmsh",
+             L:float|None=None,T:float=10e6,E:float=200e9,nu:float=.3, gmsh_cmd:str="gmsh",
              grid_cmd:str="ElmerGrid",solver_cmd:str="ElmerSolver")->dict:
     for app in (gmsh_cmd,grid_cmd,solver_cmd):
         if shutil.which(app) is None:
             raise RuntimeError(f"Programa requerido não encontrado: {app}")
+    L=H if L is None else L
+    if L<H or not math.isfinite(L):
+        raise ValueError('L deve ser >=H')
     out=Path(out_dir).resolve()
     out.mkdir(parents=True,exist_ok=True)
-    (out/"model.geo").write_text(geo_elmer(nr=nr,nt=nt,H=H,a=a),encoding="utf-8")
+    (out/"model.geo").write_text(geo_elmer(nr=nr,nt=nt,H=H,a=a,L=L),encoding="utf-8")
     t0=time.perf_counter()
     commands=[
         ("gmsh",[gmsh_cmd,"model.geo","-2","-order","2","-format","msh2","-o","model.msh"]),
@@ -257,8 +272,8 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
         (out/(phase+".log")).write_text(p.stdout+"\n"+p.stderr,encoding="utf-8")
         if p.returncode:
             raise RuntimeError(f"{phase} falhou rc={p.returncode}: {(p.stdout+p.stderr)[-2500:]}")
-    mesh=importar_msh2((out/"model.msh").read_text(encoding="utf-8"),a=a,H=H,nr=nr,nt=nt)
-    info=_parse_elmer_mesh(out/"elmermesh",H=H,a=a)
+    mesh=importar_msh2((out/"model.msh").read_text(encoding="utf-8"),a=a,H=H,nr=nr,nt=nt,Hx=L)
+    info=_parse_elmer_mesh(out/"elmermesh",H=H,a=a,Hx=L)
     if info["elmer_elements"]!=len(mesh["elements"]):
         raise ValueError("Perda de elementos na conversão do ElmerGrid")
     (out/"case.sif").write_text(_sif(info,T=T,E=E,nu=nu),encoding="utf-8")
@@ -266,7 +281,7 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
     (out/"solver.log").write_text(p.stdout+"\n"+p.stderr,encoding="utf-8")
     if p.returncode:
         raise RuntimeError(f"ElmerSolver falhou rc={p.returncode}: {(p.stdout+p.stderr)[-3000:]}")
-    disp,vtu,conferencia_vtu=_meshio_displacements(out,mesh,a=a,H=H)
+    disp,vtu,conferencia_vtu=_meshio_displacements(out,mesh,a=a,H=max(H,L))
     stress=_crit_stress(mesh,disp,E=E,nu=nu,a=a,T=T,H=H)
     # Ciclo 14: MESMO vetor de deslocamentos Elmer; variar so a recuperacao.
     from .recuperar_tensao import recuperar, escrever_csv
@@ -280,12 +295,12 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
     (out/"deslocamentos_elmer.json").write_text(json.dumps(
         {str(n):[float(v[0]),float(v[1])] for n,v in disp.items()},
         indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
-    native=resolver_scipy(mesh,E=E,nu=nu,thickness=.005,traction=T,hole_radius=a,halfwidth=H)
+    native=resolver_scipy(mesh,E=E,nu=nu,thickness=.005,traction=T,hole_radius=a,halfwidth=H,length_x=L)
     pairs={}
     for name,(x,y,k) in {
         "hole_top_uy":(0.,a,1),
         "hole_right_ux":(a,0.,0),
-        "right_axis_ux":(H,0.,0),
+        "right_axis_ux":(L,0.,0),
         "top_axis_uy":(0.,H,1)
     }.items():
         nodes=[tag for tag,(xx,yy,z) in mesh["nodes"].items()
@@ -303,6 +318,8 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
     report={
         "case":"finite_square_hole_elmer_vs_scipy",
         "H_over_a":H/a,"nr":nr,"nt":nt,
+        "L_over_W":L/H,"d_over_W":a/H,
+        "semicomprimento_x_m":L,"semilargura_y_m":H,
         "mesh_sha256":hashlib.sha256((out/"model.msh").read_bytes()).hexdigest(),
         "mesh_info":info,"recovery":stress,
         "scipy_reference":{
@@ -332,10 +349,11 @@ def main():
     parser.add_argument("--nr",type=int,default=16)
     parser.add_argument("--nt",type=int,default=32)
     parser.add_argument("--semilargura-m",type=float,default=.04)
+    parser.add_argument("--semicomprimento-x-m",type=float,default=None)
     parser.add_argument("--raio-m",type=float,default=.01)
     parser.add_argument("--saida",required=True)
     opt=parser.parse_args()
-    print(json.dumps(executar(opt.saida,nr=opt.nr,nt=opt.nt,H=opt.semilargura_m,a=opt.raio_m),
+    print(json.dumps(executar(opt.saida,nr=opt.nr,nt=opt.nt,H=opt.semilargura_m,L=opt.semicomprimento_x_m,a=opt.raio_m),
                      indent=2,ensure_ascii=False))
 
 

@@ -89,13 +89,16 @@ def _gauss_3():
 
 def resolver(mesh:dict, *, E:float=200e9,nu:float=.3,
              thickness:float=.005,traction:float=10e6,
-             hole_radius:float=.01,halfwidth:float=.04)->dict:
+             hole_radius:float=.01,halfwidth:float=.04,
+             length_x:float|None=None)->dict:
     """Montagem Q8 3x3, solucao esparsa, reacoes e pico de tensao no furo."""
     import numpy as np
     from scipy.sparse import coo_matrix
     from scipy.sparse.linalg import spsolve
     start=time.perf_counter()
-    if thickness<=0 or traction<=0 or halfwidth<=3*hole_radius*.99999:
+    length_x=halfwidth if length_x is None else length_x
+    if (thickness<=0 or traction<=0 or halfwidth<=3*hole_radius*.99999
+            or length_x<halfwidth or not math.isfinite(length_x)):
         raise ValueError("Geometria/espessura/tracao invalidas")
     D=_matriz_constitutiva(E,nu)
     nodes=mesh["nodes"]
@@ -204,7 +207,7 @@ def resolver(mesh:dict, *, E:float=200e9,nu:float=.3,
     for key,(cx,cy,dof_id) in {
         "hole_top_uy":(0.,hole_radius,1),
         "hole_right_ux":(hole_radius,0.,0),
-        "right_axis_ux":(halfwidth,0.,0),
+        "right_axis_ux":(length_x,0.,0),
         "top_axis_uy":(0.,halfwidth,1),
     }.items():
         selected=[n for n,coord in nodes.items()
