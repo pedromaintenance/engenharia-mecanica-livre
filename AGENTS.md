@@ -56,3 +56,7 @@ A comparação Python Q8/SciPy × CPS8R/CalculiX exige identidade do `.msh` comp
 ## Ciclo 13 — Elmer FEM externo
 
 Na verificação de tensão superficial, reconhecer a diferença entre **solvers independentes** (CalculiX, Elmer e FEM Q8 SciPy) e **pós-processamento compartilhado**. Comparar a mesma malha, propriedades constitutivas, estado plano e carregamento; documentar a conversão Gmsh→ElmerGrid, os IDs de fronteira e coordenadas de referência no VTU. O valor de Kt superficial por `DBu` continua sujeito a erro numérico e não constitui validação experimental. Referências: `docs/laboratorios/elmer-fem-independente.md` e `src/engmec/elmer_chapa.py`.
+
+## Ciclo 14 — três recuperadores de tensão
+
+Exigir o **mesmo vetor nodal Elmer** quando comparar A `D B u` diretamente na borda, B Gauss seis coeficientes e C patch ponderado de quatro coeficientes. O último é **experimental**, não certificado SPR/Zienkiewicz–Zhu. Publicar os vieses observados no campo analítico de Kirsch, especialmente os valores grandes na malha grosseira W160/128, e a tensão radial residual da parede livre. A amplitude entre Kt não fornece limite absoluto do erro real nem autorização de reparo industrial. Ver `docs/laboratorios/recuperacao-tensoes-furo.md`.

@@ -25,3 +25,7 @@ Taxa de fonte revisada, aderência ao schema, falhas de CI, regressões numéric
 Quando houver falha de segurança, dado de cliente, copyright ou valor de referência incorreto: retirar/suspender o item, registrar issue, elaborar análise causal e só publicar novo conteúdo com evidência de correção.
 
 **Não há aprovação automática de projeto de engenharia** por um agente ou calculadora.
+
+## Gate de pós-processamento FEM — ciclo 14
+
+Na recuperação do pico `Kt`, comparar os métodos com **mesmos deslocamentos, malha, material e tensão nominal**, distinguindo alteração de solver de alteração de pós-processamento. Em malha grosseira podem existir vieses relevantes do extrapolador mesmo quando o equilíbrio de forças é satisfeito. Exigir teste analítico separado em Kirsch e diagnóstico da tensão radial na parede; nunca divulgar faixa entre métodos como se fosse uma **incerteza física de medição** ou uma margem de aceitação. [Laboratório](../laboratorios/recuperacao-tensoes-furo.md).

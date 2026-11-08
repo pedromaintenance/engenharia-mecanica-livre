@@ -75,3 +75,7 @@ Implementado `src/engmec/fem2d_indep.py` com Q8 serendipidade, derivadas analít
 ## Ciclo 13 — Integração Elmer FEM/ElmerGrid
 
 Novo adaptador `src/engmec/elmer_chapa.py`: atribui grupos físicos ao CAD Gmsh, converte MSH2 Q8 por ElmerGrid, reconcilia IDs de contorno **pelas coordenadas** e gera `case.sif` do StressSolve em tensão plana. O ElmerSolver resolve independentemente, salva `VTU`; o pós-processamento reconcilia nós com tolerância física e corrige eventual geometria deformada, identificando essa transformação no JSON. Confronto de **deslocamentos de quatro pontos e Kt por gradiente direto comum** ao FEM SciPy. Executa em contêiner externo [Elmer 0.2.0](https://docs.femforge.io/user-guide/elmer/) com digest registrado. A compatibilidade de outra implementação não certifica fator de concentração para componente real.
+
+## Ciclo 14 — três estimadores sobre a mesma solução Elmer
+
+`src/engmec/recuperar_tensao.py` implementa gradiente direto (A), ajuste local de tensões nos pontos Gauss (B) e patch ponderado por quadratura/jacobiano/proximidade (C); exporta os deslocamentos nodais `deslocamentos_elmer.json` e os pontos `gauss_tensoes.csv`. É crucial **não re-solver o FEM** entre A/B/C. A amplitude entre resultados não é intervalo estatístico de confiança ou erro absoluto físico. [Workflow externo aprovado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42502117900) · [dataset permanente](../dados/ciclo14-recuperacao-tensoes-2026-11-08.json).

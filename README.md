@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.13 (07/11/2026)
+## Estado: ciclo v0.14 (08/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
@@ -17,6 +17,10 @@
 - **Próximos passos:** revisar assets específicos, ampliar fichas, comparar o FEM autoral com solver externo e integrar ferramentas opcionais.
 
 **Importante:** descoberta de um portal **não é auditoria de todo seu acervo**; software catalogado **não significa integração concluída**. As referências originais ficam nas instituições e as permissões são verificadas por item.
+
+## Ciclo 14 — três recuperadores de tensão na mesma solução FEM
+
+O [workflow externo aprovado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42502117900) aplicou três métodos de estimativa superficial de Kt bruto ao **mesmo vetor de deslocamentos Elmer** de seis malhas: (A) gradiente direto Q8 na parede do furo, (B) extrapolação de seis coeficientes de Gauss 3×3 e (C) ajuste ponderado local de quatro coeficientes. A amplitude entre recuperadores caiu de **0,2698→0,0034 em W=80 mm** e de **0,6567→0,0126 em W=160 mm**, com refinamento de 128 a 1.152 elementos. **Essa amplitude mede sensibilidade do método, não incerteza física certificada.** [Laboratório](docs/laboratorios/recuperacao-tensoes-furo.md) · [dataset real](docs/dados/ciclo14-recuperacao-tensoes-2026-11-08.json).
 
 ## Visitar os acervos
 

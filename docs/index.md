@@ -2,7 +2,7 @@
 
 Uma base pública para **estudar, pesquisar, calcular, experimentar e resolver problemas mecânicos** sem abandonar o rigor científico.
 
-O projeto está na fase **v0.13**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
+O projeto está na fase **v0.14**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
 
 ## Comece por aqui
 
@@ -62,3 +62,7 @@ O [Laboratório 10](laboratorios/chapa-finita-furo.md) aplica tração nas borda
 ## Malha Gmsh independente — ciclo 11
 
 A [comparação de geradores](laboratorios/gmsh-chapa.md) foi executada no [workflow externo aprovado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42422518394). O Gmsh construiu malha quadrática própria, importada e solucionada no CalculiX para a mesma chapa finita do laboratório 10. A maior divergência entre os três pares testados ficou abaixo de 0,58% em Kt bruto estimado, com as ressalvas de extrapolação. [Dataset auditável](dados/ciclo11-gmsh-chapa-2026-11-07.json).
+
+## Recuperação de tensões no contorno — ciclo 14
+
+O [Laboratório 14](laboratorios/recuperacao-tensoes-furo.md) aplicou gradiente direto, extrapolação de Gauss e patch ponderado sobre **a mesma solução externa Elmer**. A [execução de seis malhas](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42502117900) mostra diminuição da amplitude dos Kt estimados com o refinamento, mas também um viés expressivo dos ajustes em malhas grosseiras identificado com dados analíticos de Kirsch. [Dataset e limitações](dados/ciclo14-recuperacao-tensoes-2026-11-08.json).

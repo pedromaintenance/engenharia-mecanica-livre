@@ -1,0 +1,266 @@
+{
+  "schema_version": "1.0.0",
+  "project": "Engenharia Mecânica Livre",
+  "cycle": 14,
+  "date": "2026-11-08",
+  "version": "0.14.0",
+  "title": "Sensibilidade de Kt aos três recuperadores no mesmo campo Elmer",
+  "provenance": {
+    "run": "https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42502117900",
+    "run_id": 42502117900,
+    "commit": "42644a6f3ee9877e154859ff7dd806fe4b469c17",
+    "artifact_id": 13625564700,
+    "artifact_name": "ciclo14-recuperacao-tensoes",
+    "artifact_sha256": "sha256:c89a52b9033b47dc9f4217360266887da632446f981507d9dd8fae214f5c818e",
+    "artifact_bytes": 5037483,
+    "expires_at": "2026-12-08T16:53:50Z",
+    "elmer_image": "ghcr.io/femforge-io/femforge-elmer:0.2.0",
+    "image_digest_file": "elmer-image-digest.txt",
+    "python_versions_file": "pip-freeze-elmer.txt"
+  },
+  "physical_problem": {
+    "a_m": 0.01,
+    "H_m": [
+      0.04,
+      0.08
+    ],
+    "T_pa": 10000000,
+    "E_pa": 200000000000,
+    "poisson": 0.3,
+    "state": "plane stress",
+    "mesh": "Gmsh quad8; Elmer external solver; same displacements for all 3 methods"
+  },
+  "methodology": {
+    "A": "gradiente B@u no vertice de contorno",
+    "B": "seis coeficientes, ajuste local por pontos Gauss sem peso",
+    "C": "quatro coeficientes, patch ponderado pelo jacobiano Gauss e pela proximidade"
+  },
+  "uncertainty_definition": "faixa deterministica de variacao do pos-processamento, nao intervalo de confianca nem limite superior fisico",
+  "results": [
+    {
+      "H_sobre_a": 4,
+      "largura_mm": 80,
+      "n": 8,
+      "elementos": 128,
+      "kt_A_gradiente": 3.6181243888669803,
+      "kt_B_gauss_extrapolacao": 3.3932241113102757,
+      "kt_C_patch_ponderado": 3.3482868248422055,
+      "amplitude_metodos_kt": 0.26983756402477477,
+      "faixa_valores_kt": [
+        3.3482868248422055,
+        3.6181243888669803
+      ],
+      "condicao_patch_B": 135.18680082090265,
+      "condicao_patch_C": 28.942061378683995,
+      "sigma_rr_A": 0.11838862142034033,
+      "sigma_rr_B": 0.13402230794556605,
+      "sigma_rr_C": 0.1238417671815368,
+      "residuo_tt_B": 0.06244769692340383,
+      "residuo_tt_C": 0.06575949990826682,
+      "kirsch_bias": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.029553461025135,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.839243210340625,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.8085440627412757,
+        "B_bias": -0.1607567896593749,
+        "C_bias": -0.19145593725872434,
+        "A_bias": 0.029553461025134897,
+        "referencia_Kt": 3,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "amostras_patch": 76,
+      "gauss_total": 1152,
+      "mesh_sha256": "4c65c19553d7a7c306efe96b29e417d77d60916dceb4dde4832b4d897079425e",
+      "fonte_deslocamentos": "mesmo VTU real gerado pelo ElmerSolver"
+    },
+    {
+      "H_sobre_a": 4,
+      "largura_mm": 80,
+      "n": 16,
+      "elementos": 512,
+      "kt_A_gradiente": 3.5889141122768096,
+      "kt_B_gauss_extrapolacao": 3.5696078027635054,
+      "kt_C_patch_ponderado": 3.563842080396368,
+      "amplitude_metodos_kt": 0.025072031880441603,
+      "faixa_valores_kt": [
+        3.563842080396368,
+        3.5889141122768096
+      ],
+      "condicao_patch_B": 147.81522449132962,
+      "condicao_patch_C": 26.154895645308887,
+      "sigma_rr_A": 0.015870636057185306,
+      "sigma_rr_B": 0.01274275025138426,
+      "sigma_rr_C": 0.01210870943833934,
+      "residuo_tt_B": 0.005870989552753201,
+      "residuo_tt_C": 0.0070150675988276566,
+      "kirsch_bias": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.003540192496575,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.988341413409328,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.984255947323011,
+        "B_bias": -0.011658586590672204,
+        "C_bias": -0.015744052676989195,
+        "A_bias": 0.003540192496574779,
+        "referencia_Kt": 3,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "amostras_patch": 78,
+      "gauss_total": 4608,
+      "mesh_sha256": "7b53a7751c8693c3b2e7c94303abc716ac6d952742be4248b22c5cb49f68270e",
+      "fonte_deslocamentos": "mesmo VTU real gerado pelo ElmerSolver"
+    },
+    {
+      "H_sobre_a": 4,
+      "largura_mm": 80,
+      "n": 24,
+      "elementos": 1152,
+      "kt_A_gradiente": 3.584406203951414,
+      "kt_B_gauss_extrapolacao": 3.5825197399560844,
+      "kt_C_patch_ponderado": 3.5810343032693943,
+      "amplitude_metodos_kt": 0.003371900682019646,
+      "faixa_valores_kt": [
+        3.5810343032693943,
+        3.584406203951414
+      ],
+      "condicao_patch_B": 160.9929215749715,
+      "condicao_patch_C": 25.35835490064351,
+      "sigma_rr_A": 0.002880141160682405,
+      "sigma_rr_B": 0.000874755423675259,
+      "sigma_rr_C": 0.0011286556045760543,
+      "residuo_tt_B": 0.0009548347478954496,
+      "residuo_tt_C": 0.0013790723993720388,
+      "kirsch_bias": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0005146855317926,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9993062958715138,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9982596178939924,
+        "B_bias": -0.0006937041284862389,
+        "C_bias": -0.0017403821060075764,
+        "A_bias": 0.0005146855317925692,
+        "referencia_Kt": 3,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "amostras_patch": 75,
+      "gauss_total": 10368,
+      "mesh_sha256": "93809bf9ad0be4b8434439302b05ed4377ca3f6970cac1b528f5fe48c9fc1f0e",
+      "fonte_deslocamentos": "mesmo VTU real gerado pelo ElmerSolver"
+    },
+    {
+      "H_sobre_a": 8,
+      "largura_mm": 160,
+      "n": 8,
+      "elementos": 128,
+      "kt_A_gradiente": 3.2132731775407413,
+      "kt_B_gauss_extrapolacao": 2.669997550895381,
+      "kt_C_patch_ponderado": 2.5565293365593256,
+      "amplitude_metodos_kt": 0.6567438409814157,
+      "faixa_valores_kt": [
+        2.5565293365593256,
+        3.2132731775407413
+      ],
+      "condicao_patch_B": 124.96903503512706,
+      "condicao_patch_C": 32.373914784800704,
+      "sigma_rr_A": 0.2992950626740812,
+      "sigma_rr_B": 0.2813615133045538,
+      "sigma_rr_C": 0.2713438603247565,
+      "residuo_tt_B": 0.1379032642590725,
+      "residuo_tt_C": 0.14300449647504723,
+      "kirsch_bias": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0906124534835353,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.5255818303595534,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.4343693598004683,
+        "B_bias": -0.4744181696404466,
+        "C_bias": -0.5656306401995317,
+        "A_bias": 0.0906124534835353,
+        "referencia_Kt": 3,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "amostras_patch": 74,
+      "gauss_total": 1152,
+      "mesh_sha256": "13fb4e4922306bcc123f258435ba8eb6430906d01f86bd438526744f6a9658f0",
+      "fonte_deslocamentos": "mesmo VTU real gerado pelo ElmerSolver"
+    },
+    {
+      "H_sobre_a": 8,
+      "largura_mm": 160,
+      "n": 16,
+      "elementos": 512,
+      "kt_A_gradiente": 3.152511558063445,
+      "kt_B_gauss_extrapolacao": 3.0656703992021597,
+      "kt_C_patch_ponderado": 3.0539180223607993,
+      "amplitude_metodos_kt": 0.09859353570264551,
+      "faixa_valores_kt": [
+        3.0539180223607993,
+        3.152511558063445
+      ],
+      "condicao_patch_B": 139.39329075438087,
+      "condicao_patch_C": 27.536395012875946,
+      "sigma_rr_A": 0.055192113906287636,
+      "sigma_rr_B": 0.05645812208908146,
+      "sigma_rr_C": 0.0531197215944923,
+      "residuo_tt_B": 0.027296332297789463,
+      "residuo_tt_C": 0.027893208158035764,
+      "kirsch_bias": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.015689918673262,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.929908934384301,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.920760152148434,
+        "B_bias": -0.07009106561569922,
+        "C_bias": -0.07923984785156613,
+        "A_bias": 0.01568991867326197,
+        "referencia_Kt": 3,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "amostras_patch": 76,
+      "gauss_total": 4608,
+      "mesh_sha256": "3defcaab0a70543e7ca06ec30f3d5a74754bdf4617fade7bf52607f3a7c4ebb2",
+      "fonte_deslocamentos": "mesmo VTU real gerado pelo ElmerSolver"
+    },
+    {
+      "H_sobre_a": 8,
+      "largura_mm": 160,
+      "n": 24,
+      "elementos": 1152,
+      "kt_A_gradiente": 3.1390315982981494,
+      "kt_B_gauss_extrapolacao": 3.1288141530035585,
+      "kt_C_patch_ponderado": 3.12638681977602,
+      "amplitude_metodos_kt": 0.012644778522129307,
+      "faixa_valores_kt": [
+        3.12638681977602,
+        3.1390315982981494
+      ],
+      "condicao_patch_B": 154.37938211042868,
+      "condicao_patch_C": 25.9354798052759,
+      "sigma_rr_A": 0.009688913667396992,
+      "sigma_rr_B": 0.007028326228971477,
+      "sigma_rr_C": 0.006476479362135584,
+      "residuo_tt_B": 0.003274716149353428,
+      "residuo_tt_C": 0.003604802817156726,
+      "kirsch_bias": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.002587844831479,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.992967508225264,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.991035417818913,
+        "B_bias": -0.007032491774736194,
+        "C_bias": -0.008964582181087088,
+        "A_bias": 0.0025878448314791136,
+        "referencia_Kt": 3,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "amostras_patch": 79,
+      "gauss_total": 10368,
+      "mesh_sha256": "97108cedfb2926b1f06ed2fbd80eb9615bca3c443e74a1df4c20623fa2c515e1",
+      "fonte_deslocamentos": "mesmo VTU real gerado pelo ElmerSolver"
+    }
+  ],
+  "limits": [
+    "A regra de recuperacao C e exploratoria, nao SPR Zienkiewicz-Zhu garantido.",
+    "Dois ajustes de tensao com pesos/base diferentes nao estabelecem exatidao.",
+    "Referencia Kirsch infinito controla algoritmos, nao a solucao da chapa finita.",
+    "Nao pode ser usada para dimensionar/inspecionar olhais ou liberar equipamento.",
+    "Kirsch infinite plate is algorithmic control, not exact finite square plate reference.",
+    "Do not use Kt from this educational model as industrial acceptance criteria."
+  ],
+  "evidence": {
+    "external_models": 6,
+    "recovery_methods": 3,
+    "gauss_per_element": 9,
+    "total_kt_estimates": 18,
+    "artifact_raw_data": true
+  }
+}
