@@ -24,7 +24,7 @@ from .fem2d_indep import resolver as resolver_scipy, _b_matrix, _matriz_constitu
 
 def geo_elmer(*, nr:int=16, nt:int=32, H:float=.04, a:float=.01,
               L:float|None=None, estrategia_progressao:str="fixa",
-              interface_interna:str="reta")->str:
+              angular:str="uniforme")->str:
     """Mesmo CAD, agora com IDs físicos explícitos para ElmerGrid."""
     L=H if L is None else L
     if L<H or not math.isfinite(L):
@@ -35,8 +35,8 @@ def geo_elmer(*, nr:int=16, nt:int=32, H:float=.04, a:float=.01,
     else:
         from .chapa_retangular import gerar_geo_retangular
         geo=gerar_geo_retangular(nr=nr,nt=nt,a=a,Hy=H,Hx=L,progressao=q)
-    from .interface_curva import transformar_interface
-    geo=transformar_interface(geo,estrategia=interface_interna,a=a,Hy=H,Hx=L)
+    from .angular_transfinite import aplicar_distribuicao_angular
+    geo=aplicar_distribuicao_angular(geo,modo=angular,nt=nt)
     return geo+"""
 // Identificadores físicos: ElmerGrid pode remapear, verifique mesh.boundary.
 Physical Surface("elastic_domain", 101) = {1,2};
@@ -257,7 +257,7 @@ def _crit_stress(mesh:dict, disp:dict, *, E:float,nu:float,a:float,T:float,H:flo
 
 def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
              L:float|None=None,T:float=10e6,E:float=200e9,nu:float=.3,
-             estrategia_progressao:str="fixa",interface_interna:str="reta",
+             estrategia_progressao:str="fixa",angular:str="uniforme",
              gmsh_cmd:str="gmsh",
              grid_cmd:str="ElmerGrid",solver_cmd:str="ElmerSolver")->dict:
     for app in (gmsh_cmd,grid_cmd,solver_cmd):
@@ -270,7 +270,7 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
     out.mkdir(parents=True,exist_ok=True)
     (out/"model.geo").write_text(geo_elmer(nr=nr,nt=nt,H=H,a=a,L=L,
                 estrategia_progressao=estrategia_progressao,
-                interface_interna=interface_interna),encoding="utf-8")
+                angular=angular),encoding="utf-8")
     t0=time.perf_counter()
     commands=[
         ("gmsh",[gmsh_cmd,"model.geo","-2","-order","2","-format","msh2","-o","model.msh"]),
@@ -328,7 +328,7 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
         "case":"finite_square_hole_elmer_vs_scipy",
         "H_over_a":H/a,"nr":nr,"nt":nt,
         "L_over_W":L/H,"d_over_W":a/H,
-        "interface_interna":interface_interna,
+        "distribuicao_angular":angular,
         "estrategia_progressao_radial":estrategia_progressao,
         "q_radial_efetivo":razao_progressao(nr,estrategia_progressao),
         "q_radial_acumulado":razao_progressao(nr,estrategia_progressao)**nr,
@@ -365,12 +365,12 @@ def main():
     parser.add_argument("--semicomprimento-x-m",type=float,default=None)
     parser.add_argument("--raio-m",type=float,default=.01)
     parser.add_argument("--progressao-radial",choices=["fixa","escalonada"],default="fixa")
-    parser.add_argument("--interface-interna",choices=["reta","curva"],default="reta")
+    parser.add_argument("--distribuicao-angular",choices=["uniforme","ampliada-topo"],default="uniforme")
     parser.add_argument("--saida",required=True)
     opt=parser.parse_args()
     print(json.dumps(executar(opt.saida,nr=opt.nr,nt=opt.nt,H=opt.semilargura_m,L=opt.semicomprimento_x_m,a=opt.raio_m,
                     estrategia_progressao=opt.progressao_radial,
-                    interface_interna=opt.interface_interna),
+                    angular=opt.distribuicao_angular),
                      indent=2,ensure_ascii=False))
 
 
