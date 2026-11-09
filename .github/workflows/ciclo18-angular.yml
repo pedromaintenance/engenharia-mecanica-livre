@@ -170,13 +170,13 @@ jobs:
           p=Path("docs/dados/ciclo18-angular-2026-11-08.json")
           d=json.loads(p.read_text())
           assert d["ciclo"]==18 and len(d["casos"])==16 and len(d["series"])==4
-          assert all(r["qualidade_nova"]["elementos"]==2*r["n"]**2 for r in d["cases"])
+          assert all(r["qualidade_nova"]["elementos"]==2*r["n"]**2 for r in d["casos"])
           PY
           sha256sum docs/dados/ciclo18-angular-2026-11-08.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/dados/ciclo18-angular-2026-11-08.json
           if ! git diff --cached --quiet; then
-            git commit -m "data: salvar 16 solucoes reais de interfaces spline Q8"
+            git commit -m "data: ciclo18 registrar redistribuicao angular Q8 e resultado negativo auditado"
             git push origin main
           fi
