@@ -2,7 +2,7 @@
 
 Uma base pública para **estudar, pesquisar, calcular, experimentar e resolver problemas mecânicos** sem abandonar o rigor científico.
 
-O projeto está na fase **v0.16**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
+O projeto está na fase **v0.17**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
 
 ## Comece por aqui
 
@@ -74,3 +74,7 @@ O [Laboratório 15](laboratorios/chapa-retangular-comprimento.md) separa **compr
 ## Convergência fina e qualidade das malhas — ciclo 16
 
 O [Laboratório 16](laboratorios/convergencia-fina-retangulo.md) registra 12 simulações externas em malhas de 2.048, 3.200 e 4.608 elementos Q8 e compara três recuperadores no mesmo campo Elmer. O método C se estabilizou entre as malhas finas, **sem satisfazer os critérios conservadores para GCI**. A avaliação geométrica identificou aumento da distorção em elementos de chapas L/W=4; veja o [dataset integral](dados/ciclo16-convergencia-fina-2026-11-08.json). Estudos de convergência não são validação experimental ou liberação de equipamento.
+
+## Progressão radial e convergência — ciclo 17
+
+O [Laboratório 17](laboratorios/progressao-radial-q8.md) compara a progressão radial Gmsh constante `q=1,12` com a alternativa escalonada `q(n)=exp(24ln(1,12)/n)`, mantendo física e elementos Q8. [16 modelos Elmer reais](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42546868607) mostram **queda de ~48% na pior razão global de cordas e GCI condicional do método C aceito nas quatro séries**. Entretanto, **a tensão radial residual e a qualidade da faixa junto ao furo pioraram em casos importantes**. [Dados permanentes](dados/ciclo17-malha-radial-2026-11-08.json). A estratégia ainda não é padrão por questões locais e de validação.

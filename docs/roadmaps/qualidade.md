@@ -37,3 +37,7 @@ Na comparação com Peterson/Howland, usar **Kt de tensão nominal líquida**, `
 ## Gate Q8 e estudo assintótico — ciclo 16
 
 Não aprovar GCI só porque duas malhas consecutivas deram Kt próximo de Peterson. Para `n24/32/40/48`, exigir monotonicidade e ordens observadas coerentes. O ciclo 16 alcançou diferença de 0,0011–0,0052% no método C entre n40/48, **mas nenhum dos quatro casos C passou o gate para GCI**. A progressão radial fixa q=1,12 causou aumento da razão entre cordas de alguns elementos com o refinamento; em L/W=4 foi observada razão ~23 e ângulo ~12°. Medir qualidade espacial em paralelo com o erro de tensão e considerar nova topologia antes de inferir regime assintótico. [Laboratório 16](../laboratorios/convergencia-fina-retangulo.md).
+
+## Gate de qualidade heterogênea — ciclo 17
+
+Uma melhora de **47,6–47,8% na pior razão global de cordas** não autoriza concluir que a malha esteja igualmente melhor **junto ao ponto crítico**. Com progressão escalonada, d/W=.125, L/W=4, n48 apresentou pior razão da primeira faixa **4,57→8,07**, mediana 1,12→7,76, e `σrr/T` de `1,7×10⁻⁵→1,0×10⁻³`. Ângulos mínimos globais ~12–13° continuaram idênticos. O GCI condicional do método C em quatro séries mede somente discretização **sob hipótese de regime assintótico do recuperador**; não cobre erro de parede livre, forma de elemento ou dado de material. Exigir **qualidade global + local + tração radial residual + robustez de A/B/C** antes de promover estratégia ao padrão. [Laboratório 17](../laboratorios/progressao-radial-q8.md).
