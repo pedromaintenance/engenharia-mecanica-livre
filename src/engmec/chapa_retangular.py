@@ -11,11 +11,11 @@ from .gmsh_chapa import gerar_geo
 
 
 def gerar_geo_retangular(*,a:float=.01,Hy:float=.04,Hx:float=.08,
-                         nr:int=16,nt:int=32)->str:
+                         nr:int=16,nt:int=32, progressao:float=1.12)->str:
     if (not all(math.isfinite(v) for v in (a,Hy,Hx))
         or a<=0 or Hy<3*a or Hx<Hy):
         raise ValueError("Exigir a>0, Hy>=3a, Hx>=Hy finitos")
-    text=gerar_geo(raio_m=a,semilargura_m=Hy,nr=nr,nt=nt)
+    text=gerar_geo(raio_m=a,semilargura_m=Hy,nr=nr,nt=nt,progressao=progressao)
     if abs(Hx-Hy)<1e-15:
         return text
     square_4="Point(4) = { H,0,0,1 };"

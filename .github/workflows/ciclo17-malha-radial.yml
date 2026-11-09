@@ -1,0 +1,146 @@
+name: Ciclo 17 — progressao radial escalonada e comparacao FEM
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/engmec/progressao_radial.py"
+      - "src/engmec/chapa_retangular.py"
+      - "src/engmec/elmer_chapa.py"
+      - "scripts/avaliar_ciclo17.py"
+      - "tests/test_progressao_radial.py"
+      - "tests/test_aval_ciclo17.py"
+      - ".github/workflows/ciclo17-malha-radial.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  solver:
+    strategy:
+      fail-fast: false
+      matrix:
+        ha: [4, 8]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar Gmsh, NumPy, SciPy e meshio
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y gmsh
+          python -m pip install -e ".[elmer]"
+          python -m pip freeze > pip-freeze-elmer.txt
+          gmsh -version
+      - name: Preparar Elmer FEM externo e registrar digest
+        run: |
+          docker pull ghcr.io/femforge-io/femforge-elmer:0.2.0
+          docker image inspect ghcr.io/femforge-io/femforge-elmer:0.2.0 --format '{{index .RepoDigests 0}}' > elmer-image-digest.txt
+          mkdir -p /tmp/engmec-elmer-bin
+          cat > /tmp/engmec-elmer-bin/ElmerGrid <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          exec docker run --rm --user "$(id -u):$(id -g)" \
+            -v "$PWD:/work" -w /work \
+            ghcr.io/femforge-io/femforge-elmer:0.2.0 ElmerGrid "$@"
+          EOF
+          cat > /tmp/engmec-elmer-bin/ElmerSolver <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          exec docker run --rm --user "$(id -u):$(id -g)" \
+            -v "$PWD:/work" -w /work \
+            ghcr.io/femforge-io/femforge-elmer:0.2.0 ElmerSolver "$@"
+          EOF
+          chmod +x /tmp/engmec-elmer-bin/*
+          echo "/tmp/engmec-elmer-bin" >> "$GITHUB_PATH"
+      - name: Testar equivalencia n24 e consistencia de progressao
+        run: |
+          python -m unittest discover -s tests -p 'test_progressao_radial.py' -v
+          python -m unittest discover -s tests -p 'test_aval_ciclo17.py' -v
+          python -m unittest discover -s tests -p 'test_chapa_retangular.py' -v
+      - name: Simular 8 modelos Q8 escalonados
+        env:
+          OPENBLAS_NUM_THREADS: "1"
+          MKL_NUM_THREADS: "1"
+          OMP_NUM_THREADS: "1"
+        run: |
+          set -euo pipefail
+          HA="${{ matrix.ha }}"
+          H=$(python -c 'import sys; print(.01*int(sys.argv[1]))' "$HA")
+          mkdir -p "build/ciclo17/versions-ha-$HA"
+          cp pip-freeze-elmer.txt elmer-image-digest.txt "build/ciclo17/versions-ha-$HA/"
+          for LW in 2 4; do
+            L=$(python -c 'import sys; print(float(sys.argv[1])*int(sys.argv[2]))' "$H" "$LW")
+            for n in 24 32 40 48; do
+              echo "H/a=$HA L/W=$LW n=$n estrategia=escalonada"
+              python -m engmec.elmer_chapa --nr "$n" --nt "$((2*n))" \
+                --semilargura-m "$H" --semicomprimento-x-m "$L" \
+                --progressao-radial escalonada \
+                --saida "build/ciclo17/ha-$HA-lw-$LW-n-$n"
+            done
+          done
+      - name: Arquivar malhas e solucoes mesmo na falha
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ciclo17-parcial-ha-${{ matrix.ha }}
+          path: build/ciclo17/
+          retention-days: 30
+          if-no-files-found: warn
+
+  comparar-e-publicar-dados:
+    needs: solver
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[fem2d]"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ciclo17-parcial-ha-*
+          path: build/ciclo17/
+          merge-multiple: true
+      - name: Comparacao real vs baseline historico fixo
+        run: python scripts/avaliar_ciclo17.py --pasta build/ciclo17
+      - name: Guardar relatorio e entradas originais
+        uses: actions/upload-artifact@v4
+        with:
+          name: ciclo17-comparacao-radial-completa
+          path: build/ciclo17/
+          retention-days: 30
+          if-no-files-found: error
+      - name: Versionar JSON apenas apos validacao real e artefato
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout -B main origin/main
+          mkdir -p docs/dados
+          cp build/ciclo17/resumo_ciclo17.json \
+             docs/dados/ciclo17-malha-radial-2026-11-08.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("docs/dados/ciclo17-malha-radial-2026-11-08.json")
+          data=json.loads(p.read_text(encoding="utf-8"))
+          assert data["ciclo"] == 17 and len(data["cases"]) == 16 and len(data["series"]) == 4
+          assert all(c["qualidade_escalonada"]["elementos"] == 2*c["n"]**2 for c in data["cases"])
+          print("Dataset validado e pronto para versionamento",p)
+          PY
+          sha256sum docs/dados/ciclo17-malha-radial-2026-11-08.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/dados/ciclo17-malha-radial-2026-11-08.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: ciclo 17 malha radial auditada em 16 FEM Elmer"
+            git push origin main
+          fi
