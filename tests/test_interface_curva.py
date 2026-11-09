@@ -18,7 +18,7 @@ class TestInterfaceCurva(unittest.TestCase):
         curved=geo_elmer(nr=24,nt=48,H=.08,L=.32,a=.01,
                           estrategia_progressao="escalonada",
                           interface_interna="curva")
-        self.assertIn("Spline(3) = {5,8,9,10,2};",curved)
+        self.assertIn("Spline(3) = {5,8,9,2};",curved)
         self.assertNotIn("Line(3) = {5,2};",curved)
         for physical in ('Physical Surface("elastic_domain", 101)',
                          'Physical Curve("traction_right", 201)',

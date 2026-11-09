@@ -20,18 +20,18 @@ def transformar_interface(geo:str,*,estrategia:str="reta",a:float=.01,
     anchor="Line(3) = {5,2};"
     if geo.count(anchor)!=1:
         raise ValueError("A curva de interface Gmsh nao e uma linha unica conhecida")
-    # Entrada do spline: sai do canto (Hx,Hy) com tangente ~45 graus,
-    # passa pelo interior e chega ao ponto do furo theta=45 graus com
-    # tangente ~45 graus. Os pontos 8..10 NAO fazem parte do contorno fisico.
-    # O valor .25 é uma hipótese geométrica, não otimização por Kt.
-    control="""// Interface de blocos alternativa: spline INTERNO, não limite físico
-Point(8) = { L - 0.25*H, H - 0.25*H,0,1 };
-Point(9) = { L/2, H/2,0,1 };
-Point(10) = { 2*a/Sqrt(2), 2*a/Sqrt(2),0,1 };
+    # Desvio moderado perto do canto externo, reaproximando da
+    # geometria reta na metade e preservando a tangente da reta
+    # perto do furo. O prototipo anterior (.25H e ponto a 2a)
+    # gerou elementos Q8 com jacobiano nao positivo em L/W=4.
+    # O novo controle .10H é hipotese CAD, NAO ajuste para um Kt.
+    control="""// Spline interno de baixa curvatura, NAO altera o contorno fisico
+Point(8) = { L - 0.10*H, H - 0.10*H,0,1 };
+Point(9) = { (L+a/Sqrt(2))/2, (H+a/Sqrt(2))/2,0,1 };
 """
     if "L = " not in geo:
         # O caso quadrado usa apenas H, sem declaração L.
         control=control.replace("L - ", "H - ").replace("L/2","H/2")
-    if any("Point("+str(k)+")" in geo for k in (8,9,10)):
+    if any("Point("+str(k)+")" in geo for k in (8,9)):
         raise ValueError("IDs de pontos CAD reservados usados por outra entidade")
-    return geo.replace(anchor,control+"Spline(3) = {5,8,9,10,2};")
+    return geo.replace(anchor,control+"Spline(3) = {5,8,9,2};")
