@@ -29,6 +29,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y gmsh
+          python -m pip install -e .
       - name: Testes basicos de CAD e regressao do padrão reta
         run: |
           python -m unittest discover -s tests -p 'test_interface_curva.py' -v
