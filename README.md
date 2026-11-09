@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.17 (08/11/2026)
+## Estado: ciclo v0.18 (08/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
@@ -33,6 +33,10 @@ A [v0.16](docs/laboratorios/convergencia-fina-retangulo.md) amplia os modelos de
 ## Ciclo 17 — progressão radial Q8 escalonada
 
 A [v0.17](docs/laboratorios/progressao-radial-q8.md) adiciona uma estratégia opcional `q(n)=exp(24 ln(1,12)/n)` de progressão radial às malhas Gmsh Q8. Foram executadas [16 simulações externas Elmer/SciPy](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42546868607), confrontadas com as 16 malhas de progressão fixa dos ciclos anteriores. Na malha n48, **a maior razão de cordas caiu ~48%** nas quatro geometrias, e o **Kt recuperado por C passou o gate condicional de Richardson/GCI nas quatro séries**. Porém, a **qualidade perto do furo piorou em d/W=0,125 e L/W=4** (razão máxima da 1ª faixa 4,57→8,07), e a tensão radial residual na parede livre aumentou. **Melhora global ≠ validação local nem autorização de cálculo estrutural real.** [Dataset integral aprovado](docs/dados/ciclo17-malha-radial-2026-11-08.json).
+
+## Ciclo 18 — experimento angular e resultado negativo
+
+A [v0.18](docs/laboratorios/distribuicao-angular-q8.md) testou dois caminhos para melhorar a qualidade dos Q8 junto a um furo: uma interface interna `Spline`, **bloqueada por jacobianos não positivos**, e uma redistribuição angular conservadora, **executada em 16 modelos reais Elmer/SciPy** e comparada com o ciclo 17. Na malha n48, a nova grade aumentou o alongamento máximo da primeira faixa em aproximadamente **19% nas quatro geometrias**; o resíduo `σrr/T` na parede livre também piorou, embora os Kt líquidos C variassem menos de 0,004%. **A opção angular uniforme continua padrão.** O resultado negativo está [documentado e versionado em JSON](docs/dados/ciclo18-angular-2026-11-08.json); próximo gate é construir malha multibloco com faixa anular independente. [Workflow final aprovado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42550543935).
 
 ## Visitar os acervos
 

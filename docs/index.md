@@ -2,7 +2,7 @@
 
 Uma base pública para **estudar, pesquisar, calcular, experimentar e resolver problemas mecânicos** sem abandonar o rigor científico.
 
-O projeto está na fase **v0.17**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
+O projeto está na fase **v0.18**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
 
 ## Comece por aqui
 
@@ -78,3 +78,7 @@ O [Laboratório 16](laboratorios/convergencia-fina-retangulo.md) registra 12 sim
 ## Progressão radial e convergência — ciclo 17
 
 O [Laboratório 17](laboratorios/progressao-radial-q8.md) compara a progressão radial Gmsh constante `q=1,12` com a alternativa escalonada `q(n)=exp(24ln(1,12)/n)`, mantendo física e elementos Q8. [16 modelos Elmer reais](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42546868607) mostram **queda de ~48% na pior razão global de cordas e GCI condicional do método C aceito nas quatro séries**. Entretanto, **a tensão radial residual e a qualidade da faixa junto ao furo pioraram em casos importantes**. [Dados permanentes](dados/ciclo17-malha-radial-2026-11-08.json). A estratégia ainda não é padrão por questões locais e de validação.
+
+## Distribuição angular Q8 — ciclo 18
+
+O [Laboratório 18](laboratorios/distribuicao-angular-q8.md) registra um **resultado negativo reproduzível**: 16 modelos Elmer FEM com grade angular alternativa agravaram a razão de cordas da primeira faixa e o resíduo de tensão radial livre. Uma tentativa anterior de interface interna em spline foi corretamente rejeitada por jacobianos Q8 não positivos. A [base JSON](dados/ciclo18-angular-2026-11-08.json) preserva os resultados; o código mantém a versão uniforme como padrão. A próxima etapa requer topologia com faixa anular e blocos de transição.

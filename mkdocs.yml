@@ -69,6 +69,7 @@ nav:
       - Chapa retangular — comprimento e largura: laboratorios/chapa-retangular-comprimento.md
       - Convergência fina Q8 e GCI condicional: laboratorios/convergencia-fina-retangulo.md
       - Progressão radial Q8 — malha e Kt: laboratorios/progressao-radial-q8.md
+      - Distribuição angular Q8 — resultado negativo: laboratorios/distribuicao-angular-q8.md
   - Projeto:
       - Arquitetura: arquitetura.md
       - Método científico: metodologia.md
@@ -102,3 +103,4 @@ nav:
       - Ciclo 15: ciclos/ciclo-15.md
       - Ciclo 16: ciclos/ciclo-16.md
       - Ciclo 17: ciclos/ciclo-17.md
+      - Ciclo 18: ciclos/ciclo-18.md
