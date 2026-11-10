@@ -42,6 +42,10 @@ A [v0.18](docs/laboratorios/distribuicao-angular-q8.md) testou dois caminhos par
 
 A [v0.19](docs/laboratorios/anel-multibloco-q8.md) implementa duas superfícies anulares próprias no intervalo `a≤r≤2a` mais duas superfícies de transição ao retângulo. A [execução externa](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42739742200) validou **16 malhas, suas interfaces Q8 sem arestas pendentes e 16 soluções Elmer/SciPy**, com três recuperadores A/B/C. Na malha n48, o pior alongamento da primeira faixa melhorou em **três das quatro chapas**: no caso d/W=0,125,L/W=4 passou **8,075→2,547**. Entretanto, a pior razão global de cordas **aumentou nas quatro geometrias**, chegando a **33,83**, e o resíduo de tração radial livre `σrr/T` também piorou em todos os casos. O novo anel é **protótipo opt-in**, não substitui o padrão `dois-blocos`. [Dataset integral e rastreável](docs/dados/ciclo19-anel-multibloco-2026-11-09.json); próximo passo: redesenhar a transição externa e avaliar a recuperação de tensão da parede livre.
 
+## Ciclo 20 — Transição Q8 de seis blocos (experimental)
+
+A [implementação experimental](docs/laboratorios/transicao-externa-seis-blocos.md) adiciona uma interface retangular entre o anel conforme \(a≤r≤2a\) e o contorno físico da chapa. O objetivo é testar se a distorção dos elementos no exterior, observada no [ciclo 19](docs/laboratorios/anel-multibloco-q8.md), diminui sem degradar a qualidade perto do furo ou o resíduo de tração radial superficial. O novo modo `--topologia anel-seis-blocos` é **opt-in** e exige execução de 16 casos FEM reais antes de qualquer conclusão sobre qualidade física. A versão estável da documentação continua baseada no ciclo 19 até aprovação dos gates. [Workflow externo](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/workflows/ciclo20-transicao-exterior.yml).
+
 ## Visitar os acervos
 
 | Acervo | Conteúdo | Local |
