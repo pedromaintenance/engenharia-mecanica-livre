@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.20 (10/11/2026)
+## Estado: ciclo v0.21 (10/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
@@ -48,7 +48,7 @@ A [implementação experimental](docs/laboratorios/transicao-externa-seis-blocos
 
 ## Ciclo 21 — Interface alinhada e tração em toda a parede do furo
 
-A [v0.21 experimental](docs/laboratorios/interface-alinhada-tracao-parede.md) acrescenta parâmetros para alinhar a interface retangular de seis blocos à diagonal que conecta o anel ao canto externo e mede a **tração vetorial da parede inteira**, em duas amostras Gauss por aresta Q8. A primeira varredura auditável gerou **28 CADs Gmsh** (7 posições × 4 chapas); nenhuma posição melhorou simultaneamente alongamento e ângulo mínimo nos quatro casos. A fração piloto `λ=0,45` foi escolhida por minimax para o confronto de **16 FEM alinhados + 4 controles ciclo 20**. O `--topologia dois-blocos` permanece padrão; nenhum Kt, GCI ou residual é tolerância estrutural. [Workflow](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/workflows/ciclo21-interface-alinhada.yml) · [registro](docs/ciclos/ciclo-21.md).
+A [v0.21 experimental](docs/laboratorios/interface-alinhada-tracao-parede.md) acrescenta parâmetros para alinhar a interface retangular de seis blocos à diagonal que conecta o anel ao canto externo e mede a **tração vetorial da parede inteira**, em duas amostras Gauss por aresta Q8. A primeira varredura auditável gerou **28 CADs Gmsh** (7 posições × 4 chapas); nenhuma posição melhorou simultaneamente alongamento e ângulo mínimo nos quatro casos. A fração piloto `λ=0,45` foi escolhida por minimax e [20 FEM reais](docs/dados/ciclo21-interface-tracao-2026-11-10.json) confirmaram: ângulos mínimos +14,93% a +55,56%, mas alongamentos globais +8,03% a +47,35%; tração superficial RMS praticamente igual ao controle. **Resultado misto, sem promoção da topologia.** O `--topologia dois-blocos` permanece padrão; nenhum Kt, GCI ou residual é tolerância estrutural. [Workflow](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/workflows/ciclo21-interface-alinhada.yml) · [registro](docs/ciclos/ciclo-21.md).
 
 ## Visitar os acervos
 
