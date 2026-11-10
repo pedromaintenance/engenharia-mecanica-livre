@@ -1,6 +1,7 @@
 """Ciclo 21: testes de tração livre completa e malha alinhada."""
 import math
 import unittest
+from importlib.util import find_spec
 
 from engmec.tracao_livre import medir_parede_furo
 from engmec.multibloco_externo import parametros_seis_blocos
@@ -18,6 +19,7 @@ def elemento_quarto_anel(a=.01):
             "hole_edges":[(4,8,1)]}
 
 
+@unittest.skipUnless(find_spec("numpy"), "Requer NumPy opcional (perfil FEM)")
 class TestTraçãoParedeCompleta(unittest.TestCase):
     def test_deslocamentos_zerados_sem_residuo(self):
         mesh=elemento_quarto_anel()
