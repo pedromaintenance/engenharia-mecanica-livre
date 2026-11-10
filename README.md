@@ -4,7 +4,7 @@
 
 [**Acessar o portal**](https://pedromaintenance.github.io/engenharia-mecanica-livre/) · [**Roadmap mestre**](docs/roadmaps/master.md) · [**Agentes e skills**](docs/governanca/agentes.md) · [**Contribuir**](CONTRIBUTING.md)
 
-## Estado: ciclo v0.18 (08/11/2026)
+## Estado: ciclo v0.19 (09/11/2026)
 
 - **Site público** em MkDocs/GitHub Pages, com publicação automatizada.
 - **Catálogos estruturados:** 20 fontes gerais anteriores + 10 cursos individuais + 20 portais + 17 ferramentas (67 registros em níveis distintos), além de 5 registros de licença/documentação por obra sem somá-los como novas fontes.
@@ -37,6 +37,10 @@ A [v0.17](docs/laboratorios/progressao-radial-q8.md) adiciona uma estratégia op
 ## Ciclo 18 — experimento angular e resultado negativo
 
 A [v0.18](docs/laboratorios/distribuicao-angular-q8.md) testou dois caminhos para melhorar a qualidade dos Q8 junto a um furo: uma interface interna `Spline`, **bloqueada por jacobianos não positivos**, e uma redistribuição angular conservadora, **executada em 16 modelos reais Elmer/SciPy** e comparada com o ciclo 17. Na malha n48, a nova grade aumentou o alongamento máximo da primeira faixa em aproximadamente **19% nas quatro geometrias**; o resíduo `σrr/T` na parede livre também piorou, embora os Kt líquidos C variassem menos de 0,004%. **A opção angular uniforme continua padrão.** O resultado negativo está [documentado e versionado em JSON](docs/dados/ciclo18-angular-2026-11-08.json); próximo gate é construir malha multibloco com faixa anular independente. [Workflow final aprovado](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42550543935).
+
+## Ciclo 19 — topologia Q8 multibloco com anel circular conforme
+
+A [v0.19](docs/laboratorios/anel-multibloco-q8.md) implementa duas superfícies anulares próprias no intervalo `a≤r≤2a` mais duas superfícies de transição ao retângulo. A [execução externa](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42739742200) validou **16 malhas, suas interfaces Q8 sem arestas pendentes e 16 soluções Elmer/SciPy**, com três recuperadores A/B/C. Na malha n48, o pior alongamento da primeira faixa melhorou em **três das quatro chapas**: no caso d/W=0,125,L/W=4 passou **8,075→2,547**. Entretanto, a pior razão global de cordas **aumentou nas quatro geometrias**, chegando a **33,83**, e o resíduo de tração radial livre `σrr/T` também piorou em todos os casos. O novo anel é **protótipo opt-in**, não substitui o padrão `dois-blocos`. [Dataset integral e rastreável](docs/dados/ciclo19-anel-multibloco-2026-11-09.json); próximo passo: redesenhar a transição externa e avaliar a recuperação de tensão da parede livre.
 
 ## Visitar os acervos
 

@@ -2,7 +2,7 @@
 
 Uma base pública para **estudar, pesquisar, calcular, experimentar e resolver problemas mecânicos** sem abandonar o rigor científico.
 
-O projeto está na fase **v0.18**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
+O projeto está na fase **v0.19**. O portal está publicado, a primeira coleção de cursos/portais/software foi catalogada e os modelos de cálculo didáticos estão submetidos a testes automáticos. A plataforma está em desenvolvimento: referências identificadas não equivalem a obras integralmente analisadas.
 
 ## Comece por aqui
 
@@ -82,3 +82,7 @@ O [Laboratório 17](laboratorios/progressao-radial-q8.md) compara a progressão 
 ## Distribuição angular Q8 — ciclo 18
 
 O [Laboratório 18](laboratorios/distribuicao-angular-q8.md) registra um **resultado negativo reproduzível**: 16 modelos Elmer FEM com grade angular alternativa agravaram a razão de cordas da primeira faixa e o resíduo de tensão radial livre. Uma tentativa anterior de interface interna em spline foi corretamente rejeitada por jacobianos Q8 não positivos. A [base JSON](dados/ciclo18-angular-2026-11-08.json) preserva os resultados; o código mantém a versão uniforme como padrão. A próxima etapa requer topologia com faixa anular e blocos de transição.
+
+## Anel Q8 com quatro blocos — ciclo 19
+
+O [Laboratório 19](laboratorios/anel-multibloco-q8.md) implementa um anel interno `a≤r≤2a` com interfaces curvas **conformes** e quatro superfícies transfinite Q8, preservando as condições físicas. [16 FEM externos](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42739742200) demonstraram melhora do alongamento na primeira faixa do furo em três de quatro geometrias; entretanto, **o alongamento máximo global e o resíduo `σrr/T` na parede livre pioraram em todas as chapas**. [Dados integrais](dados/ciclo19-anel-multibloco-2026-11-09.json). A topologia nova permanece experimental, sem promoção ao padrão.
