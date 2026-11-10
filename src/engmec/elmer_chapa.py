@@ -24,18 +24,23 @@ from .fem2d_indep import resolver as resolver_scipy, _b_matrix, _matriz_constitu
 
 def geo_elmer(*, nr:int=16, nt:int=32, H:float=.04, a:float=.01,
               L:float|None=None, estrategia_progressao:str="fixa",
-              angular:str="uniforme",topologia:str="dois-blocos")->str:
+              angular:str="uniforme",topologia:str="dois-blocos",
+              fracao_interface:float=.5)->str:
     """Mesmo CAD, agora com IDs físicos explícitos para ElmerGrid."""
     L=H if L is None else L
     if L<H or not math.isfinite(L):
         raise ValueError('Semicomprimento L deve ser finito e >= semilargura H')
-    if topologia not in ("dois-blocos","anel-quatro-blocos","anel-seis-blocos"):
+    if topologia not in ("dois-blocos","anel-quatro-blocos","anel-seis-blocos","anel-seis-blocos-alinhado"):
         raise ValueError("Topologia nao reconhecida")
-    if topologia=="anel-seis-blocos":
+    if topologia in ("anel-seis-blocos", "anel-seis-blocos-alinhado"):
         if angular!="uniforme" or estrategia_progressao!="escalonada":
             raise ValueError("Seis blocos exigem angular uniforme e baseline escalonada")
         from .multibloco_externo import gerar_geo_seis_blocos
-        return gerar_geo_seis_blocos(nr=nr,nt=nt,a=a,Hy=H,Hx=L)
+        return gerar_geo_seis_blocos(
+            nr=nr,nt=nt,a=a,Hy=H,Hx=L,
+            modo_interface=("alinhada" if topologia=="anel-seis-blocos-alinhado"
+                            else "geometrica"),
+            fracao_interface=fracao_interface)
     if topologia=="anel-quatro-blocos":
         if angular!="uniforme" or estrategia_progressao!="escalonada":
             raise ValueError("Anel quatro-blocos verificado somente com angular uniforme e referencia radial escalonada")
@@ -270,7 +275,8 @@ def _crit_stress(mesh:dict, disp:dict, *, E:float,nu:float,a:float,T:float,H:flo
 def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
              L:float|None=None,T:float=10e6,E:float=200e9,nu:float=.3,
              estrategia_progressao:str="fixa",angular:str="uniforme",
-             topologia:str="dois-blocos",gmsh_cmd:str="gmsh",
+             topologia:str="dois-blocos",fracao_interface:float=.5,
+             gmsh_cmd:str="gmsh",
              grid_cmd:str="ElmerGrid",solver_cmd:str="ElmerSolver")->dict:
     for app in (gmsh_cmd,grid_cmd,solver_cmd):
         if shutil.which(app) is None:
@@ -282,7 +288,8 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
     out.mkdir(parents=True,exist_ok=True)
     (out/"model.geo").write_text(geo_elmer(nr=nr,nt=nt,H=H,a=a,L=L,
                 estrategia_progressao=estrategia_progressao,
-                angular=angular,topologia=topologia),encoding="utf-8")
+                angular=angular,topologia=topologia,
+                fracao_interface=fracao_interface),encoding="utf-8")
     t0=time.perf_counter()
     commands=[
         ("gmsh",[gmsh_cmd,"model.geo","-2","-order","2","-format","msh2","-o","model.msh"]),
@@ -295,11 +302,14 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
             raise RuntimeError(f"{phase} falhou rc={p.returncode}: {(p.stdout+p.stderr)[-2500:]}")
     mesh=importar_msh2((out/"model.msh").read_text(encoding="utf-8"),a=a,H=H,nr=nr,nt=nt,Hx=L)
     controle_topologia=None
-    if topologia=="anel-seis-blocos":
+    if topologia in ("anel-seis-blocos", "anel-seis-blocos-alinhado"):
         from .multibloco_externo import parametros_seis_blocos, verificar_seis_blocos
+        modo=("alinhada" if topologia=="anel-seis-blocos-alinhado" else "geometrica")
         controle_topologia={
-            "parametros":parametros_seis_blocos(nr,nt,a=a,Hy=H,Hx=L),
-            "conformidade":verificar_seis_blocos(mesh,a=a,Hy=H,Hx=L,nr=nr,nt=nt)
+            "parametros":parametros_seis_blocos(nr,nt,a=a,Hy=H,Hx=L,
+                modo_interface=modo,fracao_interface=fracao_interface),
+            "conformidade":verificar_seis_blocos(mesh,a=a,Hy=H,Hx=L,nr=nr,nt=nt,
+                modo_interface=modo,fracao_interface=fracao_interface)
         }
     if topologia=="anel-quatro-blocos":
         from .multibloco_anel import parametros_anel, verificar_anel_conforme
@@ -326,6 +336,18 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
     (out/"recuperacao.json").write_text(
         json.dumps(recuperacao,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
     escrever_csv(out/"gauss_tensoes.csv",gauss_rows)
+    tracao_resumo=None
+    if topologia in ("anel-seis-blocos", "anel-seis-blocos-alinhado"):
+        import csv
+        from .tracao_livre import medir_parede_furo
+        tracao_resumo, tracao_amostras=medir_parede_furo(
+            mesh,disp,a=a,E=E,nu=nu,T=T)
+        (out/"tracao_furo.json").write_text(
+            json.dumps(tracao_resumo,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+        with (out/"tracao_furo.csv").open("w",newline="",encoding="utf-8") as f:
+            writer=csv.DictWriter(f,fieldnames=list(tracao_amostras[0]))
+            writer.writeheader()
+            writer.writerows(tracao_amostras)
     (out/"deslocamentos_elmer.json").write_text(json.dumps(
         {str(n):[float(v[0]),float(v[1])] for n,v in disp.items()},
         indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
@@ -355,6 +377,8 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
         "L_over_W":L/H,"d_over_W":a/H,
         "distribuicao_angular":angular,
         "topologia":topologia,
+        "fracao_interface":fracao_interface,
+        "tracao_furo_completa":tracao_resumo,
         "controle_multibloco":controle_topologia,
         "estrategia_progressao_radial":estrategia_progressao,
         "q_radial_efetivo":(razao_progressao(nr,estrategia_progressao)
@@ -395,13 +419,15 @@ def main():
     parser.add_argument("--raio-m",type=float,default=.01)
     parser.add_argument("--progressao-radial",choices=["fixa","escalonada"],default="fixa")
     parser.add_argument("--distribuicao-angular",choices=["uniforme","ampliada-topo"],default="uniforme")
-    parser.add_argument("--topologia",choices=["dois-blocos","anel-quatro-blocos","anel-seis-blocos"],default="dois-blocos")
+    parser.add_argument("--topologia",choices=["dois-blocos","anel-quatro-blocos","anel-seis-blocos","anel-seis-blocos-alinhado"],default="dois-blocos")
+    parser.add_argument("--fracao-interface",type=float,default=.5)
     parser.add_argument("--saida",required=True)
     opt=parser.parse_args()
     print(json.dumps(executar(opt.saida,nr=opt.nr,nt=opt.nt,H=opt.semilargura_m,L=opt.semicomprimento_x_m,a=opt.raio_m,
                     estrategia_progressao=opt.progressao_radial,
                     angular=opt.distribuicao_angular,
-                    topologia=opt.topologia),
+                    topologia=opt.topologia,
+                    fracao_interface=opt.fracao_interface),
                      indent=2,ensure_ascii=False))
 
 
