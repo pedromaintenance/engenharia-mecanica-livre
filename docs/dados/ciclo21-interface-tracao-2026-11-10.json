@@ -1,0 +1,3084 @@
+{
+  "ciclo": 21,
+  "versao": "0.21.0",
+  "num_modelos_externos_alinhados": 16,
+  "num_modelos_externos_controle20": 4,
+  "num_malhas_sweep": 28,
+  "lambda_escolhida": 0.45,
+  "selecao_cad": {
+    "ciclo": 21,
+    "kind": "CAD sweep before FEM",
+    "geometrias": 4,
+    "fracoes": [
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75
+    ],
+    "n_por_caso": 48,
+    "numero_malhas": 28,
+    "criterio": "minimax: max(ratio_novo/ratio20, angulo20/angulo_novo) nas 4 chapas; desempate média",
+    "referencia": "docs/dados/ciclo20-transicao-externa-2026-11-10.json",
+    "fracao_escolhida": 0.45,
+    "gate_geom_ambos_4_em_4": false,
+    "candidatos": [
+      {
+        "fracao_interface": 0.45,
+        "cases": [
+          {
+            "H_over_a": 4,
+            "L_over_W": 2,
+            "fracao_interface": 0.45,
+            "sha256_msh2": "4db94aa9a9ad0d6ff67eb1e2f96caaf45a499c36842629c6a9b98d698edad5e7",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 6.261598890263043e-07,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 8.10770642300462,
+              "razão_max_min_cordas_geral_p95": 5.832899746839015,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 21.436529825378287,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.04377817459305203,
+              "ym_m": 0.025778174593052025
+            },
+            "ratio_vs_ciclo20": 1.0802788027007166,
+            "angle_penalty_vs_ciclo20": 0.7615481642718374,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 4,
+            "L_over_W": 4,
+            "fracao_interface": 0.45,
+            "sha256_msh2": "c3b3562f13a84b9b4580f46b8cabc4ddf7dc6e06178c0f5944deb34e31392d6b",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 1.3847363879258367e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 16.97488802325199,
+              "razão_max_min_cordas_geral_p95": 13.285507286039172,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 10.053018210233605,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.07977817459305203,
+              "ym_m": 0.025778174593052025
+            },
+            "ratio_vs_ciclo20": 1.153110575226986,
+            "angle_penalty_vs_ciclo20": 0.6428293708697762,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 2,
+            "fracao_interface": 0.45,
+            "sha256_msh2": "32ed71707e6b7bdd378768ed1bdaf449c8f39f6d86e692b40d43bae20fa3cad0",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 2.770440158584042e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 18.339070172565457,
+              "razão_max_min_cordas_geral_p95": 10.933467171246273,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 24.300167508058156,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.07977817459305203,
+              "ym_m": 0.04377817459305203
+            },
+            "ratio_vs_ciclo20": 1.4494539609778212,
+            "angle_penalty_vs_ciclo20": 0.8700746024688045,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 4,
+            "fracao_interface": 0.45,
+            "sha256_msh2": "f6f478ee8158a51bd7578b9cdbb58632eac3fdb023875a02508d0e3611949d65",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 5.798814074944577e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 35.85241475019302,
+              "razão_max_min_cordas_geral_p95": 22.076622691072412,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 12.151501883303846,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.15177817459305204,
+              "ym_m": 0.04377817459305203
+            },
+            "ratio_vs_ciclo20": 1.4735251693546236,
+            "angle_penalty_vs_ciclo20": 0.7786956953050223,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          }
+        ],
+        "pontuacao_minimax": 1.4735251693546236,
+        "pontuacao_media": 1.0261895426469485,
+        "passa_ambos_4_em_4": false
+      },
+      {
+        "fracao_interface": 0.5,
+        "cases": [
+          {
+            "H_over_a": 4,
+            "L_over_W": 2,
+            "fracao_interface": 0.5,
+            "sha256_msh2": "b0835562597fbb7638ab783b08b88c91b8f3a7562f6527073c0737cdcd3fcf32",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 5.695304943939097e-07,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 9.008562692219982,
+              "razão_max_min_cordas_geral_p95": 6.364163854508749,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 21.436529825376805,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.04707106781186548,
+              "ym_m": 0.027071067811865475
+            },
+            "ratio_vs_ciclo20": 1.2003097807775915,
+            "angle_penalty_vs_ciclo20": 0.76154816427189,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 4,
+            "L_over_W": 4,
+            "fracao_interface": 0.5,
+            "sha256_msh2": "579857f7eb018052395d3e19819ad168c63928297b20056c15d0086ee9b955ed",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 1.2595684747985583e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 18.860986692501083,
+              "razão_max_min_cordas_geral_p95": 14.570412183627127,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 10.05301821024942,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.08707106781186547,
+              "ym_m": 0.027071067811865475
+            },
+            "ratio_vs_ciclo20": 1.2812339724743522,
+            "angle_penalty_vs_ciclo20": 0.642829370868765,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 2,
+            "fracao_interface": 0.5,
+            "sha256_msh2": "e5462f2a3d10e0e90f05e9870dc47517acbda402433e8c5a5f3b95106ba8ee41",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 2.5202693955420785e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 20.376744636177946,
+              "razão_max_min_cordas_geral_p95": 11.74038730089923,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 24.3001675080951,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.08707106781186547,
+              "ym_m": 0.04707106781186548
+            },
+            "ratio_vs_ciclo20": 1.6105044010860021,
+            "angle_penalty_vs_ciclo20": 0.8700746024674817,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 4,
+            "fracao_interface": 0.5,
+            "sha256_msh2": "979258905884e2354b4fe411833de6245f3bdebf3fe4d6b0ddeac2fb3f4b3416",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 5.27548210659335e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 39.83601638910261,
+              "razão_max_min_cordas_geral_p95": 23.63856144326115,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 12.151501883299101,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.16707106781186548,
+              "ym_m": 0.04707106781186548
+            },
+            "ratio_vs_ciclo20": 1.6372501881717734,
+            "angle_penalty_vs_ciclo20": 0.7786956953053262,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          }
+        ],
+        "pontuacao_minimax": 1.6372501881717734,
+        "pontuacao_media": 1.0978057719278977,
+        "passa_ambos_4_em_4": false
+      },
+      {
+        "fracao_interface": 0.55,
+        "cases": [
+          {
+            "H_over_a": 4,
+            "L_over_W": 2,
+            "fracao_interface": 0.55,
+            "sha256_msh2": "e55b7a10a7501f253a833690aaadeaa7fc59247fbd30bd7be4c6470d8d53df45",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 5.12835149267656e-07,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 9.909418961440801,
+              "razão_max_min_cordas_geral_p95": 6.948467859193977,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 21.43652982535451,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.05036396103067894,
+              "ym_m": 0.028363961030678928
+            },
+            "ratio_vs_ciclo20": 1.3203407588551936,
+            "angle_penalty_vs_ciclo20": 0.7615481642726821,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 4,
+            "L_over_W": 4,
+            "fracao_interface": 0.55,
+            "sha256_msh2": "c7a6624fd8a85aa32501e91ae5b85f9a08e341d7314dc9142d78cceefc4e5ffb",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 1.1342556398368821e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 20.747085361794632,
+              "razão_max_min_cordas_geral_p95": 15.787520294436144,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 10.053018210227556,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.09436396103067893,
+              "ym_m": 0.028363961030678928
+            },
+            "ratio_vs_ciclo20": 1.4093573697247384,
+            "angle_penalty_vs_ciclo20": 0.642829370870163,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 2,
+            "fracao_interface": 0.55,
+            "sha256_msh2": "233c9a34ec8ca7cd557bfa7b86be408c914ee2f652dc7f9362ad60156b95b9a4",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 2.269723236807469e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 22.414419099835115,
+              "razão_max_min_cordas_geral_p95": 12.48989549505238,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 24.30016750804749,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.09436396103067893,
+              "ym_m": 0.05036396103067894
+            },
+            "ratio_vs_ciclo20": 1.7715548411977144,
+            "angle_penalty_vs_ciclo20": 0.8700746024691863,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 4,
+            "fracao_interface": 0.55,
+            "sha256_msh2": "833b390982bed7dd7fa8a9b2bba344dd1555efcf9cfb9117c0a79e50f0ea2330",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 4.751375071973632e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 43.81961802800141,
+              "razão_max_min_cordas_geral_p95": 25.085180934655874,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 12.151501883299252,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.18236396103067895,
+              "ym_m": 0.05036396103067894
+            },
+            "ratio_vs_ciclo20": 1.8009752069884797,
+            "angle_penalty_vs_ciclo20": 0.7786956953053166,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          }
+        ],
+        "pontuacao_minimax": 1.8009752069884797,
+        "pontuacao_media": 1.1694220012104342,
+        "passa_ambos_4_em_4": false
+      },
+      {
+        "fracao_interface": 0.6,
+        "cases": [
+          {
+            "H_over_a": 4,
+            "L_over_W": 2,
+            "fracao_interface": 0.6,
+            "sha256_msh2": "790b4bfc0ce5aa100db39cdd3871b4358a525ff8568e7db78aab1ed99bd6e49c",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 5.048583742889498e-07,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 10.810275230665356,
+              "razão_max_min_cordas_geral_p95": 7.511140627649204,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 21.43652982537519,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.05365685424949238,
+              "ym_m": 0.02965685424949238
+            },
+            "ratio_vs_ciclo20": 1.4403717369332936,
+            "angle_penalty_vs_ciclo20": 0.7615481642719474,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 4,
+            "L_over_W": 4,
+            "fracao_interface": 0.6,
+            "sha256_msh2": "1243f733871cdbb2384aee8c1b6549a96d921d548b73926fecaab54fac7d5b0f",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 1.1155639934948054e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 22.633184030999164,
+              "razão_max_min_cordas_geral_p95": 17.02002068165735,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 10.053018210240529,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.10165685424949236,
+              "ym_m": 0.02965685424949238
+            },
+            "ratio_vs_ciclo20": 1.5374807669690775,
+            "angle_penalty_vs_ciclo20": 0.6428293708693334,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 2,
+            "fracao_interface": 0.6,
+            "sha256_msh2": "842188b4c61830f86a41822c0996298c6bdc69fccc0271c5364b3c74ab50f758",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 2.0188039051979687e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 24.452093563412415,
+              "razão_max_min_cordas_geral_p95": 13.218825644808303,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 24.300167508072704,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.10165685424949236,
+              "ym_m": 0.05365685424949238
+            },
+            "ratio_vs_ciclo20": 1.932605281303114,
+            "angle_penalty_vs_ciclo20": 0.8700746024682836,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 4,
+            "fracao_interface": 0.6,
+            "sha256_msh2": "34aab18bcc3774b3d9b7a510cb609c5e862489f59995ea681845a5842e260b15",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 4.226492385635239e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 47.80321966691545,
+              "razão_max_min_cordas_geral_p95": 26.4299560942499,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 12.15150188329088,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.1976568542494924,
+              "ym_m": 0.05365685424949238
+            },
+            "ratio_vs_ciclo20": 1.9647002258058126,
+            "angle_penalty_vs_ciclo20": 0.7786956953058531,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          }
+        ],
+        "pontuacao_minimax": 1.9647002258058126,
+        "pontuacao_media": 1.2410382304908394,
+        "passa_ambos_4_em_4": false
+      },
+      {
+        "fracao_interface": 0.65,
+        "cases": [
+          {
+            "H_over_a": 4,
+            "L_over_W": 2,
+            "fracao_interface": 0.65,
+            "sha256_msh2": "8a405ba8178f82c7425f01f020c403e461813e3f30bfc35b7a15840561ec839c",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 5.706022016845217e-07,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 11.711131499892158,
+              "razão_max_min_cordas_geral_p95": 8.097443616996157,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 21.436529825365284,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.05694974746830584,
+              "ym_m": 0.030949747468305835
+            },
+            "ratio_vs_ciclo20": 1.5604027150116926,
+            "angle_penalty_vs_ciclo20": 0.7615481642722993,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 4,
+            "L_over_W": 4,
+            "fracao_interface": 0.65,
+            "sha256_msh2": "33c2d7a4a9db08b2757c77918349424129d267fbeaf1d7588d05c754bad8f2cd",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 1.2608408561471515e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 24.51928270025543,
+              "razão_max_min_cordas_geral_p95": 18.067526786071742,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 10.053018210240383,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.10894974746830582,
+              "ym_m": 0.030949747468305835
+            },
+            "ratio_vs_ciclo20": 1.6656041642169312,
+            "angle_penalty_vs_ciclo20": 0.6428293708693428,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 2,
+            "fracao_interface": 0.65,
+            "sha256_msh2": "4e7a568aa867871ad135fdf0209b5cc7ed1e1974066b5b1c28a7da4aaff24220",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 2.3190067920547313e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 26.489768027037115,
+              "razão_max_min_cordas_geral_p95": 13.975908894415667,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 24.30016750807383,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.10894974746830582,
+              "ym_m": 0.05694974746830584
+            },
+            "ratio_vs_ciclo20": 2.09365572141226,
+            "angle_penalty_vs_ciclo20": 0.8700746024682433,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 4,
+            "fracao_interface": 0.65,
+            "sha256_msh2": "f3c7a6294c1c360e9ace080cd21731b20fac7496b26afbcf82284b5e9192919c",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 4.85088697164594e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 51.786821305822635,
+              "razão_max_min_cordas_geral_p95": 27.684360345430562,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 12.15150188329333,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.21294974746830583,
+              "ym_m": 0.05694974746830584
+            },
+            "ratio_vs_ciclo20": 2.1284252446228633,
+            "angle_penalty_vs_ciclo20": 0.7786956953056962,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          }
+        ],
+        "pontuacao_minimax": 2.1284252446228633,
+        "pontuacao_media": 1.3126544597724161,
+        "passa_ambos_4_em_4": false
+      },
+      {
+        "fracao_interface": 0.7,
+        "cases": [
+          {
+            "H_over_a": 4,
+            "L_over_W": 2,
+            "fracao_interface": 0.7,
+            "sha256_msh2": "f54d729dbb6dbcc78a5470cd9206b7e8cf464d4337661736073f611848edb7a7",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 6.399848424178211e-07,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 12.611987769112051,
+              "razão_max_min_cordas_geral_p95": 8.591521825185906,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 21.436529825367998,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.060242640687119285,
+              "ym_m": 0.03224264068711928
+            },
+            "ratio_vs_ciclo20": 1.6804336930891715,
+            "angle_penalty_vs_ciclo20": 0.7615481642722028,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 4,
+            "L_over_W": 4,
+            "fracao_interface": 0.7,
+            "sha256_msh2": "97a24cc5832ee344c7d83a05db1ea43a004fb1a95a373fe14909f9c4e39a362f",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 1.4141625831970553e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 26.405381369512785,
+              "razão_max_min_cordas_geral_p95": 19.118813525068376,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 10.05301821024093,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.11624264068711929,
+              "ym_m": 0.03224264068711928
+            },
+            "ratio_vs_ciclo20": 1.7937275614648587,
+            "angle_penalty_vs_ciclo20": 0.6428293708693078,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 2,
+            "fracao_interface": 0.7,
+            "sha256_msh2": "330b1baf0fdf52414d1ce453bba180d466a5fd86093748cb48c728778e462f0e",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 2.641170002205972e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 28.52744249066164,
+              "razão_max_min_cordas_geral_p95": 14.637297093157862,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 24.300167508072345,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.11624264068711929,
+              "ym_m": 0.060242640687119285
+            },
+            "ratio_vs_ciclo20": 2.2547061615213924,
+            "angle_penalty_vs_ciclo20": 0.8700746024682964,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 4,
+            "fracao_interface": 0.7,
+            "sha256_msh2": "c5664e84ded7bb15fbcb02ca3505bbc8c6830ab52201dbded6f2e4cd64310652",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 5.52488180565454e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 55.77042294473129,
+              "razão_max_min_cordas_geral_p95": 28.858223520475928,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 12.151501883297227,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.22824264068711927,
+              "ym_m": 0.060242640687119285
+            },
+            "ratio_vs_ciclo20": 2.2921502634399746,
+            "angle_penalty_vs_ciclo20": 0.7786956953054464,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          }
+        ],
+        "pontuacao_minimax": 2.2921502634399746,
+        "pontuacao_media": 1.3842706890538312,
+        "passa_ambos_4_em_4": false
+      },
+      {
+        "fracao_interface": 0.75,
+        "cases": [
+          {
+            "H_over_a": 4,
+            "L_over_W": 2,
+            "fracao_interface": 0.75,
+            "sha256_msh2": "45ed22ed6548a217d0101d997fb33e2512454913e2e10231d11b2cf4b984c5e9",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 7.1300626018411e-07,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 13.512844038334775,
+              "razão_max_min_cordas_geral_p95": 9.048253816800058,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 21.436529825322083,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.06353553390593275,
+              "ym_m": 0.03353553390593274
+            },
+            "ratio_vs_ciclo20": 1.8004646711670271,
+            "angle_penalty_vs_ciclo20": 0.761548164273834,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 4,
+            "L_over_W": 4,
+            "fracao_interface": 0.75,
+            "sha256_msh2": "5aa98e34662584b94d4808f3d519bc20b8d3cc3d8d767152346413f9272db07e",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 1.5755291678979795e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 28.291480038752916,
+              "razão_max_min_cordas_geral_p95": 20.127810099851878,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 10.053018210243918,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.12353553390593275,
+              "ym_m": 0.03353553390593274
+            },
+            "ratio_vs_ciclo20": 1.921850958711616,
+            "angle_penalty_vs_ciclo20": 0.6428293708691167,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 2,
+            "fracao_interface": 0.75,
+            "sha256_msh2": "880d2414fe85115366c9ebf2da0d3995a799f22d11850707567013f6cfba3379",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 2.983869814445141e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 30.565116954269968,
+              "razão_max_min_cordas_geral_p95": 15.254360724245828,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 24.300167508081003,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.12353553390593275,
+              "ym_m": 0.06353553390593275
+            },
+            "ratio_vs_ciclo20": 2.415756601629244,
+            "angle_penalty_vs_ciclo20": 0.8700746024679864,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          },
+          {
+            "H_over_a": 8,
+            "L_over_W": 4,
+            "fracao_interface": 0.75,
+            "sha256_msh2": "dd4eea76e3fc0e5f6c8456cb8c944c90aab4993571b49f1de32536416ba0418d",
+            "quality": {
+              "elementos": 4608,
+              "nos": 14113,
+              "dofs_totais": 28226,
+              "faixa_mais_interna_elementos": 96,
+              "jacobianos_q8": {
+                "min_det_jacobiano_m2": 1.6885799348983605e-08,
+                "max_det_jacobiano_m2": 6.241852298635864e-06,
+                "pontos_jacobiano": 18432
+              },
+              "razão_max_min_cordas_geral_max": 59.75402458363308,
+              "razão_max_min_cordas_geral_p95": 29.960015639394218,
+              "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+              "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+              "angulo_minimo_vertices_graus_geral": 12.151501883295385,
+              "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+              "arestas_tracionadas": 48,
+              "arestas_topo_livre": 48,
+              "arestas_furo_livre": 96,
+              "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+            },
+            "conformidade": {
+              "anel": {
+                "raio_intermediario_m": 0.02,
+                "arestas_interface_conformes": 96,
+                "vertices_interface_unicos": 97,
+                "incidencia_por_aresta": 2,
+                "jacobiano_minimo_m2": 1.6885799348983605e-08
+              },
+              "interface_retangular_arestas_conformes": 96,
+              "interface_retangular_vertices_unicos": 97,
+              "incidencias_por_aresta": 2,
+              "xm_m": 0.24353553390593274,
+              "ym_m": 0.06353553390593275
+            },
+            "ratio_vs_ciclo20": 2.455875282256804,
+            "angle_penalty_vs_ciclo20": 0.7786956953055644,
+            "melhora_ratio": false,
+            "melhora_angulo": true
+          }
+        ],
+        "pontuacao_minimax": 2.455875282256804,
+        "pontuacao_media": 1.455886918335149,
+        "passa_ambos_4_em_4": false
+      }
+    ],
+    "alerta": "Se o gate for falso, a escolha só dirige ensaio FEM; NÃO aprova geometria"
+  },
+  "fisica": "Chapa finita quarto, tensão plana, T=10 MPa, E=200 GPa, nu=.3, a=.01m",
+  "comparacao": "mesma fisica e n; baseline reexecutada no solver atual",
+  "cases": [
+    {
+      "ha": 4,
+      "lw": 2,
+      "n": 24,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "ddd7c1cec4269338263a6c8432bcc2eda378e38c4db9926c52ca904d43f55e32",
+      "qualidade": {
+        "elementos": 1152,
+        "nos": 3601,
+        "dofs_totais": 7202,
+        "faixa_mais_interna_elementos": 48,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 6.683572433321789e-08,
+          "max_det_jacobiano_m2": 2.4932491124789603e-06,
+          "pontos_jacobiano": 4608
+        },
+        "razão_max_min_cordas_geral_max": 8.107977755483656,
+        "razão_max_min_cordas_geral_p95": 5.967932466334386,
+        "razão_max_min_cordas_primeira_faixa_max": 2.5465927262169124,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4588314608157553,
+        "angulo_minimo_vertices_graus_geral": 21.436529825393514,
+        "angulo_minimo_vertices_graus_primeira_faixa": 86.28292491900861,
+        "arestas_tracionadas": 24,
+        "arestas_topo_livre": 24,
+        "arestas_furo_livre": 48,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 48,
+          "vertices_interface_unicos": 49,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 6.683572433321789e-08
+        },
+        "interface_retangular_arestas_conformes": 48,
+        "interface_retangular_vertices_unicos": 49,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.04377817459305203,
+        "ym_m": 0.025778174593052025
+      },
+      "Kt_bruto": {
+        "A": 3.2576829040553354,
+        "B": 3.240652328164098,
+        "C": 3.237552344566607
+      },
+      "Kt_liquido": {
+        "A": 2.4432621780415014,
+        "B": 2.4304892461230736,
+        "C": 2.428164258424955
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 48,
+        "amostras": 96,
+        "tracao_vetorial_rms_T": 0.012084633431675545,
+        "tracao_vetorial_max_T": 0.01746699913233515,
+        "tracao_vetorial_p95_T": 0.016621927033068768,
+        "sigma_rr_rms_T": 0.010415848467337263,
+        "sigma_rtheta_rms_T": 0.006127680301993426,
+        "sigma_rr_max_abs_T": 0.017462001068092536,
+        "sigma_rtheta_max_abs_T": 0.00915550658554446,
+        "desvio_raio_interpolado_max_rel": 1.9913189153175637e-09,
+        "jacobiano_min_amostras_m2": 6.572007570722084e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 1.665512172621675e-13,
+      "elmer_scipy_diff_rel": 2.9062880377093674e-13,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.0802788027007297,
+        "angulo_min_novo_sobre_velho": 1.3131145827866624,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 4.821132905341585e-06
+      }
+    },
+    {
+      "ha": 4,
+      "lw": 2,
+      "n": 32,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "4d34a22428b29c67547bf9561d0d3d726c0c2721404bba67234f49b0e5401345",
+      "qualidade": {
+        "elementos": 2048,
+        "nos": 6337,
+        "dofs_totais": 12674,
+        "faixa_mais_interna_elementos": 64,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 3.7798914697004796e-08,
+          "max_det_jacobiano_m2": 1.405701696445105e-06,
+          "pontos_jacobiano": 8192
+        },
+        "razão_max_min_cordas_geral_max": 8.107819467810565,
+        "razão_max_min_cordas_geral_p95": 5.919369192570079,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546543010461272,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.480353182114066,
+        "angulo_minimo_vertices_graus_geral": 21.43652982538323,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.19316743736188,
+        "arestas_tracionadas": 32,
+        "arestas_topo_livre": 32,
+        "arestas_furo_livre": 64,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 64,
+          "vertices_interface_unicos": 65,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 3.7798914697004796e-08
+        },
+        "interface_retangular_arestas_conformes": 64,
+        "interface_retangular_vertices_unicos": 65,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.04377817459305203,
+        "ym_m": 0.025778174593052025
+      },
+      "Kt_bruto": {
+        "A": 3.256031289181186,
+        "B": 3.24716260883986,
+        "C": 3.2457291578341443
+      },
+      "Kt_liquido": {
+        "A": 2.4420234668858893,
+        "B": 2.4353719566298953,
+        "C": 2.434296868375608
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 64,
+        "amostras": 128,
+        "tracao_vetorial_rms_T": 0.007230218446466547,
+        "tracao_vetorial_max_T": 0.01039843205207883,
+        "tracao_vetorial_p95_T": 0.009983612428118049,
+        "sigma_rr_rms_T": 0.00625670084117185,
+        "sigma_rtheta_rms_T": 0.003623500154229967,
+        "sigma_rr_max_abs_T": 0.010395964069952694,
+        "sigma_rtheta_max_abs_T": 0.005355520530365554,
+        "desvio_raio_interpolado_max_rel": 6.302016200554483e-10,
+        "jacobiano_min_amostras_m2": 3.7319251722699875e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 1.1254996934439989e-14,
+      "elmer_scipy_diff_rel": 1.1901235334641743e-12,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.0802788027008519,
+        "angulo_min_novo_sobre_velho": 1.3131145827864619,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 1.672056795243293e-06
+      }
+    },
+    {
+      "ha": 4,
+      "lw": 2,
+      "n": 40,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "694248cbae361893cb028791e0ab5757695b493401a684b770ddbc082b0ee247",
+      "qualidade": {
+        "elementos": 3200,
+        "nos": 9841,
+        "dofs_totais": 19682,
+        "faixa_mais_interna_elementos": 80,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 2.426662493781547e-08,
+          "max_det_jacobiano_m2": 9.008686469394866e-07,
+          "pontos_jacobiano": 12800
+        },
+        "razão_max_min_cordas_geral_max": 8.107746212577846,
+        "razão_max_min_cordas_geral_p95": 5.871058133573528,
+        "razão_max_min_cordas_primeira_faixa_max": 2.54652000210508,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4937245464326456,
+        "angulo_minimo_vertices_graus_geral": 21.436529825386256,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.74556335674056,
+        "arestas_tracionadas": 40,
+        "arestas_topo_livre": 40,
+        "arestas_furo_livre": 80,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 80,
+          "vertices_interface_unicos": 81,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 2.426662493781547e-08
+        },
+        "interface_retangular_arestas_conformes": 80,
+        "interface_retangular_vertices_unicos": 81,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.04377817459305203,
+        "ym_m": 0.025778174593052025
+      },
+      "Kt_bruto": {
+        "A": 3.2551455369509665,
+        "B": 3.249877099421181,
+        "C": 3.2490890244266133
+      },
+      "Kt_liquido": {
+        "A": 2.441359152713225,
+        "B": 2.437407824565886,
+        "C": 2.43681676831996
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 80,
+        "amostras": 160,
+        "tracao_vetorial_rms_T": 0.004807178520710131,
+        "tracao_vetorial_max_T": 0.00688927644624586,
+        "tracao_vetorial_p95_T": 0.006656789925009368,
+        "sigma_rr_rms_T": 0.004169890798335684,
+        "sigma_rtheta_rms_T": 0.0023918561954959254,
+        "sigma_rr_max_abs_T": 0.006887828075616946,
+        "sigma_rtheta_max_abs_T": 0.003510223067635353,
+        "desvio_raio_interpolado_max_rel": 2.5813847587263794e-10,
+        "jacobiano_min_amostras_m2": 2.4018274936198297e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 2.286242306581698e-13,
+      "elmer_scipy_diff_rel": 1.7820596669322783e-12,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.0802788027009442,
+        "angulo_min_novo_sobre_velho": 1.313114582786212,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 7.220387425732611e-07
+      }
+    },
+    {
+      "ha": 4,
+      "lw": 2,
+      "n": 48,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "4db94aa9a9ad0d6ff67eb1e2f96caaf45a499c36842629c6a9b98d698edad5e7",
+      "qualidade": {
+        "elementos": 4608,
+        "nos": 14113,
+        "dofs_totais": 28226,
+        "faixa_mais_interna_elementos": 96,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 1.6885799348983605e-08,
+          "max_det_jacobiano_m2": 6.261598890263043e-07,
+          "pontos_jacobiano": 18432
+        },
+        "razão_max_min_cordas_geral_max": 8.10770642300462,
+        "razão_max_min_cordas_geral_p95": 5.832899746839015,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+        "angulo_minimo_vertices_graus_geral": 21.436529825378287,
+        "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+        "arestas_tracionadas": 48,
+        "arestas_topo_livre": 48,
+        "arestas_furo_livre": 96,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 96,
+          "vertices_interface_unicos": 97,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 1.6885799348983605e-08
+        },
+        "interface_retangular_arestas_conformes": 96,
+        "interface_retangular_vertices_unicos": 97,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.04377817459305203,
+        "ym_m": 0.025778174593052025
+      },
+      "Kt_bruto": {
+        "A": 3.2546202986473003,
+        "B": 3.251199678627741,
+        "C": 3.2507144333670595
+      },
+      "Kt_liquido": {
+        "A": 2.4409652239854753,
+        "B": 2.4383997589708057,
+        "C": 2.4380358250252945
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 96,
+        "amostras": 192,
+        "tracao_vetorial_rms_T": 0.0034258819186203616,
+        "tracao_vetorial_max_T": 0.00489706015628706,
+        "tracao_vetorial_p95_T": 0.004750064227911122,
+        "sigma_rr_rms_T": 0.0029764660282688283,
+        "sigma_rtheta_rms_T": 0.0016962655755781634,
+        "sigma_rr_max_abs_T": 0.004896114743883848,
+        "sigma_rtheta_max_abs_T": 0.0024770932841035663,
+        "desvio_raio_interpolado_max_rel": 1.245495026558352e-10,
+        "jacobiano_min_amostras_m2": 1.6741013748310994e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 1.4063061826163904e-13,
+      "elmer_scipy_diff_rel": 1.787942975088214e-12,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.0802788027007166,
+        "angulo_min_novo_sobre_velho": 1.3131145827869746,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 3.5977107915030615e-07
+      }
+    },
+    {
+      "ha": 4,
+      "lw": 4,
+      "n": 24,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "bf201a0b492ede6cff20dccb8b732e3e9c489b73a0d2cc9fc0fbab63c5449460",
+      "qualidade": {
+        "elementos": 1152,
+        "nos": 3601,
+        "dofs_totais": 7202,
+        "faixa_mais_interna_elementos": 48,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 6.683572433321789e-08,
+          "max_det_jacobiano_m2": 5.506449894076682e-06,
+          "pontos_jacobiano": 4608
+        },
+        "razão_max_min_cordas_geral_max": 16.975456104803012,
+        "razão_max_min_cordas_geral_p95": 13.787473163826043,
+        "razão_max_min_cordas_primeira_faixa_max": 2.5465927262169124,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4588314608157553,
+        "angulo_minimo_vertices_graus_geral": 10.053018210233022,
+        "angulo_minimo_vertices_graus_primeira_faixa": 86.28292491900861,
+        "arestas_tracionadas": 24,
+        "arestas_topo_livre": 24,
+        "arestas_furo_livre": 48,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 48,
+          "vertices_interface_unicos": 49,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 6.683572433321789e-08
+        },
+        "interface_retangular_arestas_conformes": 48,
+        "interface_retangular_vertices_unicos": 49,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.07977817459305203,
+        "ym_m": 0.025778174593052025
+      },
+      "Kt_bruto": {
+        "A": 3.252506234159654,
+        "B": 3.235489248414167,
+        "C": 3.2323890383250324
+      },
+      "Kt_liquido": {
+        "A": 2.4393796756197403,
+        "B": 2.426616936310625,
+        "C": 2.4242917787437746
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 48,
+        "amostras": 96,
+        "tracao_vetorial_rms_T": 0.012044051721352277,
+        "tracao_vetorial_max_T": 0.01744256803463373,
+        "tracao_vetorial_p95_T": 0.01659782653774595,
+        "sigma_rr_rms_T": 0.010381535034543896,
+        "sigma_rtheta_rms_T": 0.006105973484477834,
+        "sigma_rr_max_abs_T": 0.017437576400256623,
+        "sigma_rtheta_max_abs_T": 0.00911293518114558,
+        "desvio_raio_interpolado_max_rel": 1.9913189153175637e-09,
+        "jacobiano_min_amostras_m2": 6.572007570722084e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 2.693241185625084e-13,
+      "elmer_scipy_diff_rel": 2.0797158872114755e-13,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.1531491652215284,
+        "angulo_min_novo_sobre_velho": 1.5556227598102272,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 0.00013062571344324425
+      }
+    },
+    {
+      "ha": 4,
+      "lw": 4,
+      "n": 32,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "ead79450b1efa4e10ff3e3a3fa535049a92f4cbf1573389e9ee75963be8b7bfb",
+      "qualidade": {
+        "elementos": 2048,
+        "nos": 6337,
+        "dofs_totais": 12674,
+        "faixa_mais_interna_elementos": 64,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 3.7798914697004796e-08,
+          "max_det_jacobiano_m2": 3.106550807076135e-06,
+          "pontos_jacobiano": 8192
+        },
+        "razão_max_min_cordas_geral_max": 16.97512470212969,
+        "razão_max_min_cordas_geral_p95": 13.482997692167649,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546543010461272,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.480353182114066,
+        "angulo_minimo_vertices_graus_geral": 10.053018210235171,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.19316743736188,
+        "arestas_tracionadas": 32,
+        "arestas_topo_livre": 32,
+        "arestas_furo_livre": 64,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 64,
+          "vertices_interface_unicos": 65,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 3.7798914697004796e-08
+        },
+        "interface_retangular_arestas_conformes": 64,
+        "interface_retangular_vertices_unicos": 65,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.07977817459305203,
+        "ym_m": 0.025778174593052025
+      },
+      "Kt_bruto": {
+        "A": 3.250833550968538,
+        "B": 3.241975845359775,
+        "C": 3.2405434017930204
+      },
+      "Kt_liquido": {
+        "A": 2.4381251632264034,
+        "B": 2.4314818840198313,
+        "C": 2.430407551344765
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 64,
+        "amostras": 128,
+        "tracao_vetorial_rms_T": 0.0072070385606085195,
+        "tracao_vetorial_max_T": 0.010381711643156294,
+        "tracao_vetorial_p95_T": 0.00996715472459552,
+        "sigma_rr_rms_T": 0.006236952923439195,
+        "sigma_rtheta_rms_T": 0.0036113464310283763,
+        "sigma_rr_max_abs_T": 0.010379247542510857,
+        "sigma_rtheta_max_abs_T": 0.005335126944389656,
+        "desvio_raio_interpolado_max_rel": 6.302016200554483e-10,
+        "jacobiano_min_amostras_m2": 3.7319251722699875e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 2.739852789090947e-14,
+      "elmer_scipy_diff_rel": 2.3754532223864455e-12,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.1531266529123443,
+        "angulo_min_novo_sobre_velho": 1.555622759810179,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 5.943814504849598e-05
+      }
+    },
+    {
+      "ha": 4,
+      "lw": 4,
+      "n": 40,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "bc00e6298e7a92bc3ed35853feb803cf36deda22dea25c423a0da587f38c6932",
+      "qualidade": {
+        "elementos": 3200,
+        "nos": 9841,
+        "dofs_totais": 19682,
+        "faixa_mais_interna_elementos": 80,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 2.426662493781547e-08,
+          "max_det_jacobiano_m2": 1.9916944097050243e-06,
+          "pontos_jacobiano": 12800
+        },
+        "razão_max_min_cordas_geral_max": 16.974971329610785,
+        "razão_max_min_cordas_geral_p95": 13.478470637687023,
+        "razão_max_min_cordas_primeira_faixa_max": 2.54652000210508,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4937245464326456,
+        "angulo_minimo_vertices_graus_geral": 10.053018210226607,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.74556335674056,
+        "arestas_tracionadas": 40,
+        "arestas_topo_livre": 40,
+        "arestas_furo_livre": 80,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 80,
+          "vertices_interface_unicos": 81,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 2.426662493781547e-08
+        },
+        "interface_retangular_arestas_conformes": 80,
+        "interface_retangular_vertices_unicos": 81,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.07977817459305203,
+        "ym_m": 0.025778174593052025
+      },
+      "Kt_bruto": {
+        "A": 3.249931029505863,
+        "B": 3.2446699026515105,
+        "C": 3.243882569580394
+      },
+      "Kt_liquido": {
+        "A": 2.4374482721293975,
+        "B": 2.4335024269886327,
+        "C": 2.4329119271852955
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 80,
+        "amostras": 160,
+        "tracao_vetorial_rms_T": 0.00479198877006674,
+        "tracao_vetorial_max_T": 0.0068776715994527445,
+        "tracao_vetorial_p95_T": 0.006645323085104681,
+        "sigma_rr_rms_T": 0.0041569024043356115,
+        "sigma_rtheta_rms_T": 0.002383971219053318,
+        "sigma_rr_max_abs_T": 0.006876225647610961,
+        "sigma_rtheta_max_abs_T": 0.0034979476285108627,
+        "desvio_raio_interpolado_max_rel": 2.5813847587263794e-10,
+        "jacobiano_min_amostras_m2": 2.4018274936198297e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 5.358060661819763e-13,
+      "elmer_scipy_diff_rel": 1.3965304705898144e-12,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.1531162342592747,
+        "angulo_min_novo_sobre_velho": 1.5556227598092485,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 2.9206851448027038e-05
+      }
+    },
+    {
+      "ha": 4,
+      "lw": 4,
+      "n": 48,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "c3b3562f13a84b9b4580f46b8cabc4ddf7dc6e06178c0f5944deb34e31392d6b",
+      "qualidade": {
+        "elementos": 4608,
+        "nos": 14113,
+        "dofs_totais": 28226,
+        "faixa_mais_interna_elementos": 96,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 1.6885799348983605e-08,
+          "max_det_jacobiano_m2": 1.3847363879258367e-06,
+          "pontos_jacobiano": 18432
+        },
+        "razão_max_min_cordas_geral_max": 16.97488802325199,
+        "razão_max_min_cordas_geral_p95": 13.285507286039172,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+        "angulo_minimo_vertices_graus_geral": 10.053018210233605,
+        "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+        "arestas_tracionadas": 48,
+        "arestas_topo_livre": 48,
+        "arestas_furo_livre": 96,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 96,
+          "vertices_interface_unicos": 97,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 1.6885799348983605e-08
+        },
+        "interface_retangular_arestas_conformes": 96,
+        "interface_retangular_vertices_unicos": 97,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.07977817459305203,
+        "ym_m": 0.025778174593052025
+      },
+      "Kt_bruto": {
+        "A": 3.2493971545897615,
+        "B": 3.245981482584842,
+        "C": 3.2454967314435175
+      },
+      "Kt_liquido": {
+        "A": 2.437047865942321,
+        "B": 2.4344861119386314,
+        "C": 2.4341225485826383
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 96,
+        "amostras": 192,
+        "tracao_vetorial_rms_T": 0.003415116146644099,
+        "tracao_vetorial_max_T": 0.0048886615771750646,
+        "tracao_vetorial_p95_T": 0.004741851890822226,
+        "sigma_rr_rms_T": 0.0029672401169708227,
+        "sigma_rtheta_rms_T": 0.0016907112063590925,
+        "sigma_rr_max_abs_T": 0.0048877177912849635,
+        "sigma_rtheta_max_abs_T": 0.00246876413261295,
+        "desvio_raio_interpolado_max_rel": 1.245495026558352e-10,
+        "jacobiano_min_amostras_m2": 1.6741013748310994e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 3.194600139977411e-14,
+      "elmer_scipy_diff_rel": 3.2918339943773234e-12,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.153110575226986,
+        "angulo_min_novo_sobre_velho": 1.5556227598109842,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 1.562665790233453e-05
+      }
+    },
+    {
+      "ha": 8,
+      "lw": 2,
+      "n": 24,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "c459a15ef037b9ea44d8f223c1829d233a3b6f45d34d70cb279cb4421ab1a158",
+      "qualidade": {
+        "elementos": 1152,
+        "nos": 3601,
+        "dofs_totais": 7202,
+        "faixa_mais_interna_elementos": 48,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 6.683572433321789e-08,
+          "max_det_jacobiano_m2": 1.1017756983554837e-05,
+          "pontos_jacobiano": 4608
+        },
+        "razão_max_min_cordas_geral_max": 18.339683907832132,
+        "razão_max_min_cordas_geral_p95": 11.773531152884585,
+        "razão_max_min_cordas_primeira_faixa_max": 2.5465927262169124,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4588314608157553,
+        "angulo_minimo_vertices_graus_geral": 24.300167508060785,
+        "angulo_minimo_vertices_graus_primeira_faixa": 86.28292491900861,
+        "arestas_tracionadas": 24,
+        "arestas_topo_livre": 24,
+        "arestas_furo_livre": 48,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 48,
+          "vertices_interface_unicos": 49,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 6.683572433321789e-08
+        },
+        "interface_retangular_arestas_conformes": 48,
+        "interface_retangular_vertices_unicos": 49,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.07977817459305203,
+        "ym_m": 0.04377817459305203
+      },
+      "Kt_bruto": {
+        "A": 3.0624831592528534,
+        "B": 3.047070010955018,
+        "C": 3.044296144030115
+      },
+      "Kt_liquido": {
+        "A": 2.679672764346247,
+        "B": 2.6661862595856407,
+        "C": 2.663759126026351
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 48,
+        "amostras": 96,
+        "tracao_vetorial_rms_T": 0.011181477245224065,
+        "tracao_vetorial_max_T": 0.0160021304769837,
+        "tracao_vetorial_p95_T": 0.015241770927002221,
+        "sigma_rr_rms_T": 0.009647938998912704,
+        "sigma_rtheta_rms_T": 0.005651787899304338,
+        "sigma_rr_max_abs_T": 0.01599747260365388,
+        "sigma_rtheta_max_abs_T": 0.008468411850292274,
+        "desvio_raio_interpolado_max_rel": 1.9913189153175637e-09,
+        "jacobiano_min_amostras_m2": 6.572007570722084e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 7.412381819449364e-14,
+      "elmer_scipy_diff_rel": 2.7474223341515916e-13,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.449453960977575,
+        "angulo_min_novo_sobre_velho": 1.1493267326299481,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 5.478627445709705e-05
+      }
+    },
+    {
+      "ha": 8,
+      "lw": 2,
+      "n": 32,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "027dd3dc0afa75489032e6adfda3c5f78ba37664555b361504ddb81364d311d0",
+      "qualidade": {
+        "elementos": 2048,
+        "nos": 6337,
+        "dofs_totais": 12674,
+        "faixa_mais_interna_elementos": 64,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 3.7798914697004796e-08,
+          "max_det_jacobiano_m2": 6.215770624023855e-06,
+          "pontos_jacobiano": 8192
+        },
+        "razão_max_min_cordas_geral_max": 18.339325872076977,
+        "razão_max_min_cordas_geral_p95": 11.207695127661493,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546543010461272,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.480353182114066,
+        "angulo_minimo_vertices_graus_geral": 24.30016750806191,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.19316743736188,
+        "arestas_tracionadas": 32,
+        "arestas_topo_livre": 32,
+        "arestas_furo_livre": 64,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 64,
+          "vertices_interface_unicos": 65,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 3.7798914697004796e-08
+        },
+        "interface_retangular_arestas_conformes": 64,
+        "interface_retangular_vertices_unicos": 65,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.07977817459305203,
+        "ym_m": 0.04377817459305203
+      },
+      "Kt_bruto": {
+        "A": 3.060928750176253,
+        "B": 3.052908397779649,
+        "C": 3.0516309979833296
+      },
+      "Kt_liquido": {
+        "A": 2.6783126564042217,
+        "B": 2.671294848057193,
+        "C": 2.6701771232354132
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 64,
+        "amostras": 128,
+        "tracao_vetorial_rms_T": 0.006689725648211637,
+        "tracao_vetorial_max_T": 0.009517410497537244,
+        "tracao_vetorial_p95_T": 0.00914643344687829,
+        "sigma_rr_rms_T": 0.005794852628790609,
+        "sigma_rtheta_rms_T": 0.0033424709810167667,
+        "sigma_rr_max_abs_T": 0.00951510168970485,
+        "sigma_rtheta_max_abs_T": 0.004955409241887048,
+        "desvio_raio_interpolado_max_rel": 6.302016200554483e-10,
+        "jacobiano_min_amostras_m2": 3.73192517227003e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 1.1368683772161603e-16,
+      "elmer_scipy_diff_rel": 1.7959150326258011e-12,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.4494539609778347,
+        "angulo_min_novo_sobre_velho": 1.1493267326297387,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 2.469161198215275e-05
+      }
+    },
+    {
+      "ha": 8,
+      "lw": 2,
+      "n": 40,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "d372a20395475f907f6a99624a0d8fbb632bbc5594fa174c9b6779400a565a45",
+      "qualidade": {
+        "elementos": 3200,
+        "nos": 9841,
+        "dofs_totais": 19682,
+        "faixa_mais_interna_elementos": 80,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 2.426662493781547e-08,
+          "max_det_jacobiano_m2": 3.984939907361439e-06,
+          "pontos_jacobiano": 12800
+        },
+        "razão_max_min_cordas_geral_max": 18.33916017381778,
+        "razão_max_min_cordas_geral_p95": 11.230618589242232,
+        "razão_max_min_cordas_primeira_faixa_max": 2.54652000210508,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4937245464326456,
+        "angulo_minimo_vertices_graus_geral": 24.300167508048496,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.74556335674056,
+        "arestas_tracionadas": 40,
+        "arestas_topo_livre": 40,
+        "arestas_furo_livre": 80,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 80,
+          "vertices_interface_unicos": 81,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 2.426662493781547e-08
+        },
+        "interface_retangular_arestas_conformes": 80,
+        "interface_retangular_vertices_unicos": 81,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.07977817459305203,
+        "ym_m": 0.04377817459305203
+      },
+      "Kt_bruto": {
+        "A": 3.0601022270003164,
+        "B": 3.055338887248252,
+        "C": 3.0546380379388105
+      },
+      "Kt_liquido": {
+        "A": 2.6775894486252767,
+        "B": 2.6734215263422207,
+        "C": 2.672808283196459
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 80,
+        "amostras": 160,
+        "tracao_vetorial_rms_T": 0.0044476513032661955,
+        "tracao_vetorial_max_T": 0.00630213812320707,
+        "tracao_vetorial_p95_T": 0.006095358247301311,
+        "sigma_rr_rms_T": 0.0038617699154958013,
+        "sigma_rtheta_rms_T": 0.002206430428365473,
+        "sigma_rr_max_abs_T": 0.006300779503445086,
+        "sigma_rtheta_max_abs_T": 0.0032483613650916587,
+        "desvio_raio_interpolado_max_rel": 2.5813847587263794e-10,
+        "jacobiano_min_amostras_m2": 2.4018274936198297e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 3.7812242226209497e-13,
+      "elmer_scipy_diff_rel": 1.3050120961040594e-12,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.449453960977687,
+        "angulo_min_novo_sobre_velho": 1.1493267326294656,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 1.2027394678426617e-05
+      }
+    },
+    {
+      "ha": 8,
+      "lw": 2,
+      "n": 48,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "32ed71707e6b7bdd378768ed1bdaf449c8f39f6d86e692b40d43bae20fa3cad0",
+      "qualidade": {
+        "elementos": 4608,
+        "nos": 14113,
+        "dofs_totais": 28226,
+        "faixa_mais_interna_elementos": 96,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 1.6885799348983605e-08,
+          "max_det_jacobiano_m2": 2.770440158584042e-06,
+          "pontos_jacobiano": 18432
+        },
+        "razão_max_min_cordas_geral_max": 18.339070172565457,
+        "razão_max_min_cordas_geral_p95": 10.933467171246273,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+        "angulo_minimo_vertices_graus_geral": 24.300167508058156,
+        "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+        "arestas_tracionadas": 48,
+        "arestas_topo_livre": 48,
+        "arestas_furo_livre": 96,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 96,
+          "vertices_interface_unicos": 97,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 1.6885799348983605e-08
+        },
+        "interface_retangular_arestas_conformes": 96,
+        "interface_retangular_vertices_unicos": 97,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.07977817459305203,
+        "ym_m": 0.04377817459305203
+      },
+      "Kt_bruto": {
+        "A": 3.059614994542425,
+        "B": 3.0565223829142494,
+        "C": 3.0560912509193283
+      },
+      "Kt_liquido": {
+        "A": 2.677163120224622,
+        "B": 2.6744570850499683,
+        "C": 2.674079844554412
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 96,
+        "amostras": 192,
+        "tracao_vetorial_rms_T": 0.0031695567380644303,
+        "tracao_vetorial_max_T": 0.004478106986806164,
+        "tracao_vetorial_p95_T": 0.00434542053233534,
+        "sigma_rr_rms_T": 0.002756361868239477,
+        "sigma_rtheta_rms_T": 0.0015647872593822496,
+        "sigma_rr_max_abs_T": 0.004477218387105611,
+        "sigma_rtheta_max_abs_T": 0.002292400185803423,
+        "desvio_raio_interpolado_max_rel": 1.245495026558352e-10,
+        "jacobiano_min_amostras_m2": 1.6741013748310706e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 1.374473868054338e-13,
+      "elmer_scipy_diff_rel": 1.7971674641015003e-12,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.4494539609778212,
+        "angulo_min_novo_sobre_velho": 1.1493267326302101,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 6.398121876305396e-06
+      }
+    },
+    {
+      "ha": 8,
+      "lw": 4,
+      "n": 24,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "10e06be968ec518667e0e3b5a54e99a65112ae8b0026a115ee1e07acf5b46fb4",
+      "qualidade": {
+        "elementos": 1152,
+        "nos": 3601,
+        "dofs_totais": 7202,
+        "faixa_mais_interna_elementos": 48,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 6.683572433321789e-08,
+          "max_det_jacobiano_m2": 2.3023231343824536e-05,
+          "pontos_jacobiano": 4608
+        },
+        "razão_max_min_cordas_geral_max": 35.85361458699801,
+        "razão_max_min_cordas_geral_p95": 23.63748739042426,
+        "razão_max_min_cordas_primeira_faixa_max": 2.5465927262169124,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4588314608157553,
+        "angulo_minimo_vertices_graus_geral": 12.151501883306173,
+        "angulo_minimo_vertices_graus_primeira_faixa": 86.28292491900861,
+        "arestas_tracionadas": 24,
+        "arestas_topo_livre": 24,
+        "arestas_furo_livre": 48,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 48,
+          "vertices_interface_unicos": 49,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 6.683572433321789e-08
+        },
+        "interface_retangular_arestas_conformes": 48,
+        "interface_retangular_vertices_unicos": 49,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.15177817459305204,
+        "ym_m": 0.04377817459305203
+      },
+      "Kt_bruto": {
+        "A": 3.060852205362755,
+        "B": 3.045353696099766,
+        "C": 3.042551284593783
+      },
+      "Kt_liquido": {
+        "A": 2.6782456796924103,
+        "B": 2.664684484087295,
+        "C": 2.66223237401956
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 48,
+        "amostras": 96,
+        "tracao_vetorial_rms_T": 0.011147729969864562,
+        "tracao_vetorial_max_T": 0.01603711722582442,
+        "tracao_vetorial_p95_T": 0.015270042010244168,
+        "sigma_rr_rms_T": 0.00962035130004621,
+        "sigma_rtheta_rms_T": 0.005632115441352011,
+        "sigma_rr_max_abs_T": 0.016032449544911287,
+        "sigma_rtheta_max_abs_T": 0.00838865615511546,
+        "desvio_raio_interpolado_max_rel": 1.9913189153175637e-09,
+        "jacobiano_min_amostras_m2": 6.572007570722084e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 8.753886504564433e-14,
+      "elmer_scipy_diff_rel": 7.075005621899293e-13,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.4735744823438284,
+        "angulo_min_novo_sobre_velho": 1.2841987005055915,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": -0.0003477357568821837
+      }
+    },
+    {
+      "ha": 8,
+      "lw": 4,
+      "n": 32,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "e3b9e832cfdba01da6f1cba78f74003ed00b79df719ff8658606bd51341343b2",
+      "qualidade": {
+        "elementos": 2048,
+        "nos": 6337,
+        "dofs_totais": 12674,
+        "faixa_mais_interna_elementos": 64,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 3.7798914697004796e-08,
+          "max_det_jacobiano_m2": 1.2999167025178917e-05,
+          "pontos_jacobiano": 8192
+        },
+        "razão_max_min_cordas_geral_max": 35.85291463622151,
+        "razão_max_min_cordas_geral_p95": 23.26481484231088,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546543010461272,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.480353182114066,
+        "angulo_minimo_vertices_graus_geral": 12.151501883302787,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.19316743736188,
+        "arestas_tracionadas": 32,
+        "arestas_topo_livre": 32,
+        "arestas_furo_livre": 64,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 64,
+          "vertices_interface_unicos": 65,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 3.7798914697004796e-08
+        },
+        "interface_retangular_arestas_conformes": 64,
+        "interface_retangular_vertices_unicos": 65,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.15177817459305204,
+        "ym_m": 0.04377817459305203
+      },
+      "Kt_bruto": {
+        "A": 3.059714985466358,
+        "B": 3.0516749436625026,
+        "C": 3.050390791604863
+      },
+      "Kt_liquido": {
+        "A": 2.6772506122830633,
+        "B": 2.67021557570469,
+        "C": 2.6690919426542554
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 64,
+        "amostras": 128,
+        "tracao_vetorial_rms_T": 0.006678404348673342,
+        "tracao_vetorial_max_T": 0.009526258415046646,
+        "tracao_vetorial_p95_T": 0.009153782670136256,
+        "sigma_rr_rms_T": 0.005785449751984985,
+        "sigma_rtheta_rms_T": 0.00333611387869717,
+        "sigma_rr_max_abs_T": 0.009523949111155287,
+        "sigma_rtheta_max_abs_T": 0.004929679249613881,
+        "desvio_raio_interpolado_max_rel": 6.302016200554483e-10,
+        "jacobiano_min_amostras_m2": 3.73192517227003e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 4.4497028284240516e-13,
+      "elmer_scipy_diff_rel": 3.5517816023879704e-12,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.4735457145436097,
+        "angulo_min_novo_sobre_velho": 1.2841987005058793,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 6.985866605591085e-05
+      }
+    },
+    {
+      "ha": 8,
+      "lw": 4,
+      "n": 40,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "2203b3577de1a6980d1cdbd64879848f01e420a8402a1a394facb5ae44c4153d",
+      "qualidade": {
+        "elementos": 3200,
+        "nos": 9841,
+        "dofs_totais": 19682,
+        "faixa_mais_interna_elementos": 80,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 2.426662493781547e-08,
+          "max_det_jacobiano_m2": 8.33799580835617e-06,
+          "pontos_jacobiano": 12800
+        },
+        "razão_max_min_cordas_geral_max": 35.85259070035243,
+        "razão_max_min_cordas_geral_p95": 22.29945803787109,
+        "razão_max_min_cordas_primeira_faixa_max": 2.54652000210508,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4937245464326456,
+        "angulo_minimo_vertices_graus_geral": 12.151501883300249,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.74556335674056,
+        "arestas_tracionadas": 40,
+        "arestas_topo_livre": 40,
+        "arestas_furo_livre": 80,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 80,
+          "vertices_interface_unicos": 81,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 2.426662493781547e-08
+        },
+        "interface_retangular_arestas_conformes": 80,
+        "interface_retangular_vertices_unicos": 81,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.15177817459305204,
+        "ym_m": 0.04377817459305203
+      },
+      "Kt_bruto": {
+        "A": 3.058923254207641,
+        "B": 3.0541550711751952,
+        "C": 3.053452387470135
+      },
+      "Kt_liquido": {
+        "A": 2.676557847431686,
+        "B": 2.672385687278296,
+        "C": 2.6717708390363684
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 80,
+        "amostras": 160,
+        "tracao_vetorial_rms_T": 0.004442325593652785,
+        "tracao_vetorial_max_T": 0.006303840364652897,
+        "tracao_vetorial_p95_T": 0.006096693031957879,
+        "sigma_rr_rms_T": 0.0038572919084631264,
+        "sigma_rtheta_rms_T": 0.0022035325758716306,
+        "sigma_rr_max_abs_T": 0.006302482122126396,
+        "sigma_rtheta_max_abs_T": 0.0032378559917150707,
+        "desvio_raio_interpolado_max_rel": 2.5813847587263794e-10,
+        "jacobiano_min_amostras_m2": 2.4018274936198297e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 3.432205630815588e-13,
+      "elmer_scipy_diff_rel": 3.658407845321064e-12,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.4735324008615187,
+        "angulo_min_novo_sobre_velho": 1.2841987005053117,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 0.00011062175762699411
+      }
+    },
+    {
+      "ha": 8,
+      "lw": 4,
+      "n": 48,
+      "topologia": "anel-seis-blocos-alinhado",
+      "fracao": 0.45,
+      "mesh_sha256": "f6f478ee8158a51bd7578b9cdbb58632eac3fdb023875a02508d0e3611949d65",
+      "qualidade": {
+        "elementos": 4608,
+        "nos": 14113,
+        "dofs_totais": 28226,
+        "faixa_mais_interna_elementos": 96,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 1.6885799348983605e-08,
+          "max_det_jacobiano_m2": 5.798814074944577e-06,
+          "pontos_jacobiano": 18432
+        },
+        "razão_max_min_cordas_geral_max": 35.85241475019302,
+        "razão_max_min_cordas_geral_p95": 22.076622691072412,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+        "angulo_minimo_vertices_graus_geral": 12.151501883303846,
+        "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+        "arestas_tracionadas": 48,
+        "arestas_topo_livre": 48,
+        "arestas_furo_livre": 96,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "conformidade": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 96,
+          "vertices_interface_unicos": 97,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 1.6885799348983605e-08
+        },
+        "interface_retangular_arestas_conformes": 96,
+        "interface_retangular_vertices_unicos": 97,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.15177817459305204,
+        "ym_m": 0.04377817459305203
+      },
+      "Kt_bruto": {
+        "A": 3.0584091129254176,
+        "B": 3.0553155348443184,
+        "C": 3.054883874602871
+      },
+      "Kt_liquido": {
+        "A": 2.6761079738097404,
+        "B": 2.6734010929887786,
+        "C": 2.673023390277512
+      },
+      "tracao_furo": {
+        "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+        "arestas_furo": 96,
+        "amostras": 192,
+        "tracao_vetorial_rms_T": 0.0031664422002810216,
+        "tracao_vetorial_max_T": 0.004477757756855499,
+        "tracao_vetorial_p95_T": 0.0043450431216164286,
+        "sigma_rr_rms_T": 0.0027537206819265277,
+        "sigma_rtheta_rms_T": 0.001563131028944987,
+        "sigma_rr_max_abs_T": 0.004476869523896259,
+        "sigma_rtheta_max_abs_T": 0.0022872772396619803,
+        "desvio_raio_interpolado_max_rel": 1.245495026558352e-10,
+        "jacobiano_min_amostras_m2": 1.6741013748310706e-08,
+        "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+      },
+      "equilibrio_rel": 9.636096365284176e-13,
+      "elmer_scipy_diff_rel": 4.533510773177018e-12,
+      "comparacao_ciclo20": {
+        "ratio_global_novo_sobre_velho": 1.4735251693546236,
+        "angulo_min_novo_sobre_velho": 1.2841987005055817,
+        "ratio_furo_novo_sobre_velho": 1.0,
+        "Kt_liquido_C_novo_menos_velho": 8.905864122077389e-05
+      }
+    }
+  ],
+  "series": [
+    {
+      "H_over_a": 4,
+      "d_over_W": 0.25,
+      "L_over_W": 2,
+      "lambda": 0.45,
+      "ratio_global_vs_c20": 1.0802788027007166,
+      "angulo_min_vs_c20": 1.3131145827869746,
+      "furo_ratio_vs_c20": 1.0,
+      "tracao_parede_rms_novo_T": 0.0034258819186203616,
+      "tracao_parede_rms_controle20_T": 0.003425882353171425,
+      "tracao_parede_rms_vs_controle20": 0.9999998731564547,
+      "tracao_parede_max_novo_T": 0.00489706015628706,
+      "tracao_parede_max_controle20_T": 0.004897057110605118,
+      "Kt_net_C_novo": 2.4380358250252945,
+      "Kt_net_C_anterior": 2.4380354652542153,
+      "gate_ambas_geometrias": false,
+      "gate_tracao_rms": true,
+      "controle_reexecutado": {
+        "ha": 4,
+        "lw": 2,
+        "n": 48,
+        "topologia": "anel-seis-blocos",
+        "fracao": 0.5,
+        "mesh_sha256": "b49a66acf6b33bfc045568435c8cf319e9c3d062818610630efe1c216d020a5c",
+        "qualidade": {
+          "elementos": 4608,
+          "nos": 14113,
+          "dofs_totais": 28226,
+          "faixa_mais_interna_elementos": 96,
+          "jacobianos_q8": {
+            "min_det_jacobiano_m2": 1.6885799348983605e-08,
+            "max_det_jacobiano_m2": 6.917007781105902e-07,
+            "pontos_jacobiano": 18432
+          },
+          "razão_max_min_cordas_geral_max": 7.505198105095839,
+          "razão_max_min_cordas_geral_p95": 5.476047025609365,
+          "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+          "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+          "angulo_minimo_vertices_graus_geral": 16.324949936875324,
+          "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+          "arestas_tracionadas": 48,
+          "arestas_topo_livre": 48,
+          "arestas_furo_livre": 96,
+          "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+        },
+        "conformidade": {
+          "anel": {
+            "raio_intermediario_m": 0.02,
+            "arestas_interface_conformes": 96,
+            "vertices_interface_unicos": 97,
+            "incidencia_por_aresta": 2,
+            "jacobiano_minimo_m2": 1.6885799348983605e-08
+          },
+          "interface_retangular_arestas_conformes": 96,
+          "interface_retangular_vertices_unicos": 97,
+          "incidencias_por_aresta": 2,
+          "xm_m": 0.04,
+          "ym_m": 0.0282842712474619
+        },
+        "Kt_bruto": {
+          "A": 3.2546198148413694,
+          "B": 3.2511991980052692,
+          "C": 3.250713953672286
+        },
+        "Kt_liquido": {
+          "A": 2.440964861131027,
+          "B": 2.438399398503952,
+          "C": 2.438035465254215
+        },
+        "tracao_furo": {
+          "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+          "arestas_furo": 96,
+          "amostras": 192,
+          "tracao_vetorial_rms_T": 0.003425882353171425,
+          "tracao_vetorial_max_T": 0.004897057110605118,
+          "tracao_vetorial_p95_T": 0.004750061228848289,
+          "sigma_rr_rms_T": 0.0029764663643757224,
+          "sigma_rtheta_rms_T": 0.0016962658634516444,
+          "sigma_rr_max_abs_T": 0.004896111698267668,
+          "sigma_rtheta_max_abs_T": 0.0024770993530196413,
+          "desvio_raio_interpolado_max_rel": 1.245495026558352e-10,
+          "jacobiano_min_amostras_m2": 1.6741013748310994e-08,
+          "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+        },
+        "equilibrio_rel": 7.344169716816396e-14,
+        "elmer_scipy_diff_rel": 2.4172802053501582e-12
+      },
+      "gci_C": {
+        "n": [
+          24,
+          32,
+          40,
+          48
+        ],
+        "valores": [
+          3.237552344566607,
+          3.2457291578341443,
+          3.2490890244266133,
+          3.2507144333670595
+        ],
+        "incrementos": [
+          0.008176813267537497,
+          0.0033598665924690074,
+          0.0016254089404461602
+        ],
+        "variacao_relativa_duas_mais_finas": 0.0005000159115061291,
+        "monotonicidade": true,
+        "status": "estimativa_condicionada_ordem_estavel",
+        "ordem_observada": {
+          "24_32_40": 2.455372409032516,
+          "32_40_48": 2.5629273259536847
+        },
+        "extrapolacao_richardson": 3.253443263321436,
+        "GCI_fino_relativo": 0.0010493193151507386,
+        "GCI_fator_seguranca": 1.25,
+        "razões_refinamento_n24_32_40_48": [
+          1.3333333333333333,
+          1.25,
+          1.2
+        ],
+        "alertas": [
+          "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+        ],
+        "estabilidade_ordem_relativa": 0.0419656522570911
+      }
+    },
+    {
+      "H_over_a": 4,
+      "d_over_W": 0.25,
+      "L_over_W": 4,
+      "lambda": 0.45,
+      "ratio_global_vs_c20": 1.153110575226986,
+      "angulo_min_vs_c20": 1.5556227598109842,
+      "furo_ratio_vs_c20": 1.0,
+      "tracao_parede_rms_novo_T": 0.003415116146644099,
+      "tracao_parede_rms_controle20_T": 0.0034151536390418925,
+      "tracao_parede_rms_vs_controle20": 0.9999890217537024,
+      "tracao_parede_max_novo_T": 0.0048886615771750646,
+      "tracao_parede_max_controle20_T": 0.00488845697119172,
+      "Kt_net_C_novo": 2.4341225485826383,
+      "Kt_net_C_anterior": 2.434106921924736,
+      "gate_ambas_geometrias": false,
+      "gate_tracao_rms": true,
+      "controle_reexecutado": {
+        "ha": 4,
+        "lw": 4,
+        "n": 48,
+        "topologia": "anel-seis-blocos",
+        "fracao": 0.5,
+        "mesh_sha256": "874db3355cf9af279599a8e338fc05d1041c1213b324d78b54cf00eb4e1acc0c",
+        "qualidade": {
+          "elementos": 4608,
+          "nos": 14113,
+          "dofs_totais": 28226,
+          "faixa_mais_interna_elementos": 96,
+          "jacobianos_q8": {
+            "min_det_jacobiano_m2": 1.6885799348983605e-08,
+            "max_det_jacobiano_m2": 1.78681535089457e-06,
+            "pontos_jacobiano": 18432
+          },
+          "razão_max_min_cordas_geral_max": 14.72095425012518,
+          "razão_max_min_cordas_geral_p95": 12.856276431990429,
+          "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+          "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+          "angulo_minimo_vertices_graus_geral": 6.462375371426872,
+          "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+          "arestas_tracionadas": 48,
+          "arestas_topo_livre": 48,
+          "arestas_furo_livre": 96,
+          "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+        },
+        "conformidade": {
+          "anel": {
+            "raio_intermediario_m": 0.02,
+            "arestas_interface_conformes": 96,
+            "vertices_interface_unicos": 97,
+            "incidencia_por_aresta": 2,
+            "jacobiano_minimo_m2": 1.6885799348983605e-08
+          },
+          "interface_retangular_arestas_conformes": 96,
+          "interface_retangular_vertices_unicos": 97,
+          "incidencias_por_aresta": 2,
+          "xm_m": 0.0565685424949238,
+          "ym_m": 0.0282842712474619
+        },
+        "Kt_bruto": {
+          "A": 3.249376021309433,
+          "B": 3.245960581885093,
+          "C": 3.245475895899647
+        },
+        "Kt_liquido": {
+          "A": 2.4370320159820746,
+          "B": 2.43447043641382,
+          "C": 2.434106921924735
+        },
+        "tracao_furo": {
+          "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+          "arestas_furo": 96,
+          "amostras": 192,
+          "tracao_vetorial_rms_T": 0.0034151536390418925,
+          "tracao_vetorial_max_T": 0.00488845697119172,
+          "tracao_vetorial_p95_T": 0.004741653735588348,
+          "sigma_rr_rms_T": 0.0029672703789407878,
+          "sigma_rtheta_rms_T": 0.0016907338278160985,
+          "sigma_rr_max_abs_T": 0.004887513188006534,
+          "sigma_rtheta_max_abs_T": 0.0024690834279146655,
+          "desvio_raio_interpolado_max_rel": 1.245495026558352e-10,
+          "jacobiano_min_amostras_m2": 1.6741013748310994e-08,
+          "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+        },
+        "equilibrio_rel": 1.4390479918802156e-12,
+        "elmer_scipy_diff_rel": 3.755695451893322e-12
+      },
+      "gci_C": {
+        "n": [
+          24,
+          32,
+          40,
+          48
+        ],
+        "valores": [
+          3.2323890383250324,
+          3.2405434017930204,
+          3.243882569580394,
+          3.2454967314435175
+        ],
+        "incrementos": [
+          0.008154363467987924,
+          0.0033391677873737535,
+          0.0016141618631233534
+        ],
+        "variacao_relativa_duas_mais_finas": 0.0004973543333089151,
+        "monotonicidade": true,
+        "status": "estimativa_condicionada_ordem_estavel",
+        "ordem_observada": {
+          "24_32_40": 2.4684609449292934,
+          "32_40_48": 2.5666314383240447
+        },
+        "extrapolacao_richardson": 3.2482017836913726,
+        "GCI_fino_relativo": 0.0010418483177194896,
+        "GCI_fator_seguranca": 1.25,
+        "razões_refinamento_n24_32_40_48": [
+          1.3333333333333333,
+          1.25,
+          1.2
+        ],
+        "alertas": [
+          "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+        ],
+        "estabilidade_ordem_relativa": 0.03824876915668679
+      }
+    },
+    {
+      "H_over_a": 8,
+      "d_over_W": 0.125,
+      "L_over_W": 2,
+      "lambda": 0.45,
+      "ratio_global_vs_c20": 1.4494539609778212,
+      "angulo_min_vs_c20": 1.1493267326302101,
+      "furo_ratio_vs_c20": 1.0,
+      "tracao_parede_rms_novo_T": 0.0031695567380644303,
+      "tracao_parede_rms_controle20_T": 0.0031695872878547138,
+      "tracao_parede_rms_vs_controle20": 0.999990361587327,
+      "tracao_parede_max_novo_T": 0.004478106986806164,
+      "tracao_parede_max_controle20_T": 0.004478018351951224,
+      "Kt_net_C_novo": 2.674079844554412,
+      "Kt_net_C_anterior": 2.6740734464325358,
+      "gate_ambas_geometrias": false,
+      "gate_tracao_rms": true,
+      "controle_reexecutado": {
+        "ha": 8,
+        "lw": 2,
+        "n": 48,
+        "topologia": "anel-seis-blocos",
+        "fracao": 0.5,
+        "mesh_sha256": "7e2666ae487ed3ec835c6ccfee335ea5e744a42803167c4102bde96f2309a7ab",
+        "qualidade": {
+          "elementos": 4608,
+          "nos": 14113,
+          "dofs_totais": 28226,
+          "faixa_mais_interna_elementos": 96,
+          "jacobianos_q8": {
+            "min_det_jacobiano_m2": 1.6885799348983605e-08,
+            "max_det_jacobiano_m2": 3.5671840456184657e-06,
+            "pontos_jacobiano": 18432
+          },
+          "razão_max_min_cordas_geral_max": 12.652399225011377,
+          "razão_max_min_cordas_geral_p95": 9.141624513303768,
+          "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+          "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+          "angulo_minimo_vertices_graus_geral": 21.14295858449906,
+          "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+          "arestas_tracionadas": 48,
+          "arestas_topo_livre": 48,
+          "arestas_furo_livre": 96,
+          "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+        },
+        "conformidade": {
+          "anel": {
+            "raio_intermediario_m": 0.02,
+            "arestas_interface_conformes": 96,
+            "vertices_interface_unicos": 97,
+            "incidencia_por_aresta": 2,
+            "jacobiano_minimo_m2": 1.6885799348983605e-08
+          },
+          "interface_retangular_arestas_conformes": 96,
+          "interface_retangular_vertices_unicos": 97,
+          "incidencias_por_aresta": 2,
+          "xm_m": 0.0565685424949238,
+          "ym_m": 0.04
+        },
+        "Kt_bruto": {
+          "A": 3.0596075511811534,
+          "B": 3.056515041308038,
+          "C": 3.056083938780041
+        },
+        "Kt_liquido": {
+          "A": 2.6771566072835093,
+          "B": 2.674450661144533,
+          "C": 2.6740734464325358
+        },
+        "tracao_furo": {
+          "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+          "arestas_furo": 96,
+          "amostras": 192,
+          "tracao_vetorial_rms_T": 0.0031695872878547138,
+          "tracao_vetorial_max_T": 0.004478018351951224,
+          "tracao_vetorial_p95_T": 0.004345334510596065,
+          "sigma_rr_rms_T": 0.0027563869812245664,
+          "sigma_rtheta_rms_T": 0.0015648049031958978,
+          "sigma_rr_max_abs_T": 0.004477129753212487,
+          "sigma_rtheta_max_abs_T": 0.002292552962058217,
+          "desvio_raio_interpolado_max_rel": 1.245495026558352e-10,
+          "jacobiano_min_amostras_m2": 1.6741013748310706e-08,
+          "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+        },
+        "equilibrio_rel": 1.4620127330999822e-13,
+        "elmer_scipy_diff_rel": 1.7238292432902155e-12
+      },
+      "gci_C": {
+        "n": [
+          24,
+          32,
+          40,
+          48
+        ],
+        "valores": [
+          3.044296144030115,
+          3.0516309979833296,
+          3.0546380379388105,
+          3.0560912509193283
+        ],
+        "incrementos": [
+          0.007334853953214537,
+          0.0030070399554809057,
+          0.0014532129805178151
+        ],
+        "variacao_relativa_duas_mais_finas": 0.0004755136091177454,
+        "monotonicidade": true,
+        "status": "estimativa_condicionada_ordem_estavel",
+        "ordem_observada": {
+          "24_32_40": 2.464072295970314,
+          "32_40_48": 2.567957450404041
+        },
+        "extrapolacao_richardson": 3.0585250064529297,
+        "GCI_fino_relativo": 0.0009954527424818334,
+        "GCI_fator_seguranca": 1.25,
+        "razões_refinamento_n24_32_40_48": [
+          1.3333333333333333,
+          1.25,
+          1.2
+        ],
+        "alertas": [
+          "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+        ],
+        "estabilidade_ordem_relativa": 0.04045439086904727
+      }
+    },
+    {
+      "H_over_a": 8,
+      "d_over_W": 0.125,
+      "L_over_W": 4,
+      "lambda": 0.45,
+      "ratio_global_vs_c20": 1.4735251693546236,
+      "angulo_min_vs_c20": 1.2841987005055817,
+      "furo_ratio_vs_c20": 1.0,
+      "tracao_parede_rms_novo_T": 0.0031664422002810216,
+      "tracao_parede_rms_controle20_T": 0.003167221685594877,
+      "tracao_parede_rms_vs_controle20": 0.9997538898785012,
+      "tracao_parede_max_novo_T": 0.004477757756855499,
+      "tracao_parede_max_controle20_T": 0.004475548150870036,
+      "Kt_net_C_novo": 2.673023390277512,
+      "Kt_net_C_anterior": 2.672934331636291,
+      "gate_ambas_geometrias": false,
+      "gate_tracao_rms": true,
+      "controle_reexecutado": {
+        "ha": 8,
+        "lw": 4,
+        "n": 48,
+        "topologia": "anel-seis-blocos",
+        "fracao": 0.5,
+        "mesh_sha256": "957a8339f60795c3f20d1397527810da9755b5db39454e286a01fd2a984dc986",
+        "qualidade": {
+          "elementos": 4608,
+          "nos": 14113,
+          "dofs_totais": 28226,
+          "faixa_mais_interna_elementos": 96,
+          "jacobianos_q8": {
+            "min_det_jacobiano_m2": 1.6885799348983605e-08,
+            "max_det_jacobiano_m2": 8.263798326954577e-06,
+            "pontos_jacobiano": 18432
+          },
+          "razão_max_min_cordas_geral_max": 24.33105012104795,
+          "razão_max_min_cordas_geral_p95": 18.014844511050942,
+          "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+          "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+          "angulo_minimo_vertices_graus_geral": 9.462322208019575,
+          "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+          "arestas_tracionadas": 48,
+          "arestas_topo_livre": 48,
+          "arestas_furo_livre": 96,
+          "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+        },
+        "conformidade": {
+          "anel": {
+            "raio_intermediario_m": 0.02,
+            "arestas_interface_conformes": 96,
+            "vertices_interface_unicos": 97,
+            "incidencia_por_aresta": 2,
+            "jacobiano_minimo_m2": 1.6885799348983605e-08
+          },
+          "interface_retangular_arestas_conformes": 96,
+          "interface_retangular_vertices_unicos": 97,
+          "incidencias_por_aresta": 2,
+          "xm_m": 0.08,
+          "ym_m": 0.04
+        },
+        "Kt_bruto": {
+          "A": 3.058303790753563,
+          "B": 3.055212973755472,
+          "C": 3.0547820932986185
+        },
+        "Kt_liquido": {
+          "A": 2.6760158169093677,
+          "B": 2.6733113520360376,
+          "C": 2.672934331636291
+        },
+        "tracao_furo": {
+          "metodo": "Q8 gradiente direto na aresta, Gauss 2 pontos por aresta, mesmo vetor u",
+          "arestas_furo": 96,
+          "amostras": 192,
+          "tracao_vetorial_rms_T": 0.003167221685594877,
+          "tracao_vetorial_max_T": 0.004475548150870036,
+          "tracao_vetorial_p95_T": 0.004342934319617692,
+          "sigma_rr_rms_T": 0.0027543596644430813,
+          "sigma_rtheta_rms_T": 0.001563584358002934,
+          "sigma_rr_max_abs_T": 0.004474659930215251,
+          "sigma_rtheta_max_abs_T": 0.0022906358739205627,
+          "desvio_raio_interpolado_max_rel": 1.245495026558352e-10,
+          "jacobiano_min_amostras_m2": 1.6741013748310706e-08,
+          "limites": "Resíduo FORTE amostrado, não forma fraca e não mede incerteza física"
+        },
+        "equilibrio_rel": 4.90899765281938e-13,
+        "elmer_scipy_diff_rel": 2.709948023762672e-12
+      },
+      "gci_C": {
+        "n": [
+          24,
+          32,
+          40,
+          48
+        ],
+        "valores": [
+          3.042551284593783,
+          3.050390791604863,
+          3.053452387470135,
+          3.054883874602871
+        ],
+        "incrementos": [
+          0.007839507011079938,
+          0.0030615958652719932,
+          0.0014314871327356649
+        ],
+        "variacao_relativa_duas_mais_finas": 0.00046858970471398215,
+        "monotonicidade": true,
+        "status": "estimativa_condicionada_ordem_estavel",
+        "ordem_observada": {
+          "24_32_40": 2.6491715776396703,
+          "32_40_48": 2.7280893663060777
+        },
+        "extrapolacao_richardson": 3.057105222011218,
+        "GCI_fino_relativo": 0.000908932834900364,
+        "GCI_fator_seguranca": 1.25,
+        "razões_refinamento_n24_32_40_48": [
+          1.3333333333333333,
+          1.25,
+          1.2
+        ],
+        "alertas": [
+          "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+        ],
+        "estabilidade_ordem_relativa": 0.028927860516997906
+      }
+    }
+  ],
+  "gates": {
+    "geometria_todos": false,
+    "tracao_rms_todos": true
+  },
+  "decisao": "experimental; não mudar dois-blocos mesmo se gates positivos",
+  "limites": [
+    "Proxies: razão de cordas e ângulo dos vértices, não condicionamento Q8 completo",
+    "Tração forte na aresta por B@U, duas amostras Gauss/aresta; não reproduz automaticamente BC fraca",
+    "FEM sem contato, fadiga, 3D, material real e ensaio; não autoriza liberação industrial",
+    "Seleção por 7 candidatos não é prova de ótimo global; GCI é condicional"
+  ]
+}

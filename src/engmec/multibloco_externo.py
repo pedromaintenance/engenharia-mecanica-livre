@@ -12,7 +12,9 @@ from .multibloco_anel import verificar_anel_conforme
 
 
 def parametros_seis_blocos(nr: int, nt: int, *, a: float = .01,
-                           Hy: float = .04, Hx: float = .16) -> dict:
+                           Hy: float = .04, Hx: float = .16,
+                           modo_interface: str = "geometrica",
+                           fracao_interface: float = .5) -> dict:
     if (isinstance(nr, bool) or isinstance(nt, bool)
             or not isinstance(nr, int) or not isinstance(nt, int)
             or nr not in (16, 24, 32, 40, 48) or nt != 2 * nr):
@@ -25,21 +27,37 @@ def parametros_seis_blocos(nr: int, nt: int, *, a: float = .01,
     nm = nr // 4
     no = nr - ni - nm
     rm = 2 * a
-    xm = math.sqrt(rm * Hx)
-    ym = math.sqrt(rm * Hy)
+    if modo_interface not in ("geometrica", "alinhada"):
+        raise ValueError("Modo de interface desconhecido")
+    if not isinstance(fracao_interface, (int, float)) or isinstance(fracao_interface, bool):
+        raise ValueError("Fração da interface precisa ser numérica")
+    if not math.isfinite(fracao_interface) or not .45 <= fracao_interface <= .75:
+        raise ValueError("Fração da interface fora de [.45,.75]")
+    if modo_interface == "geometrica":
+        xm = math.sqrt(rm * Hx)
+        ym = math.sqrt(rm * Hy)
+    else:
+        diagonal = rm / math.sqrt(2)
+        xm = diagonal + fracao_interface * (Hx - diagonal)
+        ym = diagonal + fracao_interface * (Hy - diagonal)
     if not (rm < ym < Hy and rm < xm < Hx):
         raise ValueError("Retângulo intermediário não interno")
     return {
         "a": a, "H": Hy, "L": Hx, "rm": rm, "xm": xm, "ym": ym,
         "nr": nr, "nt": nt, "ni": ni, "nm": nm, "no": no, "na": nt // 2,
+        "modo_interface": modo_interface, "fracao_interface": fracao_interface,
         "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
-        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)",
+        "interface_intermediaria": ("Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)" if modo_interface == "geometrica"
+                                    else "diagonal colinear entre ponto 9 (45 graus no anel 2a) e canto (Hx,Hy)"),
     }
 
 
 def gerar_geo_seis_blocos(*, a: float = .01, Hy: float = .04,
-                          Hx: float = .16, nr: int = 24, nt: int = 48) -> str:
-    m = parametros_seis_blocos(nr, nt, a=a, Hy=Hy, Hx=Hx)
+                           Hx: float = .16, nr: int = 24, nt: int = 48,
+                          modo_interface: str = "geometrica",
+                          fracao_interface: float = .5) -> str:
+    m = parametros_seis_blocos(nr, nt, a=a, Hy=Hy, Hx=Hx,
+                              modo_interface=modo_interface, fracao_interface=fracao_interface)
     return f"""// Ciclo 20 experimental: 2 anulares + 2 intermediários + 2 exteriores
 Mesh.MshFileVersion = 2.2;
 Mesh.ElementOrder = 2;
@@ -116,13 +134,16 @@ Physical Curve("traction_free_hole", 205) = {{11,12}};
 
 
 def verificar_seis_blocos(mesh: dict, *, a: float, Hy: float,
-                         Hx: float, nr: int, nt: int) -> dict:
+                          Hx: float, nr: int, nt: int,
+                         modo_interface: str = "geometrica",
+                         fracao_interface: float = .5) -> dict:
     """Verifica interfaces Q8 CONFORMES no anel e no retângulo interno.
 
     Cada aresta de interface aparece duas vezes, com nó médio ID idêntico.
     Exige contornos físicos e jacobianos positivos obtidos do importador.
     """
-    m = parametros_seis_blocos(nr, nt, a=a, Hy=Hy, Hx=Hx)
+    m = parametros_seis_blocos(nr, nt, a=a, Hy=Hy, Hx=Hx,
+                              modo_interface=modo_interface, fracao_interface=fracao_interface)
     annulus = verificar_anel_conforme(mesh, a=a, nr=nr, nt=nt)
     tol = max(1e-10, 1e-8 * max(Hx, Hy))
     edges = {}

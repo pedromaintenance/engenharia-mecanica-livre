@@ -1,0 +1,207 @@
+name: Ciclo 21 — interface alinhada e tracao livre no furo Q8
+
+on:
+  push:
+    branches: [ciclo21-interface-alinhada-tracao-livre]
+    paths:
+      - "src/engmec/multibloco_externo.py"
+      - "src/engmec/tracao_livre.py"
+      - "src/engmec/elmer_chapa.py"
+      - "scripts/varrer_ciclo21.py"
+      - "scripts/avaliar_ciclo21.py"
+      - "tests/test_tracao_livre_ciclo21.py"
+      - "tests/test_aval_ciclo21.py"
+      - ".github/workflows/ciclo21-interface-alinhada.yml"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  smoke-cad:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar Gmsh e dependencias Python
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y gmsh
+          python -m pip install -e ".[fem2d]"
+          gmsh -version
+      - name: Testes de tracao, geometria e regressao
+        run: |
+          python -m unittest discover -s tests -p 'test_tracao_livre_ciclo21.py' -v
+          python -m unittest discover -s tests -p 'test_aval_ciclo21.py' -v
+          python -m unittest discover -s tests -p 'test_multibloco_externo.py' -v
+      - name: Varredura REAL Gmsh — 7 fracoes x 4 geometrias Q8 n48
+        run: python scripts/varrer_ciclo21.py --pasta build/ciclo21-smoke
+      - name: Conferir escolha e preservar 28 geometrias
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("build/ciclo21-smoke/varredura.json").read_text())
+          assert d["numero_malhas"]==28 and len(d["candidatos"])==7
+          assert all(len(c["cases"])==4 for c in d["candidatos"])
+          assert all(r["quality"]["jacobianos_q8"]["min_det_jacobiano_m2"]>0
+                     for c in d["candidatos"] for r in c["cases"])
+          print("Varredura CAD real auditada. Fraction=",d["fracao_escolhida"],
+                "strict both geometry=",d["gate_geom_ambos_4_em_4"])
+          PY
+      - name: Arquivar sweep CAD inclusive falhas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ciclo21-sweep-28-cad
+          path: build/ciclo21-smoke/
+          retention-days: 30
+          if-no-files-found: warn
+
+  solver:
+    needs: smoke-cad
+    strategy:
+      fail-fast: false
+      matrix:
+        ha: [4, 8]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar Gmsh e dependencias Elmer/SciPy
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y gmsh
+          python -m pip install -e ".[elmer]"
+          python -m pip freeze > pip-freeze-elmer.txt
+          gmsh -version
+      - name: Preparar Elmer externo e guardar digest
+        run: |
+          docker pull ghcr.io/femforge-io/femforge-elmer:0.2.0
+          docker image inspect ghcr.io/femforge-io/femforge-elmer:0.2.0 --format '{{index .RepoDigests 0}}' > elmer-image-digest.txt
+          mkdir -p /tmp/engmec-elmer-bin
+          cat > /tmp/engmec-elmer-bin/ElmerGrid <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          exec docker run --rm --user "$(id -u):$(id -g)" \
+            -v "$PWD:/work" -w /work \
+            ghcr.io/femforge-io/femforge-elmer:0.2.0 ElmerGrid "$@"
+          EOF
+          cat > /tmp/engmec-elmer-bin/ElmerSolver <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          exec docker run --rm --user "$(id -u):$(id -g)" \
+            -v "$PWD:/work" -w /work \
+            ghcr.io/femforge-io/femforge-elmer:0.2.0 ElmerSolver "$@"
+          EOF
+          chmod +x /tmp/engmec-elmer-bin/*
+          echo "/tmp/engmec-elmer-bin" >> "$GITHUB_PATH"
+      - uses: actions/download-artifact@v4
+        with:
+          name: ciclo21-sweep-28-cad
+          path: build/ciclo21-smoke
+      - name: Executar 8 FEM alinhados e 2 controles de referencia por HA
+        env:
+          OPENBLAS_NUM_THREADS: "1"
+          MKL_NUM_THREADS: "1"
+          OMP_NUM_THREADS: "1"
+        run: |
+          set -euo pipefail
+          HA="${{ matrix.ha }}"
+          H=$(python -c 'import sys; print(.01*int(sys.argv[1]))' "$HA")
+          FRAC=$(python -c 'import json;print(json.load(open("build/ciclo21-smoke/escolha.json"))["fracao_interface"])')
+          mkdir -p "build/ciclo21/versions-ha-$HA"
+          cp pip-freeze-elmer.txt elmer-image-digest.txt "build/ciclo21/versions-ha-$HA/"
+          for LW in 2 4; do
+            L=$(python -c 'import sys; print(float(sys.argv[1])*int(sys.argv[2]))' "$H" "$LW")
+            for n in 24 32 40 48; do
+              echo "C21 aligned HA=$HA LW=$LW n=$n fraction=$FRAC"
+              python -m engmec.elmer_chapa --nr "$n" --nt "$((2*n))" \
+                --semilargura-m "$H" --semicomprimento-x-m "$L" \
+                --progressao-radial escalonada \
+                --topologia anel-seis-blocos-alinhado --fracao-interface "$FRAC" \
+                --saida "build/ciclo21/ha-$HA-lw-$LW-n-$n"
+            done
+            echo "C20 CONTROL HA=$HA LW=$LW n48 fraction=0.5"
+            python -m engmec.elmer_chapa --nr 48 --nt 96 \
+              --semilargura-m "$H" --semicomprimento-x-m "$L" \
+              --progressao-radial escalonada \
+              --topologia anel-seis-blocos \
+              --saida "build/ciclo21/baseline-ha-$HA-lw-$LW-n-48"
+          done
+      - name: Arquivar campos e logs inclusive falhas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ciclo21-solvers-ha-${{ matrix.ha }}
+          path: build/ciclo21/
+          retention-days: 30
+          if-no-files-found: warn
+
+  consolidar:
+    needs: solver
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[fem2d]"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ciclo21-solvers-ha-*
+          path: build/ciclo21/
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: ciclo21-sweep-28-cad
+          path: build/ciclo21-smoke/
+      - name: Auditar 16 alinhados e 4 controles reais
+        run: |
+          python scripts/avaliar_ciclo21.py \
+            --pasta build/ciclo21 --sweep build/ciclo21-smoke/varredura.json
+      - name: Preservar evidencias de solver
+        uses: actions/upload-artifact@v4
+        with:
+          name: ciclo21-20-fem-auditados
+          path: build/ciclo21/
+          retention-days: 30
+          if-no-files-found: error
+      - name: Versionar dataset somente apos auditoria externa
+        run: |
+          set -euo pipefail
+          git fetch origin ciclo21-interface-alinhada-tracao-livre
+          git checkout -B ciclo21-interface-alinhada-tracao-livre origin/ciclo21-interface-alinhada-tracao-livre
+          mkdir -p docs/dados
+          cp build/ciclo21/resumo_ciclo21.json docs/dados/ciclo21-interface-tracao-2026-11-10.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("docs/dados/ciclo21-interface-tracao-2026-11-10.json")
+          d=json.loads(p.read_text())
+          assert d["ciclo"]==21
+          assert d["num_modelos_externos_alinhados"]==16
+          assert d["num_modelos_externos_controle20"]==4
+          assert d["num_malhas_sweep"]==28
+          assert len(d["cases"])==16 and len(d["series"])==4
+          assert all(r["tracao_furo"]["amostras"]==4*r["n"] for r in d["cases"])
+          print("Validado:",p)
+          PY
+          sha256sum docs/dados/ciclo21-interface-tracao-2026-11-10.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/dados/ciclo21-interface-tracao-2026-11-10.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data(ciclo21): 28 CAD, 16 FEM e 4 referencias reais com tracao completa"
+            git push origin ciclo21-interface-alinhada-tracao-livre
+          fi
