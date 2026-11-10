@@ -1,0 +1,203 @@
+name: Ciclo 20 — Q8 anel com seis blocos e transicao externa
+
+on:
+  push:
+    branches: [ciclo20-transicao-exterior-6-blocos]
+    paths:
+      - "src/engmec/multibloco_externo.py"
+      - "src/engmec/elmer_chapa.py"
+      - "scripts/avaliar_ciclo20.py"
+      - "tests/test_multibloco_externo.py"
+      - "tests/test_aval_ciclo20.py"
+      - ".github/workflows/ciclo20-transicao-exterior.yml"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  smoke-cad:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Preparar Gmsh e pacote do projeto
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y gmsh
+          python -m pip install -e .
+      - name: Testes de malha e retrocompatibilidade
+        run: |
+          python -m unittest discover -s tests -p 'test_multibloco_externo.py' -v
+          python -m unittest discover -s tests -p 'test_aval_ciclo20.py' -v
+          python -m unittest discover -s tests -p 'test_chapa_retangular.py' -v
+      - name: Testar 16 geometrias Q8 e arestas compartilhadas antes do solver
+        run: |
+          python - <<'PY'
+          import pathlib,subprocess
+          from engmec.elmer_chapa import geo_elmer
+          from engmec.gmsh_chapa import importar_msh2
+          from engmec.multibloco_externo import verificar_seis_blocos
+          from engmec.convergencia_malha import qualidade_geometrica
+          for ha in (4,8):
+            for lw in (2,4):
+              H=.01*ha;L=H*lw
+              for n in (24,32,40,48):
+                path=pathlib.Path(f"build/ciclo20-smoke/ha-{ha}-lw-{lw}-n-{n}")
+                path.mkdir(parents=True,exist_ok=True)
+                (path/"model.geo").write_text(geo_elmer(
+                     nr=n,nt=2*n,H=H,L=L,a=.01,
+                     estrategia_progressao="escalonada",
+                     topologia="anel-seis-blocos"))
+                r=subprocess.run(["gmsh","model.geo","-2","-order","2","-format","msh2",
+                     "-o","model.msh"],cwd=path,capture_output=True,text=True,timeout=120)
+                (path/"gmsh.log").write_text(r.stdout+"\n"+r.stderr)
+                if r.returncode:raise RuntimeError(r.stderr[-1800:])
+                mesh=importar_msh2((path/"model.msh").read_text(),
+                     a=.01,H=H,Hx=L,nr=n,nt=2*n)
+                check=verificar_seis_blocos(mesh,a=.01,Hy=H,Hx=L,nr=n,nt=2*n)
+                q=qualidade_geometrica(path/"model.msh",a=.01,H=H,L=L,nr=n,nt=2*n)
+                assert q["elementos"]==2*n*n
+                assert check["anel"]["arestas_interface_conformes"]==2*n
+                assert check["interface_retangular_arestas_conformes"]==2*n
+                print(f"ha={ha}, L/W={lw}, n={n}: Q8={q['elementos']}, "
+                      f"minAngle={q['angulo_minimo_vertices_graus_geral']:.3f}, "
+                      f"ratioGlobal={q['razão_max_min_cordas_geral_max']:.3f}, "
+                      f"ratioHole={q['razão_max_min_cordas_primeira_faixa_max']:.3f}")
+          PY
+      - name: Arquivar evidências de CAD e falhas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ciclo20-smoke-cad-seis-blocos
+          path: build/ciclo20-smoke/
+          retention-days: 30
+          if-no-files-found: warn
+
+  solver:
+    needs: smoke-cad
+    strategy:
+      fail-fast: false
+      matrix:
+        ha: [4,8]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependencias externas e registrar versoes
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y gmsh
+          python -m pip install -e ".[elmer]"
+          python -m pip freeze > pip-freeze-elmer.txt
+          gmsh -version
+      - name: Preparar Elmer FEM externo com digest persistente
+        run: |
+          docker pull ghcr.io/femforge-io/femforge-elmer:0.2.0
+          docker image inspect ghcr.io/femforge-io/femforge-elmer:0.2.0 --format '{{index .RepoDigests 0}}' > elmer-image-digest.txt
+          mkdir -p /tmp/engmec-elmer-bin
+          cat > /tmp/engmec-elmer-bin/ElmerGrid <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          exec docker run --rm --user "$(id -u):$(id -g)" \
+            -v "$PWD:/work" -w /work \
+            ghcr.io/femforge-io/femforge-elmer:0.2.0 ElmerGrid "$@"
+          EOF
+          cat > /tmp/engmec-elmer-bin/ElmerSolver <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          exec docker run --rm --user "$(id -u):$(id -g)" \
+            -v "$PWD:/work" -w /work \
+            ghcr.io/femforge-io/femforge-elmer:0.2.0 ElmerSolver "$@"
+          EOF
+          chmod +x /tmp/engmec-elmer-bin/*
+          echo "/tmp/engmec-elmer-bin" >> "$GITHUB_PATH"
+      - name: Resolver 8 casos multibloco por geometria de furo
+        env:
+          OPENBLAS_NUM_THREADS: "1"
+          MKL_NUM_THREADS: "1"
+          OMP_NUM_THREADS: "1"
+        run: |
+          set -euo pipefail
+          HA="${{ matrix.ha }}"
+          H=$(python -c 'import sys; print(.01*int(sys.argv[1]))' "$HA")
+          mkdir -p "build/ciclo20/versions-ha-$HA"
+          cp pip-freeze-elmer.txt elmer-image-digest.txt "build/ciclo20/versions-ha-$HA/"
+          for LW in 2 4; do
+            L=$(python -c 'import sys; print(float(sys.argv[1])*int(sys.argv[2]))' "$H" "$LW")
+            for n in 24 32 40 48; do
+              echo "SOLVE H/a=$HA L/W=$LW n=$n topologia=anel-seis-blocos"
+              python -m engmec.elmer_chapa --nr "$n" --nt "$((2*n))" \
+                --semilargura-m "$H" --semicomprimento-x-m "$L" \
+                --progressao-radial escalonada --topologia anel-seis-blocos \
+                --saida "build/ciclo20/ha-$HA-lw-$LW-n-$n"
+            done
+          done
+      - name: Preservar campos, logs e malhas inclusive falhas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ciclo20-parcial-ha-${{ matrix.ha }}
+          path: build/ciclo20/
+          retention-days: 30
+          if-no-files-found: warn
+
+  consolidar-publicar:
+    needs: solver
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[fem2d]"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ciclo20-parcial-ha-*
+          path: build/ciclo20/
+          merge-multiple: true
+      - name: Auditar 16 modelos e comparar com baseline quatro blocos do ciclo 19
+        run: python scripts/avaliar_ciclo20.py --pasta build/ciclo20
+      - name: Publicar arquivos brutos com resumo
+        uses: actions/upload-artifact@v4
+        with:
+          name: ciclo20-transicao-exterior-completo
+          path: build/ciclo20/
+          retention-days: 30
+          if-no-files-found: error
+      - name: Versionar dataset somente após execução e auditoria
+        run: |
+          set -euo pipefail
+          git fetch origin ciclo20-transicao-exterior-6-blocos
+          git checkout -B ciclo20-transicao-exterior-6-blocos origin/ciclo20-transicao-exterior-6-blocos
+          mkdir -p docs/dados
+          cp build/ciclo20/resumo_ciclo20.json docs/dados/ciclo20-transicao-externa-2026-11-10.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("docs/dados/ciclo20-transicao-externa-2026-11-10.json")
+          d=json.loads(p.read_text())
+          assert d["ciclo"]==20 and len(d["cases"])==16 and len(d["series"])==4
+          assert all(r["conformidade_interface"]["anel"]["arestas_interface_conformes"]==2*r["n"] for r in d["cases"])
+          assert all(r["elementos_Q8"]==2*r["n"]**2 for r in d["cases"])
+          assert all(r["conformidade_interface"]["interface_retangular_arestas_conformes"]==2*r["n"] for r in d["cases"])
+          print("Dataset real validado: ",p)
+          PY
+          sha256sum docs/dados/ciclo20-transicao-externa-2026-11-10.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/dados/ciclo20-transicao-externa-2026-11-10.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: ciclo20 topologia anular real, 16 FEM e controles Q8"
+            git push origin ciclo20-transicao-exterior-6-blocos
+          fi

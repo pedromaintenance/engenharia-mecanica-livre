@@ -29,8 +29,13 @@ def geo_elmer(*, nr:int=16, nt:int=32, H:float=.04, a:float=.01,
     L=H if L is None else L
     if L<H or not math.isfinite(L):
         raise ValueError('Semicomprimento L deve ser finito e >= semilargura H')
-    if topologia not in ("dois-blocos","anel-quatro-blocos"):
+    if topologia not in ("dois-blocos","anel-quatro-blocos","anel-seis-blocos"):
         raise ValueError("Topologia nao reconhecida")
+    if topologia=="anel-seis-blocos":
+        if angular!="uniforme" or estrategia_progressao!="escalonada":
+            raise ValueError("Seis blocos exigem angular uniforme e baseline escalonada")
+        from .multibloco_externo import gerar_geo_seis_blocos
+        return gerar_geo_seis_blocos(nr=nr,nt=nt,a=a,Hy=H,Hx=L)
     if topologia=="anel-quatro-blocos":
         if angular!="uniforme" or estrategia_progressao!="escalonada":
             raise ValueError("Anel quatro-blocos verificado somente com angular uniforme e referencia radial escalonada")
@@ -290,6 +295,12 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
             raise RuntimeError(f"{phase} falhou rc={p.returncode}: {(p.stdout+p.stderr)[-2500:]}")
     mesh=importar_msh2((out/"model.msh").read_text(encoding="utf-8"),a=a,H=H,nr=nr,nt=nt,Hx=L)
     controle_topologia=None
+    if topologia=="anel-seis-blocos":
+        from .multibloco_externo import parametros_seis_blocos, verificar_seis_blocos
+        controle_topologia={
+            "parametros":parametros_seis_blocos(nr,nt,a=a,Hy=H,Hx=L),
+            "conformidade":verificar_seis_blocos(mesh,a=a,Hy=H,Hx=L,nr=nr,nt=nt)
+        }
     if topologia=="anel-quatro-blocos":
         from .multibloco_anel import parametros_anel, verificar_anel_conforme
         controle_topologia={
@@ -384,7 +395,7 @@ def main():
     parser.add_argument("--raio-m",type=float,default=.01)
     parser.add_argument("--progressao-radial",choices=["fixa","escalonada"],default="fixa")
     parser.add_argument("--distribuicao-angular",choices=["uniforme","ampliada-topo"],default="uniforme")
-    parser.add_argument("--topologia",choices=["dois-blocos","anel-quatro-blocos"],default="dois-blocos")
+    parser.add_argument("--topologia",choices=["dois-blocos","anel-quatro-blocos","anel-seis-blocos"],default="dois-blocos")
     parser.add_argument("--saida",required=True)
     opt=parser.parse_args()
     print(json.dumps(executar(opt.saida,nr=opt.nr,nt=opt.nt,H=opt.semilargura_m,L=opt.semicomprimento_x_m,a=opt.raio_m,
