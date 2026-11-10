@@ -24,3 +24,11 @@ A varredura real Gmsh de 28 malhas (7 frações × 4 chapas) foi aprovada pelo g
 [Laboratório 21](../laboratorios/interface-alinhada-tracao-parede.md) · [workflow do ciclo](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/workflows/ciclo21-interface-alinhada.yml)
 
 A publicação de resultados físicos exige MSH2, logs Elmer, vetores de deslocamento, arquivos `tracao_furo.csv/json`, equilíbrio, concordância SciPy e quatro reexecuções de controle. Se a melhoria física falhar, publicar o resultado negativo com causas plausíveis e preservar `dois-blocos` como default. **Nenhuma saída é critério de aprovação estrutural industrial.**
+
+## Resultado final da execução externa
+
+A [execução 42856063314](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42856063314) passou: **28 CADs, 16 FEM alinhados, quatro FEM de controle, auditoria e dataset completo**. [Dados JSON com hash](../dados/ciclo21-interface-tracao-2026-11-10.json). A posição selecionada foi `λ=0,45`.
+
+**Contradições comprovadas (n=48):** ângulo mínimo melhora de **14,93% a 55,56%** nas quatro chapas; alongamento máximo global piora de **8,03% a 47,35%** nas quatro. A tração vetorial RMS na parede inteira é praticamente idêntica ao ciclo 20 (variações de −0,000013% a −0,0246%); o máximo amostrado sobe marginalmente nos quatro casos. Os Kt C líquidos variaram menos de ~0,0034% e os GCI C continuam condicionais.
+
+**Decisão:** publicar experimento com **gate geométrico reprovado**, sem promover `anel-seis-blocos-alinhado`; manter `dois-blocos` como padrão. O laboratório avançou metodologicamente por medir `σrr` e `σrθ` sobre toda a parede, mas não encontrou melhoria estrutural demonstrada. Próximo ciclo: curva/interface externa e métrica combinada de qualidade geométrica + condição livre, sem aplicação direta a olhais reais.
