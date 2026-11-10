@@ -1,0 +1,2568 @@
+{
+  "ciclo": 20,
+  "version": "0.20.0",
+  "num_modelos_elmer": 16,
+  "physics": "Elmer FEM plane stress; quarter plate, a=.01m, T=10MPa, E=200GPa, nu=.3; top and hole free",
+  "topology": "6 transfinite Q8 surfaces: 2 inner annular, 2 rectangular interface, 2 outer blocks; identical physics",
+  "baseline": "Ciclo19: same H/a L/W T E nu, 4-block annular mesh, 16 external runs",
+  "reference_note": "Peterson long finite-width strip uses Kt_NET; NOT exact finite rectangle benchmark",
+  "cases": [
+    {
+      "H_over_a": 4,
+      "d_over_W": 0.25,
+      "L_over_W": 2,
+      "n": 24,
+      "elementos_Q8": 1152,
+      "nos": 3601,
+      "dofs": 7202,
+      "anel": {
+        "a": 0.01,
+        "H": 0.04,
+        "L": 0.08,
+        "rm": 0.02,
+        "xm": 0.04,
+        "ym": 0.0282842712474619,
+        "nr": 24,
+        "nt": 48,
+        "ni": 12,
+        "nm": 6,
+        "no": 6,
+        "na": 24,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 48,
+          "vertices_interface_unicos": 49,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 6.683572433321789e-08
+        },
+        "interface_retangular_arestas_conformes": 48,
+        "interface_retangular_vertices_unicos": 49,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.04,
+        "ym_m": 0.0282842712474619
+      },
+      "qualidade_nova": {
+        "elementos": 1152,
+        "nos": 3601,
+        "dofs_totais": 7202,
+        "faixa_mais_interna_elementos": 48,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 6.683572433321789e-08,
+          "max_det_jacobiano_m2": 2.7553836867255314e-06,
+          "pontos_jacobiano": 4608
+        },
+        "razão_max_min_cordas_geral_max": 7.505449274033208,
+        "razão_max_min_cordas_geral_p95": 5.616186427152651,
+        "razão_max_min_cordas_primeira_faixa_max": 2.5465927262169124,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4588314608157553,
+        "angulo_minimo_vertices_graus_geral": 16.3249499368908,
+        "angulo_minimo_vertices_graus_primeira_faixa": 86.28292491900861,
+        "arestas_tracionadas": 24,
+        "arestas_topo_livre": 24,
+        "arestas_furo_livre": 48,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 1152,
+        "nos": 3601,
+        "dofs_totais": 7202,
+        "faixa_mais_interna_elementos": 48,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 2.7108411511340614e-08,
+          "max_det_jacobiano_m2": 7.638861140617797e-06,
+          "pontos_jacobiano": 4608
+        },
+        "razão_max_min_cordas_geral_max": 15.249619136614063,
+        "razão_max_min_cordas_geral_p95": 9.529590213119448,
+        "razão_max_min_cordas_primeira_faixa_max": 2.5465927262169124,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4588314608157553,
+        "angulo_minimo_vertices_graus_geral": 21.436529825399102,
+        "angulo_minimo_vertices_graus_primeira_faixa": 86.28292491900861,
+        "arestas_tracionadas": 24,
+        "arestas_topo_livre": 24,
+        "arestas_furo_livre": 48,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.257676162994838,
+        "B": 3.240645809506982,
+        "C": 3.2375459163893994
+      },
+      "Kt_net_novo": {
+        "A": 2.443257122246129,
+        "B": 2.4304843571302364,
+        "C": 2.4281594372920496
+      },
+      "Kt_gross_anterior": {
+        "A": 3.257508102942702,
+        "B": 3.2404793338934104,
+        "C": 3.237379800832716
+      },
+      "Kt_net_anterior": {
+        "A": 2.4431310772070267,
+        "B": 2.4303595004200576,
+        "C": 2.428034850624537
+      },
+      "sigma_rr_C_novo": 0.011198281291848924,
+      "sigma_rr_C_anterior": 0.011197293902721858,
+      "spread_Kt_bruto_ABC": 0.020130246605438717,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0048455311787903,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.98792945311215,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.985767919436287,
+        "B_bias": -0.012070546887850142,
+        "C_bias": -0.014232080563712834,
+        "A_bias": 0.004845531178790274,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "52323e173779fbe67de8bff2246c091931cbdbbdeef1834301a45c1497508936",
+      "hash_msh2_baseline": "12ae0cadb09afa8dda7f5adf8eb4795a87fb137582a40acb8ce319505eb8a23f",
+      "equilibrio_reacoes_rel": 1.1141310096718373e-14,
+      "deslocamentos_elmer_scipy_rel_max": 3.532130925723244e-13,
+      "forca_resultante_quadrante_N": 2000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 4,
+      "d_over_W": 0.25,
+      "L_over_W": 2,
+      "n": 32,
+      "elementos_Q8": 2048,
+      "nos": 6337,
+      "dofs": 12674,
+      "anel": {
+        "a": 0.01,
+        "H": 0.04,
+        "L": 0.08,
+        "rm": 0.02,
+        "xm": 0.04,
+        "ym": 0.0282842712474619,
+        "nr": 32,
+        "nt": 64,
+        "ni": 16,
+        "nm": 8,
+        "no": 8,
+        "na": 32,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 64,
+          "vertices_interface_unicos": 65,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 3.7798914697004796e-08
+        },
+        "interface_retangular_arestas_conformes": 64,
+        "interface_retangular_vertices_unicos": 65,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.04,
+        "ym_m": 0.0282842712474619
+      },
+      "qualidade_nova": {
+        "elementos": 2048,
+        "nos": 6337,
+        "dofs_totais": 12674,
+        "faixa_mais_interna_elementos": 64,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 3.7798914697004796e-08,
+          "max_det_jacobiano_m2": 1.553146827221982e-06,
+          "pontos_jacobiano": 8192
+        },
+        "razão_max_min_cordas_geral_max": 7.505302749197572,
+        "razão_max_min_cordas_geral_p95": 5.511714487155374,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546543010461272,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.480353182114066,
+        "angulo_minimo_vertices_graus_geral": 16.32494993688546,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.19316743736188,
+        "arestas_tracionadas": 32,
+        "arestas_topo_livre": 32,
+        "arestas_furo_livre": 64,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 2048,
+        "nos": 6337,
+        "dofs_totais": 12674,
+        "faixa_mais_interna_elementos": 64,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 1.4127890218509538e-08,
+          "max_det_jacobiano_m2": 4.508001614063699e-06,
+          "pontos_jacobiano": 8192
+        },
+        "razão_max_min_cordas_geral_max": 15.078269413669437,
+        "razão_max_min_cordas_geral_p95": 9.738446142285497,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546543010461272,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.480353182114066,
+        "angulo_minimo_vertices_graus_geral": 21.436529825399138,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.19316743736188,
+        "arestas_tracionadas": 32,
+        "arestas_topo_livre": 32,
+        "arestas_furo_livre": 64,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.2560290063397312,
+        "B": 3.247160365455165,
+        "C": 3.245726928425084
+      },
+      "Kt_net_novo": {
+        "A": 2.4420217547547987,
+        "B": 2.4353702740913734,
+        "C": 2.434295196318813
+      },
+      "Kt_gross_anterior": {
+        "A": 3.255968474000077,
+        "B": 3.2471001226527814,
+        "C": 3.2456667436000277
+      },
+      "Kt_net_anterior": {
+        "A": 2.4419763555000578,
+        "B": 2.435325091989586,
+        "C": 2.434250057700021
+      },
+      "sigma_rr_C_novo": 0.0057429132871640596,
+      "sigma_rr_C_anterior": 0.005742731698690845,
+      "spread_Kt_bruto_ABC": 0.010302077914647434,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0028585199147484,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.994080893532832,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9931495382822653,
+        "B_bias": -0.005919106467167978,
+        "C_bias": -0.006850461717734735,
+        "A_bias": 0.002858519914748392,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "012033bd24b41c1474ab1a4f1403bca960f2981bf91730b08775a04b86697a56",
+      "hash_msh2_baseline": "334e49098c4957e344d3073b34c9f892814c48b3fb42be0bc092e3839947e30c",
+      "equilibrio_reacoes_rel": 3.8767211663071075e-14,
+      "deslocamentos_elmer_scipy_rel_max": 9.60200160570121e-13,
+      "forca_resultante_quadrante_N": 2000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 4,
+      "d_over_W": 0.25,
+      "L_over_W": 2,
+      "n": 40,
+      "elementos_Q8": 3200,
+      "nos": 9841,
+      "dofs": 19682,
+      "anel": {
+        "a": 0.01,
+        "H": 0.04,
+        "L": 0.08,
+        "rm": 0.02,
+        "xm": 0.04,
+        "ym": 0.0282842712474619,
+        "nr": 40,
+        "nt": 80,
+        "ni": 20,
+        "nm": 10,
+        "no": 10,
+        "na": 40,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 80,
+          "vertices_interface_unicos": 81,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 2.426662493781547e-08
+        },
+        "interface_retangular_arestas_conformes": 80,
+        "interface_retangular_vertices_unicos": 81,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.04,
+        "ym_m": 0.0282842712474619
+      },
+      "qualidade_nova": {
+        "elementos": 3200,
+        "nos": 9841,
+        "dofs_totais": 19682,
+        "faixa_mais_interna_elementos": 80,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 2.426662493781547e-08,
+          "max_det_jacobiano_m2": 9.95239903968495e-07,
+          "pontos_jacobiano": 12800
+        },
+        "razão_max_min_cordas_geral_max": 7.505234937783307,
+        "razão_max_min_cordas_geral_p95": 5.486080720515275,
+        "razão_max_min_cordas_primeira_faixa_max": 2.54652000210508,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4937245464326456,
+        "angulo_minimo_vertices_graus_geral": 16.32494993689087,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.74556335674056,
+        "arestas_tracionadas": 40,
+        "arestas_topo_livre": 40,
+        "arestas_furo_livre": 80,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 3200,
+        "nos": 9841,
+        "dofs_totais": 19682,
+        "faixa_mais_interna_elementos": 80,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 8.645302271162022e-09,
+          "max_det_jacobiano_m2": 2.9709372368969115e-06,
+          "pontos_jacobiano": 12800
+        },
+        "razão_max_min_cordas_geral_max": 14.962382569792972,
+        "razão_max_min_cordas_geral_p95": 9.386590295846922,
+        "razão_max_min_cordas_primeira_faixa_max": 2.54652000210508,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4937245464326456,
+        "angulo_minimo_vertices_graus_geral": 21.43652982539912,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.74556335674056,
+        "arestas_tracionadas": 40,
+        "arestas_topo_livre": 40,
+        "arestas_furo_livre": 80,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.2551445610951273,
+        "B": 3.249876133534997,
+        "C": 3.2490880617082896
+      },
+      "Kt_net_novo": {
+        "A": 2.4413584208213455,
+        "B": 2.4374071001512476,
+        "C": 2.4368160462812174
+      },
+      "Kt_gross_anterior": {
+        "A": 3.255117631925716,
+        "B": 3.249849279488912,
+        "C": 3.249061221394345
+      },
+      "Kt_net_anterior": {
+        "A": 2.441338223944287,
+        "B": 2.437386959616684,
+        "C": 2.4367959160457584
+      },
+      "sigma_rr_C_novo": 0.003356509441857539,
+      "sigma_rr_C_anterior": 0.0033564626198149456,
+      "spread_Kt_bruto_ABC": 0.0060564993868377215,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0018832887912175,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9966694043384385,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9961912276128473,
+        "B_bias": -0.003330595661561464,
+        "C_bias": -0.0038087723871527146,
+        "A_bias": 0.0018832887912174634,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "01731be08152a1ab3e6b2bfc9c6b9efc94e308efdbb440643b4e6b2c100a94fa",
+      "hash_msh2_baseline": "6aed916e27106a5649664a70dad169a6243a38b0ddff8b28d1c4fa35240f9efc",
+      "equilibrio_reacoes_rel": 2.5295321393059563e-13,
+      "deslocamentos_elmer_scipy_rel_max": 5.046828799982082e-13,
+      "forca_resultante_quadrante_N": 2000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 4,
+      "d_over_W": 0.25,
+      "L_over_W": 2,
+      "n": 48,
+      "elementos_Q8": 4608,
+      "nos": 14113,
+      "dofs": 28226,
+      "anel": {
+        "a": 0.01,
+        "H": 0.04,
+        "L": 0.08,
+        "rm": 0.02,
+        "xm": 0.04,
+        "ym": 0.0282842712474619,
+        "nr": 48,
+        "nt": 96,
+        "ni": 24,
+        "nm": 12,
+        "no": 12,
+        "na": 48,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 96,
+          "vertices_interface_unicos": 97,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 1.6885799348983605e-08
+        },
+        "interface_retangular_arestas_conformes": 96,
+        "interface_retangular_vertices_unicos": 97,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.04,
+        "ym_m": 0.0282842712474619
+      },
+      "qualidade_nova": {
+        "elementos": 4608,
+        "nos": 14113,
+        "dofs_totais": 28226,
+        "faixa_mais_interna_elementos": 96,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 1.6885799348983605e-08,
+          "max_det_jacobiano_m2": 6.917007781105902e-07,
+          "pontos_jacobiano": 18432
+        },
+        "razão_max_min_cordas_geral_max": 7.505198105095839,
+        "razão_max_min_cordas_geral_p95": 5.476047025609365,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+        "angulo_minimo_vertices_graus_geral": 16.324949936875324,
+        "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+        "arestas_tracionadas": 48,
+        "arestas_topo_livre": 48,
+        "arestas_furo_livre": 96,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 4608,
+        "nos": 14113,
+        "dofs_totais": 28226,
+        "faixa_mais_interna_elementos": 96,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 5.830528743563025e-09,
+          "max_det_jacobiano_m2": 2.1043351951792447e-06,
+          "pontos_jacobiano": 18432
+        },
+        "razão_max_min_cordas_geral_max": 14.880038524530445,
+        "razão_max_min_cordas_geral_p95": 9.299182141644339,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+        "angulo_minimo_vertices_graus_geral": 21.436529825399138,
+        "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+        "arestas_tracionadas": 48,
+        "arestas_topo_livre": 48,
+        "arestas_furo_livre": 96,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.2546198148413694,
+        "B": 3.251199198005272,
+        "C": 3.250713953672287
+      },
+      "Kt_net_novo": {
+        "A": 2.440964861131027,
+        "B": 2.438399398503954,
+        "C": 2.4380354652542153
+      },
+      "Kt_gross_anterior": {
+        "A": 3.254606016907161,
+        "B": 3.251185424705482,
+        "C": 3.2507001845824646
+      },
+      "Kt_net_anterior": {
+        "A": 2.4409545126803707,
+        "B": 2.438389068529111,
+        "C": 2.4380251384368483
+      },
+      "sigma_rr_C_novo": 0.0021450866736391267,
+      "sigma_rr_C_anterior": 0.0021450714716587252,
+      "spread_Kt_bruto_ABC": 0.003905861169082314,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.001333621386403,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.997943604924397,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.997667917964026,
+        "B_bias": -0.002056395075602957,
+        "C_bias": -0.0023320820359740146,
+        "A_bias": 0.0013336213864030277,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "b49a66acf6b33bfc045568435c8cf319e9c3d062818610630efe1c216d020a5c",
+      "hash_msh2_baseline": "454914c53855813161f19b85250499a006005467130646bdc96b63b63cc65ef5",
+      "equilibrio_reacoes_rel": 1.1516476661199703e-13,
+      "deslocamentos_elmer_scipy_rel_max": 2.5940487979349536e-12,
+      "forca_resultante_quadrante_N": 2000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 4,
+      "d_over_W": 0.25,
+      "L_over_W": 4,
+      "n": 24,
+      "elementos_Q8": 1152,
+      "nos": 3601,
+      "dofs": 7202,
+      "anel": {
+        "a": 0.01,
+        "H": 0.04,
+        "L": 0.16,
+        "rm": 0.02,
+        "xm": 0.0565685424949238,
+        "ym": 0.0282842712474619,
+        "nr": 24,
+        "nt": 48,
+        "ni": 12,
+        "nm": 6,
+        "no": 6,
+        "na": 24,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 48,
+          "vertices_interface_unicos": 49,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 6.683572433321789e-08
+        },
+        "interface_retangular_arestas_conformes": 48,
+        "interface_retangular_vertices_unicos": 49,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.0565685424949238,
+        "ym_m": 0.0282842712474619
+      },
+      "qualidade_nova": {
+        "elementos": 1152,
+        "nos": 3601,
+        "dofs_totais": 7202,
+        "faixa_mais_interna_elementos": 48,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 6.683572433321789e-08,
+          "max_det_jacobiano_m2": 7.111523683102966e-06,
+          "pontos_jacobiano": 4608
+        },
+        "razão_max_min_cordas_geral_max": 14.72095425013112,
+        "razão_max_min_cordas_geral_p95": 12.883088223899078,
+        "razão_max_min_cordas_primeira_faixa_max": 2.5465927262169124,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4588314608157553,
+        "angulo_minimo_vertices_graus_geral": 6.4623753714296415,
+        "angulo_minimo_vertices_graus_primeira_faixa": 86.28292491900861,
+        "arestas_tracionadas": 24,
+        "arestas_topo_livre": 24,
+        "arestas_furo_livre": 48,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 1152,
+        "nos": 3601,
+        "dofs_totais": 7202,
+        "faixa_mais_interna_elementos": 48,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 2.7315056439766263e-08,
+          "max_det_jacobiano_m2": 1.684068986095661e-05,
+          "pontos_jacobiano": 4608
+        },
+        "razão_max_min_cordas_geral_max": 32.01611163232515,
+        "razão_max_min_cordas_geral_p95": 21.38893692996529,
+        "razão_max_min_cordas_primeira_faixa_max": 2.5465927262169124,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4588314608157553,
+        "angulo_minimo_vertices_graus_geral": 10.053018210254669,
+        "angulo_minimo_vertices_graus_primeira_faixa": 86.28292491900861,
+        "arestas_tracionadas": 24,
+        "arestas_topo_livre": 24,
+        "arestas_furo_livre": 48,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.2523147589991543,
+        "B": 3.235310507274183,
+        "C": 3.232214870707108
+      },
+      "Kt_net_novo": {
+        "A": 2.4392360692493655,
+        "B": 2.4264828804556373,
+        "C": 2.4241611530303313
+      },
+      "Kt_gross_anterior": {
+        "A": 3.251993033762502,
+        "B": 3.2349929136053497,
+        "C": 3.2318984467799488
+      },
+      "Kt_net_anterior": {
+        "A": 2.438994775321876,
+        "B": 2.4262446852040123,
+        "C": 2.4239238350849615
+      },
+      "sigma_rr_C_novo": 0.01117788681756535,
+      "sigma_rr_C_anterior": 0.011175366178889978,
+      "spread_Kt_bruto_ABC": 0.02009988829204623,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0048455311787903,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.98792945311215,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.985767919436287,
+        "B_bias": -0.012070546887850142,
+        "C_bias": -0.014232080563712834,
+        "A_bias": 0.004845531178790274,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "074755478e409e472e98bd1d816d0e7780b6184ba760fe35ab7c68c5ccf84c32",
+      "hash_msh2_baseline": "0fdbd16f30276fbab7fb992362165fc656fda4b342469ad4cfb53a7bb0b88b62",
+      "equilibrio_reacoes_rel": 3.6322944652056325e-13,
+      "deslocamentos_elmer_scipy_rel_max": 4.0860662637847956e-13,
+      "forca_resultante_quadrante_N": 2000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 4,
+      "d_over_W": 0.25,
+      "L_over_W": 4,
+      "n": 32,
+      "elementos_Q8": 2048,
+      "nos": 6337,
+      "dofs": 12674,
+      "anel": {
+        "a": 0.01,
+        "H": 0.04,
+        "L": 0.16,
+        "rm": 0.02,
+        "xm": 0.0565685424949238,
+        "ym": 0.0282842712474619,
+        "nr": 32,
+        "nt": 64,
+        "ni": 16,
+        "nm": 8,
+        "no": 8,
+        "na": 32,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 64,
+          "vertices_interface_unicos": 65,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 3.7798914697004796e-08
+        },
+        "interface_retangular_arestas_conformes": 64,
+        "interface_retangular_vertices_unicos": 65,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.0565685424949238,
+        "ym_m": 0.0282842712474619
+      },
+      "qualidade_nova": {
+        "elementos": 2048,
+        "nos": 6337,
+        "dofs_totais": 12674,
+        "faixa_mais_interna_elementos": 64,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 3.7798914697004796e-08,
+          "max_det_jacobiano_m2": 4.010301164295945e-06,
+          "pontos_jacobiano": 8192
+        },
+        "razão_max_min_cordas_geral_max": 14.720954250131332,
+        "razão_max_min_cordas_geral_p95": 12.711520038271672,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546543010461272,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.480353182114066,
+        "angulo_minimo_vertices_graus_geral": 6.462375371431224,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.19316743736188,
+        "arestas_tracionadas": 32,
+        "arestas_topo_livre": 32,
+        "arestas_furo_livre": 64,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 2048,
+        "nos": 6337,
+        "dofs_totais": 12674,
+        "faixa_mais_interna_elementos": 64,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 1.4208219774816238e-08,
+          "max_det_jacobiano_m2": 9.94632383680378e-06,
+          "pontos_jacobiano": 8192
+        },
+        "razão_max_min_cordas_geral_max": 31.653011736343316,
+        "razão_max_min_cordas_geral_p95": 21.21084427180846,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546543010461272,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.480353182114066,
+        "angulo_minimo_vertices_graus_geral": 10.053018210254669,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.19316743736188,
+        "arestas_tracionadas": 32,
+        "arestas_topo_livre": 32,
+        "arestas_furo_livre": 64,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.2507508526255524,
+        "B": 3.241895750874395,
+        "C": 3.2404641509329553
+      },
+      "Kt_net_novo": {
+        "A": 2.4380631394691643,
+        "B": 2.4314218131557963,
+        "C": 2.4303481131997167
+      },
+      "Kt_gross_anterior": {
+        "A": 3.2506537122893175,
+        "B": 3.241799281955659,
+        "C": 3.24036785512702
+      },
+      "Kt_net_anterior": {
+        "A": 2.4379902842169883,
+        "B": 2.4313494614667444,
+        "C": 2.430275891345265
+      },
+      "sigma_rr_C_novo": 0.005732858282094616,
+      "sigma_rr_C_anterior": 0.005732443401914434,
+      "spread_Kt_bruto_ABC": 0.010286701692597155,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0028585199147484,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.994080893532832,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9931495382822653,
+        "B_bias": -0.005919106467167978,
+        "C_bias": -0.006850461717734735,
+        "A_bias": 0.002858519914748392,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "f24f109e8e2d4cfdb540437d0d0be55068664f67b9b1d25282368abfae6cba4a",
+      "hash_msh2_baseline": "7f237df724295d1baf90db3337187deceb8fb5758ee5b0b70e3f8f50eb4e3e12",
+      "equilibrio_reacoes_rel": 4.583853296935559e-13,
+      "deslocamentos_elmer_scipy_rel_max": 1.2151518710522573e-12,
+      "forca_resultante_quadrante_N": 2000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 4,
+      "d_over_W": 0.25,
+      "L_over_W": 4,
+      "n": 40,
+      "elementos_Q8": 3200,
+      "nos": 9841,
+      "dofs": 19682,
+      "anel": {
+        "a": 0.01,
+        "H": 0.04,
+        "L": 0.16,
+        "rm": 0.02,
+        "xm": 0.0565685424949238,
+        "ym": 0.0282842712474619,
+        "nr": 40,
+        "nt": 80,
+        "ni": 20,
+        "nm": 10,
+        "no": 10,
+        "na": 40,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 80,
+          "vertices_interface_unicos": 81,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 2.426662493781547e-08
+        },
+        "interface_retangular_arestas_conformes": 80,
+        "interface_retangular_vertices_unicos": 81,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.0565685424949238,
+        "ym_m": 0.0282842712474619
+      },
+      "qualidade_nova": {
+        "elementos": 3200,
+        "nos": 9841,
+        "dofs_totais": 19682,
+        "faixa_mais_interna_elementos": 80,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 2.426662493781547e-08,
+          "max_det_jacobiano_m2": 2.570448334083296e-06,
+          "pontos_jacobiano": 12800
+        },
+        "razão_max_min_cordas_geral_max": 14.720954250128106,
+        "razão_max_min_cordas_geral_p95": 12.617686452564309,
+        "razão_max_min_cordas_primeira_faixa_max": 2.54652000210508,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4937245464326456,
+        "angulo_minimo_vertices_graus_geral": 6.462375371429585,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.74556335674056,
+        "arestas_tracionadas": 40,
+        "arestas_topo_livre": 40,
+        "arestas_furo_livre": 80,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 3200,
+        "nos": 9841,
+        "dofs_totais": 19682,
+        "faixa_mais_interna_elementos": 80,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 8.684217639989663e-09,
+          "max_det_jacobiano_m2": 6.5588100245085736e-06,
+          "pontos_jacobiano": 12800
+        },
+        "razão_max_min_cordas_geral_max": 31.402922542083505,
+        "razão_max_min_cordas_geral_p95": 21.52425265528586,
+        "razão_max_min_cordas_primeira_faixa_max": 2.54652000210508,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4937245464326456,
+        "angulo_minimo_vertices_graus_geral": 10.053018210254631,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.74556335674056,
+        "arestas_tracionadas": 40,
+        "arestas_topo_livre": 40,
+        "arestas_furo_livre": 80,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.249891173208323,
+        "B": 3.2446307497901885,
+        "C": 3.2438436271117967
+      },
+      "Kt_net_novo": {
+        "A": 2.4374183799062425,
+        "B": 2.4334730623426415,
+        "C": 2.4328827203338474
+      },
+      "Kt_gross_anterior": {
+        "A": 3.249852797085762,
+        "B": 3.2445925347955007,
+        "C": 3.2438054505507887
+      },
+      "Kt_net_anterior": {
+        "A": 2.4373895978143216,
+        "B": 2.4334444010966254,
+        "C": 2.4328540879130918
+      },
+      "sigma_rr_C_novo": 0.003350767861639851,
+      "sigma_rr_C_anterior": 0.0033506685918301762,
+      "spread_Kt_bruto_ABC": 0.006047546096526357,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0018832887912175,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9966694043384385,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9961912276128473,
+        "B_bias": -0.003330595661561464,
+        "C_bias": -0.0038087723871527146,
+        "A_bias": 0.0018832887912174634,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "01e9cd0ff466d7f8673e012f87805208283d92b8a3fa3b27bac77919d69cff97",
+      "hash_msh2_baseline": "86f2aaa4625cc9c45556a50a3d6ce84a869839589dfc5baad19abe07f59e15a7",
+      "equilibrio_reacoes_rel": 6.923528417246416e-14,
+      "deslocamentos_elmer_scipy_rel_max": 7.286792260901158e-13,
+      "forca_resultante_quadrante_N": 2000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 4,
+      "d_over_W": 0.25,
+      "L_over_W": 4,
+      "n": 48,
+      "elementos_Q8": 4608,
+      "nos": 14113,
+      "dofs": 28226,
+      "anel": {
+        "a": 0.01,
+        "H": 0.04,
+        "L": 0.16,
+        "rm": 0.02,
+        "xm": 0.0565685424949238,
+        "ym": 0.0282842712474619,
+        "nr": 48,
+        "nt": 96,
+        "ni": 24,
+        "nm": 12,
+        "no": 12,
+        "na": 48,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 96,
+          "vertices_interface_unicos": 97,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 1.6885799348983605e-08
+        },
+        "interface_retangular_arestas_conformes": 96,
+        "interface_retangular_vertices_unicos": 97,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.0565685424949238,
+        "ym_m": 0.0282842712474619
+      },
+      "qualidade_nova": {
+        "elementos": 4608,
+        "nos": 14113,
+        "dofs_totais": 28226,
+        "faixa_mais_interna_elementos": 96,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 1.6885799348983605e-08,
+          "max_det_jacobiano_m2": 1.78681535089457e-06,
+          "pontos_jacobiano": 18432
+        },
+        "razão_max_min_cordas_geral_max": 14.72095425012518,
+        "razão_max_min_cordas_geral_p95": 12.856276431990429,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+        "angulo_minimo_vertices_graus_geral": 6.462375371426872,
+        "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+        "arestas_tracionadas": 48,
+        "arestas_topo_livre": 48,
+        "arestas_furo_livre": 96,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 4608,
+        "nos": 14113,
+        "dofs_totais": 28226,
+        "faixa_mais_interna_elementos": 96,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 5.852168793394282e-09,
+          "max_det_jacobiano_m2": 4.6476671341928906e-06,
+          "pontos_jacobiano": 18432
+        },
+        "razão_max_min_cordas_geral_max": 31.223179844889447,
+        "razão_max_min_cordas_geral_p95": 20.94630845466739,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+        "angulo_minimo_vertices_graus_geral": 10.053018210254631,
+        "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+        "arestas_tracionadas": 48,
+        "arestas_topo_livre": 48,
+        "arestas_furo_livre": 96,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.249376021309433,
+        "B": 3.245960581885095,
+        "C": 3.245475895899648
+      },
+      "Kt_net_novo": {
+        "A": 2.4370320159820746,
+        "B": 2.434470436413821,
+        "C": 2.434106921924736
+      },
+      "Kt_gross_anterior": {
+        "A": 3.2493579607341414,
+        "B": 3.2459425712484604,
+        "C": 3.245457896425557
+      },
+      "Kt_net_anterior": {
+        "A": 2.437018470550606,
+        "B": 2.4344569284363455,
+        "C": 2.434093422319168
+      },
+      "sigma_rr_C_novo": 0.0021414738690573643,
+      "sigma_rr_C_anterior": 0.0021414433711946057,
+      "spread_Kt_bruto_ABC": 0.0039001254097850158,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.001333621386403,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.997943604924397,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.997667917964026,
+        "B_bias": -0.002056395075602957,
+        "C_bias": -0.0023320820359740146,
+        "A_bias": 0.0013336213864030277,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "874db3355cf9af279599a8e338fc05d1041c1213b324d78b54cf00eb4e1acc0c",
+      "hash_msh2_baseline": "13d1eda9f9e1e15d10b276317600dcbf8d688bbf3d40d5e6b8bd9bd69d9a3c49",
+      "equilibrio_reacoes_rel": 1.1397105481592007e-12,
+      "deslocamentos_elmer_scipy_rel_max": 4.797530598599865e-12,
+      "forca_resultante_quadrante_N": 2000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 8,
+      "d_over_W": 0.125,
+      "L_over_W": 2,
+      "n": 24,
+      "elementos_Q8": 1152,
+      "nos": 3601,
+      "dofs": 7202,
+      "anel": {
+        "a": 0.01,
+        "H": 0.08,
+        "L": 0.16,
+        "rm": 0.02,
+        "xm": 0.0565685424949238,
+        "ym": 0.04,
+        "nr": 24,
+        "nt": 48,
+        "ni": 12,
+        "nm": 6,
+        "no": 6,
+        "na": 24,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 48,
+          "vertices_interface_unicos": 49,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 6.683572433321789e-08
+        },
+        "interface_retangular_arestas_conformes": 48,
+        "interface_retangular_vertices_unicos": 49,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.0565685424949238,
+        "ym_m": 0.04
+      },
+      "qualidade_nova": {
+        "elementos": 1152,
+        "nos": 3601,
+        "dofs_totais": 7202,
+        "faixa_mais_interna_elementos": 48,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 6.683572433321789e-08,
+          "max_det_jacobiano_m2": 1.4167309696565258e-05,
+          "pontos_jacobiano": 4608
+        },
+        "razão_max_min_cordas_geral_max": 12.65282265016755,
+        "razão_max_min_cordas_geral_p95": 9.360881016833499,
+        "razão_max_min_cordas_primeira_faixa_max": 2.5465927262169124,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4588314608157553,
+        "angulo_minimo_vertices_graus_geral": 21.142958584506164,
+        "angulo_minimo_vertices_graus_primeira_faixa": 86.28292491900861,
+        "arestas_tracionadas": 24,
+        "arestas_topo_livre": 24,
+        "arestas_furo_livre": 48,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 1152,
+        "nos": 3601,
+        "dofs_totais": 7202,
+        "faixa_mais_interna_elementos": 48,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 6.683572433321789e-08,
+          "max_det_jacobiano_m2": 3.350010622783755e-05,
+          "pontos_jacobiano": 4608
+        },
+        "razão_max_min_cordas_geral_max": 18.175347759212368,
+        "razão_max_min_cordas_geral_p95": 13.834610445683188,
+        "razão_max_min_cordas_primeira_faixa_max": 2.5465927262169124,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4588314608157553,
+        "angulo_minimo_vertices_graus_geral": 24.30016750810331,
+        "angulo_minimo_vertices_graus_primeira_faixa": 86.28292491900861,
+        "arestas_tracionadas": 24,
+        "arestas_topo_livre": 24,
+        "arestas_furo_livre": 48,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.062412071054751,
+        "B": 3.0470051392650928,
+        "C": 3.0442335311450215
+      },
+      "Kt_net_novo": {
+        "A": 2.679610562172907,
+        "B": 2.666129496856956,
+        "C": 2.663704339751894
+      },
+      "Kt_gross_anterior": {
+        "A": 3.06232491896965,
+        "B": 3.046919972005208,
+        "C": 3.044148964044576
+      },
+      "Kt_net_anterior": {
+        "A": 2.6795343040984436,
+        "B": 2.666054975504557,
+        "C": 2.663630343539004
+      },
+      "sigma_rr_C_novo": 0.010223386776462236,
+      "sigma_rr_C_anterior": 0.010222349805103588,
+      "spread_Kt_bruto_ABC": 0.01817853990972962,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0048455311787903,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.98792945311215,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.985767919436287,
+        "B_bias": -0.012070546887850142,
+        "C_bias": -0.014232080563712834,
+        "A_bias": 0.004845531178790274,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "eefc45fde8f1e9e67c396a4b313514ecd27ee76faa59736ba4313b9da96518ba",
+      "hash_msh2_baseline": "d75e2c2c22753473952168d4e4f4c9228319671dc737bbd888c5f5fb30c6ef7c",
+      "equilibrio_reacoes_rel": 1.26419763546437e-13,
+      "deslocamentos_elmer_scipy_rel_max": 5.796137378059346e-13,
+      "forca_resultante_quadrante_N": 4000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 8,
+      "d_over_W": 0.125,
+      "L_over_W": 2,
+      "n": 32,
+      "elementos_Q8": 2048,
+      "nos": 6337,
+      "dofs": 12674,
+      "anel": {
+        "a": 0.01,
+        "H": 0.08,
+        "L": 0.16,
+        "rm": 0.02,
+        "xm": 0.0565685424949238,
+        "ym": 0.04,
+        "nr": 32,
+        "nt": 64,
+        "ni": 16,
+        "nm": 8,
+        "no": 8,
+        "na": 32,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 64,
+          "vertices_interface_unicos": 65,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 3.7798914697004796e-08
+        },
+        "interface_retangular_arestas_conformes": 64,
+        "interface_retangular_vertices_unicos": 65,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.0565685424949238,
+        "ym_m": 0.04
+      },
+      "qualidade_nova": {
+        "elementos": 2048,
+        "nos": 6337,
+        "dofs_totais": 12674,
+        "faixa_mais_interna_elementos": 64,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 3.7798914697004796e-08,
+          "max_det_jacobiano_m2": 7.997973742817984e-06,
+          "pontos_jacobiano": 8192
+        },
+        "razão_max_min_cordas_geral_max": 12.652575635934548,
+        "razão_max_min_cordas_geral_p95": 9.353082841664019,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546543010461272,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.480353182114066,
+        "angulo_minimo_vertices_graus_geral": 21.142958584511,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.19316743736188,
+        "arestas_tracionadas": 32,
+        "arestas_topo_livre": 32,
+        "arestas_furo_livre": 64,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 2048,
+        "nos": 6337,
+        "dofs_totais": 12674,
+        "faixa_mais_interna_elementos": 64,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 3.7798914697004796e-08,
+          "max_det_jacobiano_m2": 1.9815448218186595e-05,
+          "pontos_jacobiano": 8192
+        },
+        "razão_max_min_cordas_geral_max": 17.701917747394443,
+        "razão_max_min_cordas_geral_p95": 13.526268566658054,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546543010461272,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.480353182114066,
+        "angulo_minimo_vertices_graus_geral": 24.300167508103247,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.19316743736188,
+        "arestas_tracionadas": 32,
+        "arestas_topo_livre": 32,
+        "arestas_furo_livre": 64,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.0608989229841153,
+        "B": 3.052879777380083,
+        "C": 3.051602778998207
+      },
+      "Kt_net_novo": {
+        "A": 2.678286557611101,
+        "B": 2.6712698052075723,
+        "C": 2.670152431623431
+      },
+      "Kt_gross_anterior": {
+        "A": 3.060866049310527,
+        "B": 3.052847273515652,
+        "C": 3.0515703753725525
+      },
+      "Kt_net_anterior": {
+        "A": 2.6782577931467113,
+        "B": 2.6712413643261956,
+        "C": 2.6701240784509834
+      },
+      "sigma_rr_C_novo": 0.005230283840442164,
+      "sigma_rr_C_anterior": 0.00523007929082846,
+      "spread_Kt_bruto_ABC": 0.009296143985908056,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0028585199147484,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.994080893532832,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9931495382822653,
+        "B_bias": -0.005919106467167978,
+        "C_bias": -0.006850461717734735,
+        "A_bias": 0.002858519914748392,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "0c173d5b42f2104418f44db90e95bec8b4ebaa429c7ecd6ea987546c1b79c63b",
+      "hash_msh2_baseline": "39a2f0299c6a892b24cf946391b54b5f55f73f0c20a5e9c63eed648c5506c9a0",
+      "equilibrio_reacoes_rel": 7.958078640513122e-16,
+      "deslocamentos_elmer_scipy_rel_max": 1.0447880912706008e-12,
+      "forca_resultante_quadrante_N": 4000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 8,
+      "d_over_W": 0.125,
+      "L_over_W": 2,
+      "n": 40,
+      "elementos_Q8": 3200,
+      "nos": 9841,
+      "dofs": 19682,
+      "anel": {
+        "a": 0.01,
+        "H": 0.08,
+        "L": 0.16,
+        "rm": 0.02,
+        "xm": 0.0565685424949238,
+        "ym": 0.04,
+        "nr": 40,
+        "nt": 80,
+        "ni": 20,
+        "nm": 10,
+        "no": 10,
+        "na": 40,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 80,
+          "vertices_interface_unicos": 81,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 2.426662493781547e-08
+        },
+        "interface_retangular_arestas_conformes": 80,
+        "interface_retangular_vertices_unicos": 81,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.0565685424949238,
+        "ym_m": 0.04
+      },
+      "qualidade_nova": {
+        "elementos": 3200,
+        "nos": 9841,
+        "dofs_totais": 19682,
+        "faixa_mais_interna_elementos": 80,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 2.426662493781547e-08,
+          "max_det_jacobiano_m2": 5.129579397343473e-06,
+          "pontos_jacobiano": 12800
+        },
+        "razão_max_min_cordas_geral_max": 12.652461318224715,
+        "razão_max_min_cordas_geral_p95": 9.290811963422355,
+        "razão_max_min_cordas_primeira_faixa_max": 2.54652000210508,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4937245464326456,
+        "angulo_minimo_vertices_graus_geral": 21.14295858450435,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.74556335674056,
+        "arestas_tracionadas": 40,
+        "arestas_topo_livre": 40,
+        "arestas_furo_livre": 80,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 3200,
+        "nos": 9841,
+        "dofs_totais": 19682,
+        "faixa_mais_interna_elementos": 80,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 2.426662493781547e-08,
+          "max_det_jacobiano_m2": 1.3077977280731562e-05,
+          "pontos_jacobiano": 12800
+        },
+        "razão_max_min_cordas_geral_max": 17.418695924534447,
+        "razão_max_min_cordas_geral_p95": 13.282944394200431,
+        "razão_max_min_cordas_primeira_faixa_max": 2.54652000210508,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4937245464326456,
+        "angulo_minimo_vertices_graus_geral": 24.300167508103293,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.74556335674056,
+        "arestas_tracionadas": 40,
+        "arestas_topo_livre": 40,
+        "arestas_furo_livre": 80,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.060088069070493,
+        "B": 3.0553250443385305,
+        "C": 3.0546242923448923
+      },
+      "Kt_net_novo": {
+        "A": 2.6775770604366813,
+        "B": 2.673409413796214,
+        "C": 2.6727962558017806
+      },
+      "Kt_gross_anterior": {
+        "A": 3.0600731424351864,
+        "B": 3.055310213410669,
+        "C": 3.054609485298475
+      },
+      "Kt_net_anterior": {
+        "A": 2.677563999630788,
+        "B": 2.6733964367343352,
+        "C": 2.6727832996361656
+      },
+      "sigma_rr_C_novo": 0.0030527273131586707,
+      "sigma_rr_C_anterior": 0.0030526732602278376,
+      "spread_Kt_bruto_ABC": 0.0054637767256005,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0018832887912175,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9966694043384385,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9961912276128473,
+        "B_bias": -0.003330595661561464,
+        "C_bias": -0.0038087723871527146,
+        "A_bias": 0.0018832887912174634,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "1a29589a0644de71e7e9d52af6d9e999705270f1a7cf7c831f423947eea9e5a6",
+      "hash_msh2_baseline": "4d2a5d74c1621ee294078065b068d9d153bf7d086d94c4dd99b2f3da20b1092b",
+      "equilibrio_reacoes_rel": 1.650732883717865e-13,
+      "deslocamentos_elmer_scipy_rel_max": 1.1412368326990745e-12,
+      "forca_resultante_quadrante_N": 4000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 8,
+      "d_over_W": 0.125,
+      "L_over_W": 2,
+      "n": 48,
+      "elementos_Q8": 4608,
+      "nos": 14113,
+      "dofs": 28226,
+      "anel": {
+        "a": 0.01,
+        "H": 0.08,
+        "L": 0.16,
+        "rm": 0.02,
+        "xm": 0.0565685424949238,
+        "ym": 0.04,
+        "nr": 48,
+        "nt": 96,
+        "ni": 24,
+        "nm": 12,
+        "no": 12,
+        "na": 48,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 96,
+          "vertices_interface_unicos": 97,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 1.6885799348983605e-08
+        },
+        "interface_retangular_arestas_conformes": 96,
+        "interface_retangular_vertices_unicos": 97,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.0565685424949238,
+        "ym_m": 0.04
+      },
+      "qualidade_nova": {
+        "elementos": 4608,
+        "nos": 14113,
+        "dofs_totais": 28226,
+        "faixa_mais_interna_elementos": 96,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 1.6885799348983605e-08,
+          "max_det_jacobiano_m2": 3.5671840456184657e-06,
+          "pontos_jacobiano": 18432
+        },
+        "razão_max_min_cordas_geral_max": 12.652399225011377,
+        "razão_max_min_cordas_geral_p95": 9.141624513303768,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+        "angulo_minimo_vertices_graus_geral": 21.14295858449906,
+        "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+        "arestas_tracionadas": 48,
+        "arestas_topo_livre": 48,
+        "arestas_furo_livre": 96,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 4608,
+        "nos": 14113,
+        "dofs_totais": 28226,
+        "faixa_mais_interna_elementos": 96,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 1.6885799348983605e-08,
+          "max_det_jacobiano_m2": 9.27237648376204e-06,
+          "pontos_jacobiano": 18432
+        },
+        "razão_max_min_cordas_geral_max": 17.230521840511244,
+        "razão_max_min_cordas_geral_p95": 13.233082566511428,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+        "angulo_minimo_vertices_graus_geral": 24.300167508103247,
+        "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+        "arestas_tracionadas": 48,
+        "arestas_topo_livre": 48,
+        "arestas_furo_livre": 96,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.0596075511811534,
+        "B": 3.056515041308038,
+        "C": 3.056083938780041
+      },
+      "Kt_net_novo": {
+        "A": 2.6771566072835093,
+        "B": 2.674450661144533,
+        "C": 2.6740734464325358
+      },
+      "Kt_gross_anterior": {
+        "A": 3.0595998386060472,
+        "B": 3.0565073597782852,
+        "C": 3.05607626450314
+      },
+      "Kt_net_anterior": {
+        "A": 2.6771498587802913,
+        "B": 2.6744439398059994,
+        "C": 2.6740667314402473
+      },
+      "sigma_rr_C_novo": 0.0019493133094863363,
+      "sigma_rr_C_anterior": 0.001949295666130367,
+      "spread_Kt_bruto_ABC": 0.0035236124011124303,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.001333621386403,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.997943604924397,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.997667917964026,
+        "B_bias": -0.002056395075602957,
+        "C_bias": -0.0023320820359740146,
+        "A_bias": 0.0013336213864030277,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "7e2666ae487ed3ec835c6ccfee335ea5e744a42803167c4102bde96f2309a7ab",
+      "hash_msh2_baseline": "b63797e55dbf1a21f3974818b4b65bfad3920a5e806157f11ade62ebe48cab40",
+      "equilibrio_reacoes_rel": 1.4620127330999822e-13,
+      "deslocamentos_elmer_scipy_rel_max": 1.7238292432902155e-12,
+      "forca_resultante_quadrante_N": 4000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 8,
+      "d_over_W": 0.125,
+      "L_over_W": 4,
+      "n": 24,
+      "elementos_Q8": 1152,
+      "nos": 3601,
+      "dofs": 7202,
+      "anel": {
+        "a": 0.01,
+        "H": 0.08,
+        "L": 0.32,
+        "rm": 0.02,
+        "xm": 0.08,
+        "ym": 0.04,
+        "nr": 24,
+        "nt": 48,
+        "ni": 12,
+        "nm": 6,
+        "no": 6,
+        "na": 24,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 48,
+          "vertices_interface_unicos": 49,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 6.683572433321789e-08
+        },
+        "interface_retangular_arestas_conformes": 48,
+        "interface_retangular_vertices_unicos": 49,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.08,
+        "ym_m": 0.04
+      },
+      "qualidade_nova": {
+        "elementos": 1152,
+        "nos": 3601,
+        "dofs_totais": 7202,
+        "faixa_mais_interna_elementos": 48,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 6.683572433321789e-08,
+          "max_det_jacobiano_m2": 3.277404232864183e-05,
+          "pontos_jacobiano": 4608
+        },
+        "razão_max_min_cordas_geral_max": 24.331050121043226,
+        "razão_max_min_cordas_geral_p95": 18.091611103337037,
+        "razão_max_min_cordas_primeira_faixa_max": 2.5465927262169124,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4588314608157553,
+        "angulo_minimo_vertices_graus_geral": 9.462322208021316,
+        "angulo_minimo_vertices_graus_primeira_faixa": 86.28292491900861,
+        "arestas_tracionadas": 24,
+        "arestas_topo_livre": 24,
+        "arestas_furo_livre": 48,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 1152,
+        "nos": 3601,
+        "dofs_totais": 7202,
+        "faixa_mais_interna_elementos": 48,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 6.683572433321789e-08,
+          "max_det_jacobiano_m2": 6.993855072998201e-05,
+          "pontos_jacobiano": 4608
+        },
+        "razão_max_min_cordas_geral_max": 35.79980430376493,
+        "razão_max_min_cordas_geral_p95": 28.628292267900616,
+        "razão_max_min_cordas_primeira_faixa_max": 2.5465927262169124,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4588314608157553,
+        "angulo_minimo_vertices_graus_geral": 12.151501883308832,
+        "angulo_minimo_vertices_graus_primeira_faixa": 86.28292491900861,
+        "arestas_tracionadas": 24,
+        "arestas_topo_livre": 24,
+        "arestas_furo_livre": 48,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.0611252157431537,
+        "B": 3.045720999403841,
+        "C": 3.0429486968873625
+      },
+      "Kt_net_novo": {
+        "A": 2.6784845637752595,
+        "B": 2.6650058744783607,
+        "C": 2.6625801097764423
+      },
+      "Kt_gross_anterior": {
+        "A": 3.0609543302467284,
+        "B": 3.0455584363443897,
+        "C": 3.042789110178875
+      },
+      "Kt_net_anterior": {
+        "A": 2.678335038965887,
+        "B": 2.664863631801341,
+        "C": 2.6624404714065157
+      },
+      "sigma_rr_C_novo": 0.010220238267934108,
+      "sigma_rr_C_anterior": 0.010216105382602043,
+      "spread_Kt_bruto_ABC": 0.01817651885579119,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0048455311787903,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.98792945311215,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.985767919436287,
+        "B_bias": -0.012070546887850142,
+        "C_bias": -0.014232080563712834,
+        "A_bias": 0.004845531178790274,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "6ff13ed72b89daaa59d10000ca99880f47be054142efff9130a641c5a70d49ae",
+      "hash_msh2_baseline": "1720d445a13837882223568882fcf1a72bbd64db053ec2543c785205a5e9ac7d",
+      "equilibrio_reacoes_rel": 1.072066879714839e-13,
+      "deslocamentos_elmer_scipy_rel_max": 3.9949335996651685e-13,
+      "forca_resultante_quadrante_N": 4000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 8,
+      "d_over_W": 0.125,
+      "L_over_W": 4,
+      "n": 32,
+      "elementos_Q8": 2048,
+      "nos": 6337,
+      "dofs": 12674,
+      "anel": {
+        "a": 0.01,
+        "H": 0.08,
+        "L": 0.32,
+        "rm": 0.02,
+        "xm": 0.08,
+        "ym": 0.04,
+        "nr": 32,
+        "nt": 64,
+        "ni": 16,
+        "nm": 8,
+        "no": 8,
+        "na": 32,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 64,
+          "vertices_interface_unicos": 65,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 3.7798914697004796e-08
+        },
+        "interface_retangular_arestas_conformes": 64,
+        "interface_retangular_vertices_unicos": 65,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.08,
+        "ym_m": 0.04
+      },
+      "qualidade_nova": {
+        "elementos": 2048,
+        "nos": 6337,
+        "dofs_totais": 12674,
+        "faixa_mais_interna_elementos": 64,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 3.7798914697004796e-08,
+          "max_det_jacobiano_m2": 1.8514678612936318e-05,
+          "pontos_jacobiano": 8192
+        },
+        "razão_max_min_cordas_geral_max": 24.331050121051703,
+        "razão_max_min_cordas_geral_p95": 17.638476313270402,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546543010461272,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.480353182114066,
+        "angulo_minimo_vertices_graus_geral": 9.462322208016559,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.19316743736188,
+        "arestas_tracionadas": 32,
+        "arestas_topo_livre": 32,
+        "arestas_furo_livre": 64,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 2048,
+        "nos": 6337,
+        "dofs_totais": 12674,
+        "faixa_mais_interna_elementos": 64,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 3.7798914697004796e-08,
+          "max_det_jacobiano_m2": 4.140254717084604e-05,
+          "pontos_jacobiano": 8192
+        },
+        "razão_max_min_cordas_geral_max": 34.81701437805612,
+        "razão_max_min_cordas_geral_p95": 28.155678235329216,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546543010461272,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.480353182114066,
+        "angulo_minimo_vertices_graus_geral": 12.151501883308892,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.19316743736188,
+        "arestas_tracionadas": 32,
+        "arestas_topo_livre": 32,
+        "arestas_furo_livre": 64,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.059603299616402,
+        "B": 3.0515876068848593,
+        "C": 3.050310953129371
+      },
+      "Kt_net_novo": {
+        "A": 2.6771528871643517,
+        "B": 2.670139156024252,
+        "C": 2.6690220839881995
+      },
+      "Kt_gross_anterior": {
+        "A": 3.059540584294265,
+        "B": 3.051526479862267,
+        "C": 3.0502503445945934
+      },
+      "Kt_net_anterior": {
+        "A": 2.677098011257482,
+        "B": 2.6700856698794837,
+        "C": 2.668969051520269
+      },
+      "sigma_rr_C_novo": 0.005227826678064811,
+      "sigma_rr_C_anterior": 0.005226968143587078,
+      "spread_Kt_bruto_ABC": 0.009292346487030922,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0028585199147484,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.994080893532832,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9931495382822653,
+        "B_bias": -0.005919106467167978,
+        "C_bias": -0.006850461717734735,
+        "A_bias": 0.002858519914748392,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "b508b98d971c72e8d282397846e90a98580362e474c7f697f8424613d3780063",
+      "hash_msh2_baseline": "10ad4e4a6a4f0d50ee9645c18de700621952506823f30b2b71f774f80ac9885a",
+      "equilibrio_reacoes_rel": 2.0190782379359007e-13,
+      "deslocamentos_elmer_scipy_rel_max": 1.6609870641034093e-12,
+      "forca_resultante_quadrante_N": 4000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 8,
+      "d_over_W": 0.125,
+      "L_over_W": 4,
+      "n": 40,
+      "elementos_Q8": 3200,
+      "nos": 9841,
+      "dofs": 19682,
+      "anel": {
+        "a": 0.01,
+        "H": 0.08,
+        "L": 0.32,
+        "rm": 0.02,
+        "xm": 0.08,
+        "ym": 0.04,
+        "nr": 40,
+        "nt": 80,
+        "ni": 20,
+        "nm": 10,
+        "no": 10,
+        "na": 40,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 80,
+          "vertices_interface_unicos": 81,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 2.426662493781547e-08
+        },
+        "interface_retangular_arestas_conformes": 80,
+        "interface_retangular_vertices_unicos": 81,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.08,
+        "ym_m": 0.04
+      },
+      "qualidade_nova": {
+        "elementos": 3200,
+        "nos": 9841,
+        "dofs_totais": 19682,
+        "faixa_mais_interna_elementos": 80,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 2.426662493781547e-08,
+          "max_det_jacobiano_m2": 1.1879711613914441e-05,
+          "pontos_jacobiano": 12800
+        },
+        "razão_max_min_cordas_geral_max": 24.33105012104978,
+        "razão_max_min_cordas_geral_p95": 18.017213805728666,
+        "razão_max_min_cordas_primeira_faixa_max": 2.54652000210508,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4937245464326456,
+        "angulo_minimo_vertices_graus_geral": 9.462322208018763,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.74556335674056,
+        "arestas_tracionadas": 40,
+        "arestas_topo_livre": 40,
+        "arestas_furo_livre": 80,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 3200,
+        "nos": 9841,
+        "dofs_totais": 19682,
+        "faixa_mais_interna_elementos": 80,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 2.426662493781547e-08,
+          "max_det_jacobiano_m2": 2.7340938180222545e-05,
+          "pontos_jacobiano": 12800
+        },
+        "razão_max_min_cordas_geral_max": 34.22580495081486,
+        "razão_max_min_cordas_geral_p95": 27.748415255101786,
+        "razão_max_min_cordas_primeira_faixa_max": 2.54652000210508,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.4937245464326456,
+        "angulo_minimo_vertices_graus_geral": 12.151501883308802,
+        "angulo_minimo_vertices_graus_primeira_faixa": 87.74556335674056,
+        "arestas_tracionadas": 40,
+        "arestas_topo_livre": 40,
+        "arestas_furo_livre": 80,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.0587869736891817,
+        "B": 3.0540264011884464,
+        "C": 3.053325962604276
+      },
+      "Kt_net_novo": {
+        "A": 2.676438601978034,
+        "B": 2.672273101039891,
+        "C": 2.6716602172787414
+      },
+      "Kt_gross_anterior": {
+        "A": 3.0587591678972648,
+        "B": 3.053999007300138,
+        "C": 3.0532986933212545
+      },
+      "Kt_net_anterior": {
+        "A": 2.6764142719101067,
+        "B": 2.6722491313876207,
+        "C": 2.671636356656098
+      },
+      "sigma_rr_C_novo": 0.003051100641264625,
+      "sigma_rr_C_anterior": 0.0030508701173515076,
+      "spread_Kt_bruto_ABC": 0.00546101108490582,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0018832887912175,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9966694043384385,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9961912276128473,
+        "B_bias": -0.003330595661561464,
+        "C_bias": -0.0038087723871527146,
+        "A_bias": 0.0018832887912174634,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "74ab1e9781382143cd0455991a363d8517208a79efc1b5cb69e5af1d83f620e6",
+      "hash_msh2_baseline": "794fdfb6096f17c0189366cbdfabe50683aadfc6a53788fe89a692ce15529508",
+      "equilibrio_reacoes_rel": 2.751221472863108e-14,
+      "deslocamentos_elmer_scipy_rel_max": 2.7001545302081854e-12,
+      "forca_resultante_quadrante_N": 4000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    },
+    {
+      "H_over_a": 8,
+      "d_over_W": 0.125,
+      "L_over_W": 4,
+      "n": 48,
+      "elementos_Q8": 4608,
+      "nos": 14113,
+      "dofs": 28226,
+      "anel": {
+        "a": 0.01,
+        "H": 0.08,
+        "L": 0.32,
+        "rm": 0.02,
+        "xm": 0.08,
+        "ym": 0.04,
+        "nr": 48,
+        "nt": 96,
+        "ni": 24,
+        "nm": 12,
+        "no": 12,
+        "na": 48,
+        "politica": "anel uniforme ni; transição uniforme nm; exterior uniforme no",
+        "interface_intermediaria": "Xm=sqrt(2a*Hx), Ym=sqrt(2a*Hy)"
+      },
+      "conformidade_interface": {
+        "anel": {
+          "raio_intermediario_m": 0.02,
+          "arestas_interface_conformes": 96,
+          "vertices_interface_unicos": 97,
+          "incidencia_por_aresta": 2,
+          "jacobiano_minimo_m2": 1.6885799348983605e-08
+        },
+        "interface_retangular_arestas_conformes": 96,
+        "interface_retangular_vertices_unicos": 97,
+        "incidencias_por_aresta": 2,
+        "xm_m": 0.08,
+        "ym_m": 0.04
+      },
+      "qualidade_nova": {
+        "elementos": 4608,
+        "nos": 14113,
+        "dofs_totais": 28226,
+        "faixa_mais_interna_elementos": 96,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 1.6885799348983605e-08,
+          "max_det_jacobiano_m2": 8.263798326954577e-06,
+          "pontos_jacobiano": 18432
+        },
+        "razão_max_min_cordas_geral_max": 24.33105012104795,
+        "razão_max_min_cordas_geral_p95": 18.014844511050942,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+        "angulo_minimo_vertices_graus_geral": 9.462322208019575,
+        "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+        "arestas_tracionadas": 48,
+        "arestas_topo_livre": 48,
+        "arestas_furo_livre": 96,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "qualidade_anterior": {
+        "elementos": 4608,
+        "nos": 14113,
+        "dofs_totais": 28226,
+        "faixa_mais_interna_elementos": 96,
+        "jacobianos_q8": {
+          "min_det_jacobiano_m2": 1.6885799348983605e-08,
+          "max_det_jacobiano_m2": 1.939309475908185e-05,
+          "pontos_jacobiano": 18432
+        },
+        "razão_max_min_cordas_geral_max": 33.831618782342325,
+        "razão_max_min_cordas_geral_p95": 27.224249203620694,
+        "razão_max_min_cordas_primeira_faixa_max": 2.546507504805577,
+        "razão_max_min_cordas_primeira_faixa_mediana": 2.5026245866052568,
+        "angulo_minimo_vertices_graus_geral": 12.151501883308832,
+        "angulo_minimo_vertices_graus_primeira_faixa": 88.11637744499511,
+        "arestas_tracionadas": 48,
+        "arestas_topo_livre": 48,
+        "arestas_furo_livre": 96,
+        "observacao": "Aspect ratio por cordas dos quatro vertices; nao mede curvatura das arestas Q8"
+      },
+      "Kt_gross_novo": {
+        "A": 3.058303790753563,
+        "B": 3.055212973755472,
+        "C": 3.0547820932986185
+      },
+      "Kt_net_novo": {
+        "A": 2.6760158169093677,
+        "B": 2.6733113520360376,
+        "C": 2.672934331636291
+      },
+      "Kt_gross_anterior": {
+        "A": 3.058289724831135,
+        "B": 3.0551990405807654,
+        "C": 3.054768197711684
+      },
+      "Kt_net_anterior": {
+        "A": 2.676003509227243,
+        "B": 2.6732991605081695,
+        "C": 2.6729221729977235
+      },
+      "sigma_rr_C_novo": 0.0019482232785597623,
+      "sigma_rr_C_anterior": 0.001948147983402827,
+      "spread_Kt_bruto_ABC": 0.0035216974549445723,
+      "controles_Kirsch": {
+        "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.001333621386403,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.997943604924397,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.997667917964026,
+        "B_bias": -0.002056395075602957,
+        "C_bias": -0.0023320820359740146,
+        "A_bias": 0.0013336213864030277,
+        "referencia_Kt": 3.0,
+        "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
+      },
+      "hash_msh2": "957a8339f60795c3f20d1397527810da9755b5db39454e286a01fd2a984dc986",
+      "hash_msh2_baseline": "94df7fa20aaba4f344e48a4da81a80717ddc7a7326ade18d78405accd001cf5b",
+      "equilibrio_reacoes_rel": 4.90899765281938e-13,
+      "deslocamentos_elmer_scipy_rel_max": 2.709948023762672e-12,
+      "forca_resultante_quadrante_N": 4000.0,
+      "comparativos": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      }
+    }
+  ],
+  "series": [
+    {
+      "d_over_W": 0.25,
+      "L_over_W": 2,
+      "fine_n": 48,
+      "fine_quality_comparison": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      },
+      "Kt_net_n48_C_novo": 2.4380354652542153,
+      "Kt_net_n48_C_anterior": 2.4380251384368483,
+      "sigma_rr_C_n48_novo": 0.0021450866736391267,
+      "sigma_rr_C_n48_anterior": 0.0021450714716587252,
+      "pior_ratio_global_novo": 7.505198105095839,
+      "pior_ratio_global_anterior": 14.880038524530445,
+      "pior_ratio_furo_novo": 2.546507504805577,
+      "pior_ratio_furo_anterior": 2.546507504805577,
+      "menor_angulo_novo": 16.324949936875324,
+      "menor_angulo_anterior": 21.436529825399138,
+      "convergencia": {
+        "A": {
+          "n": [
+            24,
+            32,
+            40,
+            48
+          ],
+          "valores": [
+            3.257676162994838,
+            3.2560290063397312,
+            3.2551445610951273,
+            3.2546198148413694
+          ],
+          "incrementos": [
+            -0.0016471566551068406,
+            -0.0008844452446039597,
+            -0.0005247462537578684
+          ],
+          "variacao_relativa_duas_mais_finas": 0.00016123119860727715,
+          "monotonicidade": true,
+          "status": "estimativa_condicionada_ordem_estavel",
+          "ordem_observada": {
+            "24_32_40": 1.429080566173948,
+            "32_40_48": 1.5700744396416964
+          },
+          "extrapolacao_richardson": 3.2530365664887175,
+          "GCI_fino_relativo": 0.0006080773034660005,
+          "GCI_fator_seguranca": 1.25,
+          "razões_refinamento_n24_32_40_48": [
+            1.3333333333333333,
+            1.25,
+            1.2
+          ],
+          "alertas": [
+            "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+          ],
+          "estabilidade_ordem_relativa": 0.08980075715386095
+        },
+        "B": {
+          "n": [
+            24,
+            32,
+            40,
+            48
+          ],
+          "valores": [
+            3.240645809506982,
+            3.247160365455165,
+            3.249876133534997,
+            3.251199198005272
+          ],
+          "incrementos": [
+            0.006514555948182732,
+            0.0027157680798319817,
+            0.0013230644702750816
+          ],
+          "variacao_relativa_duas_mais_finas": 0.00040694660329850885,
+          "monotonicidade": true,
+          "status": "estimativa_condicionada_ordem_estavel",
+          "ordem_observada": {
+            "24_32_40": 2.4002687789409265,
+            "32_40_48": 2.528896360270666
+          },
+          "extrapolacao_richardson": 3.2534578600938913,
+          "GCI_fino_relativo": 0.0008683957637866085,
+          "GCI_fator_seguranca": 1.25,
+          "razões_refinamento_n24_32_40_48": [
+            1.3333333333333333,
+            1.25,
+            1.2
+          ],
+          "alertas": [
+            "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+          ],
+          "estabilidade_ordem_relativa": 0.05086312881401466
+        },
+        "C": {
+          "n": [
+            24,
+            32,
+            40,
+            48
+          ],
+          "valores": [
+            3.2375459163893994,
+            3.245726928425084,
+            3.2490880617082896,
+            3.250713953672287
+          ],
+          "incrementos": [
+            0.008181012035684443,
+            0.0033611332832057528,
+            0.0016258919639975389
+          ],
+          "variacao_relativa_duas_mais_finas": 0.0005001645752806983,
+          "monotonicidade": true,
+          "status": "estimativa_condicionada_ordem_estavel",
+          "ordem_observada": {
+            "24_32_40": 2.4558929933789706,
+            "32_40_48": 2.5633143041729385
+          },
+          "extrapolacao_richardson": 3.2534430787168707,
+          "GCI_fino_relativo": 0.0010494329413006519,
+          "GCI_fator_seguranca": 1.25,
+          "razões_refinamento_n24_32_40_48": [
+            1.3333333333333333,
+            1.25,
+            1.2
+          ],
+          "alertas": [
+            "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+          ],
+          "estabilidade_ordem_relativa": 0.041907194376862696
+        }
+      }
+    },
+    {
+      "d_over_W": 0.25,
+      "L_over_W": 4,
+      "fine_n": 48,
+      "fine_quality_comparison": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      },
+      "Kt_net_n48_C_novo": 2.434106921924736,
+      "Kt_net_n48_C_anterior": 2.434093422319168,
+      "sigma_rr_C_n48_novo": 0.0021414738690573643,
+      "sigma_rr_C_n48_anterior": 0.0021414433711946057,
+      "pior_ratio_global_novo": 14.72095425012518,
+      "pior_ratio_global_anterior": 31.223179844889447,
+      "pior_ratio_furo_novo": 2.546507504805577,
+      "pior_ratio_furo_anterior": 2.546507504805577,
+      "menor_angulo_novo": 6.462375371426872,
+      "menor_angulo_anterior": 10.053018210254631,
+      "convergencia": {
+        "A": {
+          "n": [
+            24,
+            32,
+            40,
+            48
+          ],
+          "valores": [
+            3.2523147589991543,
+            3.2507508526255524,
+            3.249891173208323,
+            3.249376021309433
+          ],
+          "incrementos": [
+            -0.001563906373601931,
+            -0.0008596794172293087,
+            -0.0005151518988899539
+          ],
+          "variacao_relativa_duas_mais_finas": 0.00015853871497530103,
+          "monotonicidade": true,
+          "status": "estimativa_condicionada_ordem_estavel",
+          "ordem_observada": {
+            "24_32_40": 1.3385602905918725,
+            "32_40_48": 1.5215136823229294
+          },
+          "extrapolacao_richardson": 3.247764663005177,
+          "GCI_fino_relativo": 0.0006198722053442656,
+          "GCI_fator_seguranca": 1.25,
+          "razões_refinamento_n24_32_40_48": [
+            1.3333333333333333,
+            1.25,
+            1.2
+          ],
+          "alertas": [
+            "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+          ],
+          "estabilidade_ordem_relativa": 0.12024432895781638
+        },
+        "B": {
+          "n": [
+            24,
+            32,
+            40,
+            48
+          ],
+          "valores": [
+            3.235310507274183,
+            3.241895750874395,
+            3.2446307497901885,
+            3.245960581885095
+          ],
+          "incrementos": [
+            0.006585243600212287,
+            0.0027349989157934296,
+            0.0013298320949064468
+          ],
+          "variacao_relativa_duas_mais_finas": 0.00040968830685372815,
+          "monotonicidade": true,
+          "status": "estimativa_condicionada_ordem_estavel",
+          "ordem_observada": {
+            "24_32_40": 2.4145316186419645,
+            "32_40_48": 2.5383734761988404
+          },
+          "extrapolacao_richardson": 3.2482202184112956,
+          "GCI_fino_relativo": 0.0008701725071810437,
+          "GCI_fator_seguranca": 1.25,
+          "razões_refinamento_n24_32_40_48": [
+            1.3333333333333333,
+            1.25,
+            1.2
+          ],
+          "alertas": [
+            "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+          ],
+          "estabilidade_ordem_relativa": 0.04878787882007274
+        },
+        "C": {
+          "n": [
+            24,
+            32,
+            40,
+            48
+          ],
+          "valores": [
+            3.232214870707108,
+            3.2404641509329553,
+            3.2438436271117967,
+            3.245475895899648
+          ],
+          "incrementos": [
+            0.008249280225847144,
+            0.0033794761788414895,
+            0.0016322687878513875
+          ],
+          "variacao_relativa_duas_mais_finas": 0.0005029366540400454,
+          "monotonicidade": true,
+          "status": "estimativa_condicionada_ordem_estavel",
+          "ordem_observada": {
+            "24_32_40": 2.4668343363537355,
+            "32_40_48": 2.570723787526976
+          },
+          "extrapolacao_richardson": 3.2482058398235574,
+          "GCI_fino_relativo": 0.0010514420733171899,
+          "GCI_fator_seguranca": 1.25,
+          "razões_refinamento_n24_32_40_48": [
+            1.3333333333333333,
+            1.25,
+            1.2
+          ],
+          "alertas": [
+            "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+          ],
+          "estabilidade_ordem_relativa": 0.04041252960637277
+        }
+      }
+    },
+    {
+      "d_over_W": 0.125,
+      "L_over_W": 2,
+      "fine_n": 48,
+      "fine_quality_comparison": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      },
+      "Kt_net_n48_C_novo": 2.6740734464325358,
+      "Kt_net_n48_C_anterior": 2.6740667314402473,
+      "sigma_rr_C_n48_novo": 0.0019493133094863363,
+      "sigma_rr_C_n48_anterior": 0.001949295666130367,
+      "pior_ratio_global_novo": 12.652399225011377,
+      "pior_ratio_global_anterior": 17.230521840511244,
+      "pior_ratio_furo_novo": 2.546507504805577,
+      "pior_ratio_furo_anterior": 2.546507504805577,
+      "menor_angulo_novo": 21.14295858449906,
+      "menor_angulo_anterior": 24.300167508103247,
+      "convergencia": {
+        "A": {
+          "n": [
+            24,
+            32,
+            40,
+            48
+          ],
+          "valores": [
+            3.062412071054751,
+            3.0608989229841153,
+            3.060088069070493,
+            3.0596075511811534
+          ],
+          "incrementos": [
+            -0.0015131480706358502,
+            -0.0008108539136224557,
+            -0.00048051788933944906
+          ],
+          "variacao_relativa_duas_mais_finas": 0.00015705213211215485,
+          "monotonicidade": true,
+          "status": "estimativa_condicionada_ordem_estavel",
+          "ordem_observada": {
+            "24_32_40": 1.436848346667829,
+            "32_40_48": 1.575822081537075
+          },
+          "extrapolacao_richardson": 3.0581638280781567,
+          "GCI_fino_relativo": 0.0005898318161914657,
+          "GCI_fator_seguranca": 1.25,
+          "razões_refinamento_n24_32_40_48": [
+            1.3333333333333333,
+            1.25,
+            1.2
+          ],
+          "alertas": [
+            "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+          ],
+          "estabilidade_ordem_relativa": 0.08819125997630985
+        },
+        "B": {
+          "n": [
+            24,
+            32,
+            40,
+            48
+          ],
+          "valores": [
+            3.0470051392650928,
+            3.052879777380083,
+            3.0553250443385305,
+            3.056515041308038
+          ],
+          "incrementos": [
+            0.005874638114990116,
+            0.0024452669584476006,
+            0.0011899969695075008
+          ],
+          "variacao_relativa_duas_mais_finas": 0.00038933129836594575,
+          "monotonicidade": true,
+          "status": "estimativa_condicionada_ordem_estavel",
+          "ordem_observada": {
+            "24_32_40": 2.4060944273549882,
+            "32_40_48": 2.5341309564221
+          },
+          "extrapolacao_richardson": 3.058541300328865,
+          "GCI_fino_relativo": 0.000828663933205555,
+          "GCI_fator_seguranca": 1.25,
+          "razões_refinamento_n24_32_40_48": [
+            1.3333333333333333,
+            1.25,
+            1.2
+          ],
+          "alertas": [
+            "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+          ],
+          "estabilidade_ordem_relativa": 0.05052482735457543
+        },
+        "C": {
+          "n": [
+            24,
+            32,
+            40,
+            48
+          ],
+          "valores": [
+            3.0442335311450215,
+            3.051602778998207,
+            3.0546242923448923,
+            3.056083938780041
+          ],
+          "incrementos": [
+            0.007369247853185712,
+            0.0030215133466851007,
+            0.0014596464351486205
+          ],
+          "variacao_relativa_duas_mais_finas": 0.0004776198770676754,
+          "monotonicidade": true,
+          "status": "estimativa_condicionada_ordem_estavel",
+          "ordem_observada": {
+            "24_32_40": 2.463601174570293,
+            "32_40_48": 2.569820961285643
+          },
+          "extrapolacao_richardson": 3.058526248821091,
+          "GCI_fino_relativo": 0.0009989540904203115,
+          "GCI_fator_seguranca": 1.25,
+          "razões_refinamento_n24_32_40_48": [
+            1.3333333333333333,
+            1.25,
+            1.2
+          ],
+          "alertas": [
+            "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+          ],
+          "estabilidade_ordem_relativa": 0.041333535804848394
+        }
+      }
+    },
+    {
+      "d_over_W": 0.125,
+      "L_over_W": 4,
+      "fine_n": 48,
+      "fine_quality_comparison": {
+        "melhora_global": true,
+        "melhora_primeira_faixa": false,
+        "melhora_angulo_minimo": false,
+        "melhora_tracao_livre_radial": false
+      },
+      "Kt_net_n48_C_novo": 2.672934331636291,
+      "Kt_net_n48_C_anterior": 2.6729221729977235,
+      "sigma_rr_C_n48_novo": 0.0019482232785597623,
+      "sigma_rr_C_n48_anterior": 0.001948147983402827,
+      "pior_ratio_global_novo": 24.33105012104795,
+      "pior_ratio_global_anterior": 33.831618782342325,
+      "pior_ratio_furo_novo": 2.546507504805577,
+      "pior_ratio_furo_anterior": 2.546507504805577,
+      "menor_angulo_novo": 9.462322208019575,
+      "menor_angulo_anterior": 12.151501883308832,
+      "convergencia": {
+        "A": {
+          "n": [
+            24,
+            32,
+            40,
+            48
+          ],
+          "valores": [
+            3.0611252157431537,
+            3.059603299616402,
+            3.0587869736891817,
+            3.058303790753563
+          ],
+          "incrementos": [
+            -0.0015219161267516768,
+            -0.0008163259272202517,
+            -0.00048318293561866454
+          ],
+          "variacao_relativa_duas_mais_finas": 0.00015799049691515727,
+          "monotonicidade": true,
+          "status": "estimativa_condicionada_ordem_estavel",
+          "ordem_observada": {
+            "24_32_40": 1.4331931318038613,
+            "32_40_48": 1.581653713229331
+          },
+          "extrapolacao_richardson": 3.05685821860716,
+          "GCI_fino_relativo": 0.0005908390096719749,
+          "GCI_fator_seguranca": 1.25,
+          "razões_refinamento_n24_32_40_48": [
+            1.3333333333333333,
+            1.25,
+            1.2
+          ],
+          "alertas": [
+            "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+          ],
+          "estabilidade_ordem_relativa": 0.09386415002456586
+        },
+        "B": {
+          "n": [
+            24,
+            32,
+            40,
+            48
+          ],
+          "valores": [
+            3.045720999403841,
+            3.0515876068848593,
+            3.0540264011884464,
+            3.055212973755472
+          ],
+          "incrementos": [
+            0.0058666074810185265,
+            0.0024387943035870663,
+            0.001186572567025479
+          ],
+          "variacao_relativa_duas_mais_finas": 0.00038837638397657835,
+          "monotonicidade": true,
+          "status": "estimativa_condicionada_ordem_estavel",
+          "ordem_observada": {
+            "24_32_40": 2.410990803485432,
+            "32_40_48": 2.5352526057350486
+          },
+          "extrapolacao_richardson": 3.0572322856843424,
+          "GCI_fino_relativo": 0.0008261747815197219,
+          "GCI_fator_seguranca": 1.25,
+          "razões_refinamento_n24_32_40_48": [
+            1.3333333333333333,
+            1.25,
+            1.2
+          ],
+          "alertas": [
+            "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+          ],
+          "estabilidade_ordem_relativa": 0.049013578358433174
+        },
+        "C": {
+          "n": [
+            24,
+            32,
+            40,
+            48
+          ],
+          "valores": [
+            3.0429486968873625,
+            3.050310953129371,
+            3.053325962604276,
+            3.0547820932986185
+          ],
+          "incrementos": [
+            0.007362256242008591,
+            0.0030150094749048506,
+            0.0014561306943425834
+          ],
+          "variacao_relativa_duas_mais_finas": 0.0004766725251980977,
+          "monotonicidade": true,
+          "status": "estimativa_condicionada_ordem_estavel",
+          "ordem_observada": {
+            "24_32_40": 2.468201121824614,
+            "32_40_48": 2.5710655388539783
+          },
+          "extrapolacao_richardson": 3.057217043548456,
+          "GCI_fino_relativo": 0.0009963682250770177,
+          "GCI_fator_seguranca": 1.25,
+          "razões_refinamento_n24_32_40_48": [
+            1.3333333333333333,
+            1.25,
+            1.2
+          ],
+          "alertas": [
+            "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
+          ],
+          "estabilidade_ordem_relativa": 0.04000847721494288
+        }
+      }
+    }
+  ],
+  "decision": "EXPERIMENTAL: never promote based on Kt or GCI alone; verify global aspect, local aspect, min-angle and free-hole traction.",
+  "limitations": [
+    "Aspect ratio is proxy based on vertex chords; not full Q8 isoparametric conditioning.",
+    "Richardson/GCI calculated only if 4 levels meet order and monotonicity gates.",
+    "Local improvement of Kt and radial-free traction requires independent validation.",
+    "No pin, welded part, material failure, fatigue, plasticity or real mine components."
+  ]
+}
