@@ -72,6 +72,7 @@ nav:
       - Distribuição angular Q8 — resultado negativo: laboratorios/distribuicao-angular-q8.md
       - Anel Q8 com quatro blocos: laboratorios/anel-multibloco-q8.md
       - Transição externa Q8 — seis blocos: laboratorios/transicao-externa-seis-blocos.md
+      - Interface alinhada e tração livre no furo: laboratorios/interface-alinhada-tracao-parede.md
   - Projeto:
       - Arquitetura: arquitetura.md
       - Método científico: metodologia.md
@@ -108,3 +109,4 @@ nav:
       - Ciclo 18: ciclos/ciclo-18.md
       - Ciclo 19: ciclos/ciclo-19.md
       - Ciclo 20: ciclos/ciclo-20.md
+      - Ciclo 21: ciclos/ciclo-21.md
