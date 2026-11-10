@@ -14,22 +14,22 @@
       "dofs": 7202,
       "Kt_gross_escalonada": {
         "A": 3.2542949636260685,
-        "B": 3.252410346804489,
-        "C": 3.2513797835882596
+        "B": 3.2524103468044885,
+        "C": 3.2513797835882614
       },
       "Kt_liquido_escalonada": {
         "A": 2.440721222719551,
-        "B": 2.439307760103367,
-        "C": 2.438534837691195
+        "B": 2.4393077601033664,
+        "C": 2.438534837691196
       },
       "Kt_gross_fixa_historica": {
         "A": 3.2542949636260685,
         "B": 3.2524103468044885,
         "C": 3.2513797835882614
       },
-      "delta_Kt_C_escalonada_menos_fixa": -1.7763568394002505e-15,
-      "amplitude_recuperadores_gross": 0.0029151800378088844,
-      "sigma_rr_C_escalonada": 0.0010309377466366644,
+      "delta_Kt_C_escalonada_menos_fixa": 0.0,
+      "amplitude_recuperadores_gross": 0.002915180037807108,
+      "sigma_rr_C_escalonada": 0.0010309377466350778,
       "sigma_rr_C_fixa_historica": 0.0010309377466350778,
       "qualidade_escalonada": {
         "elementos": 1152,
@@ -58,15 +58,15 @@
       "mudanca_angulo_minimo_geral": null,
       "mesh_sha256_escalonada": "dcf924b99ffc9296cf86e2f8786a2b260f8610fa7af82f45d11595ab6c2f64e8",
       "mesh_sha256_fixa_historica": "dcf924b99ffc9296cf86e2f8786a2b260f8610fa7af82f45d11595ab6c2f64e8",
-      "equilibrio_scipy": 1.9554136088117956e-14,
-      "max_rel_diff_deslocamento_scipy_elmer": 1.328119257651723e-12,
+      "equilibrio_scipy": 4.1154635255225e-14,
+      "max_rel_diff_deslocamento_scipy_elmer": 1.2850086208174505e-12,
       "F_quadrante_N": 2000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0005146855317926,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9993242223732595,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9983110582034005,
-        "B_bias": -0.0006757776267405369,
-        "C_bias": -0.001688941796599508,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.99932422237326,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.998311058203402,
+        "B_bias": -0.0006757776267400928,
+        "C_bias": -0.0016889417965981757,
         "A_bias": 0.0005146855317925692,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -84,22 +84,22 @@
       "dofs": 12674,
       "Kt_gross_escalonada": {
         "A": 3.253779727671491,
-        "B": 3.252904305756033,
-        "C": 3.252513900634248
+        "B": 3.2529043057560383,
+        "C": 3.2525139006342516
       },
       "Kt_liquido_escalonada": {
         "A": 2.440334795753618,
-        "B": 2.4396782293170247,
-        "C": 2.439385425475686
+        "B": 2.4396782293170287,
+        "C": 2.4393854254756886
       },
       "Kt_gross_fixa_historica": {
         "A": 3.2535246735970307,
         "B": 3.253123095315462,
         "C": 3.2529120960415843
       },
-      "delta_Kt_C_escalonada_menos_fixa": -0.0003981954073362104,
-      "amplitude_recuperadores_gross": 0.0012658270372427616,
-      "sigma_rr_C_escalonada": 0.0004930598943962717,
+      "delta_Kt_C_escalonada_menos_fixa": -0.0003981954073326577,
+      "amplitude_recuperadores_gross": 0.0012658270372392089,
+      "sigma_rr_C_escalonada": 0.0004930598944081389,
       "sigma_rr_C_fixa_historica": 0.0001399077377706204,
       "qualidade_escalonada": {
         "elementos": 2048,
@@ -148,8 +148,8 @@
       "mudanca_angulo_minimo_geral": -1.4210854715202004e-14,
       "mesh_sha256_escalonada": "434c948edf262b495799eba0908122484ab6d8467e50a5856d0f898533a7c18e",
       "mesh_sha256_fixa_historica": "f25ef6104da06c4cbc8b33e478192a77871fde3a0c5b3519c44a777496172e0a",
-      "equilibrio_scipy": 9.322320693172515e-14,
-      "max_rel_diff_deslocamento_scipy_elmer": 8.663596859926364e-13,
+      "equilibrio_scipy": 2.0736479200422767e-13,
+      "max_rel_diff_deslocamento_scipy_elmer": 7.38587214317369e-13,
       "F_quadrante_N": 2000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0002857874395548,
@@ -174,22 +174,22 @@
       "dofs": 19682,
       "Kt_gross_escalonada": {
         "A": 3.2535648611782895,
-        "B": 3.2530720023118085,
-        "C": 3.252881475336706
+        "B": 3.253072002311815,
+        "C": 3.2528814753367126
       },
       "Kt_liquido_escalonada": {
         "A": 2.440173645883717,
-        "B": 2.4398040017338563,
-        "C": 2.4396611065025295
+        "B": 2.4398040017338616,
+        "C": 2.4396611065025344
       },
       "Kt_gross_fixa_historica": {
         "A": 3.253345558768328,
         "B": 3.253273441253787,
         "C": 3.2531609043135976
       },
-      "delta_Kt_C_escalonada_menos_fixa": -0.00027942897689170465,
-      "amplitude_recuperadores_gross": 0.0006833858415835614,
-      "sigma_rr_C_escalonada": 0.0002654407444375284,
+      "delta_Kt_C_escalonada_menos_fixa": -0.0002794289768850433,
+      "amplitude_recuperadores_gross": 0.0006833858415769001,
+      "sigma_rr_C_escalonada": 0.0002654407444499474,
       "sigma_rr_C_fixa_historica": 2.6213591278612577e-05,
       "qualidade_escalonada": {
         "elementos": 3200,
@@ -238,15 +238,15 @@
       "mudanca_angulo_minimo_geral": 6.394884621840902e-14,
       "mesh_sha256_escalonada": "b79f60097d48128b55a5a2cc492d4052d0b97449a3052cc71a60e37893ec490b",
       "mesh_sha256_fixa_historica": "14d92508afaf860f1d3a5c57443af7597f768cbc60aabdee4871324d43cacfb4",
-      "equilibrio_scipy": 1.4199486031429843e-13,
-      "max_rel_diff_deslocamento_scipy_elmer": 1.6000947686605038e-12,
+      "equilibrio_scipy": 2.316937752766535e-13,
+      "max_rel_diff_deslocamento_scipy_elmer": 1.312001531801104e-12,
       "F_quadrante_N": 2000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0001814704081906,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9998579214153107,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.999652570948563,
-        "B_bias": -0.0001420785846892869,
-        "C_bias": -0.00034742905143714253,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.999857921415311,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.999652570948565,
+        "B_bias": -0.00014207858468884282,
+        "C_bias": -0.0003474290514349221,
         "A_bias": 0.00018147040819060933,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -264,12 +264,12 @@
       "dofs": 28226,
       "Kt_gross_escalonada": {
         "A": 3.253455844556194,
-        "B": 3.2531364860922776,
+        "B": 3.2531364860922762,
         "C": 3.253035174891274
       },
       "Kt_liquido_escalonada": {
         "A": 2.4400918834171454,
-        "B": 2.4398523645692083,
+        "B": 2.439852364569207,
         "C": 2.4397763811684556
       },
       "Kt_gross_fixa_historica": {
@@ -279,7 +279,7 @@
       },
       "delta_Kt_C_escalonada_menos_fixa": -0.00017899998924519878,
       "amplitude_recuperadores_gross": 0.0004206696649200481,
-      "sigma_rr_C_escalonada": 0.00016869361310053194,
+      "sigma_rr_C_escalonada": 0.0001686936131013483,
       "sigma_rr_C_fixa_historica": 8.109391018952816e-06,
       "qualidade_escalonada": {
         "elementos": 4608,
@@ -328,15 +328,15 @@
       "mudanca_angulo_minimo_geral": 3.197442310920451e-14,
       "mesh_sha256_escalonada": "4deb0855904ede5340b9a35b57d7119ec144cd995a3f54d086fde37a11e28b41",
       "mesh_sha256_fixa_historica": "c2b3cc4ba108c104c03b4b1a39a02e837bb6fc536c30c1176f1dce7183d6f961",
-      "equilibrio_scipy": 9.879386198008433e-14,
-      "max_rel_diff_deslocamento_scipy_elmer": 2.8506311666662836e-12,
+      "equilibrio_scipy": 1.5984369383659213e-13,
+      "max_rel_diff_deslocamento_scipy_elmer": 2.4313035817478183e-12,
       "F_quadrante_N": 2000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0001253564658414,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.999909237961082,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.99980343037488,
-        "B_bias": -9.076203891789092e-05,
-        "C_bias": -0.00019656962511982456,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9999092379610843,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.999803430374881,
+        "B_bias": -9.076203891567047e-05,
+        "C_bias": -0.00019656962511893639,
         "A_bias": 0.0001253564658414419,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -354,22 +354,22 @@
       "dofs": 7202,
       "Kt_gross_escalonada": {
         "A": 3.248940714101935,
-        "B": 3.2473640545730875,
-        "C": 3.2460547846850445
+        "B": 3.247364054573087,
+        "C": 3.2460547846850463
       },
       "Kt_liquido_escalonada": {
         "A": 2.4367055355764515,
-        "B": 2.435523040929816,
-        "C": 2.4345410885137833
+        "B": 2.4355230409298154,
+        "C": 2.4345410885137846
       },
       "Kt_gross_fixa_historica": {
         "A": 3.248940714101935,
         "B": 3.247364054573087,
         "C": 3.2460547846850463
       },
-      "delta_Kt_C_escalonada_menos_fixa": -1.7763568394002505e-15,
-      "amplitude_recuperadores_gross": 0.002885929416890587,
-      "sigma_rr_C_escalonada": 0.0010884178577528906,
+      "delta_Kt_C_escalonada_menos_fixa": 0.0,
+      "amplitude_recuperadores_gross": 0.0028859294168888106,
+      "sigma_rr_C_escalonada": 0.0010884178577559374,
       "sigma_rr_C_fixa_historica": 0.0010884178577559374,
       "qualidade_escalonada": {
         "elementos": 1152,
@@ -398,14 +398,14 @@
       "mudanca_angulo_minimo_geral": null,
       "mesh_sha256_escalonada": "ae04f61ae24d074f730b60c9c64ed518f2fa64be0c228be1476784a955b5423c",
       "mesh_sha256_fixa_historica": "ae04f61ae24d074f730b60c9c64ed518f2fa64be0c228be1476784a955b5423c",
-      "equilibrio_scipy": 2.9876900953240694e-13,
-      "max_rel_diff_deslocamento_scipy_elmer": 2.6605507447250057e-13,
+      "equilibrio_scipy": 2.4215296434704213e-13,
+      "max_rel_diff_deslocamento_scipy_elmer": 2.757631984917168e-13,
       "F_quadrante_N": 2000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0005146855317926,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.999324542058475,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.999324542058474,
         "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9983335551888204,
-        "B_bias": -0.000675457941524904,
+        "B_bias": -0.0006754579415257922,
         "C_bias": -0.0016664448111796126,
         "A_bias": 0.0005146855317925692,
         "referencia_Kt": 3.0,
@@ -424,22 +424,22 @@
       "dofs": 12674,
       "Kt_gross_escalonada": {
         "A": 3.2484910253763877,
-        "B": 3.247747076460693,
-        "C": 3.247219857841459
+        "B": 3.2477470764606884,
+        "C": 3.2472198578414573
       },
       "Kt_liquido_escalonada": {
         "A": 2.4363682690322905,
-        "B": 2.4358103073455197,
-        "C": 2.435414893381094
+        "B": 2.435810307345516,
+        "C": 2.435414893381093
       },
       "Kt_gross_fixa_historica": {
         "A": 3.2482347090233086,
         "B": 3.247883745623059,
         "C": 3.247772308290823
       },
-      "delta_Kt_C_escalonada_menos_fixa": -0.0005524504493639171,
-      "amplitude_recuperadores_gross": 0.001271167534928619,
-      "sigma_rr_C_escalonada": 0.0004916763446353443,
+      "delta_Kt_C_escalonada_menos_fixa": -0.0005524504493656934,
+      "amplitude_recuperadores_gross": 0.0012711675349303952,
+      "sigma_rr_C_escalonada": 0.0004916763446278711,
       "sigma_rr_C_fixa_historica": 0.0001444190430639233,
       "qualidade_escalonada": {
         "elementos": 2048,
@@ -488,15 +488,15 @@
       "mudanca_angulo_minimo_geral": -1.2079226507921703e-13,
       "mesh_sha256_escalonada": "6b08353516d1174d218861430d53607a5c06cbfd90e303cffc3acde275e14e2c",
       "mesh_sha256_fixa_historica": "4804751a3ff6f4154ca56b67fde0017f485bf837b3224d7e6c28af6d94838fa5",
-      "equilibrio_scipy": 3.1229774322127927e-13,
-      "max_rel_diff_deslocamento_scipy_elmer": 2.0869879114473155e-12,
+      "equilibrio_scipy": 2.3237589630298317e-13,
+      "max_rel_diff_deslocamento_scipy_elmer": 2.550220802356803e-12,
       "F_quadrante_N": 2000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0002857874395548,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.999749889490702,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9992701225871135,
-        "B_bias": -0.00025011050929801826,
-        "C_bias": -0.0007298774128865482,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9997498894907033,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.999270122587112,
+        "B_bias": -0.000250110509296686,
+        "C_bias": -0.0007298774128878804,
         "A_bias": 0.00028578743955476327,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -514,22 +514,22 @@
       "dofs": 19682,
       "Kt_gross_escalonada": {
         "A": 3.248301577257077,
-        "B": 3.2478334924233874,
-        "C": 3.247637497026033
+        "B": 3.2478334924233883,
+        "C": 3.2476374970260338
       },
       "Kt_liquido_escalonada": {
         "A": 2.4362261829428076,
-        "B": 2.4358751193175405,
-        "C": 2.4357281227695244
+        "B": 2.435875119317541,
+        "C": 2.4357281227695253
       },
       "Kt_gross_fixa_historica": {
         "A": 3.248096046298467,
         "B": 3.2479620463419225,
         "C": 3.2479448066454832
       },
-      "delta_Kt_C_escalonada_menos_fixa": -0.00030730961945035773,
-      "amplitude_recuperadores_gross": 0.0006640802310440286,
-      "sigma_rr_C_escalonada": 0.0002830149810674271,
+      "delta_Kt_C_escalonada_menos_fixa": -0.00030730961944946955,
+      "amplitude_recuperadores_gross": 0.0006640802310431404,
+      "sigma_rr_C_escalonada": 0.00028301498106601456,
       "sigma_rr_C_fixa_historica": 3.082993342446277e-05,
       "qualidade_escalonada": {
         "elementos": 3200,
@@ -578,15 +578,15 @@
       "mudanca_angulo_minimo_geral": 6.039613253960852e-14,
       "mesh_sha256_escalonada": "6257699b1182049cb57a9a88e6b919174754f2a41529f1a9dd7f69743b831e97",
       "mesh_sha256_fixa_historica": "bfcebe5148c2c30068156638a0ddbfa57a5785694f2ebbe52919de11aafedc33",
-      "equilibrio_scipy": 6.343725544866176e-13,
-      "max_rel_diff_deslocamento_scipy_elmer": 1.40519182290308e-12,
+      "equilibrio_scipy": 2.2737367544323207e-14,
+      "max_rel_diff_deslocamento_scipy_elmer": 2.3969996691340856e-12,
       "F_quadrante_N": 2000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0001814704081906,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.999869598677689,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9996243834375864,
-        "B_bias": -0.0001304013223109024,
-        "C_bias": -0.0003756165624135832,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.99986959867769,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9996243834375877,
+        "B_bias": -0.00013040132231001422,
+        "C_bias": -0.00037561656241225094,
         "A_bias": 0.00018147040819060933,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -604,22 +604,22 @@
       "dofs": 28226,
       "Kt_gross_escalonada": {
         "A": 3.248204545226432,
-        "B": 3.247902117530023,
-        "C": 3.247806083244047
+        "B": 3.247902117530027,
+        "C": 3.247806083244046
       },
       "Kt_liquido_escalonada": {
         "A": 2.436153408919824,
-        "B": 2.435926588147517,
-        "C": 2.435854562433035
+        "B": 2.4359265881475203,
+        "C": 2.4358545624330343
       },
       "Kt_gross_fixa_historica": {
         "A": 3.248045072369294,
         "B": 3.248027630940901,
         "C": 3.2479793721327304
       },
-      "delta_Kt_C_escalonada_menos_fixa": -0.0001732888886833983,
-      "amplitude_recuperadores_gross": 0.00039846198238491226,
-      "sigma_rr_C_escalonada": 0.0001791741977336029,
+      "delta_Kt_C_escalonada_menos_fixa": -0.0001732888886842865,
+      "amplitude_recuperadores_gross": 0.00039846198238580044,
+      "sigma_rr_C_escalonada": 0.00017917419773133788,
       "sigma_rr_C_fixa_historica": 9.667136850748389e-06,
       "qualidade_escalonada": {
         "elementos": 4608,
@@ -668,15 +668,15 @@
       "mudanca_angulo_minimo_geral": -3.019806626980426e-14,
       "mesh_sha256_escalonada": "ee633b9de3aa153ad4d5718e178f1f0e073ec35a3a2e06bf06af861d80f93be6",
       "mesh_sha256_fixa_historica": "d6bdf62527ca0379174c1ab0bcef7ef0a2fdd97efe06de91ee330f3a0bae018d",
-      "equilibrio_scipy": 1.0046505849459208e-12,
-      "max_rel_diff_deslocamento_scipy_elmer": 2.0728359259838117e-12,
+      "equilibrio_scipy": 5.652509571518749e-13,
+      "max_rel_diff_deslocamento_scipy_elmer": 2.650385804807467e-12,
       "F_quadrante_N": 2000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0001253564658414,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9999208505316224,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9997892853702615,
-        "B_bias": -7.914946837761505e-05,
-        "C_bias": -0.00021071462973853983,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9999208505316233,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.99978928537026,
+        "B_bias": -7.914946837672687e-05,
+        "C_bias": -0.0002107146297398721,
         "A_bias": 0.0001253564658414419,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -695,21 +695,21 @@
       "Kt_gross_escalonada": {
         "A": 3.0618158287542356,
         "B": 3.0516693368119654,
-        "C": 3.0492782864606
+        "C": 3.0492782864606003
       },
       "Kt_liquido_escalonada": {
         "A": 2.6790888501599563,
         "B": 2.6702106697104697,
-        "C": 2.668118500653025
+        "C": 2.6681185006530255
       },
       "Kt_gross_fixa_historica": {
         "A": 3.0618158287542356,
         "B": 3.0516693368119654,
         "C": 3.0492782864606
       },
-      "delta_Kt_C_escalonada_menos_fixa": 0.0,
-      "amplitude_recuperadores_gross": 0.012537542293635795,
-      "sigma_rr_C_escalonada": 0.0065609607436344156,
+      "delta_Kt_C_escalonada_menos_fixa": 4.440892098500626e-16,
+      "amplitude_recuperadores_gross": 0.012537542293635351,
+      "sigma_rr_C_escalonada": 0.006560960743631898,
       "sigma_rr_C_fixa_historica": 0.0065609607436344156,
       "qualidade_escalonada": {
         "elementos": 1152,
@@ -738,15 +738,15 @@
       "mudanca_angulo_minimo_geral": null,
       "mesh_sha256_escalonada": "9c09c80d52a2c4758d612a8c5635d1eeed1b9af66679a4eda927b86e77f70c23",
       "mesh_sha256_fixa_historica": "9c09c80d52a2c4758d612a8c5635d1eeed1b9af66679a4eda927b86e77f70c23",
-      "equilibrio_scipy": 1.0811618267325684e-13,
-      "max_rel_diff_deslocamento_scipy_elmer": 7.976739500608534e-13,
+      "equilibrio_scipy": 3.8312464312184604e-14,
+      "max_rel_diff_deslocamento_scipy_elmer": 7.809592472446195e-13,
       "F_quadrante_N": 4000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.002587844831479,
         "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.992887249708053,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9908779431392905,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.990877943139292,
         "B_bias": -0.007112750291947023,
-        "C_bias": -0.009122056860709549,
+        "C_bias": -0.009122056860708216,
         "A_bias": 0.0025878448314791136,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -764,22 +764,22 @@
       "dofs": 12674,
       "Kt_gross_escalonada": {
         "A": 3.060205474021538,
-        "B": 3.055383748178185,
-        "C": 3.0545561466018203
+        "B": 3.0553837481781847,
+        "C": 3.0545561466018167
       },
       "Kt_liquido_escalonada": {
         "A": 2.677679789768846,
         "B": 2.673460779655912,
-        "C": 2.672736628276593
+        "C": 2.6727366282765894
       },
       "Kt_gross_fixa_historica": {
         "A": 3.059067884466011,
         "B": 3.057827754603458,
         "C": 3.05736159110051
       },
-      "delta_Kt_C_escalonada_menos_fixa": -0.002805444498689802,
-      "amplitude_recuperadores_gross": 0.005649327419717576,
-      "sigma_rr_C_escalonada": 0.0029977281104510453,
+      "delta_Kt_C_escalonada_menos_fixa": -0.0028054444986933547,
+      "amplitude_recuperadores_gross": 0.0056493274197211285,
+      "sigma_rr_C_escalonada": 0.002997728110445725,
       "sigma_rr_C_fixa_historica": 0.0006617390715067109,
       "qualidade_escalonada": {
         "elementos": 2048,
@@ -828,15 +828,15 @@
       "mudanca_angulo_minimo_geral": 2.842170943040401e-14,
       "mesh_sha256_escalonada": "c2b61374eab9b7afbea52d2bd3ca56ea0cf8778e43988e7af0356fa0e141305b",
       "mesh_sha256_fixa_historica": "e17a546d2095a7d65a4d07bee90e14d37b464e5bca1bc449396f68902824b135",
-      "equilibrio_scipy": 2.8194335754960775e-14,
-      "max_rel_diff_deslocamento_scipy_elmer": 1.2703127022544571e-12,
+      "equilibrio_scipy": 2.4647306418046357e-13,
+      "max_rel_diff_deslocamento_scipy_elmer": 1.1208878409554933e-12,
       "F_quadrante_N": 4000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.001466173615807,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.996831809524666,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9961142748007954,
-        "B_bias": -0.0031681904753337875,
-        "C_bias": -0.003885725199204604,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.996831809524669,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9961142748007963,
+        "B_bias": -0.003168190475331123,
+        "C_bias": -0.0038857251992037156,
         "A_bias": 0.0014661736158068095,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -854,22 +854,22 @@
       "dofs": 19682,
       "Kt_gross_escalonada": {
         "A": 3.0595013409642577,
-        "B": 3.056878567951717,
-        "C": 3.0564576861879944
+        "B": 3.0568785679517174,
+        "C": 3.056457686187994
       },
       "Kt_liquido_escalonada": {
         "A": 2.6770636733437256,
-        "B": 2.6747687469577524,
-        "C": 2.674400475414495
+        "B": 2.674768746957753,
+        "C": 2.6744004754144948
       },
       "Kt_gross_fixa_historica": {
         "A": 3.058546913223312,
         "B": 3.058320948562735,
         "C": 3.058144330347987
       },
-      "delta_Kt_C_escalonada_menos_fixa": -0.0016866441599927562,
-      "amplitude_recuperadores_gross": 0.003043654776263338,
-      "sigma_rr_C_escalonada": 0.0016097986040605082,
+      "delta_Kt_C_escalonada_menos_fixa": -0.0016866441599932003,
+      "amplitude_recuperadores_gross": 0.0030436547762637822,
+      "sigma_rr_C_escalonada": 0.0016097986040577116,
       "sigma_rr_C_fixa_historica": 7.861238131744073e-05,
       "qualidade_escalonada": {
         "elementos": 3200,
@@ -918,15 +918,15 @@
       "mudanca_angulo_minimo_geral": 6.039613253960852e-14,
       "mesh_sha256_escalonada": "ad7f8400db8ef4e5df8d7aa57f73acadad4e2c553afce2e05d0e0cc68ac5f134",
       "mesh_sha256_fixa_historica": "91f1fde11417df3375d313d4a0a5e1d8c4eb9f59b5e62bb91ad54004a8177609",
-      "equilibrio_scipy": 1.3812950783176349e-13,
-      "max_rel_diff_deslocamento_scipy_elmer": 1.1988214903542527e-12,
+      "equilibrio_scipy": 1.3301360013429077e-13,
+      "max_rel_diff_deslocamento_scipy_elmer": 9.571077479055232e-13,
       "F_quadrante_N": 4000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.000942241623646,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.998401309426484,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.998033138001961,
-        "B_bias": -0.0015986905735161372,
-        "C_bias": -0.0019668619980390822,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9984013094264843,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9980331380019636,
+        "B_bias": -0.001598690573515693,
+        "C_bias": -0.0019668619980364177,
         "A_bias": 0.0009422416236462006,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -944,22 +944,22 @@
       "dofs": 28226,
       "Kt_gross_escalonada": {
         "A": 3.059132411523605,
-        "B": 3.0575204383051484,
-        "C": 3.0572800652420606
+        "B": 3.0575204383051466,
+        "C": 3.057280065242058
       },
       "Kt_liquido_escalonada": {
         "A": 2.676740860083154,
-        "B": 2.675330383517005,
-        "C": 2.675120057086803
+        "B": 2.6753303835170033,
+        "C": 2.675120057086801
       },
       "Kt_gross_fixa_historica": {
         "A": 3.0584234226815212,
         "B": 3.058369009175864,
         "C": 3.0583023270910625
       },
-      "delta_Kt_C_escalonada_menos_fixa": -0.001022261849001893,
-      "amplitude_recuperadores_gross": 0.0018523462815442926,
-      "sigma_rr_C_escalonada": 0.0009739666190553795,
+      "delta_Kt_C_escalonada_menos_fixa": -0.0010222618490045576,
+      "amplitude_recuperadores_gross": 0.0018523462815469571,
+      "sigma_rr_C_escalonada": 0.0009739666190538968,
       "sigma_rr_C_fixa_historica": 1.5262492148596606e-05,
       "qualidade_escalonada": {
         "elementos": 4608,
@@ -1008,15 +1008,15 @@
       "mudanca_angulo_minimo_geral": 1.7763568394002505e-14,
       "mesh_sha256_escalonada": "de43227218215f36e6bccd1cc8e8f09b9f83a898e5dd979b2a6aeded1fa6f300",
       "mesh_sha256_fixa_historica": "e3b12ef159332d1d8143066a4a4e18680362334630578a49a6cad6b242ab2006",
-      "equilibrio_scipy": 2.899014361901209e-14,
-      "max_rel_diff_deslocamento_scipy_elmer": 2.1348402972554567e-12,
+      "equilibrio_scipy": 4.331468517193571e-14,
+      "max_rel_diff_deslocamento_scipy_elmer": 1.6603865909690493e-12,
       "F_quadrante_N": 4000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0006560928859525,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9990839704614403,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.998871726256424,
-        "B_bias": -0.0009160295385597372,
-        "C_bias": -0.001128273743575825,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9990839704614416,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9988717262564224,
+        "B_bias": -0.000916029538558405,
+        "C_bias": -0.0011282737435776014,
         "A_bias": 0.0006560928859524751,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -1034,22 +1034,22 @@
       "dofs": 7202,
       "Kt_gross_escalonada": {
         "A": 3.0607310803809886,
-        "B": 3.051216144912987,
-        "C": 3.0477359961092323
+        "B": 3.051216144912981,
+        "C": 3.0477359961092305
       },
       "Kt_liquido_escalonada": {
         "A": 2.678139695333365,
-        "B": 2.6698141267988635,
-        "C": 2.6667689965955783
+        "B": 2.669814126798858,
+        "C": 2.6667689965955765
       },
       "Kt_gross_fixa_historica": {
         "A": 3.0607310803809886,
         "B": 3.051216144912987,
         "C": 3.0477359961092323
       },
-      "delta_Kt_C_escalonada_menos_fixa": 0.0,
-      "amplitude_recuperadores_gross": 0.01299508427175633,
-      "sigma_rr_C_escalonada": 0.006760063519879477,
+      "delta_Kt_C_escalonada_menos_fixa": -1.7763568394002505e-15,
+      "amplitude_recuperadores_gross": 0.012995084271758106,
+      "sigma_rr_C_escalonada": 0.006760063519878098,
       "sigma_rr_C_fixa_historica": 0.006760063519879477,
       "qualidade_escalonada": {
         "elementos": 1152,
@@ -1078,15 +1078,15 @@
       "mudanca_angulo_minimo_geral": null,
       "mesh_sha256_escalonada": "c0b51fe1f263183d07e937fad194679592af1bf1486b2ba17fe06a18ed1e9fe6",
       "mesh_sha256_fixa_historica": "c0b51fe1f263183d07e937fad194679592af1bf1486b2ba17fe06a18ed1e9fe6",
-      "equilibrio_scipy": 8.390088623855263e-14,
-      "max_rel_diff_deslocamento_scipy_elmer": 8.419835097077471e-13,
+      "equilibrio_scipy": 1.7212187231052667e-13,
+      "max_rel_diff_deslocamento_scipy_elmer": 6.914411831448156e-13,
       "F_quadrante_N": 4000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.002587844831479,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9936890995963448,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.990741076238191,
-        "B_bias": -0.0063109004036552285,
-        "C_bias": -0.009258923761808813,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9936890995963403,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9907410762381894,
+        "B_bias": -0.006310900403659669,
+        "C_bias": -0.009258923761810589,
         "A_bias": 0.0025878448314791136,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -1104,22 +1104,22 @@
       "dofs": 12674,
       "Kt_gross_escalonada": {
         "A": 3.058973162108418,
-        "B": 3.0543865916705237,
-        "C": 3.0532031118826937
+        "B": 3.0543865916705246,
+        "C": 3.0532031118826928
       },
       "Kt_liquido_escalonada": {
         "A": 2.676601516844866,
-        "B": 2.672588267711708,
-        "C": 2.671552722897357
+        "B": 2.672588267711709,
+        "C": 2.6715527228973563
       },
       "Kt_gross_fixa_historica": {
         "A": 3.0576981867918636,
         "B": 3.056616452607763,
         "C": 3.0559973470101114
       },
-      "delta_Kt_C_escalonada_menos_fixa": -0.0027942351274177213,
-      "amplitude_recuperadores_gross": 0.005770050225724521,
-      "sigma_rr_C_escalonada": 0.002962892677243633,
+      "delta_Kt_C_escalonada_menos_fixa": -0.0027942351274186095,
+      "amplitude_recuperadores_gross": 0.005770050225725409,
+      "sigma_rr_C_escalonada": 0.0029628926772402777,
       "sigma_rr_C_fixa_historica": 0.0006526590909913561,
       "qualidade_escalonada": {
         "elementos": 2048,
@@ -1168,15 +1168,15 @@
       "mudanca_angulo_minimo_geral": 2.842170943040401e-14,
       "mesh_sha256_escalonada": "5082f48d7db1a9223eb73a3533ca49694b2bddcf8f343cfe00d7a70d90596059",
       "mesh_sha256_fixa_historica": "7b08808551e629fdcd945457c32ac98e2a64e3c36a89362878cb9189d73f699d",
-      "equilibrio_scipy": 2.842170943040401e-14,
-      "max_rel_diff_deslocamento_scipy_elmer": 4.683961148340949e-13,
+      "equilibrio_scipy": 6.245954864425584e-13,
+      "max_rel_diff_deslocamento_scipy_elmer": 7.306333884278797e-13,
       "F_quadrante_N": 4000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.001466173615807,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.997096319002884,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.996178065373247,
-        "B_bias": -0.0029036809971159094,
-        "C_bias": -0.003821934626753176,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9970963190028863,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9961780653732473,
+        "B_bias": -0.002903680997113689,
+        "C_bias": -0.003821934626752732,
         "A_bias": 0.0014661736158068095,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -1195,21 +1195,21 @@
       "Kt_gross_escalonada": {
         "A": 3.058225844362577,
         "B": 3.05566097544131,
-        "C": 3.055162030608867
+        "C": 3.0551620306088694
       },
       "Kt_liquido_escalonada": {
         "A": 2.6759476138172547,
         "B": 2.6737033535111463,
-        "C": 2.673266776782759
+        "C": 2.6732667767827607
       },
       "Kt_gross_fixa_historica": {
         "A": 3.057207609902733,
         "B": 3.0569491613055764,
         "C": 3.0568839461527584
       },
-      "delta_Kt_C_escalonada_menos_fixa": -0.0017219155438912281,
-      "amplitude_recuperadores_gross": 0.0030638137537097876,
-      "sigma_rr_C_escalonada": 0.0016893158234282271,
+      "delta_Kt_C_escalonada_menos_fixa": -0.0017219155438890077,
+      "amplitude_recuperadores_gross": 0.003063813753707567,
+      "sigma_rr_C_escalonada": 0.0016893158234360902,
       "sigma_rr_C_fixa_historica": 9.205246862659546e-05,
       "qualidade_escalonada": {
         "elementos": 3200,
@@ -1258,15 +1258,15 @@
       "mudanca_angulo_minimo_geral": 2.6645352591003757e-14,
       "mesh_sha256_escalonada": "6ac7625b0a4f6ab46eb2c4ff9aaa0c8acaea575fe0bcc6f397baa07e138579e6",
       "mesh_sha256_fixa_historica": "c896380429d9eab13c02c2a001bcdb53df88eba738cf232cbe88bb3ce7df72b0",
-      "equilibrio_scipy": 1.4085799193708227e-13,
-      "max_rel_diff_deslocamento_scipy_elmer": 2.6749839067226017e-12,
+      "equilibrio_scipy": 5.292122295941226e-13,
+      "max_rel_diff_deslocamento_scipy_elmer": 2.913414717201097e-12,
       "F_quadrante_N": 4000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.000942241623646,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.998415841401251,
-        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9980634682962317,
-        "B_bias": -0.0015841585987490525,
-        "C_bias": -0.001936531703768285,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9984158414012483,
+        "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.998063468296231,
+        "B_bias": -0.001584158598751717,
+        "C_bias": -0.0019365317037691732,
         "A_bias": 0.0009422416236462006,
         "referencia_Kt": 3.0,
         "observacao": "Kirsch infinito controla algoritmos, nao resolve chapa quadrada finita"
@@ -1284,22 +1284,22 @@
       "dofs": 28226,
       "Kt_gross_escalonada": {
         "A": 3.057840899399655,
-        "B": 3.0562793352313613,
-        "C": 3.055980754520595
+        "B": 3.056279335231356,
+        "C": 3.0559807545205957
       },
       "Kt_liquido_escalonada": {
         "A": 2.675610786974698,
-        "B": 2.674244418327441,
-        "C": 2.6739831602055206
+        "B": 2.6742444183274365,
+        "C": 2.673983160205521
       },
       "Kt_gross_fixa_historica": {
         "A": 3.057108043360712,
         "B": 3.0570306944918406,
         "C": 3.057001410869456
       },
-      "delta_Kt_C_escalonada_menos_fixa": -0.0010206563488610598,
-      "amplitude_recuperadores_gross": 0.001860144879060055,
-      "sigma_rr_C_escalonada": 0.001020439304733745,
+      "delta_Kt_C_escalonada_menos_fixa": -0.0010206563488601716,
+      "amplitude_recuperadores_gross": 0.0018601448790591668,
+      "sigma_rr_C_escalonada": 0.0010204393047337386,
       "sigma_rr_C_fixa_historica": 1.728995111008193e-05,
       "qualidade_escalonada": {
         "elementos": 4608,
@@ -1348,14 +1348,14 @@
       "mudanca_angulo_minimo_geral": -5.5067062021407764e-14,
       "mesh_sha256_escalonada": "f911670f029f4c5fd84a44860430a2ce29b31676cee86776aad3425947592ccd",
       "mesh_sha256_fixa_historica": "8dff4f918ea557cbafcbf278519657b4ad08677d016cff40c69ae1f6d2ff6378",
-      "equilibrio_scipy": 3.308286977699026e-14,
-      "max_rel_diff_deslocamento_scipy_elmer": 2.697966715994318e-12,
+      "equilibrio_scipy": 2.1100277081131936e-13,
+      "max_rel_diff_deslocamento_scipy_elmer": 2.9850102028632063e-12,
       "F_quadrante_N": 4000.0,
       "controles_Kirsch": {
         "A_Kt_gradiente_em_deslocamentos_Kirsch_interpolados": 3.0006560928859525,
-        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9990973666145018,
+        "B_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.9990973666144987,
         "C_Kt_ajuste_tensoes_Kirsch_exatas_amostradas": 2.998896710864401,
-        "B_bias": -0.0009026333854982305,
+        "B_bias": -0.0009026333855013391,
         "C_bias": -0.0011032891355990948,
         "A_bias": 0.0006560928859524751,
         "referencia_Kt": 3.0,
@@ -1499,25 +1499,25 @@
               48
             ],
             "valores": [
-              3.252410346804489,
-              3.252904305756033,
-              3.2530720023118085,
-              3.2531364860922776
+              3.2524103468044885,
+              3.2529043057560383,
+              3.253072002311815,
+              3.2531364860922762
             ],
             "incrementos": [
-              0.0004939589515440268,
-              0.00016769655577553166,
-              6.448378046908232e-05
+              0.0004939589515498,
+              0.00016769655577686393,
+              6.448378046108871e-05
             ],
-            "variacao_relativa_duas_mais_finas": 1.9822033518962902e-05,
+            "variacao_relativa_duas_mais_finas": 1.982203351650571e-05,
             "monotonicidade": true,
             "status": "estimativa_condicionada_ordem_estavel",
             "ordem_observada": {
-              "24_32_40": 3.18115369769935,
-              "32_40_48": 3.672248349574553
+              "24_32_40": 3.1811536977135297,
+              "32_40_48": 3.6722483502096255
             },
-            "extrapolacao_richardson": 3.2532041274302466,
-            "GCI_fino_relativo": 2.599081619314176e-05,
+            "extrapolacao_richardson": 3.2532041274302212,
+            "GCI_fino_relativo": 2.5990816183753693e-05,
             "GCI_fator_seguranca": 1.25,
             "razões_refinamento_n24_32_40_48": [
               1.3333333333333333,
@@ -1527,7 +1527,7 @@
             "alertas": [
               "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
             ],
-            "estabilidade_ordem_relativa": 0.13373132890973963
+            "estabilidade_ordem_relativa": 0.13373132905568935
           },
           "fixa": {
             "n": [
@@ -1573,25 +1573,25 @@
               48
             ],
             "valores": [
-              3.2513797835882596,
-              3.252513900634248,
-              3.252881475336706,
+              3.2513797835882614,
+              3.2525139006342516,
+              3.2528814753367126,
               3.253035174891274
             ],
             "incrementos": [
-              0.0011341170459884253,
-              0.0003675747024578513,
-              0.0001536995545681208
+              0.0011341170459902017,
+              0.0003675747024609599,
+              0.00015369955456145945
             ],
-            "variacao_relativa_duas_mais_finas": 4.724804568805742e-05,
+            "variacao_relativa_duas_mais_finas": 4.7248045686009696e-05,
             "monotonicidade": true,
             "status": "estimativa_condicionada_ordem_estavel",
             "ordem_observada": {
-              "24_32_40": 3.3567371289435286,
-              "32_40_48": 3.2682019805667686
+              "24_32_40": 3.3567371289174677,
+              "32_40_48": 3.2682019808167846
             },
-            "extrapolacao_richardson": 3.2532238564879803,
-            "GCI_fino_relativo": 7.250213514552599e-05,
+            "extrapolacao_richardson": 3.253223856487953,
+            "GCI_fino_relativo": 7.250213513502178e-05,
             "GCI_fator_seguranca": 1.25,
             "razões_refinamento_n24_32_40_48": [
               1.3333333333333333,
@@ -1601,7 +1601,7 @@
             "alertas": [
               "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
             ],
-            "estabilidade_ordem_relativa": 0.027089864366769134
+            "estabilidade_ordem_relativa": 0.027089864280223128
           },
           "fixa": {
             "n": [
@@ -1647,7 +1647,7 @@
       "ha": 4,
       "d_over_W": 0.25,
       "L_over_W": 4,
-      "Kt_net_n48_escalonada_C": 2.435854562433035,
+      "Kt_net_n48_escalonada_C": 2.4358545624330343,
       "Kt_net_n48_fixa_C": 2.4359845290995477,
       "qualidade_n48_escalonada": {
         "elementos": 4608,
@@ -1779,22 +1779,22 @@
               48
             ],
             "valores": [
-              3.2473640545730875,
-              3.247747076460693,
-              3.2478334924233874,
-              3.247902117530023
+              3.247364054573087,
+              3.2477470764606884,
+              3.2478334924233883,
+              3.247902117530027
             ],
             "incrementos": [
-              0.000383021887605306,
-              8.641596269454155e-05,
-              6.862510663552257e-05
+              0.0003830218876013092,
+              8.641596269987062e-05,
+              6.86251066386312e-05
             ],
-            "variacao_relativa_duas_mais_finas": 2.112905628070801e-05,
+            "variacao_relativa_duas_mais_finas": 2.11290562816651e-05,
             "monotonicidade": true,
             "status": "nao_comprovada",
             "ordem_observada": {
-              "24_32_40": 4.7179633672420245,
-              "32_40_48": 0.14036720373761047
+              "24_32_40": 4.717963366972754,
+              "32_40_48": 0.14036720381828016
             },
             "extrapolacao_richardson": null,
             "GCI_fino_relativo": null,
@@ -1855,25 +1855,25 @@
               48
             ],
             "valores": [
-              3.2460547846850445,
-              3.247219857841459,
-              3.247637497026033,
-              3.247806083244047
+              3.2460547846850463,
+              3.2472198578414573,
+              3.2476374970260338,
+              3.247806083244046
             ],
             "incrementos": [
-              0.0011650731564145644,
-              0.00041763918457382587,
-              0.00016858621801407736
+              0.0011650731564110117,
+              0.0004176391845764904,
+              0.000168586218012301
             ],
-            "variacao_relativa_duas_mais_finas": 5.190772284214896e-05,
+            "variacao_relativa_duas_mais_finas": 5.1907722841602034e-05,
             "monotonicidade": true,
             "status": "estimativa_condicionada_ordem_estavel",
             "ordem_observada": {
-              "24_32_40": 2.974950367526354,
-              "32_40_48": 3.4382259801247335
+              "24_32_40": 2.9749503674905595,
+              "32_40_48": 3.4382259802062993
             },
-            "extrapolacao_richardson": 3.2479994761195248,
-            "GCI_fino_relativo": 7.443212068443235e-05,
+            "extrapolacao_richardson": 3.2479994761195163,
+            "GCI_fino_relativo": 7.443212068127142e-05,
             "GCI_fator_seguranca": 1.25,
             "razões_refinamento_n24_32_40_48": [
               1.3333333333333333,
@@ -1883,7 +1883,7 @@
             "alertas": [
               "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
             ],
-            "estabilidade_ordem_relativa": 0.13474263043686632
+            "estabilidade_ordem_relativa": 0.13474263046780377
           },
           "fixa": {
             "n": [
@@ -1929,7 +1929,7 @@
       "ha": 8,
       "d_over_W": 0.125,
       "L_over_W": 2,
-      "Kt_net_n48_escalonada_C": 2.675120057086803,
+      "Kt_net_n48_escalonada_C": 2.675120057086801,
       "Kt_net_n48_fixa_C": 2.6760145362046797,
       "qualidade_n48_escalonada": {
         "elementos": 4608,
@@ -2061,24 +2061,24 @@
             ],
             "valores": [
               3.0516693368119654,
-              3.055383748178185,
-              3.056878567951717,
-              3.0575204383051484
+              3.0553837481781847,
+              3.0568785679517174,
+              3.0575204383051466
             ],
             "incrementos": [
-              0.0037144113662197498,
-              0.0014948197735318303,
-              0.0006418703534314396
+              0.0037144113662193057,
+              0.0014948197735327184,
+              0.0006418703534292192
             ],
-            "variacao_relativa_duas_mais_finas": 0.00020993166403402444,
+            "variacao_relativa_duas_mais_finas": 0.00020993166403329835,
             "monotonicidade": true,
             "status": "estimativa_condicionada_ordem_estavel",
             "ordem_observada": {
-              "24_32_40": 2.534759714197526,
-              "32_40_48": 3.139986179643235
+              "24_32_40": 2.534759714194805,
+              "32_40_48": 3.1399861796628166
             },
-            "extrapolacao_richardson": 3.05835115508615,
-            "GCI_fino_relativo": 0.00033962028944883855,
+            "extrapolacao_richardson": 3.05835115508614,
+            "GCI_fino_relativo": 0.00033962028944488213,
             "GCI_fator_seguranca": 1.25,
             "razões_refinamento_n24_32_40_48": [
               1.3333333333333333,
@@ -2088,7 +2088,7 @@
             "alertas": [
               "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
             ],
-            "estabilidade_ordem_relativa": 0.1927481303482917
+            "estabilidade_ordem_relativa": 0.19274813035419258
           },
           "fixa": {
             "n": [
@@ -2137,25 +2137,25 @@
               48
             ],
             "valores": [
-              3.0492782864606,
-              3.0545561466018203,
-              3.0564576861879944,
-              3.0572800652420606
+              3.0492782864606003,
+              3.0545561466018167,
+              3.056457686187994,
+              3.057280065242058
             ],
             "incrementos": [
-              0.005277860141220447,
-              0.0019015395861741169,
-              0.0008223790540662357
+              0.0052778601412164505,
+              0.0019015395861772255,
+              0.0008223790540640152
             ],
-            "variacao_relativa_duas_mais_finas": 0.0002689904217202043,
+            "variacao_relativa_duas_mais_finas": 0.0002689904217194783,
             "monotonicidade": true,
             "status": "estimativa_condicionada_ordem_estavel",
             "ordem_observada": {
-              "24_32_40": 2.955723590091261,
-              "32_40_48": 3.1054090325284145
+              "24_32_40": 2.9557235900821803,
+              "32_40_48": 3.1054090325493586
             },
-            "extrapolacao_richardson": 3.058359968279428,
-            "GCI_fino_relativo": 0.00044152932276462153,
+            "extrapolacao_richardson": 3.0583599682794116,
+            "GCI_fino_relativo": 0.00044152932275952974,
             "GCI_fator_seguranca": 1.25,
             "razões_refinamento_n24_32_40_48": [
               1.3333333333333333,
@@ -2165,7 +2165,7 @@
             "alertas": [
               "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
             ],
-            "estabilidade_ordem_relativa": 0.04820152220504105
+            "estabilidade_ordem_relativa": 0.048201522214384535
           },
           "fixa": {
             "n": [
@@ -2211,7 +2211,7 @@
       "ha": 8,
       "d_over_W": 0.125,
       "L_over_W": 4,
-      "Kt_net_n48_escalonada_C": 2.6739831602055206,
+      "Kt_net_n48_escalonada_C": 2.673983160205521,
       "Kt_net_n48_fixa_C": 2.6748762345107737,
       "qualidade_n48_escalonada": {
         "elementos": 4608,
@@ -2342,25 +2342,25 @@
               48
             ],
             "valores": [
-              3.051216144912987,
-              3.0543865916705237,
+              3.051216144912981,
+              3.0543865916705246,
               3.05566097544131,
-              3.0562793352313613
+              3.056279335231356
             ],
             "incrementos": [
-              0.003170446757536638,
-              0.0012743837707862582,
-              0.0006183597900513149
+              0.0031704467575437434,
+              0.00127438377078537,
+              0.0006183597900459858
             ],
-            "variacao_relativa_duas_mais_finas": 0.00020232436967496784,
+            "variacao_relativa_duas_mais_finas": 0.00020232436967322455,
             "monotonicidade": true,
             "status": "estimativa_condicionada_ordem_estavel",
             "ordem_observada": {
-              "24_32_40": 2.53931656592511,
-              "32_40_48": 2.5484079332994005
+              "24_32_40": 2.5393165659363106,
+              "32_40_48": 2.5484079333378142
             },
-            "extrapolacao_richardson": 3.057324877814474,
-            "GCI_fino_relativo": 0.00042762067387776563,
+            "extrapolacao_richardson": 3.0573248778144397,
+            "GCI_fino_relativo": 0.0004276206738660224,
             "GCI_fator_seguranca": 1.25,
             "razões_refinamento_n24_32_40_48": [
               1.3333333333333333,
@@ -2370,7 +2370,7 @@
             "alertas": [
               "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
             ],
-            "estabilidade_ordem_relativa": 0.0035674694210044372
+            "estabilidade_ordem_relativa": 0.0035674694316290543
           },
           "fixa": {
             "n": [
@@ -2419,25 +2419,25 @@
               48
             ],
             "valores": [
-              3.0477359961092323,
-              3.0532031118826937,
-              3.055162030608867,
-              3.055980754520595
+              3.0477359961092305,
+              3.0532031118826928,
+              3.0551620306088694,
+              3.0559807545205957
             ],
             "incrementos": [
-              0.005467115773461373,
-              0.0019589187261734864,
-              0.000818723911727659
+              0.005467115773462261,
+              0.001958918726176595,
+              0.0008187239117263267
             ],
-            "variacao_relativa_duas_mais_finas": 0.00026790872636110426,
+            "variacao_relativa_duas_mais_finas": 0.00026790872636066825,
             "monotonicidade": true,
             "status": "estimativa_condicionada_ordem_estavel",
             "ordem_observada": {
-              "24_32_40": 2.976610196424571,
-              "32_40_48": 3.2704907995561605
+              "24_32_40": 2.9766101964191627,
+              "32_40_48": 3.2704907995716734
             },
-            "extrapolacao_richardson": 3.056984886504253,
-            "GCI_fino_relativo": 0.00041072411130700594,
+            "extrapolacao_richardson": 3.0569848865042455,
+            "GCI_fino_relativo": 0.000410724111303751,
             "GCI_fator_seguranca": 1.25,
             "razões_refinamento_n24_32_40_48": [
               1.3333333333333333,
@@ -2447,7 +2447,7 @@
             "alertas": [
               "GCI e indice numerico condicional, nao incerteza fisica ou experimental"
             ],
-            "estabilidade_ordem_relativa": 0.08985825710669247
+            "estabilidade_ordem_relativa": 0.08985825711266315
           },
           "fixa": {
             "n": [
