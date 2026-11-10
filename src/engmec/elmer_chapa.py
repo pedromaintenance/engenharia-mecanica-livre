@@ -24,11 +24,18 @@ from .fem2d_indep import resolver as resolver_scipy, _b_matrix, _matriz_constitu
 
 def geo_elmer(*, nr:int=16, nt:int=32, H:float=.04, a:float=.01,
               L:float|None=None, estrategia_progressao:str="fixa",
-              angular:str="uniforme")->str:
+              angular:str="uniforme",topologia:str="dois-blocos")->str:
     """Mesmo CAD, agora com IDs físicos explícitos para ElmerGrid."""
     L=H if L is None else L
     if L<H or not math.isfinite(L):
         raise ValueError('Semicomprimento L deve ser finito e >= semilargura H')
+    if topologia not in ("dois-blocos","anel-quatro-blocos"):
+        raise ValueError("Topologia nao reconhecida")
+    if topologia=="anel-quatro-blocos":
+        if angular!="uniforme" or estrategia_progressao!="escalonada":
+            raise ValueError("Anel quatro-blocos verificado somente com angular uniforme e referencia radial escalonada")
+        from .multibloco_anel import gerar_geo_anel_quatro_blocos
+        return gerar_geo_anel_quatro_blocos(nr=nr,nt=nt,a=a,Hy=H,Hx=L)
     q=razao_progressao(nr,estrategia_progressao)
     if math.isclose(L,H,rel_tol=0.,abs_tol=1e-15):
         geo=gerar_geo(nr=nr,nt=nt,raio_m=a,semilargura_m=H,progressao=q)
@@ -258,7 +265,7 @@ def _crit_stress(mesh:dict, disp:dict, *, E:float,nu:float,a:float,T:float,H:flo
 def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
              L:float|None=None,T:float=10e6,E:float=200e9,nu:float=.3,
              estrategia_progressao:str="fixa",angular:str="uniforme",
-             gmsh_cmd:str="gmsh",
+             topologia:str="dois-blocos",gmsh_cmd:str="gmsh",
              grid_cmd:str="ElmerGrid",solver_cmd:str="ElmerSolver")->dict:
     for app in (gmsh_cmd,grid_cmd,solver_cmd):
         if shutil.which(app) is None:
@@ -270,7 +277,7 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
     out.mkdir(parents=True,exist_ok=True)
     (out/"model.geo").write_text(geo_elmer(nr=nr,nt=nt,H=H,a=a,L=L,
                 estrategia_progressao=estrategia_progressao,
-                angular=angular),encoding="utf-8")
+                angular=angular,topologia=topologia),encoding="utf-8")
     t0=time.perf_counter()
     commands=[
         ("gmsh",[gmsh_cmd,"model.geo","-2","-order","2","-format","msh2","-o","model.msh"]),
@@ -282,6 +289,13 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
         if p.returncode:
             raise RuntimeError(f"{phase} falhou rc={p.returncode}: {(p.stdout+p.stderr)[-2500:]}")
     mesh=importar_msh2((out/"model.msh").read_text(encoding="utf-8"),a=a,H=H,nr=nr,nt=nt,Hx=L)
+    controle_topologia=None
+    if topologia=="anel-quatro-blocos":
+        from .multibloco_anel import parametros_anel, verificar_anel_conforme
+        controle_topologia={
+            "parametros":parametros_anel(nr,nt,a=a,Hy=H,Hx=L),
+            "conformidade":verificar_anel_conforme(mesh,a=a,nr=nr,nt=nt)
+        }
     info=_parse_elmer_mesh(out/"elmermesh",H=H,a=a,Hx=L)
     if info["elmer_elements"]!=len(mesh["elements"]):
         raise ValueError("Perda de elementos na conversão do ElmerGrid")
@@ -329,9 +343,13 @@ def executar(out_dir:str|Path, *, nr:int=16,nt:int=32,H:float=.04,a:float=.01,
         "H_over_a":H/a,"nr":nr,"nt":nt,
         "L_over_W":L/H,"d_over_W":a/H,
         "distribuicao_angular":angular,
+        "topologia":topologia,
+        "controle_multibloco":controle_topologia,
         "estrategia_progressao_radial":estrategia_progressao,
-        "q_radial_efetivo":razao_progressao(nr,estrategia_progressao),
-        "q_radial_acumulado":razao_progressao(nr,estrategia_progressao)**nr,
+        "q_radial_efetivo":(razao_progressao(nr,estrategia_progressao)
+                            if topologia=="dois-blocos" else None),
+        "q_radial_acumulado":(razao_progressao(nr,estrategia_progressao)**nr
+                              if topologia=="dois-blocos" else None),
         "semicomprimento_x_m":L,"semilargura_y_m":H,
         "mesh_sha256":hashlib.sha256((out/"model.msh").read_bytes()).hexdigest(),
         "mesh_info":info,"recovery":stress,
@@ -366,11 +384,13 @@ def main():
     parser.add_argument("--raio-m",type=float,default=.01)
     parser.add_argument("--progressao-radial",choices=["fixa","escalonada"],default="fixa")
     parser.add_argument("--distribuicao-angular",choices=["uniforme","ampliada-topo"],default="uniforme")
+    parser.add_argument("--topologia",choices=["dois-blocos","anel-quatro-blocos"],default="dois-blocos")
     parser.add_argument("--saida",required=True)
     opt=parser.parse_args()
     print(json.dumps(executar(opt.saida,nr=opt.nr,nt=opt.nt,H=opt.semilargura_m,L=opt.semicomprimento_x_m,a=opt.raio_m,
                     estrategia_progressao=opt.progressao_radial,
-                    angular=opt.distribuicao_angular),
+                    angular=opt.distribuicao_angular,
+                    topologia=opt.topologia),
                      indent=2,ensure_ascii=False))
 
 
