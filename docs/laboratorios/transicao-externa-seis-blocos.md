@@ -62,3 +62,18 @@ O workflow arquiva `.geo`, `.msh`, configurações Elmer, logs, campos e recuper
 ## Limites e decisão
 
 O novo desenho não inclui contato pino–furo, soldas, fadiga, plastificação, efeitos 3D, fabricação, incertezas de propriedades ou ensaio experimental. Não usar `Kt` ou GCI isolados para liberar componentes de mineração. O aceite do método deve depender dos resultados externos e de uma referência física apropriada.
+
+## Resultados reais — 16 execuções externas aprovadas
+
+O [workflow completo 42780634538](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42780634538) concluiu o smoke CAD, os 16 modelos Elmer/SciPy e a auditoria com **sucesso**. Os resultados completos e os hashes das malhas estão no [dataset do ciclo 20](../dados/ciclo20-transicao-externa-2026-11-10.json). A comparação abaixo usa as malhas n=48 (4.608 Q8) e o mesmo problema físico do ciclo 19.
+
+| d/W | L/W | Razão global anterior → nova | Ângulo mínimo anterior → novo | Razão na 1ª faixa | σrr/T método C anterior → novo |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 0,250 | 2 | 14,880 → 7,505 (**−49,6%**) | 21,44° → 16,32° | 2,547 → 2,547 | 0,002145071 → 0,002145087 |
+| 0,250 | 4 | 31,223 → 14,721 (**−52,9%**) | 10,05° → 6,46° | 2,547 → 2,547 | 0,002141443 → 0,002141474 |
+| 0,125 | 2 | 17,231 → 12,652 (**−26,6%**) | 24,30° → 21,14° | 2,547 → 2,547 | 0,001949296 → 0,001949313 |
+| 0,125 | 4 | 33,832 → 24,331 (**−28,1%**) | 12,15° → 9,46° | 2,547 → 2,547 | 0,001948148 → 0,001948223 |
+
+**Interpretação:** o sexto bloco reduziu o pior alongamento global em **4/4** geometrias, mas piorou o menor ângulo em **4/4**. A qualidade na primeira faixa ficou numericamente idêntica; o resíduo de tração radial do recuperador C variou muito pouco e não melhorou. Os `Kt` líquidos C no ciclo 20 foram **2,438035; 2,434107; 2,674073; 2,672934**, frente a **2,438025; 2,434093; 2,674067; 2,672922** no ciclo 19 — diferenças muito pequenas, sem indicação de maior precisão física. As quatro séries C admitiram **GCI condicionado de aproximadamente 0,10–0,105%**, o que não é margem de segurança nem referência experimental.
+
+**Decisão técnica:** publicar a implementação e os dados como **experimento reprodutível**, sem promoção da topologia experimental a default. O próximo refinamento deve atuar na geometria das interfaces externas e na redução dos ângulos agudos, além de avaliar a tração tangencial e normal ao longo de toda a parede do furo, não apenas no nó crítico.

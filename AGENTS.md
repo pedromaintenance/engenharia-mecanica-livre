@@ -84,3 +84,7 @@ A nova opção `--distribuicao-angular ampliada-topo` permanece **experimental**
 ## Ciclo 20 — interfaces extras não garantem precisão
 
 A variante `--topologia anel-seis-blocos` é experimental. O CAD possui duas superfícies anulares, duas intermediárias e duas externas por pares, com interfaces Q8 conformes nos raios `2a` e no retângulo `Xm=√(2a Hx), Ym=√(2a Hy)`. Não alterar default `dois-blocos`. Exigir smoke CAD de 16 geometrias, conservação dos contornos, jacobianos positivos, carga real, verificação do campo de deslocamentos Elmer × SciPy e comparação de alongamento global/local, ângulos e tração livre com ciclo 19. Não chamar smoke de validação do FEM nem usar Kt/GCI como aprovação industrial. Consulte `docs/laboratorios/transicao-externa-seis-blocos.md` e `docs/ciclos/ciclo-20.md`.
+
+## Ciclo 20 — verificação externa final
+
+[16 modelos reais e dataset com hashes](docs/dados/ciclo20-transicao-externa-2026-11-10.json) e [execução 42780634538](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42780634538) demonstraram melhoria no alongamento global em 4/4 geometrias, mas piora dos ângulos mínimos em 4/4, sem ganho da tensão radial recuperada no furo. As quatro séries C apresentaram GCI condicional ~0,10%, não estimativa completa de erro. Não promover `anel-seis-blocos` nem usar Kt para aceitar reparo estrutural. Próximo gate: reduzir ângulos agudos e conferir resíduo vetorial ao longo de todo o furo.

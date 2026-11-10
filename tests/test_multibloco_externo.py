@@ -56,9 +56,6 @@ class TestSeisBlocos(unittest.TestCase):
             (24,48,.01,.08,math.inf), (24,48,True,.04,.16),
         ]
         for nr,nt,a,H,L in invalid:
-            if isinstance(a,bool):
-                # bool não precisa ter suporte especial; a geometria não deve ser booleana.
-                continue
             with self.assertRaises(ValueError):
                 parametros_seis_blocos(nr,nt,a=a,Hy=H,Hx=L)
 

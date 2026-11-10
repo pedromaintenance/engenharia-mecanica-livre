@@ -7,11 +7,9 @@ on:
       - "src/engmec/multibloco_externo.py"
       - "src/engmec/elmer_chapa.py"
       - "scripts/avaliar_ciclo20.py"
-      - "scripts/avaliar_ciclo20.py"
       - "tests/test_multibloco_externo.py"
       - "tests/test_aval_ciclo20.py"
       - ".github/workflows/ciclo20-transicao-exterior.yml"
-      - ".github/workflows/ciclo20-anel-seis-blocos.yml"
   workflow_dispatch:
 
 permissions:

@@ -1,7 +1,7 @@
 """Ciclo 20: CAD experimental com anel circular e DUAS transições Q8.
 
 O domínio e as condições físicas são idênticos aos do ciclo 19.
-A interface adicional é um retângulo homotético em escala geométrica,
+A interface adicional é um retângulo com coordenadas por média geométrica,
 com X_m=sqrt(2*a*Hx), Y_m=sqrt(2*a*Hy). Não implica aceitação do FEM.
 """
 from __future__ import annotations
@@ -17,7 +17,7 @@ def parametros_seis_blocos(nr: int, nt: int, *, a: float = .01,
             or not isinstance(nr, int) or not isinstance(nt, int)
             or nr not in (16, 24, 32, 40, 48) or nt != 2 * nr):
         raise ValueError("Exigir nr em 16,24,32,40,48 e nt=2*nr")
-    if not all(math.isfinite(x) for x in (a, Hy, Hx)):
+    if any(isinstance(x, bool) for x in (a, Hy, Hx)) or not all(math.isfinite(x) for x in (a, Hy, Hx)):
         raise ValueError("Geometria não finita")
     if not (a > 0 and Hy >= 3 * a and Hx >= Hy):
         raise ValueError("Exigir a>0, Hy>=3a e Hx>=Hy")
