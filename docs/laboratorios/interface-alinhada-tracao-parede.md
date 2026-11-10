@@ -60,3 +60,22 @@ O default `--topologia dois-blocos` permanece intocado. A variante `anel-seis-bl
 ## Condições para decisão
 
 Um ganho de ângulo só interessa se o alongamento, o jacobiano, a consistência Elmer/SciPy, a tração livre forte e a concentração de tensões não piorarem materialmente. Usar a malha mais fina, a série de quatro refinamentos e a medição integral da superfície; reportar resultados **favoráveis e desfavoráveis**. Mesmo um GCI condicionado não autoriza o dimensionamento de olhais de mineração sem geometria 3D, contato, pinagem, fadiga, propriedades reais e ensaio.
+
+## Resultado real — 28 CADs e 20 FEM concluídos
+
+O [workflow 42856063314](https://github.com/pedromaintenance/engenharia-mecanica-livre/actions/runs/42856063314) concluiu todos os jobs: **28 geometrias Gmsh** (sete posições × quatro chapas), **16 soluções FEM Q8 alinhadas** e **quatro controles do ciclo 20 reexecutados no mesmo ambiente**. A auditoria confrontou 16 hashes MSH2, conformidade das duas interfaces, equilíbrio, deslocamentos Elmer/SciPy, Kt e amostras de tração na superfície inteira. O [JSON real versionado](../dados/ciclo21-interface-tracao-2026-11-10.json) contém 16 casos completos, os controles e a matriz de varredura.
+
+Na malha fina `n=48`, 4.608 elementos e 192 amostras de parede em cada configuração:
+
+| d/W | L/W | Ângulo mín.: variação relativa | Alongamento máx.: variação relativa | RMS tração `||σn||/T` anterior → novo |
+| ---: | ---: | ---: | ---: | ---: |
+| 0,250 | 2 | +31,31% (melhora) | +8,03% (piora) | 0,003425882 → 0,003425882 |
+| 0,250 | 4 | +55,56% (melhora) | +15,31% (piora) | 0,003415154 → 0,003415116 |
+| 0,125 | 2 | +14,93% (melhora) | +44,95% (piora) | 0,003169587 → 0,003169557 |
+| 0,125 | 4 | +28,42% (melhora) | +47,35% (piora) | 0,003167222 → 0,003166442 |
+
+A redução relativa de RMS no contorno é apenas **0,000013% a 0,0246%**; a **tração máxima amostrada aumentou marginalmente nas quatro chapas**. Portanto, a existência do campo vetorial completo amplia o diagnóstico, mas **não sustenta melhoria física relevante da superfície livre**. Em todas as chapas, `Kt` líquido C variou pouco (no máximo aproximadamente 0,0034% relativo). Os quatro índices GCI C são condicionais e não incluem erro de modelagem nem validação experimental.
+
+O desvio radial máximo do Q8 interpolado em relação ao círculo foi aproximadamente `2,0×10⁻⁹` em fração do raio nas 16 simulações; isso justifica o uso radial neste exemplo, mas **não equivale a usar exatamente a normal geométrica da curva isoparamétrica em todo caso**. A máxima diferença relativa de deslocamentos de referência entre Elmer e SciPy foi `4,54×10⁻¹²`; é concordância numérica, não validação independente da tensão real.
+
+**Decisão:** melhoria de ângulo mínimo em **4/4**, piora do alongamento global em **4/4**, sem ganho material de tração livre. O experimento é reproduzível e os resultados devem ser públicos, mas a variante `anel-seis-blocos-alinhado` permanece **experimental opt-in**. A topologia padrão `dois-blocos` fica inalterada. Próximo gate: estudar topologia externa que reduza **ambos** os riscos geométricos; conferir a tração conforme a normal isoparamétrica e o resíduo da condição fraca sem substituir por um único critério de pico.
